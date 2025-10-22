@@ -112,8 +112,14 @@
       "carousel": {
         "items": [
           {
-            "title": ["Mes projets", "Un autre texte"],
-            "carImgs": ["rob1.jpg", "moi.jpg"],
+            "title": [
+              "Mes projets",
+              "Un autre texte"
+            ],
+            "carImgs": [
+              "rob1.jpg",
+              "moi.jpg"
+            ],
             "order": 1
           }
         ]
@@ -121,13 +127,33 @@
     }
   },
   "menu": [
-    { "title": "Services", "slug": "services", "type": "page" },
-    { "title": "Contact", "slug": "openContactPopup", "type": "action" }
+    {
+      "title": "Services",
+      "slug": "services",
+      "type": "page"
+    },
+    {
+      "title": "Contact",
+      "slug": "openContactPopup",
+      "type": "action"
+    }
   ],
   "footerMenu": [
-    { "title": "Administration", "slug": "admin", "type": "page" },
-    { "title": "Mentions Légales", "slug": "mentions", "type": "page" },
-    { "title": "Contact", "slug": "openContactPopup", "type": "action" }
+    {
+      "title": "Administration",
+      "slug": "admin",
+      "type": "page"
+    },
+    {
+      "title": "Mentions Légales",
+      "slug": "mentions",
+      "type": "page"
+    },
+    {
+      "title": "Contact",
+      "slug": "openContactPopup",
+      "type": "action"
+    }
   ],
   "contentVersion": "2150-07-22T14:41:33.720Z"
 }
