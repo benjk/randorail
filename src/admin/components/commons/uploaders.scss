@@ -1,0 +1,258 @@
+@use '../../../styles/mixin.scss' as *;
+@use '../../styles/variables_admin.scss' as *;
+@use '../../../styles/variables.scss' as globals;
+
+.uploader-container {
+  $spacing-up: 0.8em;
+  @include flex-row($spacing-up);
+  justify-content: space-evenly;
+  width: 100%;
+  background-color: $color3;
+  border-radius: $btn-radius;
+  padding: $spacing-up;
+  color: $color1;
+
+  .uploader-data-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    max-width: 600px;
+
+    .strong {
+      color: $color2;
+    }
+
+    input[type='file'] {
+      display: none;
+    }
+
+    .drop-container {
+      display: flex;
+      gap: 10px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      border: 1px dashed $color2;
+      color: $color3;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      font-size: calc($text-size * 0.7);
+      position: relative;
+      background-color: $bgInputColor;
+
+      &:hover {
+        background-color: rgba($color2, 0.1);
+      }
+
+      .drop-title {
+        text-align: center;
+        color: $color1;
+      }
+
+      &.loading {
+        cursor: wait;
+        pointer-events: none;
+        color: $color1 !important;
+        .loader {
+          display: inline-block;
+          font-size: 0.8em;
+        }
+      }
+    }
+
+    .message-container {
+      height: auto;
+    }
+  }
+
+  .bloc-picker-container {
+    flex: 1;
+  }
+
+  &.bloc-picker {
+    height: globals.$annonce-height;
+    .uploader-data-container {
+      padding-left: $margin-l;
+      padding-right: $margin-l;
+      gap: $margin-xs;
+    }
+
+    .bloc-picker-container {
+      display: flex;
+      flex-direction: row;
+      gap: $margin-s;
+      justify-content: center;
+      padding: $margin-m;
+      align-items: center;
+
+      .checkbox-wrapper {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
+        white-space: nowrap;
+
+        input[type='checkbox'] {
+          appearance: none;
+          width: 20px;
+          height: 20px;
+          border: 2px solid $color2;
+          border-radius: 4px;
+          margin-right: $margin-xs;
+          cursor: pointer;
+          position: relative;
+          transition: $btn-transition;
+          flex-shrink: 0;
+
+          &:checked {
+            background-color: $color2;
+
+            &::after {
+              content: '';
+              position: absolute;
+              left: 5px;
+              top: 1px;
+              width: 5px;
+              height: 9px;
+              border: solid white;
+              border-width: 0 2px 2px 0;
+              transform: rotate(45deg);
+            }
+          }
+        }
+      }
+
+      .label-container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .custom-select-container {
+          flex: 1;
+          position: relative;
+          width: 100%;
+
+          .custom-select-trigger {
+            width: 100%;
+            padding: $margin-xs $margin-m;
+            font-size: $subtext-size;
+            color: $color1;
+            background-color: white;
+            border: 2px solid rgba($color1, 0.15);
+            border-radius: $btn-radius;
+            cursor: pointer;
+            transition: $btn-transition;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%231e2040' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1em center;
+            padding-right: $margin-m;
+
+            &:hover:not(.disabled) {
+              border-color: $color2;
+              box-shadow: 0 0 0 3px rgba($color2, 0.08);
+            }
+
+            &:focus {
+              outline: none;
+              border-color: $color2;
+              box-shadow: 0 0 0 3px rgba($color2, 0.15);
+            }
+
+            &.disabled {
+              opacity: 0.5;
+              cursor: not-allowed;
+              background-color: rgba($color1, 0.03);
+            }
+
+            .truncate {
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    flex-direction: column !important;
+    gap: $spacing-up !important;
+    width: 100%;
+
+    .uploader-controls {
+      order: 2;
+    }
+
+    .bloc-picker-container {
+      flex-direction: column !important;
+      width: 100%;
+      padding-top: $margin-xs !important;
+      padding-bottom: $margin-xs !important;
+
+      .label-container {
+        width: 100%;
+
+        select {
+          padding: $margin-xs $margin-xs !important;
+          font-size: calc($subtext-size * 0.85) !important;
+        }
+      }
+    }
+  }
+}
+
+.custom-options {
+  background-color: white;
+  border: 2px solid rgba($color1, 0.15);
+  border-radius: $btn-radius;
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 9999; // Z-index élevé car il est dans le body
+  box-shadow: 0 4px 12px rgba($color1, 0.15);
+  font-family: system-ui, sans-serif;
+
+  .custom-option {
+    padding: $margin-xs $margin-m;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: $subtext-size;
+    color: $color1;
+
+    &:hover {
+      background-color: rgba($color2, 0.08);
+    }
+
+    &:active {
+      background-color: rgba($color2, 0.15);
+    }
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      font-size: calc($subtext-size * 0.85) !important;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba($color1, 0.05);
+    border-radius: $btn-radius;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba($color1, 0.2);
+    border-radius: $btn-radius;
+
+    &:hover {
+      background: rgba($color1, 0.3);
+    }
+  }
+}

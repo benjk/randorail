@@ -1,0 +1,60 @@
+$color1: #2D628F;
+$color2: #161616;
+$color3: #EFEFF4;
+
+$font-main: "Inter", sans-serif;
+
+/****************** SPACING ******************/
+$margin-xs: clamp(0.4rem, 0.329rem + 0.19vw, 0.5rem);
+$margin-s: clamp(0.8rem, 0.657rem + 0.381vw, 1rem);
+$margin-m: clamp(1rem, 0.429rem + 1.524vw, 1.8rem);
+$margin-l: clamp(2rem, 1.643rem + 0.952vw, 2.5rem);
+$margin-xl: clamp(3.5rem, 2.923rem + 1.846vw, 5rem);
+
+/****************** GLOBAL ******************/
+$classic-btn-size: clamp(12.2rem, 1.861rem + 16.139vw, 18rem);
+$basic-radius: 15px;
+$basic-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+$strong-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+
+$mobile-breakpoint: 992px;
+$header-height: 5rem;
+$footer-height: 11rem;
+
+$title1-font-size: clamp(2.5rem, 0.357rem + 5.714vw, 5.5rem);
+$title2-font-size: clamp(1.7rem, 1.25rem + 1.2vw, 2.6rem);
+$title3-font-size: clamp(1.2rem, 0.986rem + 0.571vw, 1.5rem);
+$title4-font-size: clamp(1.35rem, 1.119rem + 0.738vw, 1.95rem);
+$text-font-size: clamp(1rem, 0.857rem + 0.381vw, 1.2rem);
+
+$letter-spacing-basic: 0.5px;
+
+$annonce-height: 16em;
+
+/****************** FONTS ******************/
+@font-face {
+  font-family: 'Marcellus';
+  src: url('/fonts/Marcellus.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Spectral';
+  src: url('/fonts/Spectral.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Spectral';
+  src: url('/fonts/Spectral-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: bold;
+  font-display: swap;
+}
+
+$title-font: 'Marcellus', system-ui, sans-serif;
+$text-font: 'Spectral', system-ui, sans-serif;

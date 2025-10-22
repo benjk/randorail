@@ -1,0 +1,180 @@
+@use '../../styles/variables_admin.scss' as *;
+
+// ------------------------------------
+// CONFIGURATION
+// ------------------------------------
+$collapsible-duration: 0.3s;
+$collapsible-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+// =====================================================================
+// COLLAPSIBLE - BASE COMMUNE
+// =====================================================================
+.collapsible {
+  overflow: hidden;
+
+  // Icône commune
+  &__icon {
+    flex-shrink: 0;
+    margin-right: $margin-s;
+    font-size: 1.2rem;
+    transition: transform $collapsible-duration $collapsible-easing;
+    user-select: none;
+  }
+
+  // Content wrapper (hauteur animée uniquement)
+  &__content {
+    height: 0;
+    overflow: hidden;
+    transition: height $collapsible-duration $collapsible-easing;
+  }
+
+  // Contenu interne avec padding/gap
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: $margin-s;
+  }
+
+  // États de transition forcés
+  &[data-transitioning='true'] {
+    .collapsible__content {
+      overflow: hidden; // bloque overflow pendant anim
+    }
+  }
+
+  // Variantes d'espacement
+  &--compact {
+    .collapsible__inner {
+      gap: $margin-s;
+    }
+  }
+
+  &--borderless {
+    .collapsible__header {
+      border: none;
+    }
+  }
+}
+
+// =====================================================================
+// ÉTATS OUVERT / FERMÉ - VARIANTE PAR DÉFAUT
+// =====================================================================
+.collapsible {
+  &.is-open {
+    .collapsible__icon {
+      transform: rotate(0deg);
+    }
+  }
+  &.is-closed {
+    .collapsible__icon {
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+// =====================================================================
+// HEADER COMMUN
+// =====================================================================
+.collapsible__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: $margin-s;
+  gap: $margin-m;
+
+  // Bouton principal du header
+  button {
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .collapsible__title {
+      flex: 1 1 auto;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      max-width: 100%;
+    }
+
+    .collapsible__icon {
+      flex-shrink: 0;
+      margin-bottom: -4px;
+      font-size: 0.9rem;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  // Icône "ordre" (déplacement ou action spéciale)
+  .order-icon {
+    cursor: pointer;
+    margin-bottom: -2px;
+    transform: scale(1);
+    @include light-active-icon;
+
+    &:hover {
+      opacity: 0.6;
+      transform: scale(1.25);
+    }
+  }
+}
+
+// =====================================================================
+// HEADER SPÉCIFIQUE AUX BLOCS
+// =====================================================================
+.collapsible.collapsible-bloc {
+  &.is-open {
+    .collapsible__icon-bloc {
+      transform: rotate(0deg) translateY(0.1rem);
+    }
+  }
+  &.is-closed {
+    .collapsible__icon-bloc {
+      transform: rotate(-90deg) translateY(0);
+    }
+  }
+
+  .collapsible__bloc-header {
+    display: flex;
+    padding-left: $margin-s;
+    padding-right: $margin-s;
+    width: 100%;
+    flex: 1;
+    align-items: center;
+
+    .collapsible__icon-bloc {
+      transition: transform $collapsible-duration $collapsible-easing;
+      margin-bottom: -0.1rem;
+    }
+
+    .collapsible__header-content {
+      width: 100%;
+      height: 100%;
+    }
+
+    .collapsible__toggle-btn {
+      border: none;
+      background: none;
+      margin: $margin-s 0;
+      color: inherit;
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

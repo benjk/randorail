@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteBase /
+
+# Redirige tout ce qui n’existe pas vers /404.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ /404.html [L]
+
+# Déclare la page d'erreur 404
+ErrorDocument 404 /404.html

@@ -1,0 +1,70 @@
+@use "./variables" as *;
+
+/**
+* box-sizing
+*/
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  backface-visibility: hidden;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/**
+  * reset of default margins and paddings.
+  */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+*:not(input):not(textarea) {
+  caret-color: transparent;
+}
+
+input,
+textarea {
+  caret-color: auto;
+}
+
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.gone {
+  display: none !important;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+html,
+body {
+  width: 100%;
+  //   touch-action: manipulation; //desactive certains gestes tactiles
+  text-underline-offset: 2px;
+  opacity: 1;
+  font-family: $text-font;
+  color: $color1;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}

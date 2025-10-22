@@ -1,0 +1,80 @@
+@use '../../../styles/mixin.scss' as *;
+@use '../../styles/variables_admin.scss' as *;
+
+$video-height: 240px;
+$video-width: 430px;
+
+$data-container-width: 500px;
+
+.video-uploader {
+  align-items: stretch;
+
+  .video-data-container {
+    color: $color1;
+    padding-right: 1.2em;
+    padding-left: 1.2em;
+    width: $data-container-width;
+    max-width: $data-container-width;
+
+    .drop-container {
+      height: calc($video-height / 3);
+    }
+  }
+
+  .video-preview-wrapper {
+    height: $video-height;
+    width: $video-width;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .video-preview {
+      width: 100%;
+      height: 100%;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+
+    .video-play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0, 0, 0, 0.4);
+      border: none;
+      border-radius: 50%;
+      color: $color3;
+      cursor: pointer;
+      padding: 0.6em;
+      transition: background 0.2s;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.6);
+      }
+    }
+
+    .video-preview-placeholder {
+      color: $color3;
+      font-size: 0.9em;
+      text-align: center;
+    }
+  }
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    flex-direction: column-reverse !important;
+    align-items: center !important;
+
+    .video-data-container {
+      gap: $margin-m;
+      max-width: 100%;
+    }
+
+    .video-prev-container {
+      max-width: 100%;
+      video {
+        max-height: 200px !important;
+      }
+    }
+  }
+}

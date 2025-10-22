@@ -1,0 +1,39 @@
+---
+import {
+  META_SITE_URL,
+  META_OG_URL_IMG,
+  META_OG_IMG_WIDTH,
+  META_OG_IMG_HEIGHT,
+  META_OG_SITENAME,
+  META_OG_URL_IMG_SQUARE,
+  META_OG_IMG_SQUARE_WIDTH,
+  META_OG_IMG_SQUARE_HEIGHT,
+} from "../config";
+import content from "../data/content.json";
+---
+
+<!-- SEO  -->
+<meta name="author" content="Benjamin Kielinski" />
+<meta name="description" content={content.document.description} />
+
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href={META_SITE_URL} />
+
+<!-- OpenGraph  -->
+<!-- Aperçu Facebook -->
+<meta property="og:title" content={content.document.og.ogTitle} />
+<meta property="og:description" content={content.document.og.ogDescription} />
+<meta property="og:url" content={META_SITE_URL} />
+<meta property="og:type" content="website" />
+<meta property="og:image" content={META_OG_URL_IMG} />
+<meta property="og:image:width" content={META_OG_IMG_WIDTH} />
+<meta property="og:image:height" content={META_OG_IMG_HEIGHT} />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:site_name" content={META_OG_SITENAME} />
+<!-- Image carrée pour Discord et Twitter -->
+<meta name="twitter:title" content={content.document.og.ogTitle} />
+<meta name="twitter:description" content={content.document.og.ogDescription} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content={META_OG_URL_IMG_SQUARE} />
+<meta name="twitter:image:width" content={META_OG_IMG_SQUARE_WIDTH} />
+<meta name="twitter:image:height" content={META_OG_IMG_SQUARE_HEIGHT} />

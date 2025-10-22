@@ -1,0 +1,18 @@
+{
+  "home": {
+    "label": "Accueil",
+    "editable": true
+  },
+  "about": {
+    "label": "Qui suis-je",
+    "editable": true
+  },
+  "services": {
+    "label": "Services",
+    "editable": true
+  },
+  "mentions": {
+    "label": "Mentions légales",
+    "editable": true
+  }
+}

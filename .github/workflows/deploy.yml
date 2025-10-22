@@ -1,0 +1,123 @@
+# .github/workflows/deploy.yml
+
+name: Deploy to Hostinger via FTP
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Cache Node.js modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Inject .env.production
+        run: |
+          echo "PUBLIC_FIREBASE_PROJECT_ID=${{ secrets.PUBLIC_FIREBASE_PROJECT_ID }}" >> .env.production
+          echo "PUBLIC_FIREBASE_KEY=${{ secrets.PUBLIC_FIREBASE_KEY }}" >> .env.production
+          echo "PUBLIC_FIREBASE_AUTH_DOMAIN=${{ secrets.PUBLIC_FIREBASE_AUTH_DOMAIN }}" >> .env.production
+          echo "PUBLIC_PUBLISH_FUNCTION_URL=${{ secrets.PUBLIC_PUBLISH_FUNCTION_URL }}" >> .env.production
+
+      - name: Vérifier si la branche update-content existe
+        id: check_branch
+        run: |
+          if git ls-remote --heads origin update-content | grep update-content; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout updated content
+        if: steps.check_branch.outputs.exists == 'true'
+        uses: actions/checkout@v3
+        with:
+          ref: update-content
+          path: temp-content
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Merge updated content with default schema
+        if: steps.check_branch.outputs.exists == 'true'
+        run: |
+          node .github/scripts/merge-content.cjs
+
+      - name: Copier les images de update-content vers public/img
+        if: steps.check_branch.outputs.exists == 'true'
+        run: |
+          mkdir -p public/img
+          # Copie les images de update-content dans un dossier temporaire de merge
+          rsync -a --exclude='static/' temp-content/content/img/ public/img/
+          # Vérifie si le dossier static existe dans la branche update-content avant de tenter la copie
+          
+          if [ -d "temp-content/content/img/static" ]; then
+            mkdir -p public/img/static
+            rsync -a --ignore-existing temp-content/content/img/static/ public/img/static/
+          else
+            echo "Le dossier static n'existe pas dans update-content, aucune image statique à copier."
+          fi
+
+          echo "🧮 Génération des hashes d'images..."
+          node .github/scripts/generate-hashes.cjs
+
+      - name: Install dependencies and build
+        run: |
+          npm ci
+          npm run build
+
+      - name: 📤 Deploy dist to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: ./
+          protocol: ftp
+          dangerous-clean-slate: true
+
+      - name: Push content, schemas si modifiés
+        if: steps.check_branch.outputs.exists == 'true'
+        run: |
+          cd temp-content
+
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+          # compare le schema actuel (dans update-content) avec celui du main
+          if cmp -s content/schema.json ../src/data/content.json; then
+            echo "✅ Aucun changement de schéma détecté"
+          else
+            echo "📤 Schéma modifié, mise à jour du content & schema"
+            cp ../src/data/content.json content/content.json
+            cp ../src/data/content.json content/schema.json
+            git add content/content.json content/schema.json
+          fi
+
+          # check diff uniquement sur ce qui est staged
+          if ! git diff --cached --quiet; then
+            echo "📤 Fichiers modifiés, commit en cours"
+            git commit -m "🔁 MAJ content, schema"
+            git pull --rebase origin update-content || true
+            git push origin update-content
+          else
+            echo "✅ Aucun changement à push"
+          fi

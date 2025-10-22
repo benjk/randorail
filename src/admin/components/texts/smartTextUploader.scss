@@ -1,0 +1,100 @@
+@use '../../../styles/mixin.scss' as *;
+@use '../../styles/variables_admin.scss' as *;
+
+$text-height: 150px;
+$data-container-width: 70%;
+
+$mobile-input-height: 35px;
+
+.text-uploader {
+  $spacing-up: 0.8em;
+  min-height: $text-height;
+  height: auto;
+  padding: $spacing-up;
+  gap: $spacing-up;
+
+  .text-data-container {
+    width: $data-container-width;
+    max-width: $data-container-width;
+    min-height: calc($text-height - $spacing-up * 2);
+    align-items: center;
+    justify-content: space-around;
+    gap: $margin-s;
+
+    .text-uploader-label {
+      font-weight: bold;
+      color: $color1;
+      margin-bottom: 0.5em;
+    }
+  }
+
+  .input-wrapper {
+    $spacing-icon: 0.2em;
+    position: relative;
+    width: 100%;
+    height: auto;
+
+    .text-input {
+      padding: 0.6em;
+      padding-top: calc($spacing-icon * 5);
+      flex: 1;
+      height: auto;
+      min-height: calc($text-height - $spacing-up * 2);
+      width: 100%;
+      font-size: calc($text-size * 0.8);
+      border-radius: $btn-radius;
+      border: 1px dashed $color2;
+      background: $color3;
+      color: $color1;
+      resize: vertical;
+      overflow: hidden;
+      background-color: $bgInputColor;
+
+      &:focus {
+        border: 1px solid $color2;
+        outline: 1px solid $color2;
+      }
+    }
+
+    textarea.text-input {
+      resize: none;
+      overflow-y: none;
+    }
+
+    .input-error-icon {
+      position: absolute;
+      top: $spacing-icon;
+      left: $spacing-icon;
+      width: 1em;
+      height: 1em;
+      color: $errorColor;
+      pointer-events: none;
+      z-index: 2;
+      color: $errorColor;
+    }
+  }
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    flex-direction: column !important;
+    gap: $spacing-up !important;
+    min-height: 0 !important;
+    height: auto !important;
+
+    .uploader-controls {
+      order: 2;
+    }
+
+    .text-data-container {
+      width: 100%;
+      min-height: 0;
+    }
+
+    .text-input {
+      min-height: $mobile-input-height !important;
+    }
+
+    textarea.text-input {
+      min-height: calc($mobile-input-height * 2) !important;
+    }
+  }
+}

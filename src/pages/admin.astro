@@ -1,0 +1,12 @@
+---
+import AdminApp from "../admin/components/AdminApp";
+import AdminLayout from "../admin/components/AdminLayout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Administration du site" withSeo={false}>
+    <AdminLayout>
+        <AdminApp client:only="react" />
+    </AdminLayout>
+</BaseLayout>
+  

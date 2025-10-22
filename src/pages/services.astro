@@ -1,0 +1,65 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import content from '../data/content.json';
+import { blocRules } from '../admin/data/blocRules';
+import HighlightOnHash from '../components/Highlight';
+import { sortBlocsByOrder } from '../admin/frontUtils';
+import { imageWithHash } from '../admin/components/images/imageWithHash';
+
+const blocs = content.pages.services.blocs.items ?? [];
+const sortedBlocs = sortBlocsByOrder(blocs);
+
+const carouselItems = content.pages.services.carousel.items ?? [];
+---
+
+<MainLayout title={content.pages.services.docTitle}>
+  <div id="services-container" class="content-container">
+    <h2 id="services-title">{content.pages.services.title}</h2>
+    <p id="services-text">{content.pages.services.mainText}</p>
+    <div class="services-blocs">
+      {
+        sortedBlocs.map(({ title, content, imgName }) => (
+          <section>
+            <h3>{title}</h3>
+            {content.split('\n').map((line) => (
+              <p>{line}</p>
+            ))}
+            {imgName && (
+              <img
+                src={imageWithHash(
+                  imgName,
+                  blocRules.SERVICES_BLOC.imageFields.SERVICES_BLOC_IMG.folder,
+                )}
+                alt={title}
+                loading="lazy"
+              />
+            )}
+          </section>
+        ))
+      }
+    </div>
+    <div class="carousel-section">
+      {
+        carouselItems.map(({ title, carImgs }) => (
+          <div class="carousel-item">
+            <div class="carousel-text">
+              {title.map((line) => (
+                <p>{line}</p>
+              ))}
+            </div>
+            <div class="carousel-img">
+              {carImgs.map((imgName, i) => (
+                <img
+                  src={`/img/services/${imgName}`}
+                  alt={title[i] ?? title[0]}
+                  loading="lazy"
+                />
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</MainLayout>
+<HighlightOnHash client:load />

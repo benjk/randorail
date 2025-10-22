@@ -1,0 +1,120 @@
+---
+import content from '../data/content.json';
+import HighlightOnHash from './Highlight';
+import { imageWithHash } from '../admin/components/images/imageWithHash';
+import { imageRules } from '../admin/data/imageRules';
+import { blocRules } from '../admin/data/blocRules';
+---
+
+<div id="home-container" class="content-container">
+  <section class="first-section">
+    <h1 id="home-title">{content.home.firstSection.mainTitle}</h1>
+    <h2 id="home-subtitle">{content.home.firstSection.subTitle}</h2>
+  </section>
+  {
+    content.home.announcement?.enabled &&
+      (() => {
+        const { sourceBlocKey, blocIndex } = content.home.announcement;
+        const blocRule = blocRules[sourceBlocKey];
+        if (!blocRule) return null;
+
+        const jsonPath = blocRule.jsonKey.split('.');
+        let blocData: any = content;
+        for (const part of jsonPath) {
+          if (!blocData) break;
+          blocData = blocData[part];
+        }
+
+        const item = blocData?.items?.[blocIndex];
+        if (!item) return null;
+
+        const firstImageField = Object.values(
+          blocRules[sourceBlocKey].imageFields || {},
+        )[0];
+        const folder = firstImageField?.folder || '';
+
+        return (
+          <section id="announcement" class="announcement-section">
+            <div
+              class="announcement-wrapper"
+              style={`background-image: url('${imageWithHash(item.imgName, folder)}')`}
+            >
+              <div class="announcement-content">
+                <h3 class="announcement-title">{item.title}</h3>
+                <p class="announcement-text">{item.content}</p>
+              </div>
+            </div>
+          </section>
+        );
+      })()
+  }
+  <section class="second-section">
+    <div class="fb-container">
+      <div id="fb-root">
+        <div
+          class="fb-page"
+          data-href={content.contact.socials.facebook}
+          data-tabs="timeline"
+          data-height="800px"
+          data-width="900px"
+          data-small-header="false"
+          data-adapt-container-width="true"
+          data-show-facepile="true"
+        >
+          <blocquote
+            cite="https://www.facebook.com/verssoiguidances"
+            class="fb-xfbml-parse-ignore"
+          >
+            <a href="https://www.facebook.com/verssoiguidances"
+              >Vers Soi Guidances</a
+            >
+          </blocquote>
+        </div>
+      </div>
+      <div class="side-fb-container">
+        <img
+          id="home-side-img"
+          src={imageWithHash(imageRules.HOME_SIDE_IMG.name)}
+          alt=""
+        />
+        <p id="intro-text1" class="p2 p3">{content.home.secondSection.text1}</p>
+        <p id="intro-text2" class="p2 p3">{content.home.secondSection.text2}</p>
+        <p id="intro-text3" class="p2 p3">{content.home.secondSection.text3}</p>
+      </div>
+    </div>
+  </section>
+</div>
+<HighlightOnHash client:load />
+<script>
+  function setFacebookWidth() {
+    const fbPage = document.querySelector('.fb-page');
+
+    if (fbPage) {
+      let width;
+      if (window.innerWidth <= 992) {
+        // Mobile : largeur adaptée
+        width = Math.min(window.innerWidth - 60, 500).toString();
+      } else {
+        // Desktop : max 500px
+        width = '500';
+      }
+
+      if (!width) return;
+      fbPage.setAttribute('data-width', width);
+    }
+  }
+
+  setFacebookWidth();
+  if (document.readyState !== 'loading') {
+    // Ajouter un délai pour appliquer la classe home
+    setTimeout(function () {
+      document.querySelector('#bg-wrapper .bg.main')?.classList.add('visible');
+    }, 100);
+  }
+</script>
+<script
+  async
+  defer
+  crossorigin="anonymous"
+  src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v19.0"
+></script>

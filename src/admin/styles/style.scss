@@ -1,0 +1,269 @@
+@use './variables_admin.scss' as *;
+
+// ============================ //
+//           LAYOUT            //
+// ============================ //
+html {
+  background-color: $color1 !important;
+}
+
+body {
+  background-color: $color1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .admin-layout {
+    background-color: $color1;
+    width: 100%;
+    min-height: 100vh;
+    color: $onColor1;
+    font-family: system-ui, sans-serif;
+
+    main {
+      min-height: 100vh;
+      min-width: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .admin-msg {
+        text-align: center;
+        color: $color2;
+
+        &.error-msg {
+          color: crimson;
+        }
+      }
+    }
+
+    // ============================ //
+    //             FORM            //
+    // ============================ //
+    .form-container {
+      $pad-input: 0.75rem;
+      width: 90%;
+      max-width: 500px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5em;
+
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25em;
+      }
+
+      .form-group {
+        position: relative;
+        width: 100%;
+
+        .floating-input {
+          padding: $pad-input;
+          background-color: transparent;
+          color: $onColor1;
+          border: 2px solid $color2;
+          width: 100%;
+          outline: none;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+          border-radius: 10px;
+          margin-bottom: 0.5em;
+
+          &:focus {
+            border-color: darken($color2, 15%);
+          }
+        }
+
+        .error-text {
+          padding-inline-start: $pad-input;
+          margin-top: 0.5rem;
+          color: crimson;
+        }
+
+        .floating-label {
+          position: absolute;
+          left: $pad-input;
+          top: $pad-input;
+          background: $color1;
+          padding-inline: 0.5em;
+          transition: transform 200ms;
+          pointer-events: none;
+          transform-origin: left;
+          translate: -0.3em;
+          color: $onColor1;
+          font-size: 1rem;
+        }
+
+        .floating-input::placeholder {
+          opacity: 0;
+        }
+
+        .floating-input:focus + label,
+        .floating-input:not(:placeholder-shown) + label {
+          transform: translateY(calc(-50% - $pad-input)) scale(0.8);
+          color: $color2;
+        }
+
+        /* Trix de sauvage */
+        input:-webkit-autofill,
+        input:-webkit-autofill:focus {
+          transition:
+            background-color 0s 600000s,
+            color 0s 600000s !important;
+        }
+        .floating-input:-webkit-autofill ~ label {
+          transform: translateY(calc(-50% - $pad-input)) scale(0.8);
+          color: $color3;
+          transition:
+            transform 0s,
+            color 0s;
+        }
+
+        .floating-input:focus {
+          border: 2px solid $color2;
+        }
+      }
+    }
+
+    .login-title {
+      text-align: center;
+      font-size: $title1-size;
+      margin-bottom: 1em;
+    }
+
+    .login-link {
+      background: none;
+      border: none;
+      color: $onColor2;
+      cursor: pointer;
+      font-size: $subtext-size;
+      text-decoration: underline;
+      padding: 0.25em;
+    }
+
+    .login-link-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    // ============================ //
+    //           BUTTONS           //
+    // ============================ //
+
+    .admin-btn {
+      @include admin-btn();
+    }
+
+    // ============================ //
+    //           LOADER            //
+    // ============================ //
+
+    .loader {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: calc($loader-size*0.8);
+      width: $loader-size;
+      height: $loader-size;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      display: none;
+    }
+
+    @keyframes spin {
+      0%,
+      100% {
+        box-shadow:
+          0 -1.125em 0 0.075em,
+          0.75em -0.75em 0 0,
+          1.125em 0 0 -0.375em,
+          0.75em 0.75em 0 -0.375em,
+          0 1.125em 0 -0.375em,
+          -0.75em 0.75em 0 -0.375em,
+          -1.125em 0 0 -0.375em,
+          -0.75em -0.75em 0 0;
+      }
+      12.5% {
+        box-shadow:
+          0 -1.125em 0 0,
+          0.75em -0.75em 0 0.075em,
+          1.125em 0 0 0,
+          0.75em 0.75em 0 -0.375em,
+          0 1.125em 0 -0.375em,
+          -0.75em 0.75em 0 -0.375em,
+          -1.125em 0 0 -0.375em,
+          -0.75em -0.75em 0 -0.375em;
+      }
+      25% {
+        box-shadow:
+          0 -1.125em 0 -0.1875em,
+          0.75em -0.75em 0 0,
+          1.125em 0 0 0.075em,
+          0.75em 0.75em 0 0,
+          0 1.125em 0 -0.1875em,
+          -0.75em 0.75em 0 -0.1875em,
+          -1.125em 0 0 -0.1875em,
+          -0.75em -0.75em 0 -0.1875em;
+      }
+      37.5% {
+        box-shadow:
+          0 -1.125em 0 -0.375em,
+          0.75em -0.75em 0 -0.375em,
+          1.125em 0 0 0,
+          0.75em 0.75em 0 0.075em,
+          0 1.125em 0 0,
+          -0.75em 0.75em 0 -0.375em,
+          -1.125em 0 0 -0.375em,
+          -0.75em -0.75em 0 -0.375em;
+      }
+      50% {
+        box-shadow:
+          0 -1.125em 0 -0.375em,
+          0.75em -0.75em 0 -0.375em,
+          1.125em 0 0 -0.375em,
+          0.75em 0.75em 0 0,
+          0 1.125em 0 0.075em,
+          -0.75em 0.75em 0 0,
+          -1.125em 0 0 -0.375em,
+          -0.75em -0.75em 0 -0.375em;
+      }
+      62.5% {
+        box-shadow:
+          0 -1.125em 0 -0.375em,
+          0.75em -0.75em 0 -0.375em,
+          1.125em 0 0 -0.375em,
+          0.75em 0.75em 0 -0.375em,
+          0 1.125em 0 0,
+          -0.75em 0.75em 0 0.075em,
+          -1.125em 0 0 0,
+          -0.75em -0.75em 0 -0.375em;
+      }
+      75% {
+        box-shadow:
+          0 -1.125em 0 -0.375em,
+          0.75em -0.75em 0 -0.375em,
+          1.125em 0 0 -0.375em,
+          0.75em 0.75em 0 -0.375em,
+          0 1.125em 0 -0.375em,
+          -0.75em 0.75em 0 0,
+          -1.125em 0 0 0.075em,
+          -0.75em -0.75em 0 0;
+      }
+      87.5% {
+        box-shadow:
+          0 -1.125em 0 0,
+          0.75em -0.75em 0 -0.375em,
+          1.125em 0 0 -0.375em,
+          0.75em 0.75em 0 -0.375em,
+          0 1.125em 0 -0.375em,
+          -0.75em 0.75em 0 0,
+          -1.125em 0 0 0.075em,
+          -0.75em -0.75em 0 0;
+      }
+    }
+  }
+}

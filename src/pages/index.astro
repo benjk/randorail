@@ -1,0 +1,14 @@
+---
+import Welcome from "../components/Welcome.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+import content from "../data/content.json";
+---
+
+<MainLayout title={content.document.title}>
+  <Welcome />
+</MainLayout>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.documentElement.classList.remove('no-transitions');
+  });
+</script>

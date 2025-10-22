@@ -1,0 +1,41 @@
+@use '../../styles/variables_admin.scss' as *;
+
+body.grabbing {
+  cursor: grabbing;
+}
+
+.active {
+  .reorderable-item {    
+    &.reorderable-bloc {
+      &:hover {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transform: translateY(2px);
+      }
+    }
+
+    .reorderable-item.active:hover::before {
+      opacity: 1;
+    }
+
+    h4:hover {
+      cursor: grab;
+    }
+  }
+}
+
+.drag-placeholder {
+  width: 50%;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background: $color3;
+  border: 1px solid $color2;
+  box-shadow: $strong-shadow;
+  border-radius: $btn-radius;
+  opacity: 0.2;
+  pointer-events: none;
+  color: $color1;
+}

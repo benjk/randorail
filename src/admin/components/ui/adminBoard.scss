@@ -1,0 +1,604 @@
+@use '../../styles/variables_admin.scss' as *;
+
+.admin-dashboard-layout {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 100dvh;
+  overflow: hidden;
+  position: relative;
+
+  .admin-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: stretch;
+    position: relative;
+    overflow-y: auto;
+    transition: margin-left $closeDrawerDuration ease;
+
+    .admin-btn {
+      font-size: $subtext-size;
+    }
+
+    .admin-toolbar {
+      $toolbar_margin: $margin-xs;
+      $animation-duration: 0.5s;
+      position: sticky;
+      bottom: $toolbar_margin;
+      width: calc(100% - ($toolbar_margin * 2));
+      z-index: 20;
+      margin: $toolbar_margin;
+      display: flex;
+      justify-content: flex-end;
+      pointer-events: none;
+
+      .toolbar-wrapper {
+        pointer-events: auto;
+        max-width: fit-content;
+        background: rgba($color3, 0.85);
+        padding: $margin-xs $margin-m;
+        gap: $margin-m;
+        border-radius: $btn-radius;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        transition:
+          background-color $animation-duration ease,
+          border $animation-duration ease;
+        border: 1px solid $color1;
+      }
+
+      &.disabled .toolbar-wrapper {
+        background-color: transparent;
+        border: none;
+      }
+
+      .info-container {
+        color: $color1;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: $margin-s;
+
+        .info-col {
+          min-width: 0;
+          flex: 0 1 auto;
+          width: max-content;
+          max-width: 100%;
+          border-radius: $btn-radius;
+          padding: 0.35em 0.5em;
+          background-color: $color3;
+          transition:
+            opacity $animation-duration ease,
+            max-width $animation-duration ease,
+            padding $animation-duration ease,
+            margin $animation-duration ease;
+
+          h4 {
+            margin-bottom: 0.15em;
+            font-weight: bold;
+            color: $color1;
+          }
+
+          ul {
+            margin: 0;
+            list-style: none;
+
+            li {
+              white-space: normal;
+              overflow-wrap: anywhere;
+              word-break: break-word;
+              hyphens: auto;
+
+              &.item-bloc-info {
+                padding-left: $margin-s;
+              }
+            }
+          }
+        }
+      }
+
+      .admin-actions {
+        display: flex;
+        flex-direction: column;
+        gap: $margin-xs;
+        align-items: stretch;
+
+        .btn-container {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          align-items: stretch;
+          justify-content: center;
+          gap: $margin-xs;
+          flex-shrink: 0;
+          padding: 0 $margin-s;
+
+          .admin-btn {
+            background-color: $color1;
+          }
+        }
+
+        .msg-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: $margin-xs;
+          color: $color1;
+          background-color: $color3;
+          border: 1px solid $color2;
+          padding: $margin-xs;
+          border-radius: $btn-radius;
+          max-width: 250px;
+          min-width: 100%;
+
+          .info-msg {
+            font-size: calc($subtext-size * 0.9);
+            display: block;
+            text-align: center;
+            white-space: normal;
+            word-break: break-word;
+            overflow-wrap: break-word;
+            width: 100%;
+
+            &.error {
+              color: $color2;
+              font-weight: bold;
+            }
+
+            &.msg-title {
+              font-weight: bold;
+              font-size: calc($subtext-size * 0.9);
+            }
+          }
+
+          .admin-btn {
+            padding: calc($margin-xs/2) $margin-xs;
+
+            svg {
+              stroke: $color1;
+            }
+          }
+        }
+      }
+
+      @media screen and (max-width: $mobile-breakpoint) {
+        flex-direction: row;
+        justify-content: center;
+        padding: calc($margin-m - $toolbar_margin);
+
+        .toolbar-wrapper {
+          width: 100%;
+          flex-direction: column;
+          align-items: stretch;
+          justify-content: center;
+
+          .admin-actions {
+            gap: $margin-m;
+
+            .msg-container {
+              width: 100%;
+              color: $color3;
+              background-color: $color1;
+            }
+          }
+
+          .info-container {
+            flex-direction: column;
+            width: 100%;
+
+            .info-col {
+              width: 100%;
+              font-size: $subtext-size;
+            }
+          }
+        }
+      }
+    }
+
+    .admin-page-container {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      max-width: 100%;
+
+      .admin-loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .admin-page-renderer {
+        width: 100%;
+
+        .admin-page {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: center;
+          width: 100%;
+          max-width: 100%;
+          position: relative;
+
+          .admin-page-header {
+            width: 100%;
+            background-color: $color1;
+            border-bottom: 1px solid $borderColor;
+            box-shadow: $basic-shadow;
+            position: sticky;
+            z-index: 9;
+            top: env(safe-area-inset-top, 0);
+
+            .admin-page-title {
+              $padding-top: 0.8em;
+              text-transform: uppercase;
+              font-size: calc($title-size * 0.85);
+              color: $color3;
+              font-weight: normal;
+              padding-top: $padding-top;
+              padding-bottom: $padding-top;
+              text-align: start;
+              padding-left: 3%;
+              background-color: rgba($color3, 0.15);
+              letter-spacing: $letter-spacing-basic;
+            }
+          }
+
+          .page-content {
+            width: 1100px;
+            max-width: 100%;
+            padding: $margin-l $margin-l 0 $margin-l;
+          }
+
+          .bloc-group-manager {
+            display: flex;
+            flex-direction: column;
+            gap: $margin-m;
+
+            .drag-zone {
+              display: flex;
+              align-items: center;
+
+              .drag-grip {
+                opacity: 0;
+              }
+            }
+
+            &.active {
+              .reorderable-item {
+                .bloc-item-header {
+                  pointer-events: auto;
+                  z-index: 3;
+
+                  .drag-zone {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: grab;
+                    touch-action: none;
+                    pointer-events: all;
+                    position: relative;
+
+                    .drag-grip {
+                      opacity: 1;
+                      position: absolute;
+                      left: $margin-s;
+                      margin-top: 3px;
+                      color: $color2;
+                    }
+
+                    &:hover {
+                      .drag-grip {
+                        transform: scale(1.15);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            .bloc-instance {
+              display: flex;
+              flex-direction: column;
+              gap: $margin-s;
+              background-color: rgba($color3, 0.15);
+              border-radius: $btn-radius;
+              position: relative;
+
+              .bloc-content {
+                display: flex;
+                flex-direction: column;
+                gap: $margin-xs;
+                z-index: 3;
+                padding: 0 $margin-s $margin-s $margin-s;
+
+                .bloc-duplicable-group {
+                  display: flex;
+                  flex-direction: column;
+                  gap: $margin-xs;
+                }
+              }
+
+              .bloc-item-header {
+                display: flex;
+                flex-direction: row;
+                align-items: stretch;
+                justify-content: space-between;
+                padding-left: $margin-xs;
+                z-index: 3;
+                font-size: $subtext-size;
+                width: 100%;
+
+                h4 {
+                  text-decoration: normal;
+                  font-weight: normal;
+                  min-width: 0;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                  flex-shrink: 0;
+                  padding: $margin-s 0 $margin-s 0;
+                  display: flex;
+                  align-items: center;
+                  touch-action: none;
+                }
+
+                .error-msg {
+                  font-size: $subtext-size;
+                  text-transform: uppercase;
+                  color: $color2;
+                  letter-spacing: $letter-spacing-basic;
+
+                  svg {
+                    padding: 0.2rem;
+                  }
+
+                  &.error-msg-mobile {
+                    display: none;
+                  }
+                }
+
+                button {
+                  height: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  gap: 0.15em;
+                  appearance: none;
+                  -webkit-appearance: none;
+                  border: 0;
+                  padding: $margin-s 0 $margin-s 0;
+                  margin: 0;
+                  border-radius: 0;
+                  background: none;
+                  font: inherit;
+                  line-height: inherit;
+                  text-align: inherit;
+                  cursor: pointer;
+                  box-shadow: none;
+                  -webkit-tap-highlight-color: transparent; /* mobile */
+                  &::-moz-focus-inner {
+                    border: 0;
+                    padding: 0;
+                  } /* Firefox */
+                  color: $color2;
+
+                  &:hover {
+                    transform: scale(1.05);
+                  }
+
+                  &:disabled {
+                    filter: grayscale(0.85);
+                    pointer-events: none;
+                    outline: none;
+                  }
+
+                  svg {
+                    padding: 0.15rem;
+                  }
+                }
+
+                @media screen and (max-width: $mobile-breakpoint) {
+                  flex-wrap: wrap;
+                  h4 {
+                    order: 1;
+                    flex-shrink: 0;
+                  }
+
+                  .drag-zone {
+                    order: 2;
+                    flex: 1;
+
+                    .error-msg {
+                      display: none;
+                    }
+
+                    .drag-grip {
+                      left: 50% !important;
+                      transform: translateX(-50%);
+                    }
+                  }
+
+                  .error-msg-mobile {
+                    display: inline-flex !important;
+                    width: 100%;
+                    font-size: calc($subtext-size * 0.8);
+                    order: 4;
+                    padding-bottom: $margin-s;
+                    touch-action: none;
+                    justify-content: flex-start;
+                  }
+
+                  button {
+                    order: 3;
+                    margin: auto;
+                    flex-shrink: 0;
+                  }
+                }
+              }
+            }
+          }
+
+          .bloc-group-manager ~ .admin-btn {
+            font-size: calc($subtext-size * 0.75);
+            gap: $margin-xs;
+          }
+        }
+      }
+    }
+
+    .admin-field-group {
+      width: 100%;
+      margin-bottom: calc($margin-l * 1.5);
+
+      .input-error-icon {
+        pointer-events: none;
+        color: $errorColor;
+      }
+
+      .field-title {
+        color: $color2;
+        span {
+          color: $color2;
+          font-weight: normal;
+          text-transform: uppercase;
+          font-size: 1.2rem;
+          letter-spacing: $letter-spacing-basic;
+        }
+      }
+
+      .uploader-label {
+        text-transform: none;
+        text-align: center;
+        font-size: $text-size;
+        color: $color1;
+        font-weight: normal;
+      }
+
+      .message-container {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: $margin-xs;
+        flex-direction: column;
+
+        .text-info.error-msg {
+          font-size: calc($subtext-size * 0.85);
+        }
+      }
+
+      .text-info-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.15em;
+      }
+
+      .text-info {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: $margin-xs;
+        font-size: $subtext-size;
+        color: $color1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: center;
+
+        .strong {
+          color: $color2;
+        }
+
+        &.error-msg {
+          color: $errorColor;
+          font-size: calc($subtext-size * 1.05);
+          .strong {
+            color: $errorColor;
+          }
+        }
+
+        &.extra-info {
+          font-style: italic;
+          font-size: calc($subtext-size * 0.9);
+          overflow: visible;
+          white-space: normal;
+          overflow-wrap: break-word;
+          text-align: center;
+        }
+      }
+
+      .uploader-controls {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.8em;
+        margin: auto;
+
+        button {
+          @include control-btns;
+
+          .admin-icon {
+            color: $color1;
+          }
+
+          &.add-btn,
+          &.remove-btn {
+            .admin-icon {
+              color: $color2;
+
+              &:hover {
+                color: $color1;
+              }
+            }
+          }
+
+          &.order-btn {
+            touch-action: none;
+
+            &:hover {
+              cursor: grab;
+            }
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      width: 90%;
+      margin-top: $mobileHeaderHeight;
+
+      .admin-page-container .admin-page {
+        .admin-page-header .admin-page-title {
+          text-align: center !important;
+          padding-left: 0;
+        }
+        .page-content {
+          padding: $margin-l $margin-l 0 $margin-l;
+
+          .field-title {
+            span {
+              font-size: $subtext-size;
+            }
+          }
+        }
+      }
+
+      .admin-field-group .uploader-controls {
+        flex-direction: row;
+        height: auto;
+      }
+    }
+  }
+
+  .lucide-triangle-alert {
+    stroke-width: 1.5;
+  }
+}

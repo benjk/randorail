@@ -1,0 +1,35 @@
+@use "./variables" as *;
+
+@mixin flex-box($gap: $margin-xs) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: $gap;
+  flex-direction: column;
+}
+
+@mixin flex-row($gap: $margin-xs) {
+  @include flex-box($gap);
+  flex-direction: row;
+}
+
+@mixin custom-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none !important;
+  padding: 12px 16px;
+  border-radius: $basic-radius;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  box-shadow: $basic-shadow;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+  border: 2px solid $color2;
+  color: inherit;
+
+  &:hover {
+    box-shadow: $strong-shadow;
+  }
+}

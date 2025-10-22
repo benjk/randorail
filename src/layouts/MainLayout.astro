@@ -1,0 +1,90 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import {SITE_TITLE} from "../config";
+import "../styles/header.scss";
+import "../styles/footer.scss";
+const {
+  title = SITE_TITLE,
+  withSeo = true,
+} = Astro.props;
+
+const isHome = Astro.url.pathname === '/';
+---
+
+<BaseLayout {title} {withSeo}>
+  <div id="bg-wrapper" class={isHome ? 'home' : ''}>
+    {isHome && <div class="bg intro"></div>}
+    <div class="bg main"></div>
+  </div>
+  <main id="main-container">
+    <Header />
+    <slot />
+    <Footer />
+  </main>
+</BaseLayout>
+<script is:inline>
+  // Evite les effets de FOUC (Flash of Unstyled Content)
+  document.addEventListener('DOMContentLoaded', function() {
+    const images = document.querySelectorAll('img');
+    let loadedImages = 0;
+    const contentContainers = document.querySelectorAll('.content-container');
+
+    if (images.length === 0) {
+      // S'il n'y a pas d'images, afficher immédiatement les conteneurs
+      contentContainers.forEach(container => {
+        container.style.opacity = '1';
+      });
+    } else {
+      // Sinon, attendre que toutes les images soient chargées
+      images.forEach(img => {
+        if (img.complete) {
+          loadedImages++;
+        } else {
+          img.addEventListener('load', () => {
+            loadedImages++;
+            if (loadedImages === images.length) {
+              contentContainers.forEach(container => {
+                container.style.opacity = '1';
+              });
+            }
+          });
+        }
+      });
+
+      // Vérifier si toutes les images sont déjà chargées
+      if (loadedImages === images.length) {
+        contentContainers.forEach(container => {
+          container.style.opacity = '1';
+        });
+      }
+    }
+
+    initParallax();
+
+    function initParallax() {
+      function handleScroll() {
+        requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          const documentHeight = document.documentElement.scrollHeight;
+          const windowHeight = window.innerHeight;
+          const maxScroll = documentHeight - windowHeight;
+
+          const bgExtraHeight = windowHeight * 0.2;
+          const maxParallax = bgExtraHeight;
+          const scrollProgress = maxScroll > 0 ? scrollY / maxScroll : 0;
+          const bgParallax = Math.min(maxParallax, scrollProgress * maxParallax);
+
+          const bgWrapper = document.getElementById('bg-wrapper');
+          if (bgWrapper) {
+            bgWrapper.style.setProperty('--bg-parallax', `-${bgParallax.toString()}px`);
+          }
+        });
+      }
+
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      document.body.classList.remove('hidden');
+    }
+  });
+</script>

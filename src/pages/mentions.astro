@@ -1,0 +1,40 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { sortBlocsByOrder } from '../admin/frontUtils';
+import content from '../data/content.json';
+const blocs = content.pages.mentions.blocs.items ?? [];
+const sortedBlocs = sortBlocsByOrder(blocs);
+const blocs2 = content.pages.mentions.blocs2.items ?? [];
+const sortedBlocs2 = sortBlocsByOrder(blocs2);
+---
+
+<MainLayout title={content.pages.mentions.docTitle} withSeo={false}>
+  <div class="mention-wrapper content-container">
+    <h2>{content.pages.mentions.title}</h2>
+    <div class="mention-container">
+      {
+        sortedBlocs.map(({ title, content }) => (
+          <section>
+            <h3>{title}</h3>
+            {content.split('\n').map((line) => (
+              <p>{line}</p>
+            ))}
+          </section>
+        ))
+      }
+
+      <h2>SECTION TEST</h2>
+
+      {
+        sortedBlocs2.map(({ title, content }) => (
+          <section>
+            <h3>{title}</h3>
+            {content.split('\n').map((line) => (
+              <p>{line}</p>
+            ))}
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</MainLayout>
