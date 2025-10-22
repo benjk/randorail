@@ -1,9 +1,10 @@
-export type MenuEntryType = "page" | "system" | "anchor" | "external" | "action";
+export type MenuEntryType = "page" | "system" | "anchor" | "external" | "action" | "submenu";
 
 export interface MenuItem {
   title: string;
-  slug: string; // peut être une URL, un #ancre, une route, ou une action id
+  slug?: string; // peut être une URL, un #ancre, une route, ou une action id
   type: MenuEntryType;
+  children?: MenuItem[];
 }
 
 export interface MenuConfig {

@@ -1,0 +1,55 @@
+---
+import HighlightOnHash from '../components/Highlight';
+const { title, topImages = [], mainImg, text, tarifs = [], horaires = [], reserveUrl, secondaryText, faq = [] } = Astro.props;
+---
+
+<div class="activity-layout">
+  <!-- BG principal -->
+  {mainImg && <div class="activity-bg" style={`background-image:url(${mainImg})`}></div>}
+
+  <!-- Header -->
+  <header>
+    <h1>{title}</h1>
+    <div class="top-images">
+      {topImages.map((img: string) => <img src={img} alt={title} />)}
+    </div>
+  </header>
+
+  <!-- Texte descriptif -->
+  <section class="activity-text">
+    {text.split('\n').map((line: string) => <p>{line}</p>)}
+  </section>
+
+  <!-- Tarifs et horaires -->
+  <section class="activity-info">
+    <!-- <div class="tarifs-grid">
+      {tarifs.map(t => (
+        <div class="tarif-item">
+          <strong>{t.label}</strong>
+          <span>{t.price}</span>
+        </div>
+      ))}
+    </div> -->
+    <div class="horaires">
+      {horaires.map((h: string) => <p>{h}</p>)}
+    </div>
+    {reserveUrl && <a class="reserve-btn" href={reserveUrl} target="_blank">Réserver</a>}
+  </section>
+
+  <!-- Texte secondaire -->
+  {secondaryText && <section class="activity-secondary">
+    {secondaryText.split('\n').map((line: string) => <p>{line}</p>)}
+  </section>}
+
+  <!-- FAQ -->
+  <!-- {faq.length > 0 && <section class="activity-faq">
+    {faq.map(({ q, a }) => (
+      <details>
+        <summary>{q}</summary>
+        <p>{a}</p>
+      </details>
+    ))}
+  </section>} -->
+</div>
+
+<HighlightOnHash client:load />

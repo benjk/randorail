@@ -85,37 +85,6 @@ export const textRules = createTextRules({
   },
 
   // ================================
-  // 🏠 SECTION : QUI SUIS JE
-  // ================================
-  ABOUT_DOC_TITLE: {
-    label: 'Titre navigateur la page Qui suis-je',
-    key: 'pages.about.docTitle',
-    maxLength: 40,
-    minLength: 2,
-    lineBreakable: false,
-    isUnic: true,
-    linkTo: { route: '/about', selector: '' },
-  },
-  ABOUT_TITLE: {
-    label: 'Titre de la page Qui suis-je',
-    key: 'pages.about.title',
-    maxLength: 40,
-    minLength: 2,
-    lineBreakable: false,
-    isUnic: true,
-    linkTo: { route: '/about', selector: '' },
-  },
-  ABOUT_TEXT: {
-    label: 'Texte principal de la page Services',
-    key: 'pages.about.mainText',
-    maxLength: 1200,
-    minLength: 15,
-    lineBreakable: true,
-    isUnic: true,
-    linkTo: { route: '/about', selector: '#about-text' },
-  },
-
-  // ================================
   // 🏠 SECTION : MENTIONS
   // ================================
   MENTIONS_TITLE: {

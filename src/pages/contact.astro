@@ -1,0 +1,32 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import content from '../data/content.json';
+import HighlightOnHash from '../components/Highlight';
+import { formatFrenchPhone } from '../utils/utils';
+const { display } = formatFrenchPhone(content.contact.tel);
+
+---
+
+<MainLayout title={content.pages.contact.docTitle}>
+  <div id="contact-container" class="content-container">
+    <h2>{content.pages.contact.title}</h2>
+    <p>{content.pages.contact.mainText}{display}</p>
+
+    <form>
+      <label>
+        Nom
+        <input type="text" name="name" />
+      </label>
+      <label>
+        Email
+        <input type="email" name="email" />
+      </label>
+      <label>
+        Message
+        <textarea name="message"></textarea>
+      </label>
+      <button type="submit">Envoyer</button>
+    </form>
+  </div>
+</MainLayout>
+<HighlightOnHash client:load />

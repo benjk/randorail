@@ -1,18 +1,10 @@
 {
-  "home": {
-    "label": "Accueil",
-    "editable": true
-  },
-  "about": {
-    "label": "Qui suis-je",
-    "editable": true
-  },
-  "services": {
-    "label": "Services",
-    "editable": true
-  },
-  "mentions": {
-    "label": "Mentions légales",
-    "editable": true
-  }
+  "home": { "label": "Accueil", "editable": true },
+  "contact": { "label": "Contact", "editable": true },
+  "mentions": { "label": "Mentions légales", "editable": true },
+  "seminaire": { "label": "Séminaires", "editable": true },
+  "randorail": { "label": "Randorail", "editable": true, "parent": "activites" },
+  "trotti": { "label": "Trotti", "editable": true, "parent": "activites" },
+  "bivouac": { "label": "Bivouac", "editable": true, "parent": "activites" },
+  "chasse-au-tresor": { "label": "Chasse au trésor", "editable": true, "parent": "activites" }
 }

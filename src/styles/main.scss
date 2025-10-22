@@ -1,7 +1,7 @@
-@use './variables' as *;
-@use './base';
-@use './mixin' as *;
-@use './animations' as *;
+@use "./variables" as *;
+@use "./base";
+@use "./mixin" as *;
+@use "./animations" as *;
 
 $transition-display: 0.3s;
 
@@ -34,14 +34,14 @@ html {
       will-change: transform;
 
       &.main {
-        background-image: url('/img/main_background.webp');
+        background-image: url("/img/main_background.webp");
         z-index: -1;
       }
     }
 
     &.home {
       .bg.intro {
-        background-image: url('/img/home_background.webp');
+        background-image: url("/img/home_background.webp");
         z-index: -2;
         opacity: 1;
         will-change: opacity;
@@ -65,7 +65,7 @@ html {
     }
 
     h3 {
-      color: $color2;
+      color: $color4;
       text-transform: uppercase;
       font-size: 1.3rem;
       font-weight: normal;
@@ -88,7 +88,7 @@ html {
           font-family: $title-font;
           text-transform: uppercase;
           letter-spacing: $letter-spacing-basic;
-          color: $color2;
+          color: $color4;
           margin-bottom: $margin-l;
           margin-top: $margin-l;
         }
@@ -96,12 +96,11 @@ html {
         p {
           font-size: $text-font-size;
           font-family: $title-font;
-          color: $color3;
+          color: $color1;
         }
       }
 
       #home-container {
-        margin-top: 0;
         height: auto;
 
         .first-section {
@@ -112,7 +111,7 @@ html {
 
           h1 {
             font-size: $title1-font-size;
-            color: $color2;
+            color: $color1;
             font-weight: normal;
             text-transform: uppercase;
             font-family: $title-font;
@@ -122,7 +121,7 @@ html {
           h2 {
             font-size: calc($title2-font-size * 0.8);
             font-family: $title-font;
-            color: $color3;
+            color: $color4;
             font-weight: normal;
             text-transform: none;
             text-align: center;
@@ -156,7 +155,7 @@ html {
             border-radius: 20px;
 
             &::before {
-              content: '';
+              content: "";
               position: absolute;
               inset: 0;
               background: rgba(black, 0.75);
@@ -203,56 +202,38 @@ html {
           padding-right: $margin-xl;
           max-width: 1400px;
 
-          .fb-container {
-            @include flex-row($margin-xl);
-            align-items: center;
-            justify-content: space-around;
-            overflow: hidden;
-            max-width: 100%;
+          .side-fb-container {
+            min-height: $fb-height;
+            height: auto;
+            background-color: $color1;
+            border-radius: 5px;
+            padding: $margin-m;
+            @include flex-box($margin-m);
+            flex: 1;
 
-            .fb-page {
-              max-width: 100%;
-              width: $fb-width;
-              min-height: $fb-height;
-              height: auto;
-              overflow: hidden;
-              border-radius: 2px;
-              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            p {
+              font-size: $title3-font-size;
+              text-align: center;
+
+              &.p1 {
+                font-family: $text-font;
+              }
+
+              &.p2 {
+                font-family: $title-font;
+
+                &.p3 {
+                  line-height: 1.4;
+                  letter-spacing: 0.03em;
+                }
+              }
             }
 
-            .side-fb-container {
-              min-height: $fb-height;
+            #home-side-img {
+              max-height: calc($fb-height * 0.35);
+              max-width: 100%;
               height: auto;
-              background-color: $color2;
-              border-radius: 5px;
-              padding: $margin-m;
-              @include flex-box($margin-m);
-              flex: 1;
-
-              p {
-                font-size: $title3-font-size;
-                text-align: center;
-
-                &.p1 {
-                  font-family: $text-font;
-                }
-
-                &.p2 {
-                  font-family: $title-font;
-
-                  &.p3 {
-                    line-height: 1.4;
-                    letter-spacing: 0.03em;
-                  }
-                }
-              }
-
-              #home-side-img {
-                max-height: calc($fb-height * 0.35);
-                max-width: 100%;
-                height: auto;
-                display: bloc;
-              }
+              display: bloc;
             }
           }
 
@@ -262,17 +243,12 @@ html {
             padding-right: $margin-s;
             margin-bottom: $margin-m;
 
-            .fb-container {
-              flex-direction: column-reverse;
-              height: auto;
-
-              .side-fb-container {
-                padding-top: $margin-l;
-                padding-bottom: $margin-l;
-                gap: $margin-l;
-                min-height: 200px;
-                flex: 1;
-              }
+            .side-fb-container {
+              padding-top: $margin-l;
+              padding-bottom: $margin-l;
+              gap: $margin-l;
+              min-height: 200px;
+              flex: 1;
             }
           }
         }
@@ -293,7 +269,7 @@ html {
         h3 {
           font-size: $title3-font-size;
           font-family: $title-font;
-          color: $color2;
+          color: $color4;
         }
 
         .mention-container {

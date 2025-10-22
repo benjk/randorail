@@ -7,10 +7,6 @@ import { blocRules } from '../admin/data/blocRules';
 ---
 
 <div id="home-container" class="content-container">
-  <section class="first-section">
-    <h1 id="home-title">{content.home.firstSection.mainTitle}</h1>
-    <h2 id="home-subtitle">{content.home.firstSection.subTitle}</h2>
-  </section>
   {
     content.home.announcement?.enabled &&
       (() => {
@@ -49,28 +45,6 @@ import { blocRules } from '../admin/data/blocRules';
       })()
   }
   <section class="second-section">
-    <div class="fb-container">
-      <div id="fb-root">
-        <div
-          class="fb-page"
-          data-href={content.contact.socials.facebook}
-          data-tabs="timeline"
-          data-height="800px"
-          data-width="900px"
-          data-small-header="false"
-          data-adapt-container-width="true"
-          data-show-facepile="true"
-        >
-          <blocquote
-            cite="https://www.facebook.com/verssoiguidances"
-            class="fb-xfbml-parse-ignore"
-          >
-            <a href="https://www.facebook.com/verssoiguidances"
-              >Vers Soi Guidances</a
-            >
-          </blocquote>
-        </div>
-      </div>
       <div class="side-fb-container">
         <img
           id="home-side-img"
@@ -81,40 +55,6 @@ import { blocRules } from '../admin/data/blocRules';
         <p id="intro-text2" class="p2 p3">{content.home.secondSection.text2}</p>
         <p id="intro-text3" class="p2 p3">{content.home.secondSection.text3}</p>
       </div>
-    </div>
   </section>
 </div>
 <HighlightOnHash client:load />
-<script>
-  function setFacebookWidth() {
-    const fbPage = document.querySelector('.fb-page');
-
-    if (fbPage) {
-      let width;
-      if (window.innerWidth <= 992) {
-        // Mobile : largeur adaptée
-        width = Math.min(window.innerWidth - 60, 500).toString();
-      } else {
-        // Desktop : max 500px
-        width = '500';
-      }
-
-      if (!width) return;
-      fbPage.setAttribute('data-width', width);
-    }
-  }
-
-  setFacebookWidth();
-  if (document.readyState !== 'loading') {
-    // Ajouter un délai pour appliquer la classe home
-    setTimeout(function () {
-      document.querySelector('#bg-wrapper .bg.main')?.classList.add('visible');
-    }, 100);
-  }
-</script>
-<script
-  async
-  defer
-  crossorigin="anonymous"
-  src="https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v19.0"
-></script>

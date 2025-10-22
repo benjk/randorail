@@ -1,26 +1,30 @@
 ---
 import content from "../data/content.json";
-
 import type { MenuItem, PagesMap } from "../admin/components/nav/menu.types";
 
 const pages: PagesMap = content.pages;
 const rawMenu = content.menu as MenuItem[];
 
 const menuItems = rawMenu.filter(item => {
-  if (item.type === "page") {
+  if (item.type === "page" && item.slug) {
     return pages[item.slug]?.accessible !== false;
+  }
+  if (item.type === "submenu" && item.children) {
+    item.children = item.children.filter(child => {
+      if (child.type === "page" && child.slug) {
+        return pages[child.slug]?.accessible !== false;
+      }
+      return true;
+    });
+    return item.children.length > 0;
   }
   return true;
 });
 ---
 
-
 <header class="header">
   <nav class="navbar">
     <div class="logo-container">
-      <a class="logo-link logo-dark" href="/about">
-        <h5>Nicolas D</h5>
-      </a>
       <a class="logo-link" href="/">
         <img id="logo-home" src="/img/static/header_logo.webp" alt="Logo" />
       </a>
@@ -28,12 +32,27 @@ const menuItems = rawMenu.filter(item => {
 
     <div class="menu-desktop">
       {menuItems.map(item => (
-        item.type === "action" ? (
-          <a href="" data-action={item.slug}>{item.title}</a>
+        item.type === "submenu" ? (
+          <div class="menu-item has-submenu">
+            <span class="menu-link">{item.title}</span>
+            <div class="submenu">
+              {item.children?.map(child => (
+                child.type === "action" ? (
+                  <a href="#" data-action={child.slug} class="submenu-link">{child.title}</a>
+                ) : child.type === "external" ? (
+                  <a href={child.slug} target="_blank" rel="noopener" class="submenu-link">{child.title}</a>
+                ) : (
+                  <a href={child.slug?.startsWith("#") ? child.slug : `/${child.slug}`} class="submenu-link">{child.title}</a>
+                )
+              ))}
+            </div>
+          </div>
+        ) : item.type === "action" ? (
+          <a href="#" data-action={item.slug} class="menu-link">{item.title}</a>
         ) : item.type === "external" ? (
-          <a href={item.slug} target="_blank" rel="noopener">{item.title}</a>
+          <a href={item.slug} target="_blank" rel="noopener" class="menu-link">{item.title}</a>
         ) : (
-          <a href={item.slug.startsWith("#") ? item.slug : `/${item.slug}`}>{item.title}</a>
+          <a href={item.slug?.startsWith("#") ? item.slug : `/${item.slug}`} class="menu-link">{item.title}</a>
         )
       ))}
     </div>
@@ -43,125 +62,154 @@ const menuItems = rawMenu.filter(item => {
       <span class="burger-line"></span>
       <span class="burger-line"></span>
     </button>
-    </nav>
+  </nav>
     
-    <div id="mobile-menu" class="mobile-menu-container animated">
-      <ul>
-        {menuItems.map(item => (
-          <li>
-            {item.type === "action" ? (
-              <a href="#" data-action={item.slug}>{item.title}</a>
-            ) : item.type === "external" ? (
-              <a href={item.slug} target="_blank" rel="noopener">{item.title}</a>
-            ) : (
-              <a href={item.slug.startsWith("#") ? item.slug : `/${item.slug}`}>{item.title}</a>
-            )}
-          </li>
-        ))}
-      </ul>
-    </div>    
+  <div id="mobile-menu" class="mobile-menu-container animated">
+    <ul>
+      {menuItems.map(item => (
+        <li class={item.type === "submenu" ? "has-submenu" : ""}>
+          {item.type === "submenu" ? (
+            <>
+              <button class="menu-link submenu-toggle">
+                {item.title}
+                <span class="arrow">›</span>
+              </button>
+              <ul class="submenu">
+                {item.children?.map(child => (
+                  <li>
+                    {child.type === "action" ? (
+                      <a href="#" data-action={child.slug} class="submenu-link">{child.title}</a>
+                    ) : child.type === "external" ? (
+                      <a href={child.slug} target="_blank" rel="noopener" class="submenu-link">{child.title}</a>
+                    ) : (
+                      <a href={child.slug?.startsWith("#") ? child.slug : `/${child.slug}`} class="submenu-link">{child.title}</a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : item.type === "action" ? (
+            <a href="#" data-action={item.slug} class="menu-link">{item.title}</a>
+          ) : item.type === "external" ? (
+            <a href={item.slug} target="_blank" rel="noopener" class="menu-link">{item.title}</a>
+          ) : (
+            <a href={item.slug?.startsWith("#") ? item.slug : `/${item.slug}`} class="menu-link">{item.title}</a>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
 
-    <script type="module">
-      const burger = document.getElementById("burger-btn");
-      const menuDesktop = document.querySelector(".menu-desktop");
-      const mobileMenu = document.getElementById("mobile-menu");
-      const header = document.querySelector('header');
+  <script type="module">
+    const burger = document.getElementById("burger-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const header = document.querySelector('header');
 
-      if (burger && mobileMenu) {
-        // État du menu
-        let isMenuOpen = false;
+    if (burger && mobileMenu) {
+      let isMenuOpen = false;
+      
+      const openMenu = () => {
+        burger.classList.add("is-active");
+        mobileMenu.classList.add("is-active");
+        isMenuOpen = true;
+      };
+      
+      const closeMenu = () => {
+        burger.classList.remove("is-active");
         
-        // Fonction pour ouvrir le menu
-        const openMenu = () => {
-          burger.classList.add("is-active");
-          mobileMenu.classList.add("is-active");
-          isMenuOpen = true;
-        };
-        
-        // Fonction pour fermer le menu
-        const closeMenu = () => {
-          burger.classList.remove("is-active");
+        if (mobileMenu.classList.contains("is-active")) {
+          mobileMenu.classList.add("closing");
           
-          if (mobileMenu.classList.contains("is-active")) {
-            mobileMenu.classList.add("closing");
+          setTimeout(() => {
+            mobileMenu.classList.remove("closing");
+            mobileMenu.classList.remove("is-active");
+          }, 300);
+        }
+        
+        isMenuOpen = false;
+      };
+      
+      const toggleMenu = () => {
+        if (isMenuOpen) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
+      };
+
+      burger.addEventListener("click", toggleMenu);
+
+      // Gestion des sous-menus desktop (hover)
+      const desktopSubmenus = document.querySelectorAll('.menu-desktop .has-submenu');
+      desktopSubmenus.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+          item.classList.add('open');
+        });
+        
+        item.addEventListener('mouseleave', () => {
+          item.classList.remove('open');
+        });
+      });
+
+      // Gestion des sous-menus mobile (click)
+      const mobileSubmenus = document.querySelectorAll('.mobile-menu-container .submenu-toggle');
+      mobileSubmenus.forEach(toggle => {
+        toggle.addEventListener('click', (e) => {
+          e.preventDefault();
+          const parent = toggle.closest('li');
+          if (!parent) return;
+          
+          const isOpen = parent.classList.contains('open');
+          
+          // Fermer tous les autres sous-menus
+          document.querySelectorAll('.mobile-menu-container li.has-submenu').forEach(item => {
+            if (item !== parent) {
+              item.classList.remove('open');
+            }
+          });
+          
+          // Toggle le sous-menu actuel
+          parent.classList.toggle('open', !isOpen);
+        });
+      });
+
+      // Gestion du scroll pour masquer le header
+      if (header) {
+        let lastScrollY = window.scrollY;
+        let isScrolling = false;
+        const scrollThreshold = 150;
+        
+        const handleScroll = () => {
+          if (isScrolling) return;
+          
+          isScrolling = true;
+          requestAnimationFrame(() => {
+            const currentScrollY = window.scrollY;
+            const isScrollingDown = currentScrollY > lastScrollY;
             
-            setTimeout(() => {
-              mobileMenu.classList.remove("closing");
-              mobileMenu.classList.remove("is-active");
-            }, 300);
-          }
-          
-          isMenuOpen = false;
-        };
-        
-        // Toggle menu au clic sur le burger
-        const toggleMenu = () => {
-          if (isMenuOpen) {
-            closeMenu();
-          } else {
-            openMenu();
-          }
-        };
-
-        burger.addEventListener("click", toggleMenu);
-
-        // Gestion du scroll
-        if (header) {
-          let lastScrollY = window.scrollY;
-          let isScrolling = false;
-          const scrollThreshold = 150;
-          
-          const handleScroll = () => {
-            if (isScrolling) return;
+            // Fermer le menu mobile si ouvert et qu'on scroll vers le bas
+            if (isMenuOpen && isScrollingDown && Math.abs(currentScrollY - lastScrollY) > 5) {
+              closeMenu();
+            }
             
-            isScrolling = true;
-            requestAnimationFrame(() => {
-              const currentScrollY = window.scrollY;
-              const isScrollingDown = currentScrollY > lastScrollY;
-              
-              // Fermer le menu si ouvert et qu'on scroll vers le bas
-              if (isMenuOpen && isScrollingDown && Math.abs(currentScrollY - lastScrollY) > 5) {
-                console.log("Fermeture menu par scroll");
-                closeMenu();
-              }
-              
-              // Gestion de la visibilité du header
-              if (currentScrollY > scrollThreshold) {
-                if (isScrollingDown) {
-                  header.classList.add('header-hidden');
-                } else {
-                  header.classList.remove('header-hidden');
-                }
+            // Masquer/afficher le header selon le scroll
+            if (currentScrollY > scrollThreshold) {
+              if (isScrollingDown) {
+                header.classList.add('header-hidden');
               } else {
                 header.classList.remove('header-hidden');
               }
+            } else {
+              header.classList.remove('header-hidden');
+            }
 
-              lastScrollY = currentScrollY;
-              isScrolling = false;
-            });
-          };
-
-          window.addEventListener('scroll', handleScroll, { passive: true });
-        }
-
-        // Gestion de l'overflow pour basculer desktop/mobile
-        const checkOverflow = () => {
-          if (!menuDesktop || !burger) return;
-
-          const isOverflowing = menuDesktop.scrollWidth > menuDesktop.clientWidth;
-
-          if (isOverflowing) {
-            menuDesktop.classList.add("force-hide");
-            burger.classList.add("force-show");
-          } else {
-            menuDesktop.classList.remove("force-hide");
-            burger.classList.remove("force-show");
-          }
+            lastScrollY = currentScrollY;
+            isScrolling = false;
+          });
         };
 
-        window.addEventListener("load", checkOverflow);
-        window.addEventListener("resize", checkOverflow);
+        window.addEventListener('scroll', handleScroll, { passive: true });
       }
+    }
   </script>
 </header>
-  
