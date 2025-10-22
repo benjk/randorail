@@ -1,0 +1,133 @@
+{
+  "document": {
+    "title": "RANDORAIL",
+    "description": "Cette description est une description SEO.",
+    "og": {
+      "ogTitle": "Le titre de mon site OpenGraph",
+      "ogDescription": "Ceci est ma description OG, elle s'affichera lors du partage du site sur lers réseaux"
+    }
+  },
+  "contact": {
+    "mainLabel": "Benji",
+    "email": "ben@ben.ben",
+    "tel": "0651993655",
+    "street": "123 Rue des Exemples",
+    "postalCode": "62500",
+    "city": "Saint-Omer",
+    "country": "France",
+    "socials": {
+      "facebook": "https://www.facebook.com/verssoiguidances",
+      "insta": "https://www.instagram.com/",
+      "google": "https://www.google.com/"
+    }
+  },
+  "home": {
+    "announcement": {
+      "enabled": true,
+      "sourceBlocKey": "ANNONCE_BLOC",
+      "blocIndex": 0
+    },
+    "annonces": {
+      "items": [
+        {
+          "title": "Site en construction",
+          "content": "Ce site internet est en cours de construction. Revenez plus tard !",
+          "imgName": "chantier.webp",
+          "order": 1
+        }
+      ]
+    },
+    "firstSection": {
+      "mainTitle": "Nicolas D",
+      "subTitle": "Site en construction"
+    },
+    "secondSection": {
+      "text1": "",
+      "text2": "Site en construction",
+      "text3": "Site en construction"
+    }
+  },
+  "pages": {
+    "mentions": {
+      "docTitle": "Mentions Légales",
+      "title": "Mentions Légales",
+      "accessible": true,
+      "blocs": {
+        "items": [
+          {
+            "title": "Conception du site",
+            "content": "Benjamin Kielinski\nDéveloppeur indépendant en entreprise individuelle.\nN° SIRET : 91076090900010\nContactez moi au 0651993655 ou sur kielinski.benjamin@gmail.com",
+            "order": 3
+          },
+          {
+            "title": "Hébergement du site",
+            "content": "Ce site est hébergée par Hostinger, dont le siège social est situé HOSTINGER INTERNATIONAL LTD, 61 Lordou Vironos Street, 6023 Larnaca, Chypre, joignable par le moyen suivant: https://www.hostinger.fr/contact.",
+            "order": 1
+          },
+          {
+            "title": "Données personnelles",
+            "content": "Lorsque vous visitez ce site, nous collectons automatiquement certaines informations sur votre appareil, notamment des informations sur votre navigateur Web, votre adresse IP, votre fuseau horaire et certains des cookies installés sur votre appareil. De plus, nous pouvons collecter les données personnelles que vous nous fournissez (nom, prénom, adresse mail) lors du remplissage de formulaire de contact.",
+            "order": 2
+          }
+        ]
+      },
+      "blocs2": {
+        "items": [
+          {
+            "title": "Titre premier",
+            "content": "Ce bloc contient un titre, un paragraphe et une image.",
+            "imgName": "moi.jpg",
+            "order": 1
+          }
+        ]
+      }
+    },
+    "about": {
+      "docTitle": "À propos",
+      "title": "Qui suis-je ?",
+      "mainText": "Ce court paragraphe est là pour me présenter, moi ma personne et mon entreprise.",
+      "accessible": true
+    },
+    "services": {
+      "docTitle": "Nos Services",
+      "title": "Mes Services et tarifs",
+      "mainText": "Un paragraphe plus ou moins long pour présenter les différents services que je propose",
+      "accessible": true,
+      "blocs": {
+        "items": [
+          {
+            "title": "Conception de site internet",
+            "content": "Je fais des sites Webs, je les héberge, les publie et effectue la maintenance pour vous.",
+            "imgName": "rob1.jpg",
+            "order": 2
+          },
+          {
+            "title": "Conception d'application mobile",
+            "content": "Je propose de réaliser des applications Android sur mesure",
+            "imgName": "moi.jpg",
+            "order": 1
+          }
+        ]
+      },
+      "carousel": {
+        "items": [
+          {
+            "title": ["Mes projets", "Un autre texte"],
+            "carImgs": ["rob1.jpg", "moi.jpg"],
+            "order": 1
+          }
+        ]
+      }
+    }
+  },
+  "menu": [
+    { "title": "Services", "slug": "services", "type": "page" },
+    { "title": "Contact", "slug": "openContactPopup", "type": "action" }
+  ],
+  "footerMenu": [
+    { "title": "Administration", "slug": "admin", "type": "page" },
+    { "title": "Mentions Légales", "slug": "mentions", "type": "page" },
+    { "title": "Contact", "slug": "openContactPopup", "type": "action" }
+  ],
+  "contentVersion": "2150-07-22T14:41:33.720Z"
+}
