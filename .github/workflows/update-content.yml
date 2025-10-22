@@ -1,0 +1,121 @@
+name: Build and deploy with updated content
+
+concurrency:
+  group: update-content
+  cancel-in-progress: true
+
+on:
+  repository_dispatch:
+    types: [update-content]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main code
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Checkout updated content
+        uses: actions/checkout@v3
+        with:
+          ref: update-content
+          path: temp-content
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Inject updated content
+        run: |
+          mkdir -p src/data
+
+          if [ -f "temp-content/content/content.json" ]; then
+            echo "✅ Copie de content.json"
+            cp temp-content/content/content.json src/data/
+          fi
+
+          if [ -d "temp-content/content/img" ]; then
+            echo "📦 Copie complète des images"
+            mkdir -p public/img
+            rsync -a --exclude='static/' temp-content/content/img/ public/img/
+
+            if [ -d "temp-content/content/img/static" ]; then
+              mkdir -p public/img/static
+              rsync -a --ignore-existing temp-content/content/img/static/ public/img/static/
+            else
+              echo "Le dossier static n'existe pas dans update-content, aucune image statique à copier."
+            fi
+          else
+            echo "Aucune image à copier depuis update-content."
+          fi
+
+          if [ ! -f public/img/hashes.json ]; then
+            echo "🧮 Génération de secours de hashes.json"
+            node .github/scripts/generate-hashes.cjs
+          else
+            echo "✅ hashes.json déjà présent"
+          fi
+
+      - name: Inject .env.production
+        run: |
+          echo "PUBLIC_FIREBASE_PROJECT_ID=${{ secrets.PUBLIC_FIREBASE_PROJECT_ID }}" >> .env.production
+          echo "PUBLIC_FIREBASE_KEY=${{ secrets.PUBLIC_FIREBASE_KEY }}" >> .env.production
+          echo "PUBLIC_FIREBASE_AUTH_DOMAIN=${{ secrets.PUBLIC_FIREBASE_AUTH_DOMAIN }}" >> .env.production
+          echo "PUBLIC_PUBLISH_FUNCTION_URL=${{ secrets.PUBLIC_PUBLISH_FUNCTION_URL }}" >> .env.production
+
+      - name: Install dependencies and build
+        run: |
+          npm ci --prefer-offline --no-audit --production
+          npm run build
+
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: ./
+          protocol: ftp
+          state-name: .ftp-deploy-sync-state.json
+          dangerous-clean-slate: false
+
+      - name: 📦 Install Firebase Admin SDK
+        if: always()
+        run: npm install firebase-admin
+        working-directory: .github/scripts
+
+      # Si succès → mark as deployed
+      - name: ✅ Update Firestore deployment status (success)
+        if: success()
+        run: |
+          echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT_B64 }}" | base64 -d > serviceAccount.json
+          node .github/scripts/update-deploy-status.cjs
+        env:
+          FIREBASE_PROJECT_ID: ${{ secrets.PUBLIC_FIREBASE_PROJECT_ID }}
+          DEPLOY_STATUS: "deployed"
+          DEPLOY_ID: ${{ github.event.client_payload.deployId }}
+          GOOGLE_APPLICATION_CREDENTIALS: serviceAccount.json
+
+      # Si échec → mark as error
+      - name: ❌ Update Firestore deployment status (failure)
+        if: failure()
+        run: |
+          echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT_B64 }}" | base64 -d > serviceAccount.json
+          node .github/scripts/update-deploy-status.cjs
+        env:
+          FIREBASE_PROJECT_ID: ${{ secrets.PUBLIC_FIREBASE_PROJECT_ID }}
+          DEPLOY_STATUS: "error"
+          DEPLOY_ID: ${{ github.event.client_payload.deployId }}
+          GOOGLE_APPLICATION_CREDENTIALS: serviceAccount.json
+
+
