@@ -70,60 +70,19 @@
             "order": 2
           }
         ]
-      },
-      "blocs2": {
-        "items": [
-          {
-            "title": "Titre premier",
-            "content": "Ce bloc contient un titre, un paragraphe et une image.",
-            "imgName": "moi.jpg",
-            "order": 1
-          }
-        ]
       }
     },
-    "about": {
-      "docTitle": "À propos",
-      "title": "Qui suis-je ?",
-      "mainText": "Ce court paragraphe est là pour me présenter, moi ma personne et mon entreprise.",
+    "contact": {
+      "docTitle": "Contactez-nous",
+      "title": "Contactez-nous",
+      "mainText": "Envoyez nous un message via le formulaire ou appelez au ",
       "accessible": true
     },
-    "services": {
-      "docTitle": "Nos Services",
-      "title": "Mes Services et tarifs",
-      "mainText": "Un paragraphe plus ou moins long pour présenter les différents services que je propose",
-      "accessible": true,
-      "blocs": {
-        "items": [
-          {
-            "title": "Conception de site internet",
-            "content": "Je fais des sites Webs, je les héberge, les publie et effectue la maintenance pour vous.",
-            "imgName": "rob1.jpg",
-            "order": 2
-          },
-          {
-            "title": "Conception d'application mobile",
-            "content": "Je propose de réaliser des applications Android sur mesure",
-            "imgName": "moi.jpg",
-            "order": 1
-          }
-        ]
-      },
-      "carousel": {
-        "items": [
-          {
-            "title": [
-              "Mes projets",
-              "Un autre texte"
-            ],
-            "carImgs": [
-              "rob1.jpg",
-              "moi.jpg"
-            ],
-            "order": 1
-          }
-        ]
-      }
+    "seminaires": {
+      "docTitle": "Nos séminaires",
+      "title": "Nos séminaires",
+      "mainText": "Contactez-nous pour savoir comment réserver un séminaire",
+      "accessible": true
     }
   },
   "menu": [
