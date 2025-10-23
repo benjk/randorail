@@ -117,5 +117,3 @@ jobs:
           DEPLOY_STATUS: "error"
           DEPLOY_ID: ${{ github.event.client_payload.deployId }}
           GOOGLE_APPLICATION_CREDENTIALS: serviceAccount.json
-
-
