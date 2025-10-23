@@ -3,8 +3,9 @@ import content from '../data/content.json';
 import { VIDEO_HERO_URL } from '../config';
 import HighlightOnHash from './Highlight';
 import { imageWithHash } from '../admin/components/images/imageWithHash';
-import { imageRules } from '../admin/data/imageRules';
 import { blocRules } from '../admin/data/blocRules';
+import ActivityCard from '../components/ActivityCard.astro'
+import { activitiesWithMeta } from '../data/activities';
 ---
 
 <div id="home-container" class="content-container">
@@ -47,9 +48,17 @@ import { blocRules } from '../admin/data/blocRules';
   }
 
   <section class="first-section">
-    <div class="intro-content">
-      <h1>Ici on aura les activités</h1>
-      <p>Le bas de cette section est recouvert par la vidéo</p>
+    <div class="cards-grid">
+      {
+        activitiesWithMeta.map((activity) => (
+          <ActivityCard
+            bgImage={activity.bgImage}
+            icon={activity.icon}
+            title={activity.title}
+            slug={activity.slug}
+          />
+        ))
+      }
     </div>
   </section>
 
@@ -73,8 +82,6 @@ import { blocRules } from '../admin/data/blocRules';
 
     let currentOffset = 0;
     let targetOffset = 0;
-    let currentBgOpacity = 0;
-    let targetBgOpacity = 0;
 
     function updateVideoPosition() {
       const scrollY = window.scrollY;
@@ -84,24 +91,15 @@ import { blocRules } from '../admin/data/blocRules';
 
       // Vidéo descend de 0 à 20vh (sort progressivement)
       targetOffset = progress * 20;
-
-      // Fond coloré apparaît
-      targetBgOpacity = progress;
     }
 
     function animate() {
       currentOffset += (targetOffset - currentOffset) * 0.1;
-      currentBgOpacity += (targetBgOpacity - currentBgOpacity) * 0.1;
 
       document.documentElement.style.setProperty(
         '--video-offset',
         `${currentOffset}vh`,
       );
-      document.documentElement.style.setProperty(
-        '--bg-opacity',
-        currentBgOpacity.toString(),
-      );
-
       requestAnimationFrame(animate);
     }
 

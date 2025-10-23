@@ -88,12 +88,12 @@
       "title": "Activités",
       "type": "submenu",
       "children": [
-        { "title": "Randorail", "slug": "activites/randorail", "type": "page" },
-        { "title": "Trotti", "slug": "activites/trotti", "type": "page" },
-        { "title": "Bivouac", "slug": "activites/bivouac", "type": "page" },
+        { "title": "Randorail", "slug": "activities/randorail", "type": "page" },
+        { "title": "Trotti-trail", "slug": "activities/trotti", "type": "page" },
+        { "title": "Bivouac", "slug": "activities/bivouac", "type": "page" },
         {
           "title": "Chasse au trésor",
-          "slug": "activites/chasse-au-tresor",
+          "slug": "activities/chasse-au-tresor",
           "type": "page"
         }
       ]

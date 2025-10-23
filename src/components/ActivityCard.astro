@@ -1,0 +1,28 @@
+---
+// Props attendues
+interface Props {
+  bgImage: string; // URL de l'image de fond
+  icon: string; // URL du picto
+  title: string; // Titre de la carte
+  slug: string; // Slug pour le lien
+}
+
+// Déstructuration des props
+const { bgImage, icon, title, slug } = Astro.props;
+---
+
+<a
+  href={`/${slug}`}
+  class="activity-card"
+  style={`
+    --bg-image: url('${bgImage}');
+  `}
+>
+  <div class="activity-card__bg"></div>
+  <div class="activity-card__content">
+    <div class="activity-card__icon">
+    </div>
+    <h3 class="activity-card__title">{title}</h3>
+  </div>
+  <span class="activity-card__btn">+</span>
+</a>

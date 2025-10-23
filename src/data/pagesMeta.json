@@ -3,8 +3,8 @@
   "contact": { "label": "Contact", "editable": true },
   "mentions": { "label": "Mentions légales", "editable": true },
   "seminaire": { "label": "Séminaires", "editable": true },
-  "randorail": { "label": "Randorail", "editable": true, "parent": "activites" },
-  "trotti": { "label": "Trotti", "editable": true, "parent": "activites" },
-  "bivouac": { "label": "Bivouac", "editable": true, "parent": "activites" },
-  "chasse-au-tresor": { "label": "Chasse au trésor", "editable": true, "parent": "activites" }
+  "randorail": { "label": "Randorail", "editable": true, "parent": "activities" },
+  "trotti": { "label": "Trotti-Trail", "editable": true, "parent": "activities" },
+  "bivouac": { "label": "Bivouac", "editable": true, "parent": "activities" },
+  "chasse-au-tresor": { "label": "Chasse au trésor", "editable": true, "parent": "activities" }
 }
