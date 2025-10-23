@@ -1,5 +1,6 @@
 ---
 import content from '../data/content.json';
+import { VIDEO_HERO_URL } from '../config';
 import HighlightOnHash from './Highlight';
 import { imageWithHash } from '../admin/components/images/imageWithHash';
 import { imageRules } from '../admin/data/imageRules';
@@ -45,19 +46,14 @@ import { blocRules } from '../admin/data/blocRules';
       })()
   }
   <section class="second-section">
-      <div class="side-fb-container">
-        <video autoplay muted loop playsinline style="width:100%;height:auto;">
-  <source src="https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/hero-video.webm" type="video/webm">
-</video>
-        <img
-          id="home-side-img"
-          src={imageWithHash(imageRules.HOME_SIDE_IMG.name)}
-          alt=""
-        />
-        <p id="intro-text1" class="p2 p3">{content.home.secondSection.text1}</p>
-        <p id="intro-text2" class="p2 p3">{content.home.secondSection.text2}</p>
-        <p id="intro-text3" class="p2 p3">{content.home.secondSection.text3}</p>
-      </div>
+    <div class="side-fb-container">
+      <video autoplay muted loop playsinline style="width:100%;height:auto;">
+        <source src=`${VIDEO_HERO_URL}` type="video/webm" />
+      </video>
+      <p id="intro-text1" class="p2 p3">{content.home.secondSection.text1}</p>
+      <p id="intro-text2" class="p2 p3">{content.home.secondSection.text2}</p>
+      <p id="intro-text3" class="p2 p3">{content.home.secondSection.text3}</p>
+    </div>
   </section>
 </div>
 <HighlightOnHash client:load />

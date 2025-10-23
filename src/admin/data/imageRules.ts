@@ -1,29 +1,6 @@
 import { createImageRules } from '../components/images/imageRulesFactory';
 
 export const imageRules = createImageRules({
-  HOME_SIDE_IMG: {
-    name: 'home_side_img.webp',
-    label: "Image de côté de la page d'accueil",
-    idealRatio: 1.5,
-    isUnic: true,
-    linkTo: { route: '/', selector: '#home-side-img' },
-  },
-  HOME_BG_IMG: {
-    name: 'main_background.webp',
-    label: "Fond d'écran du site",
-    idealRatio: 1.5,
-    linkTo: { route: '/', selector: '#home-img' },
-  },
-
-  HOME_BG_IMG2: {
-    name: 'home_background.webp',
-    label: "Fond d'écran dynamique pour la page d'accueil",
-    idealRatio: 1.5,
-    extraInfo:
-      "Image de fond affiché en premier pour une arrivée dynamique en page d'accueil",
-    linkTo: { route: '/', selector: '#home-img' },
-  },
-
   META_SEO_FAVICON: {
     name: 'favicon.png',
     label: 'Icône principale du site (favicon)',

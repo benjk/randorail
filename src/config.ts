@@ -19,3 +19,6 @@ export const META_OG_IMG_SQUARE_HEIGHT = "883";
 // IMAGES
 export const IMG_PUBLIC_FOLDER = "/img/";
 export const VIDEO_PUBLIC_FOLDER = "/vid/";
+
+// VIDEO CDN
+export const VIDEO_HERO_URL = "https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/hero-video.webm";

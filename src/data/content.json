@@ -23,7 +23,7 @@
   },
   "home": {
     "announcement": {
-      "enabled": true,
+      "enabled": false,
       "sourceBlocKey": "ANNONCE_BLOC",
       "blocIndex": 0
     },
