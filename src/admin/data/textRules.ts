@@ -33,57 +33,6 @@ export const textRules = createTextRules({
     linkTo: { route: '/', selector: '#intro-text1' },
   },
 
-  HOME_SIDE_INTRO_TEXT2: {
-    label: "Texte d'intro 2",
-    key: 'home.secondSection.text2',
-    maxLength: 400,
-    minLength: 0,
-    lineBreakable: true,
-    isUnic: true,
-    linkTo: { route: '/', selector: '#intro-text2' },
-  },
-
-  HOME_SIDE_INTRO_TEXT3: {
-    label: "Texte d'intro 3",
-    key: 'home.secondSection.text3',
-    maxLength: 400,
-    minLength: 0,
-    lineBreakable: true,
-    isUnic: true,
-    linkTo: { route: '/', selector: '#intro-text3' },
-  },
-
-  // ================================
-  // 🏠 SECTION : SERVICES
-  // ================================
-  SERVICES_DOC_TITLE: {
-    label: 'Titre navigateur de la page Services',
-    key: 'pages.services.docTitle',
-    maxLength: 40,
-    minLength: 4,
-    lineBreakable: false,
-    isUnic: true,
-    linkTo: { route: '/services', selector: '' },
-  },
-  SERVICES_TITLE: {
-    label: 'Titre de la page Services',
-    key: 'pages.services.title',
-    maxLength: 40,
-    minLength: 4,
-    lineBreakable: false,
-    isUnic: true,
-    linkTo: { route: '/services', selector: '#services-title' },
-  },
-  SERVICES_TEXT: {
-    label: 'Texte principal de la page Services',
-    key: 'pages.services.mainText',
-    maxLength: 1200,
-    minLength: 15,
-    lineBreakable: true,
-    isUnic: true,
-    linkTo: { route: '/services', selector: '#services-text' },
-  },
-
   // ================================
   // 🏠 SECTION : MENTIONS
   // ================================

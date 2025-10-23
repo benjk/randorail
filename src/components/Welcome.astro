@@ -45,15 +45,96 @@ import { blocRules } from '../admin/data/blocRules';
         );
       })()
   }
-  <section class="second-section">
-    <div class="side-fb-container">
-      <video autoplay muted loop playsinline style="width:100%;height:auto;">
-        <source src=`${VIDEO_HERO_URL}` type="video/webm" />
-      </video>
-      <p id="intro-text1" class="p2 p3">{content.home.secondSection.text1}</p>
-      <p id="intro-text2" class="p2 p3">{content.home.secondSection.text2}</p>
-      <p id="intro-text3" class="p2 p3">{content.home.secondSection.text3}</p>
+
+  <section class="first-section">
+    <div class="intro-content">
+      <h1>Ici on aura les activités</h1>
+      <p>Le bas de cette section est recouvert par la vidéo</p>
     </div>
   </section>
+
+  <section class="second-section">
+    <video autoplay muted loop playsinline class="video-bg">
+      <source src=`${VIDEO_HERO_URL}` type="video/webm" />
+    </video>
+    <div class="video-overlay">
+      <h3 id="intro-text1" class="p2 p3">{content.home.secondSection.text1}</h3>
+    </div>
+  </section>
+  <section class="third-section"></section>
 </div>
+<script>
+  function initParallax() {
+    const firstSection = document.querySelector(
+      '.first-section',
+    ) as HTMLElement;
+
+    if (!firstSection) return;
+
+    let currentOffset = 0;
+    let targetOffset = 0;
+    let currentBgOpacity = 0;
+    let targetBgOpacity = 0;
+
+    function updateVideoPosition() {
+      const scrollY = window.scrollY;
+      const firstSectionHeight = firstSection.offsetHeight;
+
+      const progress = Math.min(Math.max(scrollY / firstSectionHeight, 0), 1);
+
+      // Vidéo descend de 0 à 20vh (sort progressivement)
+      targetOffset = progress * 20;
+
+      // Fond coloré apparaît
+      targetBgOpacity = progress;
+    }
+
+    function animate() {
+      currentOffset += (targetOffset - currentOffset) * 0.1;
+      currentBgOpacity += (targetBgOpacity - currentBgOpacity) * 0.1;
+
+      document.documentElement.style.setProperty(
+        '--video-offset',
+        `${currentOffset}vh`,
+      );
+      document.documentElement.style.setProperty(
+        '--bg-opacity',
+        currentBgOpacity.toString(),
+      );
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+    window.addEventListener('scroll', updateVideoPosition, { passive: true });
+    updateVideoPosition();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initParallax);
+  } else {
+    initParallax();
+  }
+</script>
+<script>
+  window.addEventListener('scroll', () => {
+    const firstSection = document.querySelector(
+      '.first-section',
+    ) as HTMLElement;
+
+    if (!firstSection) return;
+    const video = document.querySelector('.video-bg') as HTMLElement;
+
+    if (!firstSection || !video) return;
+
+    const scrollY = window.scrollY;
+    const firstSectionHeight = firstSection.offsetHeight;
+
+    // limite à 20vh max pour la vidéo
+    const offset = Math.min(scrollY / firstSectionHeight, 1) * 20;
+
+    video.style.transform = `translateY(${offset}vh)`;
+  });
+</script>
+
 <HighlightOnHash client:load />
