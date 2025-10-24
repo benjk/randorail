@@ -10,7 +10,7 @@ $shadow-menu:
   0 4px 6px -1px rgba(0, 0, 0, 0.1),
   0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
-$header-text-color: $color3;
+$header-text-color: $color1;
 $submenu-text-color: $color3;
 
 /* === Header === */
@@ -21,7 +21,7 @@ $submenu-text-color: $color3;
   left: 0;
   width: 100%;
   height: $header-height;
-  background-color: $color1;
+  background-color: $color3;
   opacity: 1;
   will-change: transform, opacity;
   transition:

@@ -73,48 +73,6 @@ import { activitiesWithMeta } from '../data/activities';
   <section class="third-section"></section>
 </div>
 <script>
-  function initParallax() {
-    const firstSection = document.querySelector(
-      '.first-section',
-    ) as HTMLElement;
-
-    if (!firstSection) return;
-
-    let currentOffset = 0;
-    let targetOffset = 0;
-
-    function updateVideoPosition() {
-      const scrollY = window.scrollY;
-      const firstSectionHeight = firstSection.offsetHeight;
-
-      const progress = Math.min(Math.max(scrollY / firstSectionHeight, 0), 1);
-
-      // Vidéo descend de 0 à 20vh (sort progressivement)
-      targetOffset = progress * 20;
-    }
-
-    function animate() {
-      currentOffset += (targetOffset - currentOffset) * 0.1;
-
-      document.documentElement.style.setProperty(
-        '--video-offset',
-        `${currentOffset}vh`,
-      );
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-    window.addEventListener('scroll', updateVideoPosition, { passive: true });
-    updateVideoPosition();
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initParallax);
-  } else {
-    initParallax();
-  }
-</script>
-<script>
   window.addEventListener('scroll', () => {
     const firstSection = document.querySelector(
       '.first-section',
@@ -129,7 +87,7 @@ import { activitiesWithMeta } from '../data/activities';
     const firstSectionHeight = firstSection.offsetHeight;
 
     // limite à 20vh max pour la vidéo
-    const offset = Math.min(scrollY / firstSectionHeight, 1) * 20;
+    const offset = Math.min(scrollY / firstSectionHeight, 1) * 10;
 
     video.style.transform = `translateY(${offset}vh)`;
   });
