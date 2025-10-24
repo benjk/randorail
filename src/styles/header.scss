@@ -21,7 +21,7 @@ $submenu-text-color: $color3;
   left: 0;
   width: 100%;
   height: $header-height;
-  background-color: transparent;
+  background-color: $color1;
   opacity: 1;
   will-change: transform, opacity;
   transition:
