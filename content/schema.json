@@ -1,6 +1,6 @@
 {
   "document": {
-    "title": "Le Rando-rail du pays de Lumbres",
+    "title": "RANDORAIL",
     "description": "Cette description est une description SEO.",
     "og": {
       "ogTitle": "Le titre de mon site OpenGraph",
@@ -23,7 +23,7 @@
   },
   "home": {
     "announcement": {
-      "enabled": true,
+      "enabled": false,
       "sourceBlocKey": "ANNONCE_BLOC",
       "blocIndex": 0
     },
@@ -38,11 +38,11 @@
       ]
     },
     "firstSection": {
-      "mainTitle": "Nicolas D",
-      "subTitle": "Site en construction"
+      "mainTitle": "Randorail",
+      "subTitle": "du pays de Lumbres"
     },
     "secondSection": {
-      "text1": ""
+      "text1": "Venez découvrir le randorail du pays de Lumbres"
     }
   },
   "pages": {
@@ -85,14 +85,40 @@
   },
   "menu": [
     {
-      "title": "Services",
-      "slug": "services",
+      "title": "Activités",
+      "type": "submenu",
+      "children": [
+        {
+          "title": "Randorail",
+          "slug": "activities/randorail",
+          "type": "page"
+        },
+        {
+          "title": "Trotti-trail",
+          "slug": "activities/trotti",
+          "type": "page"
+        },
+        {
+          "title": "Bivouac",
+          "slug": "activities/bivouac",
+          "type": "page"
+        },
+        {
+          "title": "Chasse au trésor",
+          "slug": "activities/chasse-au-tresor",
+          "type": "page"
+        }
+      ]
+    },
+    {
+      "title": "Séminaires",
+      "slug": "seminaire",
       "type": "page"
     },
     {
       "title": "Contact",
-      "slug": "openContactPopup",
-      "type": "action"
+      "slug": "contact",
+      "type": "page"
     }
   ],
   "footerMenu": [
@@ -108,9 +134,9 @@
     },
     {
       "title": "Contact",
-      "slug": "openContactPopup",
-      "type": "action"
+      "slug": "contact",
+      "type": "page"
     }
   ],
-  "contentVersion": "2025-10-22T11:54:46.443Z"
+  "contentVersion": "2150-07-22T14:41:33.720Z"
 }
