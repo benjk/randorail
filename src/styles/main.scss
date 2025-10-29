@@ -6,6 +6,8 @@
 $transition-display: 0.3s;
 $text-shadow-basic: 0 2px 10px rgba($color3, 0.5);
 
+$video-section-overlay-height: 75vh;
+
 html {
   background-color: transparent;
   color: $color2;
@@ -45,11 +47,13 @@ html {
 
         &#home-container {
           height: auto;
+          padding-top: 0;
 
           .announcement-section {
             width: 100%;
             padding: $margin-l calc($margin-xl * 2);
             position: relative;
+            z-index: 102;
 
             .announcement-wrapper {
               background-size: cover;
@@ -103,260 +107,318 @@ html {
             }
           }
 
-          .first-section {
-            position: relative;
+          .video-wrapper {
+            position: absolute;
             width: 100%;
-            height: 70vh;
-            z-index: 10;
-            padding-bottom: 10vh;
-            background-color: transparent;
-            padding-left: $margin-xl;
-            padding-right: $margin-xl;
-            display: flex;
-            justify-content: center;
+            height: calc(
+              100vh + $video-section-overlay-height
+            ); // zone de défilement totale (à ajuster)
+            z-index: 1;
+            top: 0;
+            left: 0;
 
-            .cards-grid {
-              $card-width: 380px;
-              $cards-shadow: 4px 6px 12px rgba($color4, 0.2);
-              max-width: 1400px;
-              display: grid;
-              grid-template-columns: repeat(auto-fit, minmax($card-width, 1fr));
-              gap: $margin-xl;
-              padding: 24px;
+            .video-section {
+              position: fixed;
+              width: 100%;
+              height: 100vh;
+              overflow: hidden;
+              z-index: 1; // Devant la section 1
 
-              .activity-card {
-                --transition: all 0.3s ease;
-                --scale-hover: 1.02;
-
-                position: relative;
-                display: block;
-                height: 280px;
-                border-radius: 4px;
-                overflow: hidden;
-                box-shadow: $cards-shadow;
-                transition: var(--transition);
-                cursor: pointer;
-                text-decoration: none;
-                color: inherit;
-              }
-
-              .activity-card:hover {
-                transform: scale(var(--scale-hover));
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-              }
-
-              .activity-card__bg {
+              .video-bg {
                 position: absolute;
-                top: 0;
-                left: 0;
                 width: 100%;
                 height: 100%;
-                background-image: var(--bg-image);
-                background-size: cover;
-                background-position: center;
-                z-index: 1;
+                object-fit: cover;
+                backface-visibility: hidden;
+                transform: translateZ(0);
+                will-change: transform;
               }
 
-              .activity-card__bg::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.3);
-                z-index: 2;
+              @media screen and (max-width: $mobile-breakpoint) {
+                height: 80vh;
               }
-
-              .activity-card__content {
-                position: relative;
-                z-index: 3;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                height: 100%;
-                padding: 24px;
-                text-align: center;
-              }
-
-              .activity-card__icon {
-                margin-bottom: $margin-s;
-
-                width: 48px;
-                height: 48px;
-                -webkit-mask: url('/img/icons/activity-picto.svg') no-repeat center / contain;
-                mask: url('/img/icons/activity-picto.svg') no-repeat center / contain;
-                background-color: $color2; /* couleur du SVG */
-                text-shadow: $text-shadow-basic;
-              }
-
-              .activity-card__title {
-                font-size: $title2-font-size;
-                font-family: $title-font;
-                color: $color3;
-                text-shadow: $text-shadow-basic;
-                margin: 0;
-              }
-
-              .activity-card__btn {
-                position: absolute;
-                bottom: 24px;
-                right: 24px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 40px;
-                height: 40px;
-                background: var(--color-primary);
-                color: white;
-                border-radius: 50%;
-                font-size: 20px;
-                font-weight: bold;
-                opacity: 0;
-                transition: var(--transition);
-                z-index: 4;
-              }
-
-              .activity-card:hover .activity-card__btn {
-                opacity: 1;
-              }
-            }
-
-            @media (max-width: $mobile-breakpoint) {
-              .cards-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-              }
-            }
-
-            @media (max-width: 480px) {
-              .cards-grid {
-                grid-template-columns: 1fr;
-              }
-            }
-
-            h1 {
-              font-size: $title1-font-size;
-              color: $color1;
-              font-weight: normal;
-              text-transform: uppercase;
-              font-family: $title-font;
-              letter-spacing: $letter-spacing-basic;
-            }
-
-            p {
-              color: $color4;
-            }
-
-            @media screen and (max-width: $mobile-breakpoint) {
-              margin-bottom: 7.2rem;
             }
           }
 
-          .second-section {
+          .activities-section {
+            $card-spacing: $margin-l;
+            $card-spacing: 3.5em;
+
             position: relative;
             width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            z-index: 2; // Devant la section 1
-            clip-path: polygon(0 3vh, 100% 6vh, 100% 100vh, 0 100vh);
-            margin-top: -10vh;
+            height: calc(100vh - $header-height);
+            z-index: 10;
+            top: calc($header-height);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            padding-left: $margin-xl;
+            padding-right: $margin-xl;
 
-            .video-bg {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
-              backface-visibility: hidden;
-              transform: translateZ(0);
-              will-change: transform;
-            }
-
-            .video-overlay {
-              position: relative;
-              z-index: 2;
+            .main-title {
+              font-size: $title2-font-size;
               color: $color3;
+              font-family: 'Lobster', sans-serif;
+              font-weight: 400;
               text-align: center;
-              top: 56%;
-              transform: translateY(-50%);
+              text-shadow: $text-shadow-basic;
 
-              h3 {
-                font-size: $title2-font-size;
-                color: $color3;
-                font-family: $title-font;
-                text-transform: uppercase;
-                text-shadow: $text-shadow-basic;
+              &.main-content {
+                font-size: calc($title1-font-size * 1.4);
               }
             }
 
-            @media screen and (max-width: $mobile-breakpoint) {
-              margin-top: -15vh;
-              height: 80vh;
+            .activities-container {
+              width: auto;
+              background: rgba($color3, 0.8);
+              padding: $margin-l $card-spacing;
+              box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+              border-radius: $card-radius;
+              background: radial-gradient(
+                ellipse 90% 80% at 50% 50%,
+                rgba($header-bg-color, 0.8) 50%,
+                rgba($header-bg-color, 0.6) 75%,
+                rgba($header-bg-color, 0.3) 90%,
+                transparent 100%
+              );
+              @include flex-box(0);
+
+              .activities-title {
+                font-size: $title3-font-size;
+                color: $color3;
+                font-family: $title-font;
+                text-transform: uppercase;
+                margin-bottom: $margin-m;
+                align-self: start;
+                padding-inline-start: $margin-m;
+              }
+
+              .cards-grid {
+                $card-width: 180px;
+                $cards-shadow: 4px 6px 12px rgba($color4, 0.2);
+                max-width: 1400px;
+                display: grid;
+                grid-template-columns: repeat(
+                  auto-fit,
+                  minmax($card-width, 1fr)
+                );
+                gap: $card-spacing;
+
+                .activity-card {
+                  --transition: all 0.3s ease;
+                  --scale-hover: 1.02;
+
+                  position: relative;
+                  display: block;
+                  height: 280px;
+                  border-radius: $card-radius;
+                  overflow: hidden;
+                  box-shadow: $cards-shadow;
+                  transition: var(--transition);
+                  cursor: pointer;
+                  text-decoration: none;
+                  color: inherit;
+                }
+
+                .activity-card:hover {
+                  transform: scale(var(--scale-hover));
+                  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+                }
+
+                .activity-card__bg {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                  background-image: var(--bg-image);
+                  background-size: cover;
+                  background-position: center;
+                  z-index: 1;
+                }
+
+                .activity-card__bg::before {
+                  content: '';
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                  background: rgba(0, 0, 0, 0.3);
+                  z-index: 2;
+                }
+
+                .activity-card__content {
+                  position: relative;
+                  z-index: 3;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                  height: 100%;
+                  padding: 24px;
+                  text-align: center;
+                }
+
+                .activity-card__icon {
+                  margin-bottom: $margin-s;
+
+                  width: 48px;
+                  height: 48px;
+                  -webkit-mask: url('/img/icons/activity-picto.svg') no-repeat
+                    center / contain;
+                  mask: url('/img/icons/activity-picto.svg') no-repeat center /
+                    contain;
+                  background-color: $color2; /* couleur du SVG */
+                  text-shadow: $text-shadow-basic;
+                }
+
+                .activity-card__title {
+                  font-size: $title3-font-size;
+                  font-family: $title-font;
+                  color: $color3;
+                  text-shadow: $text-shadow-basic;
+                  margin: 0;
+                }
+
+                .activity-card__btn {
+                  position: absolute;
+                  bottom: 24px;
+                  right: 24px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  width: 40px;
+                  height: 40px;
+                  background: var(--color-primary);
+                  color: white;
+                  border-radius: 50%;
+                  font-size: 20px;
+                  font-weight: bold;
+                  opacity: 0;
+                  transition: var(--transition);
+                  z-index: 4;
+                }
+
+                .activity-card:hover .activity-card__btn {
+                  opacity: 1;
+                }
+              }
+
+              @media (max-width: $mobile-breakpoint) {
+                .cards-grid {
+                  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                }
+              }
+
+              @media (max-width: 480px) {
+                .cards-grid {
+                  grid-template-columns: 1fr;
+                }
+              }
+            }
+          }
+
+          .video-section-overlay {
+            height: $video-section-overlay-height;
+            width: 100%;
+            position: relative;
+
+            .video-icon {
+              width: 3em;
+              height: auto;
+              position: absolute;
+              bottom: calc($margin-l * -1.5);
+              right: $margin-m;
+              z-index: 5;
             }
           }
 
           .third-section {
-            height: 32em;
-            background-color: $color2;
+            position: relative;
+            $section-shape: polygon(0 0vh, 100% 10vh, 100% 100vh, 0 100vh);
+            z-index: 2;
+            height: 90vh;
+            width: 100%;
+            background-color: $color3;
+            clip-path: $section-shape;
+            @include flex-box(0);
+
+            &::before {
+              content: '';
+              position: absolute;
+              top: -1px;
+              left: 0;
+              width: 100%;
+              height: 6px; // épaisseur de la ligne
+              background-color: $color2; // couleur de ta border
+              transform-origin: left top;
+              transform: skewY(2.8deg); // angle inverse du clip-path
+            }
+
+            h3 {
+              font-size: $title2-font-size;
+              color: $color2;
+              font-family: $title-font;
+            }
           }
         }
       }
-
-      .mention-wrapper {
-        padding: $margin-m;
-
-        h3 {
-          font-size: $title3-font-size;
-          font-family: $title-font;
-          color: $color4;
-        }
-
-        .mention-container {
-          display: flex;
-          flex-direction: column;
-          gap: $margin-m;
-          max-width: 1400px;
-        }
-
-        img {
-          max-width: 50%;
-          max-height: 200px;
-          height: auto;
-          border-radius: 5px;
-        }
-      }
     }
-    .page-not-found-wrapper {
-      height: 100vh;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: $margin-l;
-      font-family: $title-font;
 
-      h2 {
-        font-size: clamp(1.3rem, 0.229rem + 2.857vw, 2.8rem);
+    .mention-wrapper {
+      padding: $margin-m;
+
+      h3 {
+        font-size: $title3-font-size;
+        font-family: $title-font;
+        color: $color4;
       }
 
-      a {
+      .mention-container {
         display: flex;
         flex-direction: column;
-        text-decoration: none;
-        align-items: center;
-        gap: $margin-s;
-        p {
-          font-size: clamp(1.4rem, 0.971rem + 1.143vw, 2rem);
-          color: $color1;
-        }
+        gap: $margin-m;
+        max-width: 1400px;
+      }
 
-        img {
-          max-height: clamp(5rem, 1.875rem + 8.333vw, 9.375rem);
-          width: fit-content;
-        }
+      img {
+        max-width: 50%;
+        max-height: 200px;
+        height: auto;
+        border-radius: 5px;
+      }
+    }
+  }
+  .page-not-found-wrapper {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: $margin-l;
+    font-family: $title-font;
+
+    h2 {
+      font-size: clamp(1.3rem, 0.229rem + 2.857vw, 2.8rem);
+    }
+
+    a {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      align-items: center;
+      gap: $margin-s;
+      p {
+        font-size: clamp(1.4rem, 0.971rem + 1.143vw, 2rem);
+        color: $color1;
+      }
+
+      img {
+        max-height: clamp(5rem, 1.875rem + 8.333vw, 9.375rem);
+        width: fit-content;
       }
     }
   }

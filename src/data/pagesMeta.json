@@ -2,7 +2,7 @@
   "home": { "label": "Accueil", "editable": true },
   "contact": { "label": "Contact", "editable": true },
   "mentions": { "label": "Mentions légales", "editable": true },
-  "seminaire": { "label": "Séminaires", "editable": true },
+  "seminaires": { "label": "Séminaires", "editable": true },
   "randorail": { "label": "Randorail", "editable": true, "parent": "activities" },
   "trotti": { "label": "Trotti-Trail", "editable": true, "parent": "activities" },
   "bivouac": { "label": "Bivouac", "editable": true, "parent": "activities" },

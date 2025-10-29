@@ -25,7 +25,7 @@ const activityMeta: Record<
     icon: '/img/icons/activity-picto.svg',
     description: 'Jeu d’aventure pour petits et grands',
   },
-  'seminaire': {
+  'seminaires': {
     bgImage: '/img/activities/seminaires-card.webp',
     icon: '/img/icons/activity-picto.svg',
     description: 'Séminaires, team-buulding, et événements d’entreprise',

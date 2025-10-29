@@ -174,42 +174,42 @@ const menuItems = rawMenu.filter(item => {
       });
 
       // Gestion du scroll pour masquer le header
-      if (header) {
-        let lastScrollY = window.scrollY;
-        let isScrolling = false;
-        const scrollThreshold = 150;
+      // if (header) {
+      //   let lastScrollY = window.scrollY;
+      //   let isScrolling = false;
+      //   const scrollThreshold = 150;
         
-        const handleScroll = () => {
-          if (isScrolling) return;
+      //   const handleScroll = () => {
+      //     if (isScrolling) return;
           
-          isScrolling = true;
-          requestAnimationFrame(() => {
-            const currentScrollY = window.scrollY;
-            const isScrollingDown = currentScrollY > lastScrollY;
+      //     isScrolling = true;
+      //     requestAnimationFrame(() => {
+      //       const currentScrollY = window.scrollY;
+      //       const isScrollingDown = currentScrollY > lastScrollY;
             
-            // Fermer le menu mobile si ouvert et qu'on scroll vers le bas
-            if (isMenuOpen && isScrollingDown && Math.abs(currentScrollY - lastScrollY) > 5) {
-              closeMenu();
-            }
+      //       // Fermer le menu mobile si ouvert et qu'on scroll vers le bas
+      //       if (isMenuOpen && isScrollingDown && Math.abs(currentScrollY - lastScrollY) > 5) {
+      //         closeMenu();
+      //       }
             
-            // Masquer/afficher le header selon le scroll
-            if (currentScrollY > scrollThreshold) {
-              if (isScrollingDown) {
-                header.classList.add('header-hidden');
-              } else {
-                header.classList.remove('header-hidden');
-              }
-            } else {
-              header.classList.remove('header-hidden');
-            }
+      //       // Masquer/afficher le header selon le scroll
+      //       if (currentScrollY > scrollThreshold) {
+      //         if (isScrollingDown) {
+      //           header.classList.add('header-hidden');
+      //         } else {
+      //           header.classList.remove('header-hidden');
+      //         }
+      //       } else {
+      //         header.classList.remove('header-hidden');
+      //       }
 
-            lastScrollY = currentScrollY;
-            isScrolling = false;
-          });
-        };
+      //       lastScrollY = currentScrollY;
+      //       isScrolling = false;
+      //     });
+      //   };
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
-      }
+      //   window.addEventListener('scroll', handleScroll, { passive: true });
+      // }
     }
   </script>
 </header>

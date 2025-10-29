@@ -42,7 +42,7 @@
       "subTitle": "du pays de Lumbres"
     },
     "secondSection": {
-      "text1": "Venez découvrir le randorail du pays de Lumbres"
+      "text1": "Le Randorail du pays de Lumbres"
     }
   },
   "pages": {
@@ -98,7 +98,7 @@
         }
       ]
     },
-    { "title": "Séminaires", "slug": "seminaire", "type": "page" },
+    { "title": "Séminaires", "slug": "seminaires", "type": "page" },
     { "title": "Contact", "slug": "contact", "type": "page" }
   ],
   "footerMenu": [
