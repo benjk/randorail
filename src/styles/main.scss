@@ -5,6 +5,7 @@
 
 $transition-display: 0.3s;
 $text-shadow-basic: 0 2px 10px rgba($color3, 0.5);
+$text-shadow-light: 0 2px 26px rgba($color3, 0.7);
 
 $video-section-overlay-height: 75vh;
 
@@ -16,7 +17,7 @@ html {
     min-height: 100%;
     height: 100dvh;
     color: $color2;
-    background-color: $color3;
+    background-color: $color1;
 
     #main-container {
       min-height: calc(100vh + $footer-height - $header-height);
@@ -32,7 +33,6 @@ html {
         h2 {
           font-size: $title2-font-size;
           font-family: $title-font;
-          text-transform: uppercase;
           letter-spacing: $letter-spacing-basic;
           color: $color4;
           margin-bottom: $margin-l;
@@ -41,7 +41,7 @@ html {
 
         p {
           font-size: $text-font-size;
-          font-family: $title-font;
+          font-family: $text-font;
           color: $color1;
         }
 
@@ -80,7 +80,7 @@ html {
                 position: relative;
                 z-index: 1;
                 color: $color2;
-                font-family: $title-font;
+                font-family: $text-font;
 
                 .announcement-title {
                   font-size: calc($title2-font-size);
@@ -183,11 +183,12 @@ html {
                 transparent 100%
               );
               @include flex-box(0);
+              border: $border-section-separation;
 
               .activities-title {
                 font-size: $title3-font-size;
                 color: $color3;
-                font-family: $title-font;
+                font-family: $text-font;
                 text-transform: uppercase;
                 margin-bottom: $margin-m;
                 align-self: start;
@@ -196,7 +197,12 @@ html {
 
               .cards-grid {
                 $card-width: 180px;
+                $card-height: 280px;
                 $cards-shadow: 4px 6px 12px rgba($color4, 0.2);
+                $transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                $scale-hover: 1.02;
+                $picto-size: 2.8em;
+
                 max-width: 1400px;
                 display: grid;
                 grid-template-columns: repeat(
@@ -206,23 +212,20 @@ html {
                 gap: $card-spacing;
 
                 .activity-card {
-                  --transition: all 0.3s ease;
-                  --scale-hover: 1.02;
-
                   position: relative;
                   display: block;
-                  height: 280px;
+                  height: $card-height;
                   border-radius: $card-radius;
                   overflow: hidden;
                   box-shadow: $cards-shadow;
-                  transition: var(--transition);
+                  transition: $transition;
                   cursor: pointer;
                   text-decoration: none;
                   color: inherit;
                 }
 
                 .activity-card:hover {
-                  transform: scale(var(--scale-hover));
+                  transform: scale($scale-hover);
                   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
                 }
 
@@ -236,6 +239,13 @@ html {
                   background-size: cover;
                   background-position: center;
                   z-index: 1;
+                  will-change: transform;
+                  backface-visibility: hidden;
+                  transition: transform 0.4s ease;
+                }
+
+                .activity-card:hover .activity-card__bg {
+                  transform: scale(1.05);
                 }
 
                 .activity-card__bg::before {
@@ -245,8 +255,13 @@ html {
                   left: 0;
                   width: 100%;
                   height: 100%;
-                  background: rgba(0, 0, 0, 0.3);
+                  background: rgba(0, 0, 0, 0.4);
                   z-index: 2;
+                  transition: background 0.4s ease;
+                }
+
+                .activity-card:hover .activity-card__bg::before {
+                  background: rgba(0, 0, 0, 0.2);
                 }
 
                 .activity-card__content {
@@ -257,52 +272,93 @@ html {
                   align-items: center;
                   justify-content: center;
                   height: 100%;
-                  padding: 24px;
+                  padding: $margin-m;
                   text-align: center;
+                  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                  will-change: transform;
+                }
+
+                .activity-card:hover .activity-card__content {
+                  transform: translateY(-20px);
                 }
 
                 .activity-card__icon {
                   margin-bottom: $margin-s;
-
-                  width: 48px;
-                  height: 48px;
+                  width: $picto-size;
+                  height: $picto-size;
                   -webkit-mask: url('/img/icons/activity-picto.svg') no-repeat
                     center / contain;
                   mask: url('/img/icons/activity-picto.svg') no-repeat center /
                     contain;
-                  background-color: $color2; /* couleur du SVG */
-                  text-shadow: $text-shadow-basic;
+                  background-color: $color2;
+                  text-shadow: $text-shadow-light;
+                  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                  will-change: transform;
+                }
+
+                .activity-card:hover .activity-card__icon {
+                  transform: scale(1.2);
                 }
 
                 .activity-card__title {
                   font-size: $title3-font-size;
                   font-family: $title-font;
                   color: $color3;
-                  text-shadow: $text-shadow-basic;
+                  text-shadow: $text-shadow-light;
                   margin: 0;
+                  letter-spacing: 2px;
                 }
 
                 .activity-card__btn {
                   position: absolute;
-                  bottom: 24px;
-                  right: 24px;
-                  display: flex;
+                  font-family: $text-font;
+                  bottom: $margin-m;
+                  left: 50%;
+                  transform: translate(-50%, 200%);
+                  display: inline-flex;
                   align-items: center;
                   justify-content: center;
-                  width: 40px;
-                  height: 40px;
-                  background: var(--color-primary);
-                  color: white;
-                  border-radius: 50%;
-                  font-size: 20px;
-                  font-weight: bold;
+                  padding: $margin-xs $margin-s;
+                  background: linear-gradient(
+                    135deg,
+                    $color2,
+                    darken($color2, 12%)
+                  );
+                  color: $color3;
+                  border-radius: $basic-radius;
+                  letter-spacing: 1px;
                   opacity: 0;
-                  transition: var(--transition);
+                  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                   z-index: 4;
+                  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+                  &::before {
+                    content: 'En savoir +';
+                    font-size: calc($text-font-size * 0.5);
+                    font-family: $text-font;
+                    transition: transform 0.3s ease;
+                  }
                 }
 
                 .activity-card:hover .activity-card__btn {
                   opacity: 1;
+                  transform: translate(-50%, 0);
+
+                  &::before {
+                    transform: translateX(4px);
+                  }
+                }
+              }
+
+              @media (max-width: $mobile-breakpoint) {
+                .cards-grid {
+                  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                }
+              }
+
+              @media (max-width: 480px) {
+                .cards-grid {
+                  grid-template-columns: 1fr;
                 }
               }
 
@@ -358,9 +414,9 @@ html {
             }
 
             h3 {
-              font-size: $title2-font-size;
+              font-size: $title3-font-size;
               color: $color2;
-              font-family: $title-font;
+              font-family: $text-font;
             }
           }
         }
@@ -413,7 +469,7 @@ html {
       gap: $margin-s;
       p {
         font-size: clamp(1.4rem, 0.971rem + 1.143vw, 2rem);
-        color: $color1;
+        color: $color2;
       }
 
       img {

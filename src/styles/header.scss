@@ -87,8 +87,8 @@ $submenu-text-color: $color3;
     .menu-desktop {
       display: flex;
       gap: 2.5em;
-      font-family: $title-font;
-      text-transform: uppercase;
+      font-family: $text-font;
+      // text-transform: uppercase;
       letter-spacing: $letter-spacing-basic;
 
       .menu-link {
@@ -142,7 +142,7 @@ $submenu-text-color: $color3;
             font-size: 1rem;
             transition: background-color 0.2s ease;
             white-space: nowrap;
-            font-family: $title-font;
+            font-family: $text-font;
 
             &:hover {
               background-color: rgba($color2, 1);
@@ -272,8 +272,7 @@ $submenu-text-color: $color3;
           color: $submenu-text-color;
           text-decoration: none;
           font-size: 1.2rem;
-          font-family: $title-font;
-          text-transform: uppercase;
+          font-family: $text-font;
           letter-spacing: $letter-spacing-basic;
           transition: background-color 0.3s ease;
           background: none;
@@ -324,7 +323,7 @@ $submenu-text-color: $color3;
                 text-decoration: none;
                 font-size: 1.1rem;
                 transition: background-color 0.2s ease;
-                font-family: $title-font;
+                font-family: $text-font;
 
                 &:hover {
                   background-color: rgba($color2, 0.1);

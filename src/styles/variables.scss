@@ -34,32 +34,40 @@ $letter-spacing-basic: 0.5px;
 $annonce-height: 16em;
 
 $card-radius: 6px;
-$border-section-separation: 3px solid $color2;
+$border-section-separation: 2px solid $color2;
 
 /****************** FONTS ******************/
 @font-face {
-  font-family: 'Marcellus';
-  src: url('/fonts/Marcellus.woff2') format('woff2');
+  font-family: 'Lobster';
+  src: url('/fonts/Lobster.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Spectral';
-  src: url('/fonts/Spectral.woff2') format('woff2');
+  font-family: 'Merriweather';
+  src: url('/fonts/Merriweather-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Spectral';
-  src: url('/fonts/Spectral-Bold.woff2') format('woff2');
+  font-family: 'Merriweather';
+  src: url('/fonts/Merriweather-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: bold;
   font-display: swap;
 }
 
-$title-font: 'Marcellus', system-ui, sans-serif;
-$text-font: 'Spectral', system-ui, sans-serif;
+@font-face {
+  font-family: 'Merriweather';
+  src: url('/fonts/Merriweather-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: light;
+  font-display: swap;
+}
+
+$title-font: 'Lobster', system-ui, sans-serif;
+$text-font: 'Merriweather', system-ui, sans-serif;
