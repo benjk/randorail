@@ -1,4 +1,4 @@
-@use "./variables" as *;
+@use './variables' as *;
 
 @mixin flex-box($gap: $margin-xs) {
   display: flex;
@@ -31,5 +31,30 @@
 
   &:hover {
     box-shadow: $strong-shadow;
+  }
+}
+
+@mixin my-btn {
+  width: 30%;
+  margin: auto;
+  margin-top: $margin-m;
+  padding: $margin-xs $margin-s;
+  background: linear-gradient(135deg, $color2, darken($color2, 12%));
+  color: $color3;
+  border-radius: $basic-radius;
+  letter-spacing: 1px;
+  z-index: 4;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  font-family: $text-font;
+  @include flex-box($margin-xs);
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &::before {
+    content: 'En savoir +';
+    font-size: calc($text-font-size * 0.5);
+    transition: transform 0.3s ease;
   }
 }

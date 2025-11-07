@@ -50,7 +50,14 @@ import { activitiesWithMeta } from '../data/activities';
   <!-- SECTION 1 : VIDEO (fond) -->
   <section class="video-wrapper">
     <div class="video-section">
-      <video autoplay muted loop playsinline webkit-playsinline class="video-bg">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        webkit-playsinline
+        class="video-bg"
+      >
         <source src={`${VIDEO_HERO_URL}`} type="video/webm" />
       </video>
     </div>
@@ -59,7 +66,7 @@ import { activitiesWithMeta } from '../data/activities';
   <!-- SECTION 2 : ACTIVITIES -->
   <section class="activities-section">
     <div class="title-container">
-      <h3 class="main-title main-content">Le Randorail</h3>
+      <h1 class="main-title main-content">Le Randorail</h1>
       <h3 class="main-title">du pays de Lumbres</h3>
     </div>
     <div class="activities-container">
@@ -81,15 +88,51 @@ import { activitiesWithMeta } from '../data/activities';
 
   <!-- SECTION 3 : VIDEO OVERLAY -->
   <section class="video-section-overlay">
-    <img class="video-icon" src="/img/icons/icon-video.svg" alt="">
+    <img
+      class="video-icon"
+      src="/img/icons/icon-video.svg"
+      alt="Le Randorail en images"
+    />
   </section>
-  
+
   <!-- SECTION 4 : WHATEVER CE QUON VEUT FOUTRE -->
   <section class="third-section">
-    <h3>ICI Je mettrais bien un petit mot sur les évènements, : Anniversaires, EVG, EVJF, Team building, blabla</h3>
-    <br>
-    <br>
-    <h3>Et ensuite quelques chiffres : X visiteurs par ans, 20 ans d'expériences, Activités répartis sur X hecatre de forêts,...</h3>
+    <div class="groups-wrapper">
+      <div class="img-wrapper">
+        <img
+          src="/img/groups_img.webp"
+          alt="Célébration en famille au Randorail"
+        />
+      </div>
+      <div class="text-wrapper">
+        <h3>Anniversaires, Evg/Evjf, fêtes de familles</h3>
+        <h2>Et si vous veniez fêter ça avec nous ?</h2>
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <br />
+        <p>
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <span class="info-btn"></span>
+      </div>
+    </div>
+  </section>
+  <section class="section4">
+    <p>
+      Et ensuite quelques chiffres : X visiteurs par ans, 20 ans d'expériences,
+      Activités répartis sur X hecatre de forêts,...
+    </p>
   </section>
 </div>
 

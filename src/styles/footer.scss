@@ -1,7 +1,7 @@
 @use './variables' as *;
 
-$footer-bg: $header-bg-color;
-$footer-text-color: $color1;
+$footer-bg: $color-bg;
+$footer-text-color: $color3;
 
 $social-svg-width: 2.5rem;
 $social-svg-width-mobile: calc($social-svg-width * 0.8);
@@ -10,7 +10,7 @@ $social-svg-width-mobile: calc($social-svg-width * 0.8);
   z-index: 100;
   width: 100%;
   height: $footer-height;
-    background-color: rgba($color3, 0.85);
+  background-color: $color-bg;
   border-top: $border-section-separation;
   display: flex;
   flex-direction: column;
@@ -68,8 +68,10 @@ $social-svg-width-mobile: calc($social-svg-width * 0.8);
           strong {
             font-size: calc($text-font-size * 1);
             text-transform: uppercase;
-            color: $color4;
-            letter-spacing: $letter-spacing-basic;
+            color: $color2;
+            font-family: $title-font;
+            letter-spacing: calc($letter-spacing-basic *3);
+            text-shadow: $text-shadow-light;
           }
         }
 
@@ -133,22 +135,22 @@ $social-svg-width-mobile: calc($social-svg-width * 0.8);
             width: calc($social-svg-width * 0.5);
             height: calc($social-svg-width * 0.5);
             transition: fill $hover-delay ease;
-            fill: $color3;
+            fill: $color2;
 
             g {
-              fill: $color3;
+              fill: $color2;
             }
           }
 
           &:hover {
-            background-color: rgba($color1, 0.9);
+            background-color: rgba($color2, 0.9);
             animation: spin-once calc($hover-delay * 1) ease-in-out;
 
             svg {
-              fill: $color2;
+              fill: $color3;
 
               g {
-                fill: $color2;
+                fill: $color3;
               }
             }
           }

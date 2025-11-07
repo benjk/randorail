@@ -1,9 +1,10 @@
 $color1: #769552;
-$color2: #0F7BBD;
+$color2: #0f7bbd;
 $color3: #f6f1e6;
 $color4: #895129;
+$color-bg: rgba($color1, 0.85);
 
-$font-main: "Inter", sans-serif;
+$font-main: 'Inter', sans-serif;
 
 /****************** SPACING ******************/
 $margin-xs: clamp(0.4rem, 0.329rem + 0.19vw, 0.5rem);
@@ -17,10 +18,11 @@ $classic-btn-size: clamp(12.2rem, 1.861rem + 16.139vw, 18rem);
 $basic-radius: 15px;
 $basic-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 $strong-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+$text-shadow-basic: 0 2px 10px rgba($color3, 0.5);
+$text-shadow-light: 0 2px 36px rgba($color3, 0.3);
 
 $mobile-breakpoint: 992px;
 $header-height: 4rem;
-$header-bg-color: $color3;
 $footer-height: 11rem;
 
 $title1-font-size: clamp(2rem, 0.357rem + 5.714vw, 4rem);
@@ -69,5 +71,14 @@ $border-section-separation: 2px solid $color2;
   font-display: swap;
 }
 
-$title-font: 'Lobster', system-ui, sans-serif;
+@font-face {
+  font-family: 'Patua';
+  src: url('/fonts/PatuaOne.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+$home-font: 'Lobster', system-ui, sans-serif;
+$title-font: 'Patua', system-ui, sans-serif;
 $text-font: 'Merriweather', system-ui, sans-serif;
