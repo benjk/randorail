@@ -142,7 +142,8 @@ export async function generateContentForPublish(
   );
 
   // === 5. NETTOYAGE FINAL ===
-  const cleanJson = cleanOrderData(jsonContent);
+  let cleanJson = cleanOrderData(jsonContent);
+  // cleanJson = JSON.stringify(cleanJson);
 
   return { jsonContent: cleanJson, filesToUpload, filesToDelete };
 }
