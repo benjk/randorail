@@ -1,6 +1,6 @@
 {
   "document": {
-    "title": "RANDORAIL",
+    "title": "Le Randorail du pays de Lumbres",
     "description": "Cette description est une description SEO.",
     "og": {
       "ogTitle": "Le titre de mon site OpenGraph",
@@ -138,5 +138,5 @@
       "type": "page"
     }
   ],
-  "contentVersion": "2150-07-22T14:41:33.720Z"
+  "contentVersion": "2025-11-11T16:03:06.636Z"
 }
