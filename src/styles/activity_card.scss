@@ -40,8 +40,14 @@
                       transform: translateY(-20px);
                     }
 
+                    .activity-card__title {
+                      color: $color3;
+                      text-shadow: $strong-shadow;
+                    }
+
                     .activity-card__icon {
                       transform: scale(1.2);
+                      background-color: $color3;
                     }
 
                     .activity-card__btn {
@@ -69,7 +75,7 @@
                                     position: absolute;
                                     inset: 0;
                                     background: rgba(0, 0, 0, 0.3);
-                                    background: $color1;
+                                    background: $color3;
                                     z-index: 2;
                                     transition: background 0.5s ease;
                                     backdrop-filter: brightness(0.9);
@@ -103,11 +109,16 @@
                                     margin-bottom: $margin-s;
                                     width: $picto-size;
                                     height: $picto-size;
-                                    mask: url('/img/icons/activity-picto.svg') no-repeat center /
-                                      contain;
                                     background-color: $color2;
+                                    background-color: $color1;
                                     text-shadow: $text-shadow-basic;
                                     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                                    -webkit-mask-repeat: no-repeat;
+                                    -webkit-mask-position: center;
+                                    -webkit-mask-size: contain;
+                                    mask-repeat: no-repeat;
+                                    mask-position: center;
+                                    mask-size: contain;
                   
                                     @media screen and (max-width: $mobile-breakpoint) {
                                       margin-bottom: 0;
@@ -123,10 +134,12 @@
                                     font-size: $title3-font-size;
                                     font-family: $title-font;
                                     color: $color3;
+                                    color: $color1;
                                     text-shadow: $text-shadow-basic;
                                     margin: 0;
                                     letter-spacing: 2px;
                                     line-height: 1.3;
+                                    transition: color 0.5s ease;
                                     @media screen and (max-width: $mobile-breakpoint) {
                                       flex: 1;
                                       text-align: left;
@@ -155,7 +168,7 @@
                                     @include flex-box($margin-xs);
                   
                                     &::before {
-                                      content: 'En savoir +';
+                                      content: 'Voir +';
                                       font-size: calc($text-font-size * 0.5);
                                       transition: transform 0.3s ease;
                                     }

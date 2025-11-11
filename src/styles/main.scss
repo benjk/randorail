@@ -139,8 +139,8 @@ html {
           }
 
           .activities-section {
-            $card-spacing: $margin-l;
-            $card-spacing: 3.5em;
+            $card-spacing: $margin-m;
+            // $card-spacing: 3.5em;
 
             position: relative;
             width: 100%;
@@ -161,6 +161,8 @@ html {
             }
 
             .title-container {
+              margin-top: $margin-xl;
+              margin-bottom: $margin-xl;
               @media screen and (max-width: $mobile-breakpoint) {
                 margin-top: calc($margin-xl * 2);
                 margin-bottom: calc($margin-xl * 2);
@@ -182,11 +184,12 @@ html {
 
             .activities-container {
               width: auto;
-              background: rgba($color3, 0.8);
-              padding: $margin-l $card-spacing;
+              max-width: 75%;
+              background: rgba($color1, 0.9);
+              background: $color-cards-bg;
+              padding: $card-spacing;
               box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
               border-radius: $card-radius;
-              background: $color-cards-bg;
               @include flex-box(0);
 
               @media screen and (max-width: $mobile-breakpoint) {

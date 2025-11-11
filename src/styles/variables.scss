@@ -70,15 +70,15 @@ $letter-spacing-basic: 0.5px;
 $annonce-height: 16em;
 
 $card-radius: 6px;
-$border-section-separation: 2px solid $color2;
+$border-section-separation: 3px solid $color2;
 
-$card-width: 180px;
-$card-height: 180px;
+$card-width: 120px;
+$card-height: 240px;
 $card-mobile-height: 80px;
 $cards-shadow: 4px 6px 12px rgba($color4, 0.2);
 $transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 $scale-hover: 1.02;
-$picto-size: 2.8em;
+$picto-size: 4.8em;
 
 /****************** FONTS ******************/
 @font-face {

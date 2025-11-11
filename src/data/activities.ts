@@ -7,27 +7,27 @@ const activityMeta: Record<
 > = {
   'activities/randorail': {
     bgImage: '/img/activities/rando-card.webp',
-    icon: '/img/icons/activity-picto.svg',
+    icon: '/img/icons/picto-rail.svg',
     description: 'Découvrez le Randorail du pays de Lumbres',
   },
   'activities/trotti': {
     bgImage: '/img/activities/trotti-card.webp',
-    icon: '/img/icons/activity-picto.svg',
+    icon: '/img/icons/picto-trotti.svg',
     description: 'Balades en trottinette tout terrain',
   },
   'activities/bivouac': {
     bgImage: '/img/activities/bivouac-card.webp',
-    icon: '/img/icons/activity-picto.svg',
+    icon: '/img/icons/picto-bivouac.svg',
     description: 'Nuit en pleine nature',
   },
   'activities/chasse-au-tresor': {
     bgImage: '/img/activities/chasse-card.webp',
-    icon: '/img/icons/activity-picto.svg',
+    icon: '/img/icons/picto-carte.svg',
     description: 'Jeu d’aventure pour petits et grands',
   },
   'seminaires': {
     bgImage: '/img/activities/seminaires-card.webp',
-    icon: '/img/icons/activity-picto.svg',
+    icon: '/img/icons/picto-seminaire.svg',
     description: 'Séminaires, team-buulding, et événements d’entreprise',
   },
 };

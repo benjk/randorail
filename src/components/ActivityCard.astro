@@ -21,7 +21,10 @@ import '../styles/activity_card.scss'
     class="activity-card__bg"
   />
   <div class="activity-card__content">
-    <div class="activity-card__icon"></div>
+    <div
+      class="activity-card__icon"
+      style={`mask: url('${icon}') no-repeat center / contain; -webkit-mask: url('${icon}') no-repeat center / contain;`}
+    ></div>
     <h3 class="activity-card__title">{title}</h3>
   </div>
   <span class="activity-card__btn"></span>
