@@ -500,7 +500,7 @@ html {
                   text-shadow: $light-shadow;
                   text-align: center;
                 }
-                
+
                 h2 {
                   text-align: center;
                   font-size: $title2-font-size;
@@ -520,10 +520,21 @@ html {
                   }
                 }
 
-                .info-btn {
-                  @include my-btn();
-                  @media screen and (max-width: $mobile-breakpoint) {
-                    margin-top: $margin-l;
+                a {
+                  text-decoration: none;
+
+                  .info-btn {
+                    @include my-btn();
+                    padding: $margin-s $margin-m;
+                    width: 50%;
+
+                    &::before {
+                      font-size: $subtext-font-size;
+                      content: "J'organise mon évènement";
+                    }
+                    @media screen and (max-width: $mobile-breakpoint) {
+                      margin-top: $margin-l;
+                    }
                   }
                 }
 

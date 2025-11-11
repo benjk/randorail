@@ -67,7 +67,6 @@ $header-bg-color: $color-bg-stronger;
       display: flex;
       gap: 2.5em;
       font-family: $title-font;
-      // text-transform: uppercase;
       letter-spacing: $letter-spacing-basic;
 
       .menu-link {
@@ -86,7 +85,7 @@ $header-bg-color: $color-bg-stronger;
           left: 0;
           width: 0;
           height: 2px;
-          background: $header-bg-color;
+          background: $color2;
           transition: width 0.3s ease;
         }
 
@@ -111,7 +110,7 @@ $header-bg-color: $color-bg-stronger;
           transform: translateY(-10px);
           transition: all 0.3s ease;
           padding: 0.5rem 0;
-          margin-top: 1rem;
+          margin-top: 1.35rem;
 
           .submenu-link {
             display: block;

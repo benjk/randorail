@@ -58,6 +58,7 @@ $title2-font-size: clamp(1.7rem, 1.25rem + 1.2vw, 2.6rem);
 $title3-font-size: clamp(1.2rem, 0.986rem + 0.571vw, 1.5rem);
 $title4-font-size: clamp(1.35rem, 1.119rem + 0.738vw, 1.95rem);
 $text-font-size: clamp(1rem, 0.857rem + 0.381vw, 1.2rem);
+$subtext-font-size: calc($text-font-size * 0.85);
 
 $letter-spacing-basic: 0.5px;
 
