@@ -1,8 +1,35 @@
-$color1: #769552;
+$color1: #77a147;
+$color1: #6c8830 ;
+$color1: #203100 ; //vert très sombre
+$color1: #1B4F33 ; //vert noctunre
+$color1: #8db55a ; //vert plus frais
+$color1: #3a4d00 ; //vert de KK d'oie
+$color1: #2a5100 ; //vert de K-Rakter / a test avec bleu plus sombre
+$color1: #205C3E ; //sapin mieux
+$color1: #a1b364 ; //vert bcp mieux
+$color1: #8c9569 ; //vert pastel / a test avec bleu plus sombre
+$color2: #2c88cb; // Bleu + light
 $color2: #0f7bbd;
+$color2: #0065a4; // Bleu + sombre
 $color3: #f6f1e6;
 $color4: #895129;
-$color-bg: rgba($color1, 0.85);
+
+$color-cards-bg: radial-gradient(
+  ellipse 90% 80% at 50% 50%,
+  rgba($color3, 0.7) 50%,
+  rgba($color3, 0.5) 75%,
+  rgba($color3, 0.3) 90%,
+  transparent 100%
+);
+// $color-bg: rgba($color3, 0.8);
+$color-bg: $color-cards-bg;
+$color-bg-stronger: radial-gradient(
+  ellipse 90% 80% at 50% 50%,
+  rgba($color3, 0.8) 50%,
+  rgba($color3, 0.7) 75%,
+  rgba($color3, 1) 90%,
+  rgba($color3, 1) 100%
+);
 
 $font-main: 'Inter', sans-serif;
 
@@ -16,6 +43,7 @@ $margin-xl: clamp(3.5rem, 2.923rem + 1.846vw, 5rem);
 /****************** GLOBAL ******************/
 $classic-btn-size: clamp(12.2rem, 1.861rem + 16.139vw, 18rem);
 $basic-radius: 15px;
+$light-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
 $basic-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 $strong-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 $text-shadow-basic: 0 2px 10px rgba($color3, 0.5);

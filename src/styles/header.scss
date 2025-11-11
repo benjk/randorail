@@ -4,14 +4,16 @@
 $header-logo-padding: 10px;
 $margin-side: 12%;
 $content-height: 80%;
-$mobile-header: calc($header-height * 0.6);
+$mobile-header: calc($header-height * 0.85);
 
 $shadow-menu:
   0 4px 6px -1px rgba(0, 0, 0, 0.1),
   0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
-$header-text-color: $color3;
-$submenu-text-color: $color3;
+$header-text-color: $color1;
+$submenu-text-color: $color1;
+$header-bg-color: $color-bg-stronger;
+$header-bg-color: $color-bg-stronger;
 
 /* === Header === */
 .header {
@@ -21,8 +23,7 @@ $submenu-text-color: $color3;
   left: 0;
   width: 100%;
   height: $header-height;
-  // background-color: rgba($color3, 0.85);
-  background-color: $color-bg;
+  background: $header-bg-color;
   border-bottom: $border-section-separation;
 
   .navbar {
@@ -40,6 +41,7 @@ $submenu-text-color: $color3;
       display: flex;
       align-items: center;
       position: relative;
+      z-index: 101;
 
       .logo-link {
         display: flex;
@@ -55,9 +57,7 @@ $submenu-text-color: $color3;
           height: $content-height;
           max-height: 100%;
           width: auto;
-          filter: drop-shadow(
-            0 2px 8px rgba(0, 0, 0, 0.15)
-          ); // Optionnel pour l'élégance
+          filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
         }
       }
     }
@@ -86,7 +86,7 @@ $submenu-text-color: $color3;
           left: 0;
           width: 0;
           height: 2px;
-          background-color: $color2;
+          background: $header-bg-color;
           transition: width 0.3s ease;
         }
 
@@ -104,7 +104,7 @@ $submenu-text-color: $color3;
           top: 100%;
           left: 0;
           min-width: 200px;
-          background-color: $color1;
+          background: $header-bg-color;
           box-shadow: $shadow-menu;
           opacity: 0;
           visibility: hidden;
@@ -119,12 +119,12 @@ $submenu-text-color: $color3;
             color: $submenu-text-color;
             text-decoration: none;
             font-size: 1rem;
-            transition: background-color 0.2s ease;
             white-space: nowrap;
             font-family: $title-font;
 
             &:hover {
-              background-color: rgba($color2, 1);
+              background: rgba($color1, 1);
+              color: $color3;
             }
           }
         }
@@ -145,7 +145,7 @@ $submenu-text-color: $color3;
       display: none;
       height: $burger-height;
       width: calc($burger-height * 0.2);
-      max-width: 3em;
+      max-width: 2.2em;
       background: transparent;
       border: none;
       cursor: pointer;
@@ -201,7 +201,7 @@ $submenu-text-color: $color3;
   .mobile-menu-container {
     display: none;
     box-shadow: $shadow-menu;
-    background-color: $color1;
+    background: $color-bg-stronger;
     position: absolute;
     top: $header-height;
     left: 0;
@@ -209,6 +209,7 @@ $submenu-text-color: $color3;
     z-index: 99;
     overflow-y: auto;
     max-height: calc(100vh - #{$header-height});
+    padding-top: $margin-s;
 
     &.animated {
       pointer-events: none;
@@ -253,16 +254,11 @@ $submenu-text-color: $color3;
           font-size: 1.2rem;
           font-family: $title-font;
           letter-spacing: $letter-spacing-basic;
-          transition: background-color 0.3s ease;
           background: none;
           border: none;
           width: 100%;
           text-align: left;
           cursor: pointer;
-
-          &:hover {
-            background-color: rgba($color2, 0.05);
-          }
         }
 
         /* Submenu Mobile */
@@ -285,7 +281,6 @@ $submenu-text-color: $color3;
           .submenu {
             max-height: 0;
             overflow: hidden;
-            background-color: rgba($color2, 0.05);
             transition: max-height 0.3s ease;
 
             li {
@@ -303,10 +298,6 @@ $submenu-text-color: $color3;
                 font-size: 1.1rem;
                 transition: background-color 0.2s ease;
                 font-family: $title-font;
-
-                &:hover {
-                  background-color: rgba($color2, 0.1);
-                }
               }
             }
           }
@@ -324,13 +315,17 @@ $submenu-text-color: $color3;
     height: $mobile-header;
 
     .navbar {
-      .logo-container .logo-link {
-        margin-right: $margin-xs;
+      padding-left: calc($margin-side * 0.5);
+      padding-right: calc($margin-side * 0.5);
+
+      .logo-container .logo-link img {
+        height: calc($content-height * 0.8);
       }
 
       .burger {
         display: flex;
         margin-right: $margin-m;
+        width: 3rem;
       }
 
       .menu-desktop {

@@ -1,7 +1,7 @@
 @use './variables' as *;
 
-$footer-bg: $color-bg;
-$footer-text-color: $color3;
+$footer-bg: $color-bg-stronger;
+$footer-text-color: $color1;
 
 $social-svg-width: 2.5rem;
 $social-svg-width-mobile: calc($social-svg-width * 0.8);
@@ -10,7 +10,7 @@ $social-svg-width-mobile: calc($social-svg-width * 0.8);
   z-index: 100;
   width: 100%;
   height: $footer-height;
-  background-color: $color-bg;
+  background: $footer-bg;
   border-top: $border-section-separation;
   display: flex;
   flex-direction: column;
@@ -135,10 +135,10 @@ $social-svg-width-mobile: calc($social-svg-width * 0.8);
             width: calc($social-svg-width * 0.5);
             height: calc($social-svg-width * 0.5);
             transition: fill $hover-delay ease;
-            fill: $color2;
+            fill: $color3;
 
             g {
-              fill: $color2;
+              fill: $color3;
             }
           }
 
@@ -213,7 +213,7 @@ $social-svg-width-mobile: calc($social-svg-width * 0.8);
 
   .subfooter {
     width: 100%;
-    background-color: rgba($color3, 0.05);
+    background-color: rgba($color3, 0.7);
     color: $footer-text-color;
     text-align: center;
     padding: 0.25em;
