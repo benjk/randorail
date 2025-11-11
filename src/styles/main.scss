@@ -6,7 +6,7 @@
 $transition-display: 0.3s;
 
 $video-section-overlay-height: 75vh;
-$video-section-overlay-height-mobile: 135vh;
+$video-section-overlay-height-mobile: 95vh;
 
 html {
   background-color: transparent;
@@ -194,6 +194,7 @@ html {
 
               @media screen and (max-width: $mobile-breakpoint) {
                 width: 100%;
+                max-width: 92%;
                 padding: $margin-m $margin-m;
               }
 
@@ -220,6 +221,7 @@ html {
                   max-width: 100%;
                   width: 100%;
                   gap: $margin-m;
+                  grid-template-columns: 1fr;
                 }
               }
             }
@@ -263,8 +265,9 @@ html {
             
             @media screen and (max-width: $mobile-breakpoint) {
               clip-path: $section-shape-mobile;
-              height: auto; // Laisse le contenu définir la hauteur
+              height: auto;
               min-height: 70vh;
+              padding-bottom: 0;
             }
             
             &::before {

@@ -1,10 +1,10 @@
 ---
+import "../styles/footer.scss"
 const currentYear = new Date().getFullYear();
 import content from '../data/content.json';
 const footerMenu = content.footerMenu;
 import { formatFrenchPhone } from '../utils/utils';
 const { href, display } = formatFrenchPhone(content.contact.tel);
-import { Mail } from 'lucide-react';
 ---
 
 <footer class="footer">

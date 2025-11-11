@@ -1,20 +1,19 @@
 ---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import HighlightOnHash from '../components/Highlight';
+import '../styles/activity_page.scss'
+import MainLayout from './MainLayout.astro';
 const { title, topImages = [], mainImg, text, tarifs = [], horaires = [], reserveUrl, secondaryText, faq = [] } = Astro.props;
 ---
 
-<div class="activity-layout">
+<MainLayout>
+<div class="activity-page-layout">
+
   <!-- BG principal -->
   {mainImg && <div class="activity-bg" style={`background-image:url(${mainImg})`}></div>}
-
-  <!-- Header -->
-  <header>
-    <h1>{title}</h1>
-    <div class="top-images">
-      {topImages.map((img: string) => <img src={img} alt={title} />)}
-    </div>
-  </header>
-
+  
+  <h2>{title}</h2>
   <!-- Texte descriptif -->
   <section class="activity-text">
     {text.split('\n').map((line: string) => <p>{line}</p>)}
@@ -51,5 +50,6 @@ const { title, topImages = [], mainImg, text, tarifs = [], horaires = [], reserv
     ))}
   </section>} -->
 </div>
+</MainLayout>
 
 <HighlightOnHash client:load />
