@@ -1,18 +1,23 @@
-$color1: #77a147;
-$color1: #6c8830 ;
-$color1: #203100 ; //vert très sombre
-$color1: #1B4F33 ; //vert noctunre
-$color1: #8db55a ; //vert plus frais
-$color1: #3a4d00 ; //vert de KK d'oie
-$color1: #2a5100 ; //vert de K-Rakter / a test avec bleu plus sombre
-$color1: #205C3E ; //sapin mieux
-$color1: #a1b364 ; //vert bcp mieux
-$color1: #8c9569 ; //vert pastel / a test avec bleu plus sombre
+$color1: #2a5100 ;
+$color2: #0065a4; // Bleu + sombre
 $color2: #2c88cb; // Bleu + light
 $color2: #0f7bbd;
-$color2: #0065a4; // Bleu + sombre
 $color3: #f6f1e6;
 $color4: #895129;
+
+// PASTEL
+// $color1: #8c9569 ; //vert pastel
+// $color2: #0065a4; // Bleu + sombre
+// VERT JUNGLE
+// $color2: #0f7bbd;
+// $color1: #2a5100 ; //vert de K-Rakter
+// PRARIE
+// $color1: #a1b364 ; //vert bcp mieux
+// $color2: #2c88cb; // Bleu + light
+// SAPINE
+// $color1: #205C3E ; //sapin mieux
+// $color1: #1B4F33 ; //sapin noctunre
+// $color2: #2c88cb; // Bleu + light
 
 $color-cards-bg: radial-gradient(
   ellipse 90% 80% at 50% 50%,
@@ -66,6 +71,14 @@ $annonce-height: 16em;
 
 $card-radius: 6px;
 $border-section-separation: 2px solid $color2;
+
+$card-width: 180px;
+$card-height: 180px;
+$card-mobile-height: 80px;
+$cards-shadow: 4px 6px 12px rgba($color4, 0.2);
+$transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+$scale-hover: 1.02;
+$picto-size: 2.8em;
 
 /****************** FONTS ******************/
 @font-face {
