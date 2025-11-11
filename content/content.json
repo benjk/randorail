@@ -88,9 +88,21 @@
       "title": "Activités",
       "type": "submenu",
       "children": [
-        { "title": "Randorail", "slug": "activities/randorail", "type": "page" },
-        { "title": "Trotti-trail", "slug": "activities/trotti", "type": "page" },
-        { "title": "Bivouac", "slug": "activities/bivouac", "type": "page" },
+        {
+          "title": "Randorail",
+          "slug": "activities/randorail",
+          "type": "page"
+        },
+        {
+          "title": "Trotti-trail",
+          "slug": "activities/trotti",
+          "type": "page"
+        },
+        {
+          "title": "Bivouac",
+          "slug": "activities/bivouac",
+          "type": "page"
+        },
         {
           "title": "Chasse au trésor",
           "slug": "activities/chasse-au-tresor",
@@ -98,13 +110,33 @@
         }
       ]
     },
-    { "title": "Séminaires", "slug": "seminaires", "type": "page" },
-    { "title": "Contact", "slug": "contact", "type": "page" }
+    {
+      "title": "Séminaires",
+      "slug": "seminaires",
+      "type": "page"
+    },
+    {
+      "title": "Contact",
+      "slug": "contact",
+      "type": "page"
+    }
   ],
   "footerMenu": [
-    { "title": "Administration", "slug": "admin", "type": "page" },
-    { "title": "Mentions Légales", "slug": "mentions", "type": "page" },
-    { "title": "Contact", "slug": "contact", "type": "page" }
+    {
+      "title": "Administration",
+      "slug": "admin",
+      "type": "page"
+    },
+    {
+      "title": "Mentions Légales",
+      "slug": "mentions",
+      "type": "page"
+    },
+    {
+      "title": "Contact",
+      "slug": "contact",
+      "type": "page"
+    }
   ],
   "contentVersion": "2150-07-22T14:41:33.720Z"
 }
