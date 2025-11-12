@@ -38,7 +38,7 @@
       ]
     },
     "firstSection": {
-      "mainTitle": "Randorail",
+      "mainTitle": "Rando-rail",
       "subTitle": "du pays de Lumbres"
     },
     "secondSection": {
@@ -138,5 +138,5 @@
       "type": "page"
     }
   ],
-  "contentVersion": "2025-11-11T16:03:06.636Z"
+  "contentVersion": "2025-11-12T09:28:45.930Z"
 }
