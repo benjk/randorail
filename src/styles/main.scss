@@ -140,7 +140,6 @@ html {
 
           .activities-section {
             $card-spacing: $margin-m;
-            // $card-spacing: 3.5em;
 
             position: relative;
             width: 100%;
@@ -151,8 +150,8 @@ html {
             flex-direction: column;
             justify-content: space-evenly;
             align-items: center;
-            padding-left: $margin-xl;
-            padding-right: $margin-xl;
+            padding-left: $margin-l;
+            padding-right: $margin-l;
 
             @media screen and (max-width: $mobile-breakpoint) {
               width: 92%;
@@ -184,8 +183,7 @@ html {
 
             .activities-container {
               width: auto;
-              max-width: 75%;
-              background: rgba($color1, 0.9);
+              max-width: 100%;
               background: $color-cards-bg;
               padding: $card-spacing;
               box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
@@ -209,13 +207,13 @@ html {
               }
 
               .cards-grid {
-                max-width: 1400px;
-                display: grid;
-                grid-template-columns: repeat(
-                  auto-fit,
-                  minmax($card-width, 1fr)
-                );
+                // max-width: 1400px;
+                display: flex;
+                flex-wrap: wrap;
                 gap: $card-spacing;
+                justify-content: center;
+                align-items: stretch;
+                width: 100%;
 
                 @media screen and (max-width: $mobile-breakpoint) {
                   max-width: 100%;
@@ -262,14 +260,14 @@ html {
             @include flex-box(0);
             padding-top: $margin-xl;
             padding-bottom: $margin-xl;
-            
+
             @media screen and (max-width: $mobile-breakpoint) {
               clip-path: $section-shape-mobile;
               height: auto;
               min-height: 70vh;
               padding-bottom: 0;
             }
-            
+
             &::before {
               content: '';
               position: absolute;
@@ -285,7 +283,7 @@ html {
                 transform: skewY(4.95deg); // Angle ajusté pour mobile
               }
             }
-            
+
             .groups-wrapper {
               max-width: 70%;
               @include flex-row($margin-xl);

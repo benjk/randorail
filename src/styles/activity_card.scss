@@ -1,176 +1,173 @@
- @use './variables' as *;
+@use './variables' as *;
 @use './base';
 @use './mixin' as *;
 @use './animations' as *;
 
- .activity-card {
-                  position: relative;
-                  display: block;
-                  height: $card-height;
-                  border-radius: $card-radius;
-                  overflow: hidden;
-                  box-shadow: $cards-shadow;
-                  transition: $transition;
-                  cursor: pointer;
-                  text-decoration: none;
-                  color: inherit;
+.activity-card {
+  position: relative;
+  display: block;
+  height: $card-height;
+  border-radius: $card-radius;
+  overflow: hidden;
+  box-shadow: $cards-shadow;
+  transition: $transition;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  width: $card-width;
+  flex-shrink: 0;
 
-                  @media screen and (max-width: $mobile-breakpoint) {
-                    height: $card-mobile-height;
-                    width: 100%;
-                    object-fit: cover;
-                    @include flex-row();
-                  }
+  @media screen and (max-width: $mobile-breakpoint) {
+    width: 100%;
+    height: $card-mobile-height;
+    object-fit: cover;
+    @include flex-row();
+  }
 
-                  &:hover {
-                    transform: scale(1.02);
-                    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 
-                    &::before {
-                      backdrop-filter: none;
-                      background: none;
-                    }
+    &::before {
+      backdrop-filter: none;
+      background: none;
+    }
 
-                    .activity-card__bg {
-                      transform: scale(1.05);
+    .activity-card__bg {
+      transform: scale(1.05);
+    }
 
-                    }
+    .activity-card__content {
+      transform: translateY(-1.25rem);
+    }
 
-                    .activity-card__content {
-                      transform: translateY(-20px);
-                    }
+    .activity-card__title {
+      color: $color3;
+      color: transparent;
+      text-shadow: $strong-shadow;
+    }
 
-                    .activity-card__title {
-                      color: $color3;
-                      text-shadow: $strong-shadow;
-                    }
+    .activity-card__icon {
+      transform: scale(1.2);
+      background-color: $color3;
+      background-color: transparent;
+    }
 
-                    .activity-card__icon {
-                      transform: scale(1.2);
-                      background-color: $color3;
-                    }
+    .activity-card__btn {
+      opacity: 1;
+      transform: translate(-50%, 0);
 
-                    .activity-card__btn {
-                      opacity: 1;
-                      transform: translate(-50%, 0);
+      &::before {
+        transform: translateX(0.25rem);
+      }
+    }
+  }
 
-                      &::before {
-                        transform: translateX(4px);
-                      }
-                    }
-                  }
-                  
-                                  .activity-card__bg {
-                                    position: absolute;
-                                    inset: 0;
-                                    width: 100%;
-                                    height: 100%;
-                                    object-fit: cover;
-                                    z-index: 1;
-                                    transition: transform 0.4s ease;
-                  
-                                  }
-                                  &::before {
-                                    content: '';
-                                    position: absolute;
-                                    inset: 0;
-                                    background: rgba(0, 0, 0, 0.3);
-                                    background: $color3;
-                                    z-index: 2;
-                                    transition: background 0.5s ease;
-                                    backdrop-filter: brightness(0.9);
-                                  }
-                  
-                  
-                                  .activity-card__content {
-                                    position: relative;
-                                    z-index: 3;
-                                    display: flex;
-                                    flex-direction: column;
-                                    align-items: center;
-                                    height: 100%;
-                                    padding: $margin-m $margin-m $margin-l;
-                                    text-align: center;
-                                    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                                    padding-top: $margin-l;
-                  
-                                    @media screen and (max-width: $mobile-breakpoint) {
-                                      width: 100%;
-                                      padding-top: $margin-m;
-                                      padding-bottom: $margin-m;
-                                      flex-direction: row;
-                                      gap: 0;
-                                      text-align: left;
-                                    }
-                                  }
-                  
-                                  .activity-card__icon {
-                                    flex-shrink: 0;
-                                    margin-bottom: $margin-s;
-                                    width: $picto-size;
-                                    height: $picto-size;
-                                    background-color: $color2;
-                                    background-color: $color1;
-                                    text-shadow: $text-shadow-basic;
-                                    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                                    -webkit-mask-repeat: no-repeat;
-                                    -webkit-mask-position: center;
-                                    -webkit-mask-size: contain;
-                                    mask-repeat: no-repeat;
-                                    mask-position: center;
-                                    mask-size: contain;
-                  
-                                    @media screen and (max-width: $mobile-breakpoint) {
-                                      margin-bottom: 0;
-                                      width: 30%;
-                                      max-width: 45px;
-                                      height: auto;
-                                      aspect-ratio: 1;
-                                      margin-right: $margin-l;
-                                    }
-                                  }
-                  
-                                  .activity-card__title {
-                                    font-size: $title3-font-size;
-                                    font-family: $title-font;
-                                    color: $color3;
-                                    color: $color1;
-                                    text-shadow: $text-shadow-basic;
-                                    margin: 0;
-                                    letter-spacing: 2px;
-                                    line-height: 1.3;
-                                    transition: color 0.5s ease;
-                                    @media screen and (max-width: $mobile-breakpoint) {
-                                      flex: 1;
-                                      text-align: left;
-                                    }
-                                  }
-                  
-                                  .activity-card__btn {
-                                    position: absolute;
-                                    bottom: $margin-m;
-                                    left: 50%;
-                                    transform: translate(-50%, 200%);
-                                    padding: $margin-xs $margin-s;
-                                    background: linear-gradient(
-                                      135deg,
-                                      $color2,
-                                      darken($color2, 12%)
-                                    );
-                                    color: $color3;
-                                    border-radius: $basic-radius;
-                                    letter-spacing: 1px;
-                                    opacity: 0;
-                                    transition: $transition;
-                                    z-index: 4;
-                                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-                                    font-family: $text-font;
-                                    @include flex-box($margin-xs);
-                  
-                                    &::before {
-                                      content: 'Voir +';
-                                      font-size: calc($text-font-size * 0.5);
-                                      transition: transform 0.3s ease;
-                                    }
-                                  }
-                }
+  .activity-card__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transition: transform 0.4s ease;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    background: $color3;
+    z-index: 2;
+    transition: background 0.5s ease;
+    backdrop-filter: brightness(0.9);
+  }
+
+  .activity-card__content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    padding: $margin-l $margin-m;
+    text-align: center;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      width: 100%;
+      padding-top: $margin-m;
+      padding-bottom: $margin-m;
+      flex-direction: row;
+      gap: 0;
+      text-align: left;
+    }
+  }
+
+  .activity-card__icon {
+    flex-shrink: 0;
+    margin-bottom: $margin-s;
+    width: $picto-size;
+    height: $picto-size;
+    background-color: $color2;
+    background-color: $color1;
+    text-shadow: $text-shadow-basic;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      margin-bottom: 0;
+      width: 30%;
+      max-width: 45px;
+      height: auto;
+      aspect-ratio: 1;
+      margin-right: $margin-l;
+    }
+  }
+
+  .activity-card__title {
+    font-size: $title3-font-size;
+    font-family: $title-font;
+    color: $color3;
+    color: $color1;
+    text-shadow: $text-shadow-basic;
+    margin: 0;
+    letter-spacing: 2px;
+    line-height: 1.3;
+    transition: color 0.5s ease;
+    @media screen and (max-width: $mobile-breakpoint) {
+      flex: 1;
+      text-align: left;
+    }
+  }
+
+  .activity-card__btn {
+    position: absolute;
+    bottom: $margin-m;
+    left: 50%;
+    transform: translate(-50%, 200%);
+    padding: $margin-xs $margin-s;
+    background: linear-gradient(135deg, $color2, darken($color2, 12%));
+    color: $color3;
+    border-radius: $basic-radius;
+    letter-spacing: 1px;
+    opacity: 0;
+    transition: $transition;
+    z-index: 4;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    font-family: $text-font;
+    @include flex-box($margin-xs);
+
+    &::before {
+      content: 'Voir +';
+      font-size: calc($text-font-size * 0.5);
+      transition: transform 0.3s ease;
+    }
+  }
+}

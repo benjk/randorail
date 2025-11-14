@@ -10,7 +10,7 @@ const activityMeta: Record<
     icon: '/img/icons/picto-rail.svg',
     description: 'Découvrez le Randorail du pays de Lumbres',
   },
-  'activities/trotti': {
+  'activities/trottitrail': {
     bgImage: '/img/activities/trotti-card.webp',
     icon: '/img/icons/picto-trotti.svg',
     description: 'Balades en trottinette tout terrain',
@@ -29,6 +29,11 @@ const activityMeta: Record<
     bgImage: '/img/activities/seminaires-card.webp',
     icon: '/img/icons/picto-seminaire.svg',
     description: 'Séminaires, team-buulding, et événements d’entreprise',
+  },
+  'activities/filets': {
+    bgImage: '/img/activities/bivouac-card.webp',
+    icon: '/img/icons/picto-bivouac.svg',
+    description: 'Le parc du filet qui va bientôt ouvrir ses portes',
   },
 };
 
