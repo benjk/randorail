@@ -1,13 +1,13 @@
-$color1: #2a5100 ;
+$color1: #2a5100;
 $color2: #0065a4; // Bleu + sombre
-$color2: #2c88cb; // Bleu + light
 $color2: #0f7bbd;
+$color2: #2c88cb; // Bleu + light
 $color3: #f6f1e6;
 $color4: #895129;
 
 // PASTEL
-// $color1: #8c9569 ; //vert pastel
-// $color2: #0065a4; // Bleu + sombre
+$color1: #8c9569 ; //vert pastel
+$color2: #0065a4; // Bleu + sombre
 // VERT JUNGLE
 // $color2: #0f7bbd;
 // $color1: #2a5100 ; //vert de K-Rakter
@@ -61,7 +61,7 @@ $footer-height: 11rem;
 $title1-font-size: clamp(2rem, 0.357rem + 5.714vw, 4rem);
 $title2-font-size: clamp(1.7rem, 1.25rem + 1.2vw, 2.6rem);
 $title3-font-size: clamp(1.2rem, 0.986rem + 0.571vw, 1.5rem);
-$title4-font-size: clamp(1.35rem, 1.119rem + 0.738vw, 1.95rem);
+$title4-font-size: clamp(0.92rem, 0.791rem + 0.343vw, 1.1rem);
 $text-font-size: clamp(1rem, 0.857rem + 0.381vw, 1.2rem);
 $subtext-font-size: calc($text-font-size * 0.85);
 
@@ -72,13 +72,14 @@ $annonce-height: 16em;
 $card-radius: 6px;
 $border-section-separation: 3px solid $color2;
 
-$card-width: 12rem;
-$card-height: 12rem;
+$card-width: 11rem;
+$card-height: 11rem;
 $card-mobile-height: 5rem;
+// $card-mobile-height: 7rem;
 $cards-shadow: 4px 6px 12px rgba($color4, 0.2);
-$transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-card: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 $scale-hover: 1.02;
-$picto-size: 4.8em;
+$picto-size: clamp(2.5rem, 1.143rem + 3.619vw, 4.4rem);
 
 /****************** FONTS ******************/
 @font-face {

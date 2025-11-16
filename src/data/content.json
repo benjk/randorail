@@ -88,7 +88,7 @@
       "title": "Activités",
       "type": "submenu",
       "children": [
-        { "title": "Randorail", "slug": "activities/randorail", "type": "page" },
+        { "title": "Rando-rail", "slug": "activities/randorail", "type": "page" },
         { "title": "Trotti-trail", "slug": "activities/trottitrail", "type": "page" },
         { "title": "Parc de filets", "slug": "activities/filets", "type": "page" },
         { "title": "Bivouac", "slug": "activities/bivouac", "type": "page" },

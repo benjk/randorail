@@ -176,7 +176,7 @@ html {
                 text-shadow: $text-shadow-basic;
 
                 &.main-content {
-                  font-size: calc($title1-font-size * 1.4);
+                  font-size: calc($title1-font-size * 1.3);
                 }
               }
             }
@@ -196,24 +196,16 @@ html {
                 padding: $margin-m $margin-m;
               }
 
-              .activities-title {
-                font-size: $title3-font-size;
-                color: $color3;
-                font-family: $text-font;
-                text-transform: uppercase;
-                margin-bottom: $margin-m;
-                align-self: start;
-                padding-inline-start: $margin-m;
-              }
-
               .cards-grid {
-                // max-width: 1400px;
-                display: flex;
-                flex-wrap: wrap;
+                display: grid;
+                grid-template-columns: repeat(6, 1fr);
                 gap: $card-spacing;
-                justify-content: center;
-                align-items: stretch;
                 width: 100%;
+                max-width: 100%;
+
+                @media screen and (max-width: 1350px) {
+                  grid-template-columns: repeat(3, 1fr);
+                }
 
                 @media screen and (max-width: $mobile-breakpoint) {
                   max-width: 100%;
