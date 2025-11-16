@@ -5,7 +5,7 @@
 
 $transition-display: 0.3s;
 
-$video-section-overlay-height: 75vh;
+$video-section-overlay-height: 85vh;
 $video-section-overlay-height-mobile: 95vh;
 
 html {
@@ -152,6 +152,7 @@ html {
             align-items: center;
             padding-left: $margin-l;
             padding-right: $margin-l;
+            padding-bottom: $margin-xl;
 
             @media screen and (max-width: $mobile-breakpoint) {
               width: 92%;
@@ -230,7 +231,7 @@ html {
               width: 3em;
               height: auto;
               position: absolute;
-              bottom: calc($margin-l * -1.5);
+              top: calc($margin-m);
               right: $margin-m;
               z-index: 5;
 
@@ -250,8 +251,9 @@ html {
             width: 100%;
             background-color: $color1;
             @include flex-box(0);
-            padding-top: $margin-xl;
-            padding-bottom: $margin-xl;
+            padding-top: calc($margin-xl * 2);
+            padding-bottom: calc($margin-xl * 2);
+            border-bottom: $border-section-separation;
 
             @media screen and (max-width: $mobile-breakpoint) {
               clip-path: $section-shape-mobile;
