@@ -89,13 +89,18 @@
       "type": "submenu",
       "children": [
         {
-          "title": "Randorail",
+          "title": "Rando-rail",
           "slug": "activities/randorail",
           "type": "page"
         },
         {
           "title": "Trotti-trail",
-          "slug": "activities/trotti",
+          "slug": "activities/trottitrail",
+          "type": "page"
+        },
+        {
+          "title": "Parc de filets",
+          "slug": "activities/filets",
           "type": "page"
         },
         {
