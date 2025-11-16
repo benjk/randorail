@@ -25,9 +25,9 @@ const activityMeta: Record<
     icon: '/img/icons/picto-carte.svg',
     description: 'Jeu d’aventure pour petits et grands',
   },
-  'seminaires': {
+  groupes: {
     bgImage: '/img/activities/seminaires-card.webp',
-    icon: '/img/icons/picto-seminaire.svg',
+    icon: '/img/icons/picto-groupe.svg',
     description: 'Séminaires, team-buulding, et événements d’entreprise',
   },
   'activities/filets': {
@@ -40,16 +40,26 @@ const activityMeta: Record<
 // --- Extraire les activités depuis le menu ---
 function flattenMenu(menu: any[]): { title: string; slug: string }[] {
   return menu.flatMap((item) => {
+    // Si c'est une page simple, on la retourne
     if (item.type === 'page') return [item];
-    if (item.type === 'submenu' && item.children)
-      return flattenMenu(item.children);
+
+    // Si c'est un submenu avec un slug (comme "Groupes"), on le retourne + ses enfants
+    if (item.type === 'submenu') {
+      const items = [];
+      if (item.slug) {
+        items.push({ title: item.title, slug: item.slug });
+      }
+      if (item.children) {
+        items.push(...flattenMenu(item.children));
+      }
+      return items;
+    }
+
     return [];
   });
 }
 
 const allPages = flattenMenu(content.menu);
-console.log("ALLLL : " + allPages);
-
 
 // --- Fusionner menu + méta → ne garder que celles qui ont une meta ---
 export const activitiesWithMeta = allPages

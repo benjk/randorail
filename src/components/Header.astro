@@ -35,7 +35,11 @@ const menuItems = rawMenu.filter(item => {
       {menuItems.map(item => (
         item.type === "submenu" ? (
           <div class="menu-item has-submenu">
-            <span class="menu-link">{item.title}</span>
+            {item.slug ? (
+              <a href={item.slug?.startsWith("#") ? item.slug : `/${item.slug}`} class="menu-link">{item.title}</a>
+            ) : (
+              <span class="menu-link">{item.title}</span>
+            )}
             <div class="submenu">
               {item.children?.map(child => (
                 child.type === "action" ? (
@@ -71,10 +75,17 @@ const menuItems = rawMenu.filter(item => {
         <li class={item.type === "submenu" ? "has-submenu" : ""}>
           {item.type === "submenu" ? (
             <>
-              <button class="menu-link submenu-toggle">
-                {item.title}
-                <span class="arrow">›</span>
-              </button>
+              {item.slug ? (
+                <a href={item.slug?.startsWith("#") ? item.slug : `/${item.slug}`} class="menu-link submenu-toggle">
+                  {item.title}
+                  <span class="arrow">›</span>
+                </a>
+              ) : (
+                <button class="menu-link submenu-toggle">
+                  {item.title}
+                  <span class="arrow">›</span>
+                </button>
+              )}
               <ul class="submenu">
                 {item.children?.map(child => (
                   <li>
@@ -156,6 +167,11 @@ const menuItems = rawMenu.filter(item => {
       const mobileSubmenus = document.querySelectorAll('.mobile-menu-container .submenu-toggle');
       mobileSubmenus.forEach(toggle => {
         toggle.addEventListener('click', (e) => {
+          // Si c'est un lien <a>, on laisse le comportement par défaut (navigation)
+          if (toggle.tagName === 'A') {
+            return;
+          }
+          
           e.preventDefault();
           const parent = toggle.closest('li');
           if (!parent) return;
@@ -173,44 +189,6 @@ const menuItems = rawMenu.filter(item => {
           parent.classList.toggle('open', !isOpen);
         });
       });
-
-      // Gestion du scroll pour masquer le header
-      // if (header) {
-      //   let lastScrollY = window.scrollY;
-      //   let isScrolling = false;
-      //   const scrollThreshold = 150;
-        
-      //   const handleScroll = () => {
-      //     if (isScrolling) return;
-          
-      //     isScrolling = true;
-      //     requestAnimationFrame(() => {
-      //       const currentScrollY = window.scrollY;
-      //       const isScrollingDown = currentScrollY > lastScrollY;
-            
-      //       // Fermer le menu mobile si ouvert et qu'on scroll vers le bas
-      //       if (isMenuOpen && isScrollingDown && Math.abs(currentScrollY - lastScrollY) > 5) {
-      //         closeMenu();
-      //       }
-            
-      //       // Masquer/afficher le header selon le scroll
-      //       if (currentScrollY > scrollThreshold) {
-      //         if (isScrollingDown) {
-      //           header.classList.add('header-hidden');
-      //         } else {
-      //           header.classList.remove('header-hidden');
-      //         }
-      //       } else {
-      //         header.classList.remove('header-hidden');
-      //       }
-
-      //       lastScrollY = currentScrollY;
-      //       isScrolling = false;
-      //     });
-      //   };
-
-      //   window.addEventListener('scroll', handleScroll, { passive: true });
-      // }
     }
   </script>
 </header>

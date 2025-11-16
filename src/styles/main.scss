@@ -156,16 +156,19 @@ html {
 
             @media screen and (max-width: $mobile-breakpoint) {
               width: 92%;
+              height: auto;
               padding-left: 0;
               padding-right: 0;
+                          padding-bottom: calc($margin-xl * 1.5);
+
             }
 
             .title-container {
               margin-top: $margin-xl;
               margin-bottom: $margin-xl;
               @media screen and (max-width: $mobile-breakpoint) {
-                margin-top: calc($margin-xl * 2);
-                margin-bottom: calc($margin-xl * 2);
+                margin-top: calc($margin-xl * 1.4);
+                margin-bottom: calc($margin-xl * 1.4);
               }
 
               .main-title {
@@ -253,13 +256,13 @@ html {
             @include flex-box(0);
             padding-top: calc($margin-xl * 2);
             padding-bottom: calc($margin-xl * 2);
-            border-bottom: $border-section-separation;
 
             @media screen and (max-width: $mobile-breakpoint) {
               clip-path: $section-shape-mobile;
               height: auto;
               min-height: 70vh;
               padding-bottom: 0;
+              padding-top: $margin-l;
             }
 
             &::before {
@@ -329,7 +332,6 @@ html {
                   font-size: $title3-font-size;
                   font-family: $title-font;
                   color: $color2;
-                  text-shadow: $light-shadow;
                   text-align: center;
                 }
 
@@ -389,6 +391,7 @@ html {
             color: $color1;
             z-index: 12;
             border-top: $border-section-separation;
+            border-bottom: $border-section-separation;
             padding: $margin-m;
             @include flex-box(0);
 

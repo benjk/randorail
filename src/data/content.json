@@ -88,9 +88,21 @@
       "title": "Activités",
       "type": "submenu",
       "children": [
-        { "title": "Rando-rail", "slug": "activities/randorail", "type": "page" },
-        { "title": "Trotti-trail", "slug": "activities/trottitrail", "type": "page" },
-        { "title": "Parc de filets", "slug": "activities/filets", "type": "page" },
+        {
+          "title": "Rando-rail",
+          "slug": "activities/randorail",
+          "type": "page"
+        },
+        {
+          "title": "Trotti-trail",
+          "slug": "activities/trottitrail",
+          "type": "page"
+        },
+        {
+          "title": "Parc de filets",
+          "slug": "activities/filets",
+          "type": "page"
+        },
         { "title": "Bivouac", "slug": "activities/bivouac", "type": "page" },
         {
           "title": "Chasse au trésor",
@@ -99,7 +111,28 @@
         }
       ]
     },
-    { "title": "Séminaires", "slug": "seminaires", "type": "page" },
+    {
+      "title": "Groupes",
+      "type": "submenu",
+      "slug": "groupes",
+      "children": [
+        {
+          "title": "Scolaire",
+          "slug": "groupes/scolaires",
+          "type": "page"
+        },
+        {
+          "title": "Centres",
+          "slug": "groupes/centres",
+          "type": "page"
+        },
+        {
+          "title": "Entreprises",
+          "slug": "groupes/entreprises",
+          "type": "page"
+        }
+      ]
+    },
     { "title": "Contact", "slug": "contact", "type": "page" }
   ],
   "footerMenu": [
