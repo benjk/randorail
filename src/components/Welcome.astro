@@ -5,6 +5,7 @@ import HighlightOnHash from './Highlight';
 import { imageWithHash } from '../admin/components/images/imageWithHash';
 import { blocRules } from '../admin/data/blocRules';
 import ActivityCard from '../components/ActivityCard.astro';
+import RailSVG from '../components/RailSVG.astro';
 import { activitiesWithMeta } from '../data/activities';
 ---
 
@@ -69,6 +70,9 @@ import { activitiesWithMeta } from '../data/activities';
       <h1 class="main-title main-content">Safari Rail Aventure</h1>
       <h3 class="main-title">Nielles-lès-Bléquin</h3>
     </div>
+    <div class="rail-wrapper">
+      <RailSVG />
+    </div>
     <div class="activities-container">
       <div class="cards-grid">
         {
@@ -85,7 +89,7 @@ import { activitiesWithMeta } from '../data/activities';
     </div>
   </section>
   <!-- SECTION 4 : WHATEVER CE QUON VEUT FOUTRE -->
-  <section class="third-section">
+  <section class="section3">
     <div class="groups-wrapper">
       <div class="img-wrapper">
         <img

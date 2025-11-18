@@ -1,0 +1,63 @@
+---
+// RailSVG.astro
+---
+
+<svg class="rail-svg" viewBox="0 0 1000 2000" preserveAspectRatio="none">
+  <defs>
+    <!-- Pattern traverses -->
+    <pattern id="sleepers" width="80" height="10" patternUnits="userSpaceOnUse">
+      <rect x="0" y="2" width="80" height="6" fill="currentColor" opacity="0.7"
+      ></rect>
+    </pattern>
+  </defs>
+
+  <!-- LE CHEMIN DU RAIL - va de haut en bas sur toute la hauteur -->
+  <g class="rail-group">
+    <!-- Traverses - ENTRE les deux rails -->
+    <path
+      class="rail-sleepers"
+      d="M 250 150
+         Q 350 30, 450 30
+         Q 550 30, 580 150
+         Q 610 270, 520 400
+         Q 430 530, 250 580
+         Q 70 630, 50 850
+         Q 30 1070, 250 1220
+         Q 470 1370, 560 1500
+         Q 600 1620, 500 1770
+         L 580 2000"
+      stroke="url(#sleepers)"
+      stroke-width="40"
+      fill="none"></path>
+
+    <!-- Rail GAUCHE -->
+    <path
+      class="rail-path rail-left"
+      d="M 230 150
+         Q 330 30, 430 30
+         Q 530 30, 560 150
+         Q 590 270, 500 400
+         Q 410 530, 230 580
+         Q 50 630, 30 850
+         Q 10 1070, 230 1220
+         Q 450 1370, 540 1500
+         Q 580 1620, 480 1770
+         L 560 2000"
+    ></path>
+
+    <!-- Rail DROITE - PARALLÈLE sauf dans les virages -->
+    <path
+      class="rail-path rail-right"
+      d="M 270 150
+         Q 370 30, 470 30
+         Q 570 30, 600 150
+         Q 630 270, 540 400
+         Q 450 530, 270 580
+         Q 90 630, 70 850
+         Q 50 1070, 270 1220
+         Q 490 1370, 580 1500
+         Q 620 1620, 520 1770
+         L 600 2000"
+    ></path>
+  </g>
+</svg>

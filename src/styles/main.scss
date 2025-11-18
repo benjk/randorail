@@ -159,8 +159,87 @@ html {
               height: auto;
               padding-left: 0;
               padding-right: 0;
-                          padding-bottom: calc($margin-xl * 1.5);
+              padding-bottom: calc($margin-xl * 1.5);
+            }
 
+            .rail-wrapper {
+              position: absolute;
+              width: 60%;
+              height: 150vh; // Plus grand que la section pour qu'il disparaisse en bas
+              left: 22%;
+              top: 35%;
+              overflow: hidden;
+              pointer-events: none;
+              z-index: 1; // Derrière le contenu
+
+              @media screen and (max-width: $mobile-breakpoint) {
+                height: 200vh;
+              }
+
+              .rail-svg {
+                width: 100%;
+                height: 100%;
+                display: block;
+                color: $color2;
+
+                .rail-group {
+                  // Le groupe entier est invisible au départ
+                  opacity: 1;
+                }
+
+                .rail-path {
+                  fill: none;
+                  stroke: $color2;
+                  stroke-width: 6;
+                  stroke-linecap: round;
+                  stroke-linejoin: round;
+                  // IMPORTANT : au départ, le trait est COMPLÈTEMENT caché
+                  stroke-dasharray: 3000;
+                  stroke-dashoffset: 3000;
+                  // Animation : le trait se dessine de 0 à visible
+                  animation: drawRail 2s ease-in-out 0.5s forwards;
+
+                  @media screen and (max-width: $mobile-breakpoint) {
+                    stroke-width: 5;
+                  }
+
+                  &.rail-left {
+                    animation-delay: 0.5s;
+                  }
+
+                  &.rail-right {
+                    animation-delay: 0.6s; // Léger décalage pour l'effet
+                  }
+                }
+
+                .rail-sleepers {
+                  fill: none;
+                  stroke-linecap: butt;
+                  // Les traverses apparaissent APRÈS que le rail soit dessiné
+                  opacity: 0;
+                  animation: fadeInSleepers 0.4s ease-out 2s forwards;
+                }
+              }
+            }
+
+            // Animation : le rail SE DESSINE (de stroke-dashoffset: 3000 à 0)
+            @keyframes drawRail {
+              from {
+                stroke-dashoffset: 3000;
+              }
+              to {
+                stroke-dashoffset: 0;
+              }
+            }
+
+            // Les traverses apparaissent en fondu après
+            @keyframes fadeInSleepers {
+              from {
+                opacity: 0;
+              }
+              to {
+                opacity: 1;
+              }
             }
 
             .title-container {
@@ -193,6 +272,7 @@ html {
               box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
               border-radius: $card-radius;
               @include flex-box(0);
+              z-index: 3;
 
               @media screen and (max-width: $mobile-breakpoint) {
                 width: 100%;
@@ -245,12 +325,12 @@ html {
             }
           }
 
-          .third-section {
+          .section3 {
             position: relative;
             $section-shape: polygon(0 0vh, 100% 10vh, 100% 100%, 0 100%);
             $section-shape-mobile: polygon(0 0vh, 100% 5vh, 100% 100%, 0 100%);
             clip-path: $section-shape;
-            z-index: 2;
+            z-index: 15;
             width: 100%;
             background-color: $color1;
             @include flex-box(0);
@@ -393,6 +473,7 @@ html {
             border-top: $border-section-separation;
             border-bottom: $border-section-separation;
             padding: $margin-m;
+            margin-top: -1px;
             @include flex-box(0);
 
             p {
