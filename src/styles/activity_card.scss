@@ -34,36 +34,30 @@
         background: none;
       }
 
-      .activity-card__bg {
+      .activity-card-bg {
         transform: scale(1.05);
       }
 
-      .activity-card__content {
+      .activity-card-content {
         transform: translateY(-1.25rem);
       }
 
-      .activity-card__title {
-        color: transparent;
+      .activity-card-title {
+        opacity: 0;
         margin-top: -25%;
       }
 
-      .activity-card__icon {
-        background-color: $color3;
-        background-color: transparent;
+      .activity-card-icon {
+        opacity: 0;
       }
 
-      .activity-card__btn {
-        opacity: 1;
-        transform: translate(-50%, 0);
-
-        &::before {
-          transform: translateX(0.25rem);
-        }
+      .activity-card-btn {
+        transform: translateY(0);
       }
     }
   }
 
-  .activity-card__bg {
+  .activity-card-bg {
     position: absolute;
     inset: 0;
     width: 100%;
@@ -72,18 +66,18 @@
     z-index: 1;
     transition: transform 0.4s ease;
   }
+
   &::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.3);
     background: $color3;
     z-index: 2;
     transition: background 0.5s ease;
     backdrop-filter: brightness(0.9);
   }
 
-  .activity-card__content {
+  .activity-card-content {
     position: relative;
     z-index: 3;
     display: flex;
@@ -106,12 +100,11 @@
     }
   }
 
-  .activity-card__icon {
+  .activity-card-icon {
     flex-shrink: 0;
     margin-bottom: $margin-s;
     width: $picto-size;
     height: $picto-size;
-    background-color: $color2;
     background-color: $color1;
     text-shadow: $text-shadow-basic;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -128,45 +121,54 @@
     }
   }
 
-  .activity-card__title {
+  .activity-card-title {
     font-size: $title4-font-size;
     font-family: $title-font;
     color: $color1;
-    transition: margin 0.4s ease;
     text-shadow: $text-shadow-basic;
     margin: 0;
     letter-spacing: 2px;
     line-height: 1.3;
-    transition: color 0.5s ease;
+    transition:
+      margin 0.3s ease,
+      opacity 0.4s ease;
     width: auto;
+
     @media screen and (max-width: $mobile-breakpoint) {
-      justify-self: start; // colle le texte à gauche de sa colonne
+      justify-self: start;
       text-align: left;
       margin-left: $margin-l;
     }
   }
 
-  .activity-card__btn {
+  .activity-card-btn {
     position: absolute;
-    bottom: $margin-m;
-    left: 50%;
-    transform: translate(-50%, 200%);
-    padding: $margin-xs $margin-s;
-    background: linear-gradient(135deg, $color2, darken($color2, 12%));
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 25%;
+    background: $color2;
     color: $color3;
-    border-radius: $basic-radius;
-    letter-spacing: 1px;
-    opacity: 0;
-    transition: $transition-card;
+    border-top: 2px solid $color3;
     z-index: 4;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    font-family: $text-font;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     @include flex-box($margin-xs);
+    justify-content: center;
+    align-items: center;
+    font-family: $title-font;
+    font-size: $btn-font-size;
+    letter-spacing: 1.5px;
+    // text-transform: uppercase;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
 
     &::before {
-      content: 'Voir +';
-      font-size: calc($text-font-size * 0.5);
-      transition: transform 0.3s ease;
+      content: 'Explorer';
+    }
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      height: 25%;
+      font-size: calc($text-font-size * 0.9);
     }
   }
 }

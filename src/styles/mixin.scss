@@ -13,49 +13,212 @@
   flex-direction: row;
 }
 
-@mixin custom-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none !important;
-  padding: 12px 16px;
-  border-radius: $basic-radius;
-  cursor: pointer;
-  transition: box-shadow 0.3s ease;
-  box-shadow: $basic-shadow;
-  overflow: hidden;
-  position: relative;
-  white-space: nowrap;
-  border: 2px solid $color2;
-  color: inherit;
+@mixin basic-text-wrapper($bg-color: $color1, $text-color: $color3) {
+  @include flex-box(0);
+  background-color: $bg-color;
+  $color: $text-color;
 
-  &:hover {
-    box-shadow: $strong-shadow;
+  h3 {
+    @include content-h3();
+  }
+
+  h2 {
+    @include content-h2($text-color);
+  }
+
+  .p-wrapper {
+    @include flex-box($margin-m);
+    p {
+      color: $text-color;
+      text-align: justify;
+      letter-spacing: 1px;
+      width: 100%;
+      font-size: $text-font-size;
+      line-height: calc($text-font-size * 1.4);
+      font-family: $text-font;
+
+      @media screen and (max-width: $mobile-breakpoint) {
+        padding: 0 $margin-m;
+      }
+    }
+  }
+
+  .inline-link {
+    @include inline-link();
+  }
+
+  .info-btn {
+    @include custom-btn();
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      margin-top: $margin-l;
+    }
+  }
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    max-width: 92%;
+    height: auto;
+    text-align: center;
   }
 }
 
-@mixin my-btn {
-  width: 30%;
-  margin: auto;
+@mixin content-h3($color: $color2) {
+  font-size: $title3-font-size;
+  font-family: $title-font;
+  color: $color2;
+  text-align: center;
+  font-weight: bold;
+}
+
+@mixin content-h2($color: $color3) {
+  text-align: center;
+  font-size: calc($title2-font-size * 1.2);
+  font-family: $home-font;
+  color: $color;
+  margin-top: $margin-xs;
+  margin-bottom: $margin-m;
+  text-shadow: $light-shadow;
+  font-weight: normal;
+}
+
+@mixin inline-link() {
+  color: $color2;
+  font-family: $title-font;
+  font-weight: bold;
+  // text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@mixin custom-hr($color: $color2) {
+  border: none;
+  height: 3px;
+  background: $color;
+}
+
+@mixin custom-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: auto;
   margin-top: $margin-m;
-  padding: $margin-xs $margin-s;
+  padding: $margin-s $margin-l;
   background: linear-gradient(135deg, $color2, darken($color2, 6%));
   color: $color3;
   border-radius: $basic-radius;
   letter-spacing: 1px;
-  z-index: 4;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  font-family: $text-font;
+  font-family: $title-font;
+  font-size: calc($text-font-size * 0.9);
   text-decoration: none;
-  @include flex-box($margin-xs);
+  text-align: center;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  cursor: pointer;
+  overflow: hidden;
 
-  &:hover {
-    cursor: pointer;
+  // Bordure bottom animée
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: $color3;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
   }
 
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+}
+
+// Mixin avec gestion des écrans étroits
+@mixin slanted-border($direction: 'right', $angle: 2.8deg, $color: $color2) {
+  position: relative;
+
+  // Clip-path selon direction
+  @if $direction == 'right' {
+    clip-path: polygon(0 0vh, 100% 10vh, 100% 100%, 0 100%);
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      clip-path: polygon(0 0vh, 100% 5vh, 100% 100%, 0 100%);
+    }
+  } @else {
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+    }
+  }
+
+  // Bordure
   &::before {
-    content: 'En savoir +';
-    font-size: calc($text-font-size * 0.5);
-    transition: transform 0.3s ease;
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background-color: $color;
+    transform-origin: left;
+
+    @if $direction == 'right' {
+      top: -1px;
+      transform: skewY($angle); // Angle par défaut pour DESKTOP
+
+      // Ajustements UNIQUEMENT mobile
+      @media screen and (max-width: $mobile-breakpoint) {
+        transform: skewY(calc(#{$angle} * 1.82)); // ~5.1deg pour 2.8deg
+        height: clamp(5px, 2.5vw, 10px);
+      }
+
+      @media screen and (max-width: 400px) {
+        transform: skewY(
+          clamp(
+            #{$angle * 1.32},
+            calc(#{$angle * 1.82} - (400px - 100vw) * 0.028),
+            #{$angle * 1.82}
+          )
+        );
+      }
+    } @else {
+      bottom: -1px;
+      transform: skewY(-$angle); // Angle par défaut pour DESKTOP
+      transform-origin: left bottom;
+
+      // Ajustements UNIQUEMENT mobile
+      @media screen and (max-width: $mobile-breakpoint) {
+        transform: skewY(calc(-#{$angle} * 1.82));
+        height: clamp(5px, 2.5vw, 10px);
+      }
+
+      @media screen and (max-width: 400px) {
+        transform: skewY(
+          clamp(
+            calc(-#{$angle * 1.82}),
+            calc(-#{$angle * 1.82} + (400px - 100vw) * 0.028),
+            calc(-#{$angle * 1.32})
+          )
+        );
+      }
+    }
   }
 }

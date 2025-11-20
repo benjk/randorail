@@ -48,7 +48,7 @@ import { activitiesWithMeta } from '../data/activities';
       })()
   }
 
-  <!-- SECTION 1 : VIDEO (fond) -->
+  <!-- SECTION VIDEO (fond) -->
   <section class="video-wrapper">
     <div class="video-section">
       <video
@@ -64,8 +64,8 @@ import { activitiesWithMeta } from '../data/activities';
     </div>
   </section>
 
-  <!-- SECTION 2 : ACTIVITIES -->
-  <section class="activities-section">
+  <!-- SECTION 1 : ACTIVITIES -->
+  <section class="section1">
     <div class="title-container">
       <h1 class="main-title main-content">Safari Rail Aventure</h1>
       <h3 class="main-title">Nielles-lès-Bléquin</h3>
@@ -89,35 +89,57 @@ import { activitiesWithMeta } from '../data/activities';
     </div>
   </section>
   <!-- SECTION 4 : WHATEVER CE QUON VEUT FOUTRE -->
-  <section class="section3">
-    <div class="groups-wrapper">
-      <div class="img-wrapper">
-        <img
-          src="/img/groups_img.webp"
-          alt="Célébration en famille au Randorail"
-        />
-      </div>
+  <section class="section2">
+    <div class="content-wrapper">
       <div class="text-wrapper">
-        <h3>Anniversaires, EVG/EVJF, fêtes de familles</h3>
-        <h2>Venez fêter ça avec nous !</h2>
-
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut.
-        </p>
-        <br />
-        <p>
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <a href="/contact"><span class="info-btn"></span></a>
+        <!-- <h2>J'organise ma venue</h2> -->
+        <h3>Votre visite, sans prise de tête</h3>
+        <hr class="main-hr"/>
+        <div class="p-wrapper">
+          <p>
+            Visitez les activités présentées ci-dessus pour trouver la plupart
+            des informations.
+          </p>
+          <p>
+            Le site est prévu pour recevoir des groupes, besoin de
+            renseignements ? <a href="/groupes" class="inline-link"
+              >Visitez notre page Groupes</a
+            >
+          </p>
+          <p>
+            Safari Rail Aventure vous propose son service de <a
+              href="/groupes"
+              class="inline-link">Restauration</a
+            >
+          </p>
+          <h3>Comment s'y rendre ?</h3>
+        <hr class="goto-hr"/>
+          <div class="goto-wrapper">
+            <div class="text-wrapper">
+              <div class="address-card">
+                <address>
+                  <p>{content.contact.street}</p>
+                  <p>{content.contact.postalCode} {content.contact.city}</p>
+                </address>
+              </div>
+              <a
+                target="_blank"
+                href="https://maps.app.goo.gl/qwV6SX6nNrjvzCq18"
+                class="inline-link">Voir l'itinéraire</a
+              >
+            </div>
+            <img src="/img/static/goto-img.jpg" alt="ESSAYONS DE TROUVER / FAIRE une image + stylée" />
+          </div>
+          <p>
+            Si vous ne parvenez pas à trouver l'information que vous cherchez,
+            n'hésitez pas à nous contacter directement !
+          </p>
+        </div>
+        <a href="/contact" class="info-btn">J'ai des questions</a>
       </div>
     </div>
   </section>
-  <section class="section4">
+  <section class="section3">
     <p>
       Et ensuite quelques chiffres : X visiteurs par ans, 20 ans d'expériences,
       Activités répartis sur X hecatre de forêts,...
@@ -136,8 +158,37 @@ import { activitiesWithMeta } from '../data/activities';
       alt="Le Randorail en images"
     />
   </section>
+  <section class="section4">
+    <p>BIENTÔT NOUVELLE ACTIVITE ! Le parc de Filets !!</p>
+    <p>Imaginons un beau Visuel</p>
+  </section>
   <section class="section5">
-    <p>Ici par exemple quelques partenaires...</p>
+    <div class="content-wrapper">
+      <div class="img-wrapper">
+        <img
+          src="/img/groups_img.webp"
+          alt="Célébration en famille au Randorail"
+        />
+      </div>
+      <div class="text-wrapper">
+        <h3>Anniversaires, EVG/EVJF, fêtes de familles</h3>
+        <h2>Venez fêter ça avec nous !</h2>
+        <div class="p-wrapper">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut.
+          </p>
+          <p>
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+        <a href="/contact" class="info-btn">On s'organise</a>
+      </div>
+    </div>
   </section>
 </div>
 
