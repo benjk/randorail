@@ -27,6 +27,7 @@
   }
 
   .p-wrapper {
+    max-width: 100%;
     @include flex-box($margin-m);
     p {
       color: $text-color;
@@ -152,7 +153,7 @@
 }
 
 // Mixin avec gestion des écrans étroits
-@mixin slanted-border($direction: 'right', $angle: 2.8deg, $color: $color2) {
+@mixin slanted-border($direction: 'right', $color: $color2) {
   position: relative;
 
   // Clip-path selon direction
@@ -163,10 +164,10 @@
       clip-path: polygon(0 0vh, 100% 5vh, 100% 100%, 0 100%);
     }
   } @else {
-    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    clip-path: polygon(0 10vh, 100% 0vh, 100% 100%, 0 100%);
 
     @media screen and (max-width: $mobile-breakpoint) {
-      clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+      clip-path: polygon(0 5vh, 100% 0vh, 100% 100%, 0 100%);
     }
   }
 
@@ -174,49 +175,39 @@
   &::before {
     content: '';
     position: absolute;
+    top: 0;
     left: 0;
     width: 100%;
-    height: 6px;
     background-color: $color;
     transform-origin: left;
 
     @if $direction == 'right' {
-      top: -1px;
-      transform: skewY($angle); // Angle par défaut pour DESKTOP
-
-      // Ajustements UNIQUEMENT mobile
-      @media screen and (max-width: $mobile-breakpoint) {
-        transform: skewY(calc(#{$angle} * 1.82)); // ~5.1deg pour 2.8deg
-        height: clamp(5px, 2.5vw, 10px);
+      @media screen and (min-width: calc($mobile-breakpoint + 1px)) {
+        height: 11vh;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 6px);
       }
 
-      @media screen and (max-width: 400px) {
-        transform: skewY(
-          clamp(
-            #{$angle * 1.32},
-            calc(#{$angle * 1.82} - (400px - 100vw) * 0.028),
-            #{$angle * 1.82}
-          )
-        );
+      // Ajustements UNIQUEMENT mobile
+      // MOBILE : système clip-path simple
+      @media screen and (max-width: $mobile-breakpoint) {
+        height: 6vh;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 clamp(4px, 1.5vw, 6px));
+        transform: skew();
       }
     } @else {
-      bottom: -1px;
-      transform: skewY(-$angle); // Angle par défaut pour DESKTOP
-      transform-origin: left bottom;
-
-      // Ajustements UNIQUEMENT mobile
-      @media screen and (max-width: $mobile-breakpoint) {
-        transform: skewY(calc(-#{$angle} * 1.82));
-        height: clamp(5px, 2.5vw, 10px);
+      // DESKTOP : clip-path inversé
+      @media screen and (min-width: calc($mobile-breakpoint + 1px)) {
+        height: 11vh;
+        clip-path: polygon(0 6px, 100% 0, 100% 6px, 0 100%);
       }
 
-      @media screen and (max-width: 400px) {
-        transform: skewY(
-          clamp(
-            calc(-#{$angle * 1.82}),
-            calc(-#{$angle * 1.82} + (400px - 100vw) * 0.028),
-            calc(-#{$angle * 1.32})
-          )
+      @media screen and (max-width: $mobile-breakpoint) {
+        height: 6vh;
+        clip-path: polygon(
+          0 clamp(4px, 1.5vw, 6px),
+          100% 0,
+          100% clamp(4px, 1.5vw, 6px),
+          0 100%
         );
       }
     }

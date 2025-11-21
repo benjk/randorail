@@ -107,7 +107,7 @@
     height: $picto-size;
     background-color: $color1;
     text-shadow: $text-shadow-basic;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center;
     -webkit-mask-size: contain;
