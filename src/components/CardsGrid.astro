@@ -1,0 +1,17 @@
+---
+import ActivityCard from '../components/ActivityCard.astro';
+import { activitiesWithMeta } from '../data/activities';
+---
+
+<div class="cards-grid">
+  {
+    activitiesWithMeta.map((activity) => (
+      <ActivityCard
+        bgImage={activity.bgImage}
+        icon={activity.icon}
+        title={activity.title}
+        slug={activity.slug}
+      />
+    ))
+  }
+</div>

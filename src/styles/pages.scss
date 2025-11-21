@@ -1,0 +1,69 @@
+@use './variables' as *;
+@use './base';
+@use './mixin' as *;
+@use './animations' as *;
+
+html body #main-container {
+  .content-container {
+    &.activities-page {
+      $page-spacing: $margin-l;
+
+      height: auto;
+      justify-content: center;
+      gap: $page-spacing;
+      padding-bottom: calc($margin-m + $page-spacing * 2);
+
+      h2 {
+        @include page-h2();
+      }
+    }
+  }
+}
+
+.mention-wrapper {
+  padding: $margin-m;
+
+  h3 {
+    font-size: $title3-font-size;
+    font-family: $title-font;
+    color: $color2;
+  }
+
+  .mention-container {
+    display: flex;
+    flex-direction: column;
+    gap: $margin-m;
+    max-width: 1400px;
+  }
+}
+.page-not-found-wrapper {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: $margin-l;
+  font-family: $title-font;
+
+  h2 {
+    font-size: clamp(1.3rem, 0.229rem + 2.857vw, 2.8rem);
+  }
+
+  a {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    align-items: center;
+    gap: $margin-s;
+    p {
+      font-size: clamp(1.4rem, 0.971rem + 1.143vw, 2rem);
+      color: $color2;
+    }
+
+    img {
+      max-height: clamp(5rem, 1.875rem + 8.333vw, 9.375rem);
+      width: fit-content;
+    }
+  }
+}

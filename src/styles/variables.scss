@@ -6,7 +6,7 @@ $color3: #f6f1e6;
 $color4: #895129;
 
 // PASTEL
-$color1: #8c9569 ; //vert pastel
+$color1: #8c9569; //vert pastel
 $color2: #0065a4; // Bleu + sombre
 // VERT JUNGLE
 // $color2: #0f7bbd;
@@ -63,8 +63,8 @@ $title2-font-size: clamp(1.7rem, 1.25rem + 1.2vw, 2.6rem);
 $title3-font-size: clamp(1.2rem, 0.986rem + 0.571vw, 1.5rem);
 $title4-font-size: clamp(0.92rem, 0.791rem + 0.343vw, 1.1rem);
 $text-font-size: clamp(1rem, 0.857rem + 0.381vw, 1.2rem);
-$btn-uppercase-font-size: calc($text-font-size * 0.65);;
-$btn-font-size: calc($text-font-size * 0.75);;
+$btn-uppercase-font-size: calc($text-font-size * 0.65);
+$btn-font-size: calc($text-font-size * 0.75);
 $subtext-font-size: calc($text-font-size * 0.85);
 
 $letter-spacing-basic: 0.5px;
@@ -78,7 +78,7 @@ $border-section-separation-light: 3px solid $color3;
 $card-width: 11rem;
 $card-height: 11rem;
 $card-mobile-height: 5rem;
-// $card-mobile-height: 7rem;
+$card-spacing: $margin-m;
 $cards-shadow: 4px 6px 12px rgba($color4, 0.2);
 $transition-card: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 $scale-hover: 1.02;

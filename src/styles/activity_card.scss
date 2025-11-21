@@ -3,172 +3,208 @@
 @use './mixin' as *;
 @use './animations' as *;
 
-.activity-card {
-  position: relative;
-  display: block;
-  height: $card-height;
+.activities-container {
+  width: auto;
+  max-width: 100%;
+  background: $color-cards-bg;
+  padding: $card-spacing;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
   border-radius: $card-radius;
-  overflow: hidden;
-  box-shadow: $cards-shadow;
-  transition: $transition-card;
-  cursor: pointer;
-  text-decoration: none;
-  color: inherit;
-  width: $card-width;
-  flex-shrink: 0;
+  @include flex-box(0);
+  z-index: 3;
 
   @media screen and (max-width: $mobile-breakpoint) {
     width: 100%;
-    height: $card-mobile-height;
-    object-fit: cover;
-    @include flex-row();
+    max-width: 92%;
+    padding: $margin-m $margin-m;
   }
 
-  @media screen and (min-width: $mobile-breakpoint) {
-    &:hover {
-      transform: scale(1.02);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: $card-spacing;
+    width: 100%;
+    max-width: 100%;
 
-      &::before {
-        backdrop-filter: none;
-        background: none;
+    @media screen and (max-width: 1350px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      max-width: 100%;
+      width: 100%;
+      gap: $margin-m;
+      grid-template-columns: 1fr;
+    }
+
+    .activity-card {
+      position: relative;
+      display: block;
+      height: $card-height;
+      border-radius: $card-radius;
+      overflow: hidden;
+      box-shadow: $cards-shadow;
+      transition: $transition-card;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      width: $card-width;
+      flex-shrink: 0;
+
+      @media screen and (max-width: $mobile-breakpoint) {
+        width: 100%;
+        height: $card-mobile-height;
+        object-fit: cover;
+        @include flex-row();
+      }
+
+      @media screen and (min-width: $mobile-breakpoint) {
+        &:hover {
+          transform: scale(1.02);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+
+          &::before {
+            backdrop-filter: none;
+            background: none;
+          }
+
+          .activity-card-bg {
+            transform: scale(1.05);
+          }
+
+          .activity-card-content {
+            transform: translateY(-1.25rem);
+          }
+
+          .activity-card-title {
+            opacity: 0;
+            margin-top: -25%;
+          }
+
+          .activity-card-icon {
+            opacity: 0;
+          }
+
+          .activity-card-btn {
+            transform: translateY(0);
+          }
+        }
       }
 
       .activity-card-bg {
-        transform: scale(1.05);
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+        transition: transform 0.4s ease;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: $color3;
+        z-index: 2;
+        transition: background 0.5s ease;
+        backdrop-filter: brightness(0.9);
       }
 
       .activity-card-content {
-        transform: translateY(-1.25rem);
-      }
+        position: relative;
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        padding: $margin-m $margin-s;
+        text-align: center;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
-      .activity-card-title {
-        opacity: 0;
-        margin-top: -25%;
+        @media screen and (max-width: $mobile-breakpoint) {
+          width: 100%;
+          padding: $margin-m;
+          display: grid;
+          grid-template-columns: $picto-size 1fr;
+          gap: 0;
+          align-items: center;
+          justify-items: center;
+        }
       }
 
       .activity-card-icon {
-        opacity: 0;
+        flex-shrink: 0;
+        margin-bottom: $margin-s;
+        width: $picto-size;
+        height: $picto-size;
+        background-color: $color1;
+        text-shadow: $text-shadow-basic;
+        transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        -webkit-mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        -webkit-mask-size: contain;
+        mask-repeat: no-repeat;
+        mask-position: center;
+        mask-size: contain;
+
+        @media screen and (max-width: $mobile-breakpoint) {
+          margin-bottom: 0;
+          justify-self: end;
+        }
+      }
+
+      .activity-card-title {
+        font-size: $title4-font-size;
+        font-family: $title-font;
+        color: $color1;
+        text-shadow: $text-shadow-basic;
+        margin: 0;
+        letter-spacing: 2px;
+        line-height: 1.3;
+        transition:
+          margin 0.3s ease,
+          opacity 0.4s ease;
+        width: auto;
+
+        @media screen and (max-width: $mobile-breakpoint) {
+          justify-self: start;
+          text-align: left;
+          margin-left: $margin-l;
+        }
       }
 
       .activity-card-btn {
-        transform: translateY(0);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 25%;
+        background: $color2;
+        color: $color3;
+        border-top: 2px solid $color3;
+        z-index: 4;
+        transform: translateY(100%);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        @include flex-box($margin-xs);
+        justify-content: center;
+        align-items: center;
+        font-family: $title-font;
+        font-size: $btn-font-size;
+        letter-spacing: 1.5px;
+        // text-transform: uppercase;
+        box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+
+        &::before {
+          content: 'Découvrir';
+        }
+
+        @media screen and (max-width: $mobile-breakpoint) {
+          height: 25%;
+          font-size: calc($text-font-size * 0.9);
+        }
       }
-    }
-  }
-
-  .activity-card-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-    transition: transform 0.4s ease;
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: $color3;
-    z-index: 2;
-    transition: background 0.5s ease;
-    backdrop-filter: brightness(0.9);
-  }
-
-  .activity-card-content {
-    position: relative;
-    z-index: 3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    padding: $margin-m $margin-s;
-    text-align: center;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-
-    @media screen and (max-width: $mobile-breakpoint) {
-      width: 100%;
-      padding: $margin-m;
-      display: grid;
-      grid-template-columns: $picto-size 1fr;
-      gap: 0;
-      align-items: center;
-      justify-items: center;
-    }
-  }
-
-  .activity-card-icon {
-    flex-shrink: 0;
-    margin-bottom: $margin-s;
-    width: $picto-size;
-    height: $picto-size;
-    background-color: $color1;
-    text-shadow: $text-shadow-basic;
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    -webkit-mask-repeat: no-repeat;
-    -webkit-mask-position: center;
-    -webkit-mask-size: contain;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    mask-size: contain;
-
-    @media screen and (max-width: $mobile-breakpoint) {
-      margin-bottom: 0;
-      justify-self: end;
-    }
-  }
-
-  .activity-card-title {
-    font-size: $title4-font-size;
-    font-family: $title-font;
-    color: $color1;
-    text-shadow: $text-shadow-basic;
-    margin: 0;
-    letter-spacing: 2px;
-    line-height: 1.3;
-    transition:
-      margin 0.3s ease,
-      opacity 0.4s ease;
-    width: auto;
-
-    @media screen and (max-width: $mobile-breakpoint) {
-      justify-self: start;
-      text-align: left;
-      margin-left: $margin-l;
-    }
-  }
-
-  .activity-card-btn {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 25%;
-    background: $color2;
-    color: $color3;
-    border-top: 2px solid $color3;
-    z-index: 4;
-    transform: translateY(100%);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    @include flex-box($margin-xs);
-    justify-content: center;
-    align-items: center;
-    font-family: $title-font;
-    font-size: $btn-font-size;
-    letter-spacing: 1.5px;
-    // text-transform: uppercase;
-    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
-
-    &::before {
-      content: 'Explorer';
-    }
-
-    @media screen and (max-width: $mobile-breakpoint) {
-      height: 25%;
-      font-size: calc($text-font-size * 0.9);
     }
   }
 }

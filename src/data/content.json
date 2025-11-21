@@ -87,6 +87,7 @@
     {
       "title": "Activités",
       "type": "submenu",
+      "slug": "activites",
       "children": [
         {
           "title": "Rando-rail",

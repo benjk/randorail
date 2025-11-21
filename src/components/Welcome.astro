@@ -4,9 +4,8 @@ import { VIDEO_HERO_URL } from '../config';
 import HighlightOnHash from './Highlight';
 import { imageWithHash } from '../admin/components/images/imageWithHash';
 import { blocRules } from '../admin/data/blocRules';
-import ActivityCard from '../components/ActivityCard.astro';
-import RailSVG from '../components/RailSVG.astro';
-import { activitiesWithMeta } from '../data/activities';
+import CardsGrid from './CardsGrid.astro';
+import RailSVG from './RailSVG.astro';
 ---
 
 <div id="home-container" class="content-container">
@@ -74,18 +73,7 @@ import { activitiesWithMeta } from '../data/activities';
       <RailSVG />
     </div>
     <div class="activities-container">
-      <div class="cards-grid">
-        {
-          activitiesWithMeta.map((activity) => (
-            <ActivityCard
-              bgImage={activity.bgImage}
-              icon={activity.icon}
-              title={activity.title}
-              slug={activity.slug}
-            />
-          ))
-        }
-      </div>
+      <CardsGrid/>
     </div>
   </section>
   <!-- SECTION 4 : WHATEVER CE QUON VEUT FOUTRE -->
@@ -108,7 +96,7 @@ import { activitiesWithMeta } from '../data/activities';
           </p>
           <p>
             Safari Rail Aventure vous propose son service de <a
-              href="/groupes"
+              href="/restauration"
               class="inline-link">Restauration</a
             >
           </p>

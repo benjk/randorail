@@ -1,0 +1,15 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import HighlightOnHash from '../components/Highlight';
+import CardsGrid from '../components/CardsGrid.astro';
+---
+
+<MainLayout title="Nos Activites - Safari Rail Aventure">
+  <div id="page-activites-container" class="content-container activities-page">
+    <h2>Explorez nos Activités !</h2>
+    <div class="activities-container">
+      <CardsGrid />
+    </div>
+  </div>
+</MainLayout>
+<HighlightOnHash client:load />
