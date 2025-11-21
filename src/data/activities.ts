@@ -32,7 +32,7 @@ const activityMeta: Record<
   },
   'activities/filets': {
     bgImage: '/img/activities/bivouac-card.webp',
-    icon: '/img/icons/picto-bivouac.svg',
+    icon: '/img/icons/picto-filet.svg',
     description: 'Le parc du filet qui va bientôt ouvrir ses portes',
   },
 };

@@ -62,7 +62,6 @@
 
       @media screen and (min-width: $mobile-breakpoint) {
         &:hover {
-          transform: scale(1.02);
           box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 
           &::before {
@@ -88,19 +87,20 @@
           }
 
           .activity-card-btn {
-            transform: translateY(0);
+            transform: translateY(0px);
           }
         }
       }
 
       .activity-card-bg {
         position: absolute;
-        inset: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
         z-index: 1;
         transition: transform 0.4s ease;
+        border-radius: $card-radius;
+        inset: 1px;
       }
 
       &::before {
@@ -116,8 +116,8 @@
       .activity-card-content {
         position: relative;
         z-index: 3;
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-rows: auto 1fr; // L'icône prend sa taille, le titre le reste
         align-items: center;
         justify-content: center;
         height: 100%;
@@ -130,6 +130,7 @@
           padding: $margin-m;
           display: grid;
           grid-template-columns: $picto-size 1fr;
+          grid-template-rows: auto; // Reset pour mobile
           gap: 0;
           align-items: center;
           justify-items: center;
@@ -150,7 +151,8 @@
         mask-repeat: no-repeat;
         mask-position: center;
         mask-size: contain;
-        outline: 2px solid red;
+        align-self: end;
+        justify-self: center;
 
         @media screen and (max-width: $mobile-breakpoint) {
           margin-bottom: 0;
@@ -183,7 +185,7 @@
         bottom: 0;
         left: 0;
         width: 100%;
-        height: 25%;
+        height: 22%;
         background: $color2;
         color: $color3;
         border-top: 2px solid $color3;
@@ -196,7 +198,6 @@
         font-family: $title-font;
         font-size: $btn-font-size;
         letter-spacing: 1.5px;
-        // text-transform: uppercase;
         box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
 
         &::before {
