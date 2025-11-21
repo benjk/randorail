@@ -98,8 +98,8 @@
 @mixin inline-link() {
   color: $color2;
   font-family: $title-font;
-  font-weight: bold;
-  // text-decoration: none;
+  font-weight: normal;
+  text-decoration: none;
   cursor: pointer;
 
   &:hover {
@@ -134,7 +134,7 @@
   color: $color3;
   border-radius: $basic-radius;
   letter-spacing: 1px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   font-family: $title-font;
   font-size: calc($text-font-size * 0.9);
   text-decoration: none;
@@ -161,7 +161,7 @@
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
 
     &::after {
       transform: scaleX(1);
@@ -214,7 +214,6 @@
       @media screen and (max-width: $mobile-breakpoint) {
         height: 6vh;
         clip-path: polygon(0 0, 100% 0, 100% 100%, 0 clamp(4px, 1.5vw, 6px));
-        transform: skew();
       }
     } @else {
       // DESKTOP : clip-path inversé

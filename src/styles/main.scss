@@ -258,7 +258,7 @@ html {
                 text-shadow: $text-shadow-basic;
 
                 &.main-content {
-                  font-size: calc($title1-font-size * 1.3);
+                  font-size: calc($title1-font-size * 1.2);
                 }
               }
             }
@@ -307,16 +307,17 @@ html {
             }
 
             .section-wrapper {
-              max-width: 58rem;
               width: 60%;
+              min-width: 58rem;
+              max-width: 100%;
               @include flex-box($margin-m);
               padding-top: $margin-s;
               flex-direction: column;
 
               @media screen and (max-width: $mobile-breakpoint) {
-                max-width: 100%;
-                width: 92%;
+                width: 88%;
                 gap: $margin-l;
+                min-width: 285px;
               }
 
               h3 {
@@ -324,7 +325,9 @@ html {
                 font-weight: normal;
                 font-size: calc($title2-font-size * 0.8);
                 font-family: $home-font;
+                color: $color3;
                 color: $color2;
+                text-shadow: $text-shadow-light;
               }
 
               h2 {
@@ -342,9 +345,8 @@ html {
                 padding-top: $margin-s;
 
                 .cards-row {
-                  @include flex-row($margin-m);
+                  @include flex-row($margin-l);
                   width: 100%;
-                  justify-content: space-evenly;
 
                   .info-card {
                     @include flex-box($margin-s);
@@ -359,10 +361,10 @@ html {
 
                     p {
                       font-family: $title-font;
-                      font-size: calc($title4-font-size * 1.3);
+                      font-size: calc($title4-font-size * 1.5);
 
                       text-align: center;
-                      text-shadow: $basic-shadow;
+                      text-shadow: $light-shadow;
                     }
 
                     .info-icon {
@@ -381,6 +383,14 @@ html {
                       @include flex-box($margin-xs);
                       padding-right: $margin-m;
                       align-items: flex-start;
+                    }
+                  }
+
+                  @media screen and (max-width: $mobile-breakpoint) {
+                    flex-direction: column;
+                    .info-card {
+                      align-self: center;
+                      width: 100%;
                     }
                   }
                 }
@@ -406,6 +416,12 @@ html {
                           margin: 0;
                           font-size: $subtext-font-size;
                           text-shadow: $basic-shadow;
+
+                          &.main-label {
+                            text-transform: uppercase;
+                            font-size: $text-font-size;
+                            font-family: $title-font;
+                          }
                         }
                       }
                     }
@@ -414,6 +430,7 @@ html {
                       font-size: calc($title3-font-size * 1);
                       text-shadow: $text-shadow-light;
                       @include flex-row(0);
+                      margin-left: -23px;
 
                       .info-icon {
                         width: calc($picto-size);
@@ -423,18 +440,15 @@ html {
                       }
                     }
                   }
-                  img {
-                    max-height: 16rem;
-                  }
 
                   @media screen and (max-width: $mobile-breakpoint) {
                     flex-direction: column;
-                    margin-bottom: $margin-m;
                   }
                 }
 
                 .contact-wrapper {
                   @include flex-box($margin-m);
+                  max-width: 100%;
 
                   .p-wrapper {
                     @include flex-box($margin-xs);
@@ -461,8 +475,8 @@ html {
                   }
 
                   @media screen and (max-width: $mobile-breakpoint) {
-                    width: 92%;
-                    max-width: 92%;
+                    width: 100%;
+                    max-width: 100%;
                     text-align: justify;
 
                     .info-btn {
@@ -508,7 +522,7 @@ html {
             max-width: 100%;
             height: 20rem;
             background-color: $color3;
-            color: $color2;
+            color: $color2-strong;
             z-index: 12;
             border-top: $border-section-separation;
             @include flex-box();

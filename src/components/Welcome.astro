@@ -136,6 +136,13 @@ import RailSVG from './RailSVG.astro';
         <!-- Bloc : Comment s'y rendre (large) -->
         <div class="goto-wrapper">
           <div class="text-wrapper">
+            <div class="address-card">
+              <address>
+                <p class="main-label">{content.contact.mainLabel}</p>
+                <p>{content.contact.street}</p>
+                <p>{content.contact.postalCode} {content.contact.city}</p>
+              </address>
+            </div>
             <a
               target="_blank"
               href="https://www.google.com/maps/dir/?api=1&destination=50.6782703,2.0338343"
@@ -152,17 +159,7 @@ import RailSVG from './RailSVG.astro';
               </div>
               Itinéraire
             </a>
-            <div class="address-card">
-              <address>
-                <p>{content.contact.street}</p>
-                <p>{content.contact.postalCode} {content.contact.city}</p>
-              </address>
-            </div>
           </div>
-          <img
-            src="/img/static/goto-img.jpg"
-            alt="Plan d'accès Safari Rail Aventure"
-          />
         </div>
 
         <!-- Bloc 3 : CTA final -->
@@ -171,11 +168,8 @@ import RailSVG from './RailSVG.astro';
             <p class="contact-text">
               Vous ne trouvez pas l'information que vous cherchez ?
             </p>
-            <p class="contact-text">
-              N'hésitez pas à nous contacter directement !
-            </p>
           </div>
-          <a href="/contact" class="info-btn">J'ai des questions</a>
+          <a href="/contact" class="info-btn">Contactez-nous</a>
         </div>
       </div>
     </div>

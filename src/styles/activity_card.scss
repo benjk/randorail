@@ -8,7 +8,6 @@
   max-width: 100%;
   background: $color-cards-bg;
   padding: $card-spacing;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
   border-radius: $card-radius;
   @include flex-box(0);
   z-index: 3;

@@ -1,6 +1,5 @@
 $color1: #2a5100;
 $color2: #0065a4; // Bleu + sombre
-$color2: #0f7bbd;
 $color2: #2c88cb; // Bleu + light
 $color3: #f6f1e6;
 $color4: #895129;
@@ -8,6 +7,7 @@ $color4: #895129;
 // PASTEL
 $color1: #8c9569; //vert pastel
 $color2: #0065a4; // Bleu + sombre
+$color2: #0f7bbd;
 // VERT JUNGLE
 // $color2: #0f7bbd;
 // $color1: #2a5100 ; //vert de K-Rakter
@@ -19,6 +19,8 @@ $color2: #0065a4; // Bleu + sombre
 // $color1: #1B4F33 ; //sapin noctunre
 // $color2: #2c88cb; // Bleu + light
 
+$color2-strong: $color2;
+$color2: rgba($color2, 0.85);
 $color2-light: rgba($color2, 0.75);
 
 $color-cards-bg: radial-gradient(
@@ -32,8 +34,8 @@ $color-cards-bg: radial-gradient(
 $color-bg: $color-cards-bg;
 $color-bg-stronger: radial-gradient(
   ellipse 90% 80% at 50% 50%,
-  rgba($color3, 0.8) 50%,
-  rgba($color3, 0.7) 75%,
+  rgba($color3, 0.9) 50%,
+  rgba($color3, 0.95) 75%,
   rgba($color3, 1) 90%,
   rgba($color3, 1) 100%
 );
@@ -50,7 +52,7 @@ $margin-xl: clamp(3.5rem, 2.923rem + 1.846vw, 5rem);
 /****************** GLOBAL ******************/
 $classic-btn-size: clamp(12.2rem, 1.861rem + 16.139vw, 18rem);
 $basic-radius: 15px;
-$light-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+$light-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 $basic-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 $strong-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 $text-shadow-basic: 0 2px 10px rgba($color3, 0.5);
@@ -64,6 +66,7 @@ $title1-font-size: clamp(2rem, 0.357rem + 5.714vw, 4rem);
 $title2-font-size: clamp(1.7rem, 1.25rem + 1.2vw, 2.6rem);
 $title3-font-size: clamp(1.2rem, 0.986rem + 0.571vw, 1.5rem);
 $title4-font-size: clamp(0.92rem, 0.791rem + 0.343vw, 1.1rem);
+$title4-font-size: clamp(0.92rem, 0.892rem + 0.12vw, 1rem);
 $text-font-size: clamp(1rem, 0.857rem + 0.381vw, 1.2rem);
 $btn-uppercase-font-size: calc($text-font-size * 0.65);
 $btn-font-size: calc($text-font-size * 0.75);
@@ -77,14 +80,14 @@ $card-radius: 6px;
 $border-section-separation: 3px solid $color2;
 $border-section-separation-light: 3px solid $color3;
 
-$card-width: 11rem;
-$card-height: 11rem;
+$card-width: 10.5rem;
+$card-height: 10.5rem;
 $card-mobile-height: 5rem;
 $card-spacing: $margin-m;
-$cards-shadow: 4px 6px 12px rgba($color4, 0.2);
+$cards-shadow: 4px 3px 6px rgba(black, 0.3);
 $transition-card: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 $scale-hover: 1.02;
-$picto-size: clamp(2.5rem, 1.143rem + 3.619vw, 3.8rem);
+$picto-size: clamp(2.5rem, 1.143rem + 3.619vw, 3.5rem);
 
 /****************** FONTS ******************/
 @font-face {
