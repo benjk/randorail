@@ -23,20 +23,15 @@
   }
 
   h2 {
-    @include content-h2($text-color);
+    @include content-h2();
   }
 
   .p-wrapper {
     max-width: 100%;
     @include flex-box($margin-m);
     p {
-      color: $text-color;
+      @include basic-text-page($text-color);
       text-align: justify;
-      letter-spacing: 1px;
-      width: 100%;
-      font-size: $text-font-size;
-      line-height: calc($text-font-size * 1.4);
-      font-family: $text-font;
 
       @media screen and (max-width: $mobile-breakpoint) {
         padding: 0 $margin-m;
@@ -67,11 +62,12 @@
   font-size: $title3-font-size;
   font-family: $title-font;
   color: $color2;
+  color: $color3;
   text-align: center;
-  font-weight: bold;
+  font-weight: normal;
 }
 
-@mixin content-h2($color: $color3) {
+@mixin content-h2($color: $color2) {
   text-align: center;
   font-size: calc($title2-font-size * 1.2);
   font-family: $home-font;
@@ -89,6 +85,14 @@
   color: $color;
   text-shadow: $light-shadow;
   font-weight: normal;
+
+  &::after {
+    content: '';
+    display: block;
+    margin: 1rem auto 0;
+    width: 60%;
+    @include custom-hr();
+  }
 }
 
 @mixin inline-link() {
@@ -103,6 +107,16 @@
   }
 }
 
+@mixin basic-text-page($text-color: $color3) {
+  color: $text-color;
+  font-size: calc($text-font-size * 1.1);
+  letter-spacing: 1px;
+  line-height: calc($text-font-size * 1.4);
+  text-align: center;
+  font-family: $text-font;
+  width: 100%;
+}
+
 @mixin custom-hr($color: $color2) {
   border: none;
   height: 3px;
@@ -115,7 +129,6 @@
   justify-content: center;
   position: relative;
   width: auto;
-  margin-top: $margin-m;
   padding: $margin-s $margin-l;
   background: linear-gradient(135deg, $color2, darken($color2, 6%));
   color: $color3;

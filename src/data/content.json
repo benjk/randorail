@@ -109,6 +109,11 @@
           "title": "Chasse au trésor",
           "slug": "activities/chasse-au-tresor",
           "type": "page"
+        },
+        {
+          "title": "Restauration",
+          "slug": "restauration",
+          "type": "page"
         }
       ]
     },

@@ -294,6 +294,8 @@ html {
             width: 100%;
             max-width: 100%;
             overflow-x: hidden;
+            //TOTEST
+            background-color: $color3;
             background-color: $color1;
             @include flex-box(0);
             padding-top: calc($margin-xl);
@@ -304,90 +306,172 @@ html {
               min-height: 70vh;
             }
 
-            .content-wrapper {
-              max-width: 48rem;
-              @include flex-row($margin-s);
+            .section-wrapper {
+              max-width: 58rem;
+              width: 60%;
+              @include flex-box($margin-m);
               padding-top: $margin-s;
-              flex-direction: column-reverse;
+              flex-direction: column;
 
               @media screen and (max-width: $mobile-breakpoint) {
                 max-width: 100%;
+                width: 92%;
                 gap: $margin-l;
               }
 
               h3 {
                 @include content-h3();
-                // color: $color3 !important;
                 font-weight: normal;
+                font-size: calc($title2-font-size * 0.8);
+                font-family: $home-font;
+                color: $color2;
               }
 
               h2 {
                 @include content-h2();
               }
 
-              .goto-hr {
-                @include custom-hr($color3);
-                width: 8rem;
-              }
-
               .main-hr {
                 @include custom-hr($color3);
                 width: 8rem;
-                margin: $margin-m 0;
               }
 
-              .goto-wrapper {
-                @include flex-row($margin-l);
-                .text-wrapper {
-                  @include flex-box($margin-xs);
-                  min-height: 5rem;
-                  max-width: 100%;
-                  flex: 1;
-                  padding-top: $margin-s;
+              .content-wrapper {
+                @include flex-box($margin-l);
+                width: 100%;
+                padding-top: $margin-s;
 
-                  .address-card {
-                    @include flex-box();
-                    width: 80%;
-                    address {
-                      color: $color3;
-                      font-style: normal;
+                .cards-row {
+                  @include flex-row($margin-m);
+                  width: 100%;
+                  justify-content: space-evenly;
+
+                  .info-card {
+                    @include flex-box($margin-s);
+                    width: 40%;
+                    height: auto;
+                    background: $color-bg-stronger;
+                    padding: $margin-m;
+                    border-radius: $card-radius;
+                    box-shadow: $cards-shadow;
+                    color: $color1;
+                    align-self: stretch;
+
+                    p {
+                      font-family: $title-font;
+                      font-size: calc($title4-font-size * 1.3);
+
+                      text-align: center;
+                      text-shadow: $basic-shadow;
+                    }
+
+                    .info-icon {
+                      width: calc($picto-size);
+                      height: calc($picto-size);
+                      background-color: $color2;
+                      fill: $color2;
+                    }
+
+                    a.card-link {
+                      @include inline-link();
+                      @include flex-row($margin-s);
+                    }
+
+                    .infos-wrapper {
+                      @include flex-box($margin-xs);
+                      padding-right: $margin-m;
+                      align-items: flex-start;
+                    }
+                  }
+                }
+
+                .goto-wrapper {
+                  @include flex-box($margin-s);
+                  width: 100%;
+
+                  .text-wrapper {
+                    @include flex-box(0);
+                    max-width: 100%;
+                    flex: 1;
+
+                    .address-card {
+                      @include flex-box();
+                      width: 100%;
+                      address {
+                        color: $color3;
+                        font-style: normal;
+                        text-align: center;
+
+                        p {
+                          margin: 0;
+                          font-size: $subtext-font-size;
+                          text-shadow: $basic-shadow;
+                        }
+                      }
+                    }
+
+                    .inline-link {
+                      font-size: calc($title3-font-size * 1);
+                      text-shadow: $text-shadow-light;
+                      @include flex-row(0);
+
+                      .info-icon {
+                        width: calc($picto-size);
+                        height: calc($picto-size);
+                        background-color: $color2;
+                        fill: $color2;
+                      }
+                    }
+                  }
+                  img {
+                    max-height: 16rem;
+                  }
+
+                  @media screen and (max-width: $mobile-breakpoint) {
+                    flex-direction: column;
+                    margin-bottom: $margin-m;
+                  }
+                }
+
+                .contact-wrapper {
+                  @include flex-box($margin-m);
+
+                  .p-wrapper {
+                    @include flex-box($margin-xs);
+
+                    .contact-text {
+                      @include basic-text-page();
+                      text-shadow: $basic-shadow;
                     }
                   }
 
-                  .inline-link {
-                    font-size: calc($title3-font-size * 0.8);
-                  }
-                }
-                img {
-                  max-height: 16rem;
-                  // display: none;
-                }
-
-                @media screen and (max-width: $mobile-breakpoint) {
-                  flex-direction: column;
-                  margin-bottom: $margin-m;
-                }
-              }
-
-              .text-wrapper {
-                width: 100%;
-                @include basic-text-wrapper();
-
-                .p-wrapper p {
-                  text-align: center;
-                }
-
-                @media screen and (max-width: $mobile-breakpoint) {
-                  width: 92%;
-                  max-width: 92%;
-                  text-align: justify;
-
                   .info-btn {
-                    margin-top: $margin-l;
+                    @include custom-btn();
                   }
+                }
+
+                .text-wrapper {
+                  width: 100%;
+                  // TOTEST
+                  @include basic-text-wrapper($color3, $color1);
+                  @include basic-text-wrapper();
 
                   .p-wrapper p {
+                    text-align: center;
+                  }
+
+                  @media screen and (max-width: $mobile-breakpoint) {
+                    width: 92%;
+                    max-width: 92%;
                     text-align: justify;
+
+                    .info-btn {
+                      margin-top: $margin-l;
+                    }
+
+                    .p-wrapper p {
+                      text-align: justify;
+                    }
                   }
                 }
               }
@@ -399,10 +483,14 @@ html {
           }
 
           .section3 {
+            // TOTEST
+            $bg-color-3: $color3;
+            $text-color-3: $color1;
+
             width: 100%;
             height: 35vh;
-            background-color: $color3;
-            color: $color1;
+            background-color: $bg-color-3;
+            color: $text-color-3;
             z-index: 12;
             border-top: $border-section-separation;
             border-bottom: $border-section-separation;
@@ -411,7 +499,7 @@ html {
             @include flex-box(0);
 
             p {
-              color: $color1;
+              color: $text-color-3;
             }
           }
 
@@ -472,6 +560,7 @@ html {
               .text-wrapper {
                 @include basic-text-wrapper();
                 .info-btn {
+                  margin-top: $margin-m;
                   @media screen and (max-width: $mobile-breakpoint) {
                     margin-top: $margin-l;
                   }

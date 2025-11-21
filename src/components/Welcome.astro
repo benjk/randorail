@@ -73,57 +73,110 @@ import RailSVG from './RailSVG.astro';
       <RailSVG />
     </div>
     <div class="activities-container">
-      <CardsGrid/>
+      <CardsGrid />
     </div>
   </section>
   <!-- SECTION 4 : WHATEVER CE QUON VEUT FOUTRE -->
   <section class="section2">
-    <div class="content-wrapper">
-      <div class="text-wrapper">
-        <!-- <h2>J'organise ma venue</h2> -->
-        <h3>Votre visite, sans prise de tête</h3>
-        <hr class="main-hr"/>
-        <div class="p-wrapper">
-          <p>
-            Visitez les activités présentées ci-dessus pour trouver la plupart
-            des informations.
-          </p>
-          <p>
-            Le site est prévu pour recevoir des groupes, besoin de
-            renseignements ? <a href="/groupes" class="inline-link"
-              >Visitez notre page Groupes</a
-            >
-          </p>
-          <p>
-            Safari Rail Aventure vous propose son service de <a
-              href="/restauration"
-              class="inline-link">Restauration</a
-            >
-          </p>
-          <h3>Comment s'y rendre ?</h3>
-        <hr class="goto-hr"/>
-          <div class="goto-wrapper">
-            <div class="text-wrapper">
-              <div class="address-card">
-                <address>
-                  <p>{content.contact.street}</p>
-                  <p>{content.contact.postalCode} {content.contact.city}</p>
-                </address>
-              </div>
-              <a
-                target="_blank"
-                href="https://maps.app.goo.gl/qwV6SX6nNrjvzCq18"
-                class="inline-link">Voir l'itinéraire</a
-              >
+    <div class="section-wrapper">
+      <!-- <h2>J'organise ma venue</h2> -->
+      <h3>Votre visite, sans prise de tête</h3>
+      <hr class="main-hr" />
+      <div class="content-wrapper">
+        <!-- Bloc : 2 carrés côte à côte -->
+        <div class="cards-row">
+          <!-- Carré 1 : Infos spécifiques -->
+          <div class="info-card">
+            <p>Besoin d'infos ?</p>
+            <div class="infos-wrapper">
+              <a href="/activites" class="card-link">
+                <div
+                  class="info-icon"
+                  style={{
+                    mask: "url('/img/icons/picto-rail.svg') no-repeat center / contain",
+                    WebkitMask:
+                      "url('/img/icons/picto-rail.svg') no-repeat center / contain",
+                  }}
+                >
+                </div>
+                <span>Horaires & Tarifs des activités</span>
+              </a>
+              <a href="/restauration" class="card-link">
+                <div
+                  class="info-icon"
+                  style={{
+                    mask: "url('/img/icons/picto-food.svg') no-repeat center / contain",
+                    WebkitMask:
+                      "url('/img/icons/picto-food.svg') no-repeat center / contain",
+                  }}
+                >
+                </div>
+                <span>Restauration sur place</span>
+              </a>
             </div>
-            <img src="/img/static/goto-img.jpg" alt="ESSAYONS DE TROUVER / FAIRE une image + stylée" />
           </div>
-          <p>
-            Si vous ne parvenez pas à trouver l'information que vous cherchez,
-            n'hésitez pas à nous contacter directement !
-          </p>
+
+          <!-- Carré 2 : Groupes -->
+          <div class="info-card">
+            <div
+              class="info-icon"
+              style={{
+                mask: "url('/img/icons/picto-groupe.svg') no-repeat center / contain",
+                WebkitMask:
+                  "url('/img/icons/picto-groupe.svg') no-repeat center / contain",
+              }}
+            >
+            </div>
+            <p>Je veux venir en groupe</p>
+            <a href="/groupes" class="card-link"
+              ><span>Comment ça marche ?</span></a
+            >
+          </div>
         </div>
-        <a href="/contact" class="info-btn">J'ai des questions</a>
+        <!-- Bloc : Comment s'y rendre (large) -->
+        <div class="goto-wrapper">
+          <div class="text-wrapper">
+            <a
+              target="_blank"
+              href="https://maps.app.goo.gl/qwV6SX6nNrjvzCq18"
+              class="inline-link"
+            >
+              <div
+                class="info-icon"
+                style={{
+                  mask: "url('/img/icons/picto-pin.svg') no-repeat center / contain",
+                  WebkitMask:
+                    "url('/img/icons/picto-pin.svg') no-repeat center / contain",
+                }}
+              >
+              </div>
+              Itinéraire
+            </a>
+            <div class="address-card">
+              <address>
+                <p>{content.contact.street}</p>
+                <p>{content.contact.postalCode} {content.contact.city}</p>
+              </address>
+            </div>
+          </div>
+          <img
+            src="/img/static/goto-img.jpg"
+            alt="Plan d'accès Safari Rail Aventure"
+          />
+        </div>
+
+        <!-- Bloc 3 : CTA final -->
+        <div class="contact-wrapper">
+          <div class="p-wrapper">
+            <p class="contact-text">
+              Vous ne trouvez pas l'information que vous cherchez ?
+            </p>
+            <p class="contact-text">
+              N'hésitez pas à nous contacter directement !
+            </p>
+          </div>
+          <a href="/contact" class="info-btn">J'ai des questions</a>
+        </div>
       </div>
     </div>
   </section>
@@ -178,6 +231,6 @@ import RailSVG from './RailSVG.astro';
       </div>
     </div>
   </section>
-</div>
 
-<HighlightOnHash client:load />
+  <HighlightOnHash client:load />
+</div>

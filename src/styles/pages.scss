@@ -16,6 +16,34 @@ html body #main-container {
       h2 {
         @include page-h2();
       }
+
+      .p-wrapper {
+        @include flex-box($margin-s);
+        p {
+          @include basic-text-page();
+        }
+      }
+      @media screen and (max-width: $mobile-breakpoint) {
+        padding-bottom: $page-spacing;
+        .p-wrapper {
+          max-width: 92%;
+          padding: 0 $margin-s;
+        }
+
+        h2 {
+            margin-bottom: $margin-m;
+        }
+      }
+
+      .cards-grid .activity-card {
+        $fill-color: rgba($color2, 0.7);
+        .activity-card-icon {
+          background-color: $fill-color;
+        }
+        .activity-card-title {
+          color: $fill-color;
+        }
+      }
     }
   }
 }
