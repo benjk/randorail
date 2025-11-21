@@ -1,13 +1,13 @@
 $color1: #2a5100;
 $color2: #0065a4; // Bleu + sombre
-$color2: #2c88cb; // Bleu + light
 $color3: #f6f1e6;
 $color4: #895129;
 
 // PASTEL
+$color2: #2c88cb; // Bleu + light
 $color1: #8c9569; //vert pastel
-$color2: #0065a4; // Bleu + sombre
 $color2: #0f7bbd;
+$color2: #0065a4; // Bleu + sombre
 // VERT JUNGLE
 // $color2: #0f7bbd;
 // $color1: #2a5100 ; //vert de K-Rakter
@@ -39,6 +39,8 @@ $color-bg-stronger: radial-gradient(
   rgba($color3, 1) 90%,
   rgba($color3, 1) 100%
 );
+
+$bg-texture-url: url('/img/static/noise.png');
 
 $font-main: 'Inter', sans-serif;
 

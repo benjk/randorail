@@ -31,6 +31,8 @@ html {
     min-height: 100vh;
     color: $color2;
     background-color: $color1;
+    background-image: $bg-texture-url;
+
     position: relative;
 
     #main-container {
@@ -295,11 +297,12 @@ html {
             max-width: 100%;
             overflow-x: hidden;
             //TOTEST
-            background-color: $color3;
             background-color: $color1;
             @include flex-box(0);
             padding-top: calc($margin-xl);
             padding-bottom: calc($margin-l);
+
+            background-image: $bg-texture-url;
 
             @media screen and (max-width: $mobile-breakpoint) {
               height: auto;
@@ -533,6 +536,7 @@ html {
             width: 100%;
             height: auto;
             background-color: $color1;
+            background-image: $bg-texture-url;
             color: $color3;
             z-index: 12;
             border-top: $border-section-separation;

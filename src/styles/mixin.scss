@@ -15,7 +15,6 @@
 
 @mixin basic-text-wrapper($bg-color: $color1, $text-color: $color3) {
   @include flex-box(0);
-  background-color: $bg-color;
   $color: $text-color;
 
   h3 {
