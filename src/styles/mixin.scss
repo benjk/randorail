@@ -68,7 +68,7 @@
 
 @mixin content-h2($color: $color2) {
   text-align: center;
-  font-size: calc($title2-font-size * 1.2);
+  font-size: calc($title2-font-size * 1.1);
   font-family: $home-font;
   color: $color;
   margin-top: $margin-xs;
