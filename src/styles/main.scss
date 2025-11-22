@@ -425,6 +425,9 @@ html {
                       }
                     }
 
+                    transition:
+                      transform 0.3s ease,
+                      box-shadow 0.3s ease;
                     // Bordure bottom animée
                     &::after {
                       content: '';
@@ -440,17 +443,16 @@ html {
                     }
 
                     &:hover {
-                      transform: translateY(-2px);
+                      transform: translateY(-3px);
                       box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
 
                       &::after {
-                        transform: scaleX(1);
+                        transform: scale(1);
                       }
-                    }
 
-                    &:active {
-                      transform: translateY(0);
-                      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+                      .unic-link {
+                        text-decoration: underline;
+                      }
                     }
                   }
 
