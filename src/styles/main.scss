@@ -306,11 +306,15 @@ html {
             }
 
             .section-wrapper {
-              width: 74%;
+              width: 69%;
               min-width: 58rem;
               max-width: 100%;
               @include flex-box($margin-m);
               flex-direction: column;
+
+              @media screen and (max-width: 1700px) {
+                width: 76%;
+              }
 
               @media screen and (max-width: $mobile-breakpoint) {
                 width: 88%;
@@ -361,14 +365,17 @@ html {
                     height: auto;
                     // background: $color-bg-stronger;
                     background: $color3;
-                    padding: $margin-m $margin-m;
+                    padding: $margin-l $margin-m;
                     border-radius: $card-radius;
                     box-shadow: $cards-shadow;
                     color: $color1;
                     flex: 1;
                     text-decoration: none;
 
-                    
+                    @media screen and (max-width: 1700px) {
+                      padding: $margin-m $margin-m;
+                    }
+
                     @media screen and (min-width: $mobile-breakpoint-s) {
                       $strong-radius: 25px;
                       $light-radius: $card-radius;
