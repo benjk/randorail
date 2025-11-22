@@ -69,15 +69,6 @@ $anim-opacity-end: 1 !default;
   translate: 0 0;
 }
 
-// Accessibilité
-@media (prefers-reduced-motion: reduce) {
-  [data-animate] {
-    transition: none !important;
-    transform: none !important;
-    opacity: 1 !important;
-  }
-}
-
 @keyframes spin-once {
   0% {
     transform: rotateZ(0deg);
