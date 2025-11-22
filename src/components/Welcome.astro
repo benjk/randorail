@@ -86,13 +86,14 @@ import RailSVG from './RailSVG.astro';
 
       <div class="content-wrapper">
         <!-- Les 3 cards en ligne -->
-        <div class="cards-row">
+        <div class="cards-row" data-animate-group="cards-section-2">
           <!-- Card 3 : Itinéraire -->
           <a
             target="_blank"
             href="https://www.google.com/maps/dir/?api=1&destination=50.6782703,2.0338343"
             class="info-card info-card-clickable address-info-card"
             data-animate="right"
+            data-animate-group="cards-section-2"
           >
             <div class="card-link unic-link">
               <div
@@ -115,7 +116,12 @@ import RailSVG from './RailSVG.astro';
             </div>
           </a>
           <!-- Card 1 : Infos spécifiques -->
-          <div class="info-card" data-animate="up" data-animate-mobile="left">
+          <div
+            class="info-card"
+            data-animate="up"
+            data-animate-mobile="left"
+            data-animate-group="cards-section-2"
+          >
             <p class="card-title">Besoin d'infos ?</p>
             <div class="infos-wrapper">
               <a href="/activites" class="card-link">
@@ -151,6 +157,7 @@ import RailSVG from './RailSVG.astro';
             class="info-card info-card-clickable"
             data-animate="left"
             data-animate-mobile="right"
+            data-animate-group="cards-section-2"
           >
             <div
               class="info-icon"
@@ -179,12 +186,17 @@ import RailSVG from './RailSVG.astro';
     </div>
   </section>
   <section class="section3">
-    <div class="counter-wrapper">
+    <div
+      class="counter-wrapper"
+      data-animate-group="section3-counter"
+      data-animate-stagger="150"
+    >
       <div class="counter-info">
         <span
           class="counter-number"
           data-counter="20"
-          data-animate>0</span
+          data-animate
+          data-animate-group="section3-counter">0</span
         >
         <span class="counter-label">Ans d'existence</span>
       </div>
@@ -192,12 +204,18 @@ import RailSVG from './RailSVG.astro';
         <span
           class="counter-number"
           data-counter="857000"
-          data-animate>0</span
+          data-animate
+          data-animate-group="section3-counter">0</span
         >
         <span class="counter-label">Km de rails parcourus</span>
       </div>
       <div class="counter-info">
-        <span class="counter-number" data-counter="18" data-animate>0</span>
+        <span
+          class="counter-number"
+          data-counter="18"
+          data-animate
+          data-animate-group="section3-counter">0</span
+        >
         <span class="counter-label">Tours du monde</span>
       </div>
     </div>
