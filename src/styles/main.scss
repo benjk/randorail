@@ -489,11 +489,8 @@ html {
             // TOTEST
             $bg-color-3: $color3;
             $text-color-3: $color1;
-
             width: 100%;
-            height: 35vh;
             background-color: $bg-color-3;
-            color: $text-color-3;
             z-index: 12;
             border-top: $border-section-separation;
             border-bottom: $border-section-separation;
@@ -501,8 +498,60 @@ html {
             margin-top: -1px;
             @include flex-box(0);
 
-            p {
-              color: $text-color-3;
+            .counter-wrapper {
+              @include flex-row(0);
+              width: 60%;
+              padding: $margin-s $margin-s;
+              min-width: calc(($mobile-breakpoint-s) - ($margin-s * 2));
+              align-items: start;
+
+              .counter-info {
+                display: grid;
+                grid-template-rows: auto auto;
+                gap: $margin-s;
+                flex: 1;
+                min-width: 0;
+
+                .counter-number {
+                  font-size: $title1-font-size;
+                  font-family: $home-font;
+                  color: $text-color-3;
+                  text-align: center;
+                }
+
+                .counter-label {
+                  font-size: $title3-font-size;
+                  font-family: $title-font;
+                  color: $color2;
+                  text-align: center;
+                }
+              }
+
+              @media screen and (max-width: $mobile-breakpoint-s) {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: $margin-l;
+                max-width: 100%;
+                min-width: 0;
+                width: 100%;
+
+                .counter-info {
+                  flex: 1 1 calc(50% - #{$margin-l}); // 2 éléments par ligne (50% - gap)
+
+                  &:first-child {
+                    order: -1;
+                    flex-basis: 100%;
+                  }
+
+                  &:nth-child(2) {
+                    order: 0;
+                  }
+
+                  &:nth-child(3) {
+                    order: 0;
+                  }
+                }
+              }
             }
           }
 

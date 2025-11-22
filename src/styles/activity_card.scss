@@ -12,7 +12,7 @@
   @include flex-box(0);
   z-index: 3;
 
-  @media screen and (max-width: $mobile-breakpoint) {
+  @media screen and (max-width: $mobile-breakpoint-s) {
     width: 100%;
     max-width: 92%;
     padding: $margin-m $margin-m;
@@ -31,7 +31,7 @@
       grid-template-columns: repeat(3, 1fr);
     }
 
-    @media screen and (max-width: $mobile-breakpoint) {
+    @media screen and (max-width: $mobile-breakpoint-s) {
       max-width: 100%;
       width: 100%;
       gap: $margin-m;
@@ -52,14 +52,14 @@
       width: $card-width;
       flex-shrink: 0;
 
-      @media screen and (max-width: $mobile-breakpoint) {
+      @media screen and (max-width: $mobile-breakpoint-s) {
         width: 100%;
         height: $card-mobile-height;
         object-fit: cover;
         @include flex-row();
       }
 
-      @media screen and (min-width: $mobile-breakpoint) {
+      @media screen and (min-width: $mobile-breakpoint-s) {
         &:hover {
           box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 
@@ -124,7 +124,7 @@
         text-align: center;
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
-        @media screen and (max-width: $mobile-breakpoint) {
+        @media screen and (max-width: $mobile-breakpoint-s) {
           width: 100%;
           padding: $margin-m;
           display: grid;
@@ -153,7 +153,7 @@
         align-self: end;
         justify-self: center;
 
-        @media screen and (max-width: $mobile-breakpoint) {
+        @media screen and (max-width: $mobile-breakpoint-s) {
           margin-bottom: 0;
           justify-self: end;
         }
@@ -172,7 +172,7 @@
           opacity 0.4s ease;
         width: auto;
 
-        @media screen and (max-width: $mobile-breakpoint) {
+        @media screen and (max-width: $mobile-breakpoint-s) {
           justify-self: start;
           text-align: left;
           margin-left: $margin-l;
@@ -201,11 +201,6 @@
 
         &::before {
           content: 'Découvrir';
-        }
-
-        @media screen and (max-width: $mobile-breakpoint) {
-          height: 25%;
-          font-size: calc($text-font-size * 0.9);
         }
       }
     }

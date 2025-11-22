@@ -115,7 +115,7 @@ import RailSVG from './RailSVG.astro';
             </div>
           </a>
           <!-- Card 1 : Infos spécifiques -->
-          <div class="info-card" data-animate="up" data-animate-mobile='left'>
+          <div class="info-card" data-animate="up" data-animate-mobile="left">
             <p class="card-title">Besoin d'infos ?</p>
             <div class="infos-wrapper">
               <a href="/activites" class="card-link">
@@ -150,7 +150,7 @@ import RailSVG from './RailSVG.astro';
             href="/groupes"
             class="info-card info-card-clickable"
             data-animate="left"
-            data-animate-mobile='right'
+            data-animate-mobile="right"
           >
             <div
               class="info-icon"
@@ -179,15 +179,29 @@ import RailSVG from './RailSVG.astro';
     </div>
   </section>
   <section class="section3">
-    <p>
-      Et ensuite quelques chiffres : X visiteurs par ans, 20 ans d'expériences,
-      Activités répartis sur X hecatre de forêts,...
-    </p>
+    <div class="counter-wrapper">
+      <div class="counter-info">
+        <span
+          class="counter-number"
+          data-counter="20"
+          data-animate>0</span
+        >
+        <span class="counter-label">Ans d'existence</span>
+      </div>
+      <div class="counter-info">
+        <span
+          class="counter-number"
+          data-counter="857000"
+          data-animate>0</span
+        >
+        <span class="counter-label">Km de rails parcourus</span>
+      </div>
+      <div class="counter-info">
+        <span class="counter-number" data-counter="18" data-animate>0</span>
+        <span class="counter-label">Tours du monde</span>
+      </div>
+    </div>
     <br />
-    <p>
-      Puis on peut imaginer d'autres infos : les partenaires, promotions de bons
-      cadeaux ou tout ce que tu désire mettre en avant sur la HomePage
-    </p>
   </section>
   <!-- SECTION 3 : VIDEO OVERLAY -->
   <section class="video-section-overlay">
@@ -236,5 +250,5 @@ import RailSVG from './RailSVG.astro';
   import { initScrollAnimations } from '../utils/scroll-animation';
 
   // Trigger quand 20% de l'élément est visible, stagger de 150ms
-  initScrollAnimations(0.2, 1150);
+  initScrollAnimations(0.2);
 </script>
