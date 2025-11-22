@@ -296,7 +296,6 @@ html {
             width: 100%;
             max-width: 100%;
             overflow-x: hidden;
-            //TOTEST
             background-color: $color1;
             @include flex-box(0);
             padding-top: calc($margin-xl);
@@ -314,32 +313,40 @@ html {
               min-width: 58rem;
               max-width: 100%;
               @include flex-box($margin-m);
-              padding-top: $margin-s;
               flex-direction: column;
 
               @media screen and (max-width: $mobile-breakpoint) {
                 width: 88%;
-                gap: $margin-l;
+                gap: $margin-m;
                 min-width: 285px;
+                padding-top: $margin-s;
               }
 
-              h3 {
-                @include content-h3();
-                font-weight: normal;
-                font-size: calc($title2-font-size * 0.8);
-                font-family: $home-font;
-                color: $color3;
-                color: $color2;
-                text-shadow: $text-shadow-light;
-              }
+              .header-wrapper {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: $margin-s;
 
-              h2 {
-                @include content-h2();
-              }
+                h3 {
+                  @include content-h3();
+                  font-weight: normal;
+                  font-size: calc($title2-font-size * 0.8);
+                  font-family: $home-font;
+                  color: $color3;
+                  text-shadow: $light-shadow;
+                }
 
-              .main-hr {
-                @include custom-hr($color3);
-                width: 8rem;
+                .main-hr {
+                  @include custom-hr($color3);
+                  width: 8rem;
+                  margin-left: $margin-s;
+                }
+
+                @media screen and (max-width: $mobile-breakpoint) {
+                  align-items: center;
+                }
               }
 
               .content-wrapper {
@@ -350,22 +357,22 @@ html {
                 .cards-row {
                   @include flex-row($margin-l);
                   width: 100%;
+                  align-items: stretch;
 
                   .info-card {
                     @include flex-box($margin-s);
-                    width: 40%;
                     height: auto;
                     background: $color-bg-stronger;
-                    padding: $margin-m;
+                    padding: $margin-l $margin-m;
                     border-radius: $card-radius;
                     box-shadow: $cards-shadow;
                     color: $color1;
-                    align-self: stretch;
+                    flex: 1;
+                    text-decoration: none;
 
-                    p {
+                    .card-title {
                       font-family: $title-font;
                       font-size: calc($title4-font-size * 1.5);
-
                       text-align: center;
                       text-shadow: $light-shadow;
                     }
@@ -375,11 +382,16 @@ html {
                       height: calc($picto-size);
                       background-color: $color2;
                       fill: $color2;
+
+                      &.resto-icon {
+                        margin-bottom: -1rem; // Ajustement beacause SVG hotdog
+                      }
                     }
 
-                    a.card-link {
+                    .card-link {
                       @include inline-link();
                       @include flex-row($margin-s);
+                      align-items: center;
                     }
 
                     .infos-wrapper {
@@ -387,38 +399,17 @@ html {
                       padding-right: $margin-m;
                       align-items: flex-start;
                     }
-                  }
 
-                  @media screen and (max-width: $mobile-breakpoint) {
-                    flex-direction: column;
-                    .info-card {
-                      align-self: center;
-                      width: 100%;
-                    }
-                  }
-                }
-
-                .goto-wrapper {
-                  @include flex-box($margin-s);
-                  width: 100%;
-
-                  .text-wrapper {
-                    @include flex-box(0);
-                    max-width: 100%;
-                    flex: 1;
-
-                    .address-card {
-                      @include flex-box();
-                      width: 100%;
+                    &.address-info-card {
                       address {
-                        color: $color3;
+                        color: $color1;
                         font-style: normal;
                         text-align: center;
 
                         p {
                           margin: 0;
                           font-size: $subtext-font-size;
-                          text-shadow: $basic-shadow;
+                          text-shadow: $light-shadow;
 
                           &.main-label {
                             text-transform: uppercase;
@@ -427,25 +418,49 @@ html {
                           }
                         }
                       }
+
+                      .card-link {
+                        gap: 0;
+                        margin-right: $margin-s;
+                      }
                     }
 
-                    .inline-link {
-                      font-size: calc($title3-font-size * 1);
-                      text-shadow: $text-shadow-light;
-                      @include flex-row(0);
-                      margin-left: -23px;
+                    // Bordure bottom animée
+                    &::after {
+                      content: '';
+                      position: absolute;
+                      bottom: 0;
+                      left: 0;
+                      width: 100%;
+                      height: 3px;
+                      background: $color2;
+                      transform: scaleX(0);
+                      transform-origin: left;
+                      transition: transform 0.4s ease;
+                    }
 
-                      .info-icon {
-                        width: calc($picto-size);
-                        height: calc($picto-size);
-                        background-color: $color2;
-                        fill: $color2;
+                    &:hover {
+                      transform: translateY(-2px);
+                      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+
+                      &::after {
+                        transform: scaleX(1);
                       }
+                    }
+
+                    &:active {
+                      transform: translateY(0);
+                      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
                     }
                   }
 
                   @media screen and (max-width: $mobile-breakpoint) {
                     flex-direction: column;
+                    gap: $margin-m;
+                    .info-card {
+                      align-self: center;
+                      width: 100%;
+                    }
                   }
                 }
 
@@ -464,31 +479,6 @@ html {
 
                   .info-btn {
                     @include custom-btn();
-                  }
-                }
-
-                .text-wrapper {
-                  width: 100%;
-                  // TOTEST
-                  @include basic-text-wrapper($color3, $color1);
-                  @include basic-text-wrapper();
-
-                  .p-wrapper p {
-                    text-align: center;
-                  }
-
-                  @media screen and (max-width: $mobile-breakpoint) {
-                    width: 100%;
-                    max-width: 100%;
-                    text-align: justify;
-
-                    .info-btn {
-                      margin-top: $margin-l;
-                    }
-
-                    .p-wrapper p {
-                      text-align: justify;
-                    }
                   }
                 }
               }

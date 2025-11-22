@@ -76,18 +76,46 @@ import RailSVG from './RailSVG.astro';
       <CardsGrid />
     </div>
   </section>
-  <!-- SECTION 4 : WHATEVER CE QUON VEUT FOUTRE -->
+  <!-- SECTION 2 : INFOS PRATIQUES -->
   <section class="section2">
     <div class="section-wrapper">
-      <!-- <h2>J'organise ma venue</h2> -->
-      <h3>Votre visite, sans prise de tête</h3>
-      <hr class="main-hr" />
+      <div class="header-wrapper">
+        <h3>Votre visite, sans prise de tête</h3>
+        <hr class="main-hr" />
+      </div>
+
       <div class="content-wrapper">
-        <!-- Bloc : 2 carrés côte à côte -->
+        <!-- Les 3 cards en ligne -->
         <div class="cards-row">
-          <!-- Carré 1 : Infos spécifiques -->
+          <!-- Card 3 : Itinéraire -->
+          <a
+            target="_blank"
+            href="https://www.google.com/maps/dir/?api=1&destination=50.6782703,2.0338343"
+            class="info-card info-card-clickable address-info-card"
+          >
+            <div class="card-link">
+              <div
+                class="info-icon"
+                style={{
+                  mask: "url('/img/icons/picto-pin.svg') no-repeat center / contain",
+                  WebkitMask:
+                    "url('/img/icons/picto-pin.svg') no-repeat center / contain",
+                }}
+              >
+              </div>
+              <span class="card-action">Itinéraire</span>
+            </div>
+            <div class="address-card">
+              <address>
+                <p class="main-label">{content.contact.mainLabel}</p>
+                <p>{content.contact.street}</p>
+                <p>{content.contact.postalCode} {content.contact.city}</p>
+              </address>
+            </div>
+          </a>
+          <!-- Card 1 : Infos spécifiques -->
           <div class="info-card">
-            <p>Besoin d'infos ?</p>
+            <p class="card-title">Besoin d'infos ?</p>
             <div class="infos-wrapper">
               <a href="/activites" class="card-link">
                 <div
@@ -99,11 +127,11 @@ import RailSVG from './RailSVG.astro';
                   }}
                 >
                 </div>
-                <span>Horaires & Tarifs des activités</span>
+                <span>Horaires & Tarifs</span>
               </a>
               <a href="/restauration" class="card-link">
                 <div
-                  class="info-icon"
+                  class="info-icon resto-icon"
                   style={{
                     mask: "url('/img/icons/picto-food.svg') no-repeat center / contain",
                     WebkitMask:
@@ -111,13 +139,13 @@ import RailSVG from './RailSVG.astro';
                   }}
                 >
                 </div>
-                <span>Restauration sur place</span>
+                <span>Restauration</span>
               </a>
             </div>
           </div>
 
-          <!-- Carré 2 : Groupes -->
-          <div class="info-card">
+          <!-- Card 2 : Groupes -->
+          <a href="/groupes" class="info-card info-card-clickable">
             <div
               class="info-icon"
               style={{
@@ -127,42 +155,12 @@ import RailSVG from './RailSVG.astro';
               }}
             >
             </div>
-            <p>Je veux venir en groupe</p>
-            <a href="/groupes" class="card-link"
-              ><span>Comment ça marche ?</span></a
-            >
-          </div>
-        </div>
-        <!-- Bloc : Comment s'y rendre (large) -->
-        <div class="goto-wrapper">
-          <div class="text-wrapper">
-            <div class="address-card">
-              <address>
-                <p class="main-label">{content.contact.mainLabel}</p>
-                <p>{content.contact.street}</p>
-                <p>{content.contact.postalCode} {content.contact.city}</p>
-              </address>
-            </div>
-            <a
-              target="_blank"
-              href="https://www.google.com/maps/dir/?api=1&destination=50.6782703,2.0338343"
-              class="inline-link"
-            >
-              <div
-                class="info-icon"
-                style={{
-                  mask: "url('/img/icons/picto-pin.svg') no-repeat center / contain",
-                  WebkitMask:
-                    "url('/img/icons/picto-pin.svg') no-repeat center / contain",
-                }}
-              >
-              </div>
-              Itinéraire
-            </a>
-          </div>
+            <p class="card-title">Je veux venir en groupe</p>
+            <span class="card-link">Comment ça marche ?</span>
+          </a>
         </div>
 
-        <!-- Bloc 3 : CTA final -->
+        <!-- CTA final -->
         <div class="contact-wrapper">
           <div class="p-wrapper">
             <p class="contact-text">
