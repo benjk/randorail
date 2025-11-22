@@ -88,7 +88,7 @@ $header-bg-color: $color-bg-stronger;
       .menu-link {
         text-decoration: none;
         font-size: 1.2rem;
-        transition: all 0.3s ease;
+        transition: all $anim-hover-duration ease;
         white-space: nowrap;
         color: $header-text-color;
         position: relative;
@@ -125,7 +125,7 @@ $header-bg-color: $color-bg-stronger;
           opacity: 0;
           visibility: hidden;
           transform: translateY(-10px);
-          transition: all 0.3s ease;
+          transition: all $anim-hover-duration ease;
           padding: 0.5rem 0;
           margin-top: 1.35rem;
 

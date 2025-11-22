@@ -120,7 +120,7 @@ $social-svg-width-mobile: calc($social-svg-width * 0.8);
         gap: 1rem;
 
         a {
-          $hover-delay: 0.3s;
+          $hover-delay: $anim-hover-duration;
           display: flex;
           align-items: center;
           justify-content: center;

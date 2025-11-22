@@ -3,8 +3,6 @@
 @use './mixin' as *;
 @use './animations' as *;
 
-$transition-display: 0.3s;
-
 $video-section-overlay-height: 85vh;
 $video-section-overlay-height-mobile: 95vh;
 $rail-stroke-length: 3000;
@@ -43,7 +41,6 @@ html {
         justify-content: flex-start;
         min-height: calc(100vh - $footer-height);
         opacity: 0;
-        transition: opacity $transition-display ease-in;
         padding-top: $header-height;
 
         h2 {
@@ -425,9 +422,6 @@ html {
                       }
                     }
 
-                    transition:
-                      transform 0.3s ease,
-                      box-shadow 0.3s ease;
                     // Bordure bottom animée
                     &::after {
                       content: '';

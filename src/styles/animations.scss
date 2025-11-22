@@ -1,3 +1,83 @@
+@use './variables' as *;
+// ====================================
+// VARIABLES DE CONFIGURATION
+// ====================================
+
+$anim-ease: ease-in-out !default;
+
+// Distances de translation
+$anim-distance-x: 100px !default;
+$anim-distance-y: 100px !default;
+
+// Opacité
+$anim-opacity-start: 0 !default;
+$anim-opacity-end: 1 !default;
+
+// ====================================
+// ANIMATION FADE + TRANSLATE
+// ====================================
+
+[data-animate] {
+  opacity: $anim-opacity-start;
+  transition:
+    opacity $anim-scroll-duration $anim-ease,
+    translate $anim-scroll-duration $anim-ease;
+
+  &.info-card {
+    transition:
+      opacity $anim-scroll-duration $anim-ease,
+      translate $anim-scroll-duration $anim-ease,
+      transform $anim-hover-duration ease,
+      box-shadow $anim-hover-duration ease;
+  }
+}
+
+[data-animate='up'] {
+  translate: 0 $anim-distance-y; // ← Nouvelle syntaxe CSS
+}
+
+[data-animate='down'] {
+  translate: 0 (-$anim-distance-y);
+}
+
+[data-animate='left'] {
+  translate: $anim-distance-x 0;
+}
+
+[data-animate='right'] {
+  translate: (-$anim-distance-x) 0;
+}
+
+// Plus de flexibilité avec data-animate-mobile
+@media screen and (max-width: $mobile-breakpoint) {
+  [data-animate-mobile='left'] {
+    translate: $anim-distance-x 0;
+  }
+
+  [data-animate-mobile='right'] {
+    translate: (-$anim-distance-x) 0;
+  }
+
+  [data-animate-mobile='up'] {
+    translate: 0 $anim-distance-y;
+  }
+}
+
+// État visible
+.is-visible {
+  opacity: $anim-opacity-end;
+  translate: 0 0;
+}
+
+// Accessibilité
+@media (prefers-reduced-motion: reduce) {
+  [data-animate] {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
+
 @keyframes spin-once {
   0% {
     transform: rotateZ(0deg);

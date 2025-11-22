@@ -92,6 +92,7 @@ import RailSVG from './RailSVG.astro';
             target="_blank"
             href="https://www.google.com/maps/dir/?api=1&destination=50.6782703,2.0338343"
             class="info-card info-card-clickable address-info-card"
+            data-animate="right"
           >
             <div class="card-link unic-link">
               <div
@@ -114,7 +115,7 @@ import RailSVG from './RailSVG.astro';
             </div>
           </a>
           <!-- Card 1 : Infos spécifiques -->
-          <div class="info-card">
+          <div class="info-card" data-animate="up" data-animate-mobile='left'>
             <p class="card-title">Besoin d'infos ?</p>
             <div class="infos-wrapper">
               <a href="/activites" class="card-link">
@@ -145,7 +146,12 @@ import RailSVG from './RailSVG.astro';
           </div>
 
           <!-- Card 2 : Groupes -->
-          <a href="/groupes" class="info-card info-card-clickable">
+          <a
+            href="/groupes"
+            class="info-card info-card-clickable"
+            data-animate="left"
+            data-animate-mobile='right'
+          >
             <div
               class="info-icon"
               style={{
@@ -226,3 +232,9 @@ import RailSVG from './RailSVG.astro';
 
   <HighlightOnHash client:load />
 </div>
+<script>
+  import { initScrollAnimations } from '../utils/scroll-animation';
+
+  // Trigger quand 20% de l'élément est visible, stagger de 150ms
+  initScrollAnimations(0.2, 1150);
+</script>
