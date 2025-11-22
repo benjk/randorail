@@ -4,7 +4,7 @@
 @use './animations' as *;
 
 $video-section-overlay-height: 85vh;
-$video-section-overlay-height-mobile: 95vh;
+$video-section-overlay-height-mobile: 80vh;
 $rail-stroke-length: 3000;
 
 // DEBUG TRIX
@@ -306,7 +306,7 @@ html {
             }
 
             .section-wrapper {
-              width: 60%;
+              width: 74%;
               min-width: 58rem;
               max-width: 100%;
               @include flex-box($margin-m);
@@ -352,20 +352,39 @@ html {
                 padding-top: $margin-s;
 
                 .cards-row {
-                  @include flex-row($margin-l);
+                  @include flex-row($margin-s);
                   width: 100%;
                   align-items: stretch;
 
                   .info-card {
                     @include flex-box($margin-s);
                     height: auto;
-                    background: $color-bg-stronger;
-                    padding: $margin-l $margin-m;
+                    // background: $color-bg-stronger;
+                    background: $color3;
+                    padding: $margin-m $margin-m;
                     border-radius: $card-radius;
                     box-shadow: $cards-shadow;
                     color: $color1;
                     flex: 1;
                     text-decoration: none;
+
+                    
+                    @media screen and (min-width: $mobile-breakpoint-s) {
+                      $strong-radius: 25px;
+                      $light-radius: $card-radius;
+
+                      &:nth-child(1) {
+                        border-radius: $strong-radius $light-radius 0 0;
+                      }
+
+                      &:nth-child(2) {
+                        border-radius: $light-radius $light-radius 0 0;
+                      }
+
+                      &:nth-child(3) {
+                        border-radius: $light-radius $strong-radius 0 0;
+                      }
+                    }
 
                     .card-title {
                       font-family: $title-font;
@@ -450,7 +469,29 @@ html {
                     }
                   }
 
-                  @media screen and (max-width: $mobile-breakpoint) {
+                  @media screen and (max-width: $mobile-breakpoint) and (min-width: $mobile-breakpoint-s) {
+                    // flex-direction: column;
+                    flex-wrap: wrap;
+                    gap: $margin-m;
+                    .info-card {
+                      min-width: 40%;
+                      &:nth-child(2) {
+                        order: 2;
+
+                        .infos-wrapper {
+                          flex-direction: row;
+                          align-items: center;
+                          gap: $margin-l;
+
+                          .card-link {
+                            gap: $margin-xs;
+                          }
+                        }
+                      }
+                    }
+                  }
+
+                  @media screen and (max-width: $mobile-breakpoint-s) {
                     flex-direction: column;
                     gap: $margin-m;
                     .info-card {
@@ -487,10 +528,12 @@ html {
 
           .section3 {
             // TOTEST
-            $bg-color-3: $color3;
+            $bg-color-3: $color-bg-stronger;
             $text-color-3: $color1;
             width: 100%;
-            background-color: $bg-color-3;
+            background-color: $color1;
+            background-color: $color3;
+            background: $bg-color-3;
             z-index: 12;
             border-top: $border-section-separation;
             border-bottom: $border-section-separation;
@@ -513,10 +556,11 @@ html {
                 min-width: 0;
 
                 .counter-number {
-                  font-size: $title1-font-size;
+                  font-size: calc($title1-font-size * 0.8);
                   font-family: $home-font;
                   color: $text-color-3;
                   text-align: center;
+                  text-shadow: $light-shadow;
                 }
 
                 .counter-label {
