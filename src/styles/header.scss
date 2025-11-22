@@ -12,7 +12,7 @@ $shadow-menu:
 
 $header-text-color: $color1;
 $submenu-text-color: $color1;
-$header-bg-color: $color-bg-stronger;
+$submenu-bg-color: $color3;
 $header-bg-color: $color-bg-stronger;
 
 /* === Header === */
@@ -24,6 +24,23 @@ $header-bg-color: $color-bg-stronger;
   width: 100%;
   height: $header-height;
   background: $header-bg-color;
+  opacity: 1;
+  will-change: transform, opacity;
+  $transi-delay: 0.4s;
+  transition:
+    transform $transi-delay cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity,
+    background $transi-delay ease-in-out;
+
+  &.header-hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  &.header-repop {
+    border-bottom: 1px solid $color2;
+    background: $color3;
+  }
 
   .navbar {
     display: flex;
@@ -76,6 +93,7 @@ $header-bg-color: $color-bg-stronger;
         color: $header-text-color;
         position: relative;
         cursor: pointer;
+        text-shadow: $light-shadow;
 
         &::after {
           content: '';
@@ -102,7 +120,7 @@ $header-bg-color: $color-bg-stronger;
           top: 100%;
           left: 0;
           min-width: 200px;
-          background: $header-bg-color;
+          background: $submenu-bg-color;
           box-shadow: $shadow-menu;
           opacity: 0;
           visibility: hidden;
@@ -199,7 +217,7 @@ $header-bg-color: $color-bg-stronger;
   .mobile-menu-container {
     display: none;
     box-shadow: $shadow-menu;
-    background: $color-bg-stronger;
+    background-color: $submenu-bg-color;
     position: absolute;
     top: $header-height;
     left: 0;
@@ -257,6 +275,7 @@ $header-bg-color: $color-bg-stronger;
           width: 100%;
           text-align: left;
           cursor: pointer;
+          text-shadow: $light-shadow;
         }
 
         /* Submenu Mobile */
