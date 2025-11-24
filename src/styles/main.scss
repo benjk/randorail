@@ -5,7 +5,6 @@
 
 $video-section-overlay-height: 85vh;
 $video-section-overlay-height-mobile: 80vh;
-$rail-stroke-length: 3000;
 
 // DEBUG TRIX
 // * {
@@ -171,17 +170,20 @@ html {
             }
 
             .rail-wrapper {
+              $rail1-length: 1207.43;
+              $rail2-length: 1181.34;
+
               position: absolute;
-              width: 60%;
-              height: 150vh; // Plus grand que la section pour qu'il disparaisse en bas
-              left: 22%;
-              top: 35%;
-              overflow: hidden;
+              width: 40%;
+              left: 33%;
+              top: 37%;
               pointer-events: none;
               z-index: 1; // Derrière le contenu
 
-              @media screen and (max-width: $mobile-breakpoint) {
-                height: 200vh;
+              @media screen and (max-width: $mobile-breakpoint-s) {
+                width: 100%;
+                left: 2%;
+                top: 20%;
               }
 
               .rail-svg {
@@ -190,53 +192,46 @@ html {
                 display: block;
                 color: $color2;
 
-                .rail-group {
-                  // Le groupe entier est invisible au départ
-                  opacity: 1;
+                .rail-path,
+                .rail-sleepers {
+                  fill: none;
+                  stroke: $color2;
+                  // IMPORTANT : au départ, le trait est COMPLÈTEMENT caché
+                  // stroke-dasharray: $rail-stroke-length;
+                  // stroke-dashoffset: $rail-stroke-length;
+                  // Animation : le trait se dessine de 0 à visible
                 }
 
                 .rail-path {
-                  fill: none;
-                  stroke: $color2;
-                  stroke-width: 6;
-                  stroke-linecap: round;
-                  stroke-linejoin: round;
-                  // IMPORTANT : au départ, le trait est COMPLÈTEMENT caché
-                  stroke-dasharray: $rail-stroke-length;
-                  stroke-dashoffset: $rail-stroke-length;
-                  // Animation : le trait se dessine de 0 à visible
-                  animation: drawRail 2s ease-in-out 0.5s forwards;
+                  animation: drawRailWeb 2s ease-out forwards;
+                  animation-delay: 0.6s;
 
                   @media screen and (max-width: $mobile-breakpoint) {
-                    stroke-width: 5;
+                    animation: drawRail 3s ease-out forwards;
                   }
 
-                  &.rail-left {
-                    animation-delay: 0.5s;
+                  &:nth-of-type(1) {
+                    stroke-dasharray: $rail1-length;
+                    stroke-dashoffset: $rail1-length;
                   }
 
-                  &.rail-right {
-                    animation-delay: 0.6s; // Léger décalage pour l'effet
+                  &:nth-of-type(2) {
+                    stroke-dasharray: $rail2-length;
+                    stroke-dashoffset: $rail2-length;
                   }
                 }
 
-                .rail-sleepers {
-                  fill: none;
-                  stroke-linecap: butt;
-                  // Les traverses apparaissent APRÈS que le rail soit dessiné
-                  opacity: 0;
-                  animation: fadeInSleepers 0.4s ease-out 2s forwards;
+                @keyframes drawRail {
+                  to {
+                    stroke-dashoffset: 0;
+                  }
                 }
-              }
-            }
 
-            // Animation : le rail SE DESSINE (de stroke-dashoffset: 3000 à 0)
-            @keyframes drawRail {
-              from {
-                stroke-dashoffset: $rail-stroke-length;
-              }
-              to {
-                stroke-dashoffset: 0;
+                @keyframes drawRailWeb {
+                  to {
+                    stroke-dashoffset: calc($rail1-length * 0.3);
+                  }
+                }
               }
             }
 
@@ -288,6 +283,7 @@ html {
           }
 
           .section2 {
+            // visibility: hidden;
             @include slanted-border();
             z-index: 15;
             width: 100%;
