@@ -211,7 +211,7 @@ html {
 
                   @keyframes drawRailWeb {
                     to {
-                      stroke-dashoffset: calc($rail1-length * 0.3);
+                      stroke-dashoffset: calc($rail1-length * 0);
                     }
                   }
                 }
