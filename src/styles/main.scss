@@ -55,64 +55,6 @@ html {
           height: auto;
           padding-top: 0;
 
-          .announcement-section {
-            width: 100%;
-            padding: $margin-l calc($margin-xl * 2);
-            position: relative;
-            z-index: 102;
-
-            .announcement-wrapper {
-              background-size: cover;
-              background-position: center;
-              background-repeat: no-repeat;
-              height: $annonce-height;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              text-align: center;
-              padding: $margin-l;
-              position: relative;
-              border-radius: 20px;
-
-              &::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                background: rgba(black, 0.75);
-                border-radius: 20px;
-              }
-
-              .announcement-content {
-                position: relative;
-                z-index: 1;
-                color: $color2;
-                font-family: $text-font;
-
-                .announcement-title {
-                  font-size: calc($title2-font-size);
-                  text-transform: uppercase;
-                  margin-bottom: $margin-s;
-                  color: $color3;
-                }
-
-                .announcement-text {
-                  font-size: calc($text-font-size * 1.1);
-                  color: $color3;
-                }
-              }
-            }
-
-            @media screen and (max-width: $mobile-breakpoint) {
-              padding: $margin-l $margin-m;
-
-              .announcement-section {
-                .announcement-wrapper {
-                  background-position: center;
-                }
-              }
-            }
-          }
-
           .video-wrapper {
             position: absolute;
             width: 100%;
@@ -169,73 +111,8 @@ html {
               padding-bottom: calc($margin-xl * 1.5);
             }
 
-            .rail-wrapper {
-              $rail1-length: 1207.43;
-              $rail2-length: 1181.34;
-
-              position: absolute;
-              width: 40%;
-              left: 33%;
-              top: 37%;
-              pointer-events: none;
-              z-index: 1; // Derrière le contenu
-
-              @media screen and (max-width: $mobile-breakpoint-s) {
-                width: 100%;
-                left: 2%;
-                top: 20%;
-              }
-
-              .rail-svg {
-                width: 100%;
-                height: 100%;
-                display: block;
-                color: $color2;
-
-                .rail-path,
-                .rail-sleepers {
-                  fill: none;
-                  stroke: $color2;
-                  // IMPORTANT : au départ, le trait est COMPLÈTEMENT caché
-                  // stroke-dasharray: $rail-stroke-length;
-                  // stroke-dashoffset: $rail-stroke-length;
-                  // Animation : le trait se dessine de 0 à visible
-                }
-
-                .rail-path {
-                  animation: drawRailWeb 2s ease-out forwards;
-                  animation-delay: 0.6s;
-
-                  @media screen and (max-width: $mobile-breakpoint) {
-                    animation: drawRail 3s ease-out forwards;
-                  }
-
-                  &:nth-of-type(1) {
-                    stroke-dasharray: $rail1-length;
-                    stroke-dashoffset: $rail1-length;
-                  }
-
-                  &:nth-of-type(2) {
-                    stroke-dasharray: $rail2-length;
-                    stroke-dashoffset: $rail2-length;
-                  }
-                }
-
-                @keyframes drawRail {
-                  to {
-                    stroke-dashoffset: 0;
-                  }
-                }
-
-                @keyframes drawRailWeb {
-                  to {
-                    stroke-dashoffset: calc($rail1-length * 0.3);
-                  }
-                }
-              }
-            }
-
             .title-container {
+              position: relative;
               margin-top: $margin-xl;
               margin-bottom: $margin-xl;
               @media screen and (max-width: $mobile-breakpoint) {
@@ -253,6 +130,90 @@ html {
 
                 &.main-content {
                   font-size: calc($title1-font-size * 1.2);
+                }
+              }
+
+              .rail-wrapper {
+                $rail1-length: 1207.43;
+                $rail2-length: 1181.34;
+                $sleepers-dash: 8 12;
+                $animation-duration: 2s;
+                $animation-duration-mobile: 3.5s;
+                $animation-rail-delay: 0.8s;
+                $animation-sleepers-delay: calc($animation-rail-delay * 1.02);
+
+                position: absolute;
+                width: 62%;
+                left: 20%;
+                top: 110%;
+                pointer-events: none;
+                z-index: 1; // Derrière le contenu
+                
+                @media screen and (max-width: $mobile-breakpoint-s) {
+                  width: 90%;
+                  left: $margin-s;
+
+                }
+
+                .rail-svg {
+                  width: 100%;
+                  height: 100%;
+                  display: block;
+                  color: $color2;
+
+                  .rail-path,
+                  .rail-sleepers {
+                    fill: none;
+                    stroke: $color2;
+                  }
+
+                  .rail-path {
+                    animation: drawRailWeb $animation-duration ease-out forwards;
+                    animation-delay: $animation-rail-delay !important;
+
+                    @media screen and (max-width: $mobile-breakpoint) {
+                      animation: drawRail $animation-duration-mobile ease-out
+                        forwards;
+                    }
+
+                    &:nth-of-type(1) {
+                      stroke-dasharray: $rail1-length;
+                      stroke-dashoffset: $rail1-length;
+                    }
+
+                    &:nth-of-type(2) {
+                      stroke-dasharray: $rail2-length;
+                      stroke-dashoffset: $rail2-length;
+                    }
+                  }
+
+                  .rail-sleepers {
+                    stroke-dasharray: $sleepers-dash;
+                  }
+
+                  .reveal-mask-path {
+                    stroke-dasharray: $rail1-length;
+                    stroke-dashoffset: $rail1-length;
+                    animation: drawRailWeb $animation-duration ease-out forwards;
+                    animation-delay: $animation-sleepers-delay !important;
+
+                    @media screen and (max-width: $mobile-breakpoint) {
+                      animation: drawRail $animation-duration-mobile ease-out
+                        forwards;
+                    }
+                  }
+
+                  @keyframes drawRail {
+                    to {
+                      stroke-dashoffset: 0;
+                    }
+                  }
+
+                  @keyframes drawRailWeb {
+                    to {
+                      stroke-dashoffset: calc($rail1-length * 0.3);
+                    }
+                  }
                 }
               }
             }
