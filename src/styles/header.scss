@@ -276,6 +276,14 @@ $header-bg-color: $color-bg-stronger;
           text-align: left;
           cursor: pointer;
           text-shadow: $light-shadow;
+          transition:
+            background-color,
+            color 0.2s ease;
+
+          &:hover {
+            color: $submenu-bg-color;
+            background-color: $submenu-text-color;
+          }
         }
 
         /* Submenu Mobile */
@@ -295,6 +303,10 @@ $header-bg-color: $color-bg-stronger;
             transform: rotate(90deg);
           }
 
+          &.open .submenu {
+            max-height: 100dvh !important;
+          }
+
           .submenu {
             max-height: 0;
             overflow: hidden;
@@ -309,12 +321,19 @@ $header-bg-color: $color-bg-stronger;
 
               .submenu-link {
                 display: block;
-                padding: 1rem 2rem 1rem 3rem;
+                padding: $margin-s $margin-m $margin-s $margin-xl;
                 color: $submenu-text-color;
                 text-decoration: none;
                 font-size: 1.1rem;
-                transition: background-color 0.2s ease;
+                transition:
+                  background-color,
+                  color 0.2s ease;
                 font-family: $title-font;
+
+                &:hover {
+                  color: $submenu-bg-color;
+                  background-color: $submenu-text-color;
+                }
               }
             }
           }

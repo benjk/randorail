@@ -299,28 +299,25 @@ const menuItems = rawMenu.filter((item) => {
       );
       mobileSubmenus.forEach((toggle) => {
         toggle.addEventListener('click', (e) => {
-          // Si c'est un lien <a>, on laisse le comportement par défaut (navigation)
-          if (toggle.tagName === 'A') {
-            return;
-          }
-
-          e.preventDefault();
-          const parent = toggle.closest('li');
+          const parent = toggle.closest('li.has-submenu');
           if (!parent) return;
 
           const isOpen = parent.classList.contains('open');
 
-          // Fermer tous les autres sous-menus
-          document
-            .querySelectorAll('.mobile-menu-container li.has-submenu')
-            .forEach((item) => {
-              if (item !== parent) {
-                item.classList.remove('open');
-              }
-            });
-
-          // Toggle le sous-menu actuel
-          parent.classList.toggle('open', !isOpen);
+          if (!isOpen) {
+            // menu fermé → on ouvre et on ferme les autres
+            e.preventDefault();
+            parent.classList.add('open');
+            document
+              .querySelectorAll('.mobile-menu-container li.has-submenu')
+              .forEach((item) => {
+                if (item !== parent) item.classList.remove('open');
+              });
+          } else {
+            // menu déjà ouvert → clic sur le lien = navigation
+            // ne pas preventDefault
+            return;
+          }
         });
       });
     }
