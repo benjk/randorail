@@ -1,6 +1,6 @@
 ---
 import content from '../data/content.json';
-import { VIDEO_HERO_URL } from '../config';
+import { VIDEO_HERO_URL, GOOGLE_MAP_URL } from '../config';
 import HighlightOnHash from './Highlight';
 import { imageWithHash } from '../admin/components/images/imageWithHash';
 import { blocRules } from '../admin/data/blocRules';
@@ -90,7 +90,7 @@ import RailSVG from './RailSVG.astro';
           <!-- Card 3 : Itinéraire -->
           <a
             target="_blank"
-            href="https://www.google.com/maps/dir/?api=1&destination=le+rando-rail+et+Trotti-trail+du+Pays+de+LUMBRES"
+            href={GOOGLE_MAP_URL}
             class="info-card info-card-clickable address-info-card"
             data-animate="right"
             data-animate-group="cards-section-2"

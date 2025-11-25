@@ -2,6 +2,8 @@
 import content from '../data/content.json';
 import '../styles/header.scss';
 import type { MenuItem, PagesMap } from '../admin/components/nav/menu.types';
+import { GOOGLE_MAP_URL } from '../config';
+
 
 const pages: PagesMap = content.pages;
 const rawMenu = content.menu as MenuItem[];
@@ -101,6 +103,15 @@ const menuItems = rawMenu.filter((item) => {
           ),
         )
       }
+      <!-- Bouton Itinéraire en dur -->
+      <a
+        target="_blank"
+        href={GOOGLE_MAP_URL}
+        class="menu-link menu-link-itinerary"
+      >
+        <span>Itinéraire</span>
+      </a>
+    </div>
     </div>
 
     <button class="burger" id="burger-btn" aria-label="Toggle menu">
@@ -193,6 +204,15 @@ const menuItems = rawMenu.filter((item) => {
           </li>
         ))
       }
+      <li>
+        <a
+          target="_blank"
+          href={GOOGLE_MAP_URL}
+          class="menu-link menu-link-itinerary"
+        >
+          <span>Itinéraire</span>
+        </a>
+      </li>
     </ul>
   </div>
 

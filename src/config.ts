@@ -22,3 +22,4 @@ export const VIDEO_PUBLIC_FOLDER = "/vid/";
 
 // VIDEO CDN
 export const VIDEO_HERO_URL = "https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/hero-video.webm";
+export const GOOGLE_MAP_URL = "https://www.google.com/maps/dir/?api=1&destination=le+rando-rail+et+Trotti-trail+du+Pays+de+LUMBRES";
