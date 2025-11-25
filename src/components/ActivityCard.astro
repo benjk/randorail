@@ -10,6 +10,13 @@ interface Props {
 // Déstructuration des props
 const { bgImage, icon, title, slug } = Astro.props;
 import '../styles/activity_card.scss';
+
+const iconsNeedingAdjust = [
+  '/img/icons/picto-carte.svg',
+  '/img/icons/picto-bivouac.svg',
+  '/img/icons/picto-filet.svg',
+];
+const iconNeedAdjust = iconsNeedingAdjust.includes(icon);
 ---
 
 <a href={`/${slug}`} class="activity-card">
@@ -22,7 +29,7 @@ import '../styles/activity_card.scss';
   />
   <div class="activity-card-content">
     <div
-      class="activity-card-icon"
+      class={`activity-card-icon ${iconNeedAdjust ? 'adjust-bot' : ''}`}
       style={`mask: url('${icon}') no-repeat center / contain; -webkit-mask: url('${icon}') no-repeat center / contain;`}
     >
     </div>
