@@ -157,10 +157,9 @@
         @media screen and (max-width: $mobile-breakpoint-s) {
           margin-bottom: 0;
           align-self: center;
-        }
-
-        &.adjust-bot {
-          margin-bottom: calc($margin-xs * -1);
+          &.adjust-bot {
+            margin-bottom: calc($margin-xs * -1);
+          }
         }
       }
 
