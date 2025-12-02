@@ -1,0 +1,159 @@
+---
+import { VIDEO_CONFIG } from '../config';
+import './video.scss';
+
+/**
+ * ⚠️ IMPORTANT PRELOAD
+ * Ajoute dans le <head> de ton layout principal :
+ * <link rel="preload" as="image" href={posterUrl} type="image/webp">
+ */
+
+interface Props {
+  /** URL de la vidéo desktop WebM */
+  desktopWebm?: string;
+
+  /** URL de la vidéo desktop MP4 (fallback Safari) */
+  desktopMp4?: string;
+
+  /** URL de la vidéo mobile WebM */
+  mobileWebm?: string;
+
+  /** URL de la vidéo mobile MP4 (fallback Safari mobile) */
+  mobileMp4?: string;
+
+  /** URL du poster haute qualité (WebP) */
+  posterUrl?: string;
+
+  /** Base64 du poster blur (LQIP) */
+  posterBlurBase64?: string;
+
+  /** Breakpoint pour passer en version mobile (défaut: 768px) */
+  mobileBreakpoint?: number;
+
+  /** URL de secours (YouTube/Cloudflare) si vidéo fail */
+  fallbackUrl?: string;
+
+  /** Timeout en ms avant de garder le poster si vidéo pas prête (défaut: 5000) */
+  timeout?: number;
+}
+
+const config = { ...VIDEO_CONFIG, ...Astro.props };
+---
+
+<!-- Blur placeholder -->
+<div
+  class="video-blur"
+  style={`background-image: url(${config.posterBlurBase64})`}
+  aria-hidden="true"
+>
+</div>
+
+<!-- Poster HD -->
+<img
+  src={config.posterUrl}
+  alt="Hero background"
+  class="video-poster"
+  loading="eager"
+/>
+
+<!-- Vidéo -->
+<video
+  autoplay
+  muted
+  loop
+  playsinline
+  webkit-playsinline
+  class="video-bg"
+  poster={config.posterUrl}
+  preload="metadata"
+  data-fallback-url={config.fallbackUrl}
+  data-timeout={config.timeout}
+>
+  <source
+    src={config.mobileWebm}
+    type="video/webm"
+    media={`(max-width: ${config.mobileBreakpoint}px)`}
+  />
+  <source
+    src={config.mobileMp4}
+    type="video/mp4"
+    media={`(max-width: ${config.mobileBreakpoint}px)`}
+  />
+  <source src={config.desktopWebm} type="video/webm" />
+  <source src={config.desktopMp4} type="video/mp4" />
+</video>
+
+<script>
+  function initVideoHero() {
+    const video = document.querySelector('.video-bg') as HTMLVideoElement;
+    const posterHD = document.querySelector(
+      '.video-poster',
+    ) as HTMLImageElement;
+    const posterBlur = document.querySelector('.video-blur') as HTMLElement;
+
+    const timeout = parseInt(video.dataset.timeout || '5000');
+    const fallbackUrl = video.dataset.fallbackUrl;
+    let fallbackTriggered = false;
+
+    // Save Data → fallback direct
+    const connection =
+      // @ts-ignore
+      navigator.connection ||
+      // @ts-ignore
+      navigator.mozConnection ||
+      // @ts-ignore
+      navigator.webkitConnection;
+    if (connection?.saveData) return handleFallback();
+
+    // Si apres le timeOut pas de video -> poster
+    const timer = window.setTimeout(() => {
+      if (!fallbackTriggered && video.readyState < 3) {
+        console.warn('⏱️ Timeout vidéo → fallback poster');
+        handleFallback();
+      }
+    }, timeout);
+
+    video.addEventListener(
+      'canplay',
+      () => {
+        if (fallbackTriggered) return;
+        clearTimeout(timer);
+        video
+          .play()
+          .then(() => {
+            posterBlur?.remove();
+            window.dispatchEvent(new CustomEvent('video-hero:ready'));
+          })
+          .catch(handleFallback);
+      },
+      { once: true },
+    );
+
+    // Erreur vidéo
+    video.addEventListener('error', handleFallback, { once: true });
+
+    function handleFallback() {
+      if (fallbackTriggered) return;
+      fallbackTriggered = true;
+      clearTimeout(timer);
+      video.remove();
+      posterHD.classList.add('loaded'); // visible uniquement en fallback
+      posterBlur?.remove();
+      window.dispatchEvent(
+        new CustomEvent('video-hero:error', { detail: { fallbackUrl } }),
+      );
+    }
+
+    // Toggle play/pause
+    window.addEventListener('video-hero:toggle', () => {
+      if (video.paused) video.play();
+      else video.pause();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initVideoHero);
+  } else {
+    initVideoHero();
+  }
+</script>

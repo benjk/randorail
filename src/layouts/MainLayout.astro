@@ -8,7 +8,6 @@ const {
   withSeo = true,
 } = Astro.props;
 
-const isHome = Astro.url.pathname === '/';
 ---
 
 <BaseLayout {title} {withSeo}>
@@ -20,39 +19,39 @@ const isHome = Astro.url.pathname === '/';
 </BaseLayout>
 <script is:inline>
   // Evite les effets de FOUC (Flash of Unstyled Content)
-  document.addEventListener('DOMContentLoaded', function() {
-    const images = document.querySelectorAll('img');
-    let loadedImages = 0;
-    const contentContainers = document.querySelectorAll('.content-container');
+  // document.addEventListener('DOMContentLoaded', function() {
+  //   const images = document.querySelectorAll('img');
+  //   let loadedImages = 0;
+  //   const contentContainers = document.querySelectorAll('.content-container');
 
-    if (images.length === 0) {
-      // S'il n'y a pas d'images, afficher immédiatement les conteneurs
-      contentContainers.forEach(container => {
-        container.style.opacity = '1';
-      });
-    } else {
-      // Sinon, attendre que toutes les images soient chargées
-      images.forEach(img => {
-        if (img.complete) {
-          loadedImages++;
-        } else {
-          img.addEventListener('load', () => {
-            loadedImages++;
-            if (loadedImages === images.length) {
-              contentContainers.forEach(container => {
-                container.style.opacity = '1';
-              });
-            }
-          });
-        }
-      });
+  //   if (images.length === 0) {
+  //     // S'il n'y a pas d'images, afficher immédiatement les conteneurs
+  //     contentContainers.forEach(container => {
+  //       container.style.opacity = '1';
+  //     });
+  //   } else {
+  //     // Sinon, attendre que toutes les images soient chargées
+  //     images.forEach(img => {
+  //       if (img.complete) {
+  //         loadedImages++;
+  //       } else {
+  //         img.addEventListener('load', () => {
+  //           loadedImages++;
+  //           if (loadedImages === images.length) {
+  //             contentContainers.forEach(container => {
+  //               container.style.opacity = '1';
+  //             });
+  //           }
+  //         });
+  //       }
+  //     });
 
-      // Vérifier si toutes les images sont déjà chargées
-      if (loadedImages === images.length) {
-        contentContainers.forEach(container => {
-          container.style.opacity = '1';
-        });
-      }
-    }
-  });
+  //     // Vérifier si toutes les images sont déjà chargées
+  //     if (loadedImages === images.length) {
+  //       contentContainers.forEach(container => {
+  //         container.style.opacity = '1';
+  //       });
+  //     }
+  //   }
+  // });
 </script>

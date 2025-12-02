@@ -1,11 +1,12 @@
 ---
 import content from '../data/content.json';
-import { VIDEO_HERO_URL, GOOGLE_MAP_URL } from '../config';
+import { GOOGLE_MAP_URL } from '../config';
 import HighlightOnHash from './Highlight';
 import { imageWithHash } from '../admin/components/images/imageWithHash';
 import { blocRules } from '../admin/data/blocRules';
 import CardsGrid from './CardsGrid.astro';
 import RailSVG from './RailSVG.astro';
+import VideoHero from '../video/VideoHero.astro';
 ---
 
 <div id="home-container" class="content-container">
@@ -50,16 +51,7 @@ import RailSVG from './RailSVG.astro';
   <!-- SECTION VIDEO (fond) -->
   <section class="video-wrapper">
     <div class="video-section">
-      <video
-        autoplay
-        muted
-        loop
-        playsinline
-        webkit-playsinline
-        class="video-bg"
-      >
-        <source src={`${VIDEO_HERO_URL}`} type="video/webm" />
-      </video>
+      <VideoHero />
     </div>
   </section>
 
@@ -224,7 +216,7 @@ import RailSVG from './RailSVG.astro';
   <!-- SECTION 3 : VIDEO OVERLAY -->
   <section class="video-section-overlay">
     <img
-      class="video-icon"
+      class="video-icon video-control-btn"
       src="/img/icons/icon-video.svg"
       alt="Le Randorail en images"
     />
@@ -266,7 +258,10 @@ import RailSVG from './RailSVG.astro';
 </div>
 <script>
   import { initScrollAnimations } from '../utils/scroll-animation';
+  import { initVideoFunction } from '../video/video-script';
 
   // Trigger quand 20% de l'élément est visible, stagger de 150ms
   initScrollAnimations(0.2);
+
+  initVideoFunction();
 </script>

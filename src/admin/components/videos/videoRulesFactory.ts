@@ -1,4 +1,3 @@
-import { VIDEO_PUBLIC_FOLDER } from '../../../config';
 import { BaseRule, LinkTo } from '../commons/BaseRule';
 
 export type VideoFormat = 'landscape' | 'portrait' | 'square';
@@ -35,7 +34,7 @@ const defaultVideoRuleOptions: Required<Omit<VideoRuleOptions, 'linkTo'>> & {
   ],
   shouldConvert: true,
   targetFormat: 'webm', // plus léger et optimisé web
-  folder: VIDEO_PUBLIC_FOLDER,
+  folder: '/',
   isUnic: true,
   extraInfo: 'Vidéo utilisée sur le site',
   rank: 0,
