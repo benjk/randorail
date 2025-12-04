@@ -22,10 +22,10 @@ export function initVideoFunction(): void {
   let fallbackTriggered = false;
   let stallCount = 0;
   let stallTimer: number | null = null;
-  let startTimeout: number | null = null; // ⚡ DÉCLARÉ ICI EN HAUT
+  let startTimeout: number | null = null;
 
   const MAX_STALLS = 3;
-  const LONG_STALL_MS = 1000;
+  const LONG_STALL_MS = 9000;
 
   // AbortController pour cleanup propre
   const ac = new AbortController();
