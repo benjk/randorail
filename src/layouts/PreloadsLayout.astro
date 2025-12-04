@@ -1,5 +1,5 @@
 ---
-import { VIDEO_CONFIG, VIDEO_HERO_URL } from '../config';
+import { VIDEO_CONFIG } from '../config';
 
 const {
   homePreload = false,
@@ -10,6 +10,10 @@ const {
   }
 } = Astro.props;
 ---
+
+<!-- PRECONNECT CDN -->
+<link rel="dns-prefetch" href={VIDEO_CONFIG.globalCdnUrl} />
+<link rel="preconnect" href={VIDEO_CONFIG.globalCdnUrl} crossorigin />
 
 <!-- Font Lobster -->
 <link

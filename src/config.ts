@@ -28,6 +28,7 @@ export const GOOGLE_MAP_URL =
 export const VIDEO_HERO_URL =
   'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/hero-video.webm';
 export const VIDEO_CONFIG = {
+  globalCdnUrl: 'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev',
   // desktopWebm: 'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/video-desktop.webm',
   desktopWebm: 'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/hero-video.webm',
   desktopMp4: 'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/video-desktop.mp4',
