@@ -203,7 +203,7 @@ export function initVideoFunction(): void {
       .then(() => {
         console.log('✅ Video playing!');
         posterBlur?.remove();
-        posterHD.style.display = 'none';
+        posterHD.classList.add('inactive');
         if (btn) {
           btn.style.opacity = '1';
           btn.classList.add('ready', 'playing');
@@ -230,6 +230,8 @@ export function initVideoFunction(): void {
     video.pause();
     video.remove();
     posterHD.classList.add('loaded');
+    posterHD.classList.remove('inactive');
+
     posterBlur?.remove();
 
     if (btn) {
