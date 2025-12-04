@@ -4,7 +4,7 @@ import AdminLayout from "../admin/components/AdminLayout.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Administration du site" withSeo={false}>
+<BaseLayout title="Administration du site" withSeo={false} commonPreloads={false}>
     <AdminLayout>
         <AdminApp client:only="react" />
     </AdminLayout>

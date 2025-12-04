@@ -33,10 +33,10 @@ export const VIDEO_CONFIG = {
   desktopMp4: 'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/video-desktop.mp4',
   mobileWebm: 'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/video-mobile.webm',
   mobileMp4: 'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/video-mobile.mp4',
-  posterUrl: `${IMG_PUBLIC_FOLDER}video-poster.webp`,
+  posterUrl: `https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/video-poster.webp`,
   posterBlurBase64:
     'data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAALAAtAAD//gAQTGF2YzYxLjMzLjEwMgD/2wBDAAgUFBcUFxsbGxsbGyAeICEhISAgICAhISEkJCQqKiokJCQhISQkKCgqKi4vLisrKisvLzIyMjw8OTlGRkhWVmf/xABlAAACAwEAAAAAAAAAAAAAAAADBQQAAgYBAQEBAAAAAAAAAAAAAAAAAAIBBBAAAQIDBwUBAAAAAAAAAAAAAREAkQMCYVEhMtESBKHBghRxUhEBAQEAAAAAAAAAAAAAAAAAAAER/8AAEQgACwAUAwEiAAIRAAMRAP/aAAwDAQACEQMRAD8A44Vzzia5h8z3KtoeTNwJFRQIpNRJAt3OIDu3E3p0sYZ2QfXj20GKuQFzVx1UsfsD9TIjRrIu43mJaV//2Q==',
   fallbackUrl: 'https://youtu.be/xxx',
-  timeout: 50000, // Timer après lequel on abandonne la vidéo et on laisse le poster
+  timeout: 50000,
   mobileBreakpoint: 768,
 } as const;

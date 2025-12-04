@@ -2,15 +2,18 @@
 import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import {SITE_TITLE} from "../config";
+import { SITE_TITLE } from '../config';
+import PreloadsLayout from './PreloadsLayout.astro';
 const {
   title = SITE_TITLE,
   withSeo = true,
+  commonPreloads = true,
+  homePreload = false,
 } = Astro.props;
-
 ---
 
 <BaseLayout {title} {withSeo}>
+  {commonPreloads && <PreloadsLayout slot="head-preloads" {homePreload} />}
   <main id="main-container">
     <Header />
     <slot />

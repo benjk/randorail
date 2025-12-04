@@ -1,0 +1,54 @@
+---
+import { VIDEO_CONFIG, VIDEO_HERO_URL } from '../config';
+
+const {
+  homePreload = false,
+  priorities = {
+    lobster: 'high',
+    patua: null,
+    logo: 'high',
+  }
+} = Astro.props;
+---
+
+<!-- Font Lobster -->
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/Lobster.woff2"
+  crossorigin
+  fetchpriority={priorities.lobster || undefined}
+/>
+
+<!-- Font Patua -->
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/PatuaOne.woff2"
+  crossorigin
+  fetchpriority={priorities.patua || undefined}
+/>
+
+<!-- Logo -->
+<link
+  rel="preload"
+  as="image"
+  href="/img/static/header_logo.webp"
+  fetchpriority={priorities.logo || undefined}
+/>
+
+<!-- PRELOADS HOME (vidéo) -->
+{homePreload && (
+  <>
+    {priorities.poster && (
+      <link
+        rel="preload"
+        as="image"
+        href={VIDEO_CONFIG.posterUrl}
+        fetchpriority={priorities.poster}
+      />
+    )}
+  </>
+)}

@@ -1,5 +1,8 @@
 ---
-const { title = SITE_TITLE, withSeo = true } = Astro.props;
+const {
+  title = SITE_TITLE,
+  withSeo = true
+} = Astro.props;
 
 import { SITE_LANG, SITE_TITLE, VIDEO_HERO_URL } from '../config';
 import '../styles/main.scss';
@@ -13,12 +16,12 @@ const isProd = import.meta.env.PROD;
 <!doctype html>
 <!-- SITE BASICS  -->
 <html lang={SITE_LANG}>
-  <title>{title}</title>
   <meta charset="UTF-8" />
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0, viewport-fit=cover"
   />
+  <title>{title}</title>
 
   <!-- FAVICONS  -->
   <link rel="shortcut icon" type="image/x-icon" href="/img/icons/favicon.png" />
@@ -39,43 +42,13 @@ const isProd = import.meta.env.PROD;
     sizes="16x16"
     href="/img/icons/favicon-16x16.png"
   />
-  <link
-    rel="preload"
-    as="font"
-    type="font/woff2"
-    href="/fonts/Lobster.woff2"
-    crossorigin="anonymous"
-  />
-  <link
-    rel="preload"
-    as="font"
-    type="font/woff2"
-    href="/fonts/Merriweather-Regular.woff2"
-    crossorigin="anonymous"
-  />
-  <link
-    as="font"
-    type="font/woff2"
-    href="/fonts/Merriweather-Bold.woff2"
-    crossorigin="anonymous"
-  />
-  <link
-    as="font"
-    type="font/woff2"
-    href="/fonts/Merriweather-Light.woff2"
-    crossorigin="anonymous"
-  />
-  <link rel="preload" as="image" href="/img/static/header_logo.webp" />
-  {
-    Astro.url.pathname === '/' && (
-      <link rel="prefetch" as="fetch" href={VIDEO_HERO_URL} type="video/webm" />
-    )
-  }
+
+  <!-- SLOT POUR PRELOADS -->
+  <slot name="head-preloads" />
 
   {isProd && withSeo && <Seo />}
 
   <body>
     <slot />
-    <script type="module" src="/js-scripts/menu-action.js"></script>
   </body>
 </html>
