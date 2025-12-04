@@ -2,12 +2,6 @@
 import { VIDEO_CONFIG } from '../config';
 import './video.scss';
 
-/**
- * ⚠️ IMPORTANT PRELOAD
- * Ajoute dans le <head> de ton layout principal :
- * <link rel="preload" as="image" href={posterUrl} type="image/webp">
- */
-
 interface Props {
   /** URL de la vidéo desktop WebM */
   desktopWebm?: string;
@@ -82,78 +76,3 @@ const config = { ...VIDEO_CONFIG, ...Astro.props };
   <source src={config.desktopWebm} type="video/webm" />
   <source src={config.desktopMp4} type="video/mp4" />
 </video>
-
-<script>
-  function initVideoHero() {
-    const video = document.querySelector('.video-bg') as HTMLVideoElement;
-    const posterHD = document.querySelector(
-      '.video-poster',
-    ) as HTMLImageElement;
-    const posterBlur = document.querySelector('.video-blur') as HTMLElement;
-
-    const timeout = parseInt(video.dataset.timeout || '5000');
-    const fallbackUrl = video.dataset.fallbackUrl;
-    let fallbackTriggered = false;
-
-    // Save Data → fallback direct
-    const connection =
-      // @ts-ignore
-      navigator.connection ||
-      // @ts-ignore
-      navigator.mozConnection ||
-      // @ts-ignore
-      navigator.webkitConnection;
-    if (connection?.saveData) return handleFallback();
-
-    // Si apres le timeOut pas de video -> poster
-    const timer = window.setTimeout(() => {
-      if (!fallbackTriggered && video.readyState < 3) {
-        console.warn('⏱️ Timeout vidéo → fallback poster');
-        handleFallback();
-      }
-    }, timeout);
-
-    video.addEventListener(
-      'canplay',
-      () => {
-        if (fallbackTriggered) return;
-        clearTimeout(timer);
-        video
-          .play()
-          .then(() => {
-            posterBlur?.remove();
-            window.dispatchEvent(new CustomEvent('video-hero:ready'));
-          })
-          .catch(handleFallback);
-      },
-      { once: true },
-    );
-
-    // Erreur vidéo
-    video.addEventListener('error', handleFallback, { once: true });
-
-    function handleFallback() {
-      if (fallbackTriggered) return;
-      fallbackTriggered = true;
-      clearTimeout(timer);
-      video.remove();
-      posterHD.classList.add('loaded'); // visible uniquement en fallback
-      posterBlur?.remove();
-      window.dispatchEvent(
-        new CustomEvent('video-hero:error', { detail: { fallbackUrl } }),
-      );
-    }
-
-    // Toggle play/pause
-    window.addEventListener('video-hero:toggle', () => {
-      if (video.paused) video.play();
-      else video.pause();
-    });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initVideoHero);
-  } else {
-    initVideoHero();
-  }
-</script>

@@ -25,12 +25,9 @@ export const GOOGLE_MAP_URL =
   'https://www.google.com/maps/dir/?api=1&destination=le+rando-rail+et+Trotti-trail+du+Pays+de+LUMBRES';
 
 // VIDEO
-export const VIDEO_HERO_URL =
-  'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/hero-video.webm';
 export const VIDEO_CONFIG = {
   globalCdnUrl: 'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev',
-  // desktopWebm: 'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/video-desktop.webm',
-  desktopWebm: 'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/hero-video.webm',
+  desktopWebm: 'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/video-desktop.webm',
   desktopMp4: 'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/video-desktop.mp4',
   mobileWebm: 'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/video-mobile.webm',
   mobileMp4: 'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/video-mobile.mp4',
