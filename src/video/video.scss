@@ -29,5 +29,10 @@
   z-index: 3;
   backface-visibility: hidden;
   transform: translateZ(0);
+  opacity: 0;
   will-change: transform;
+
+  &.playing {
+    opacity: 1;
+  }
 }

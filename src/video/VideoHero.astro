@@ -54,7 +54,7 @@ const config = { ...VIDEO_CONFIG, ...Astro.props };
     srcset={VIDEO_CONFIG.posters.mobile.webp}
     type="image/webp"
   />
-  
+
   <source
     media={`(min-width: ${VIDEO_CONFIG.BREAKPOINTS.mobile}px) and (max-width: ${VIDEO_CONFIG.BREAKPOINTS.tablet - 1}px)`}
     srcset={VIDEO_CONFIG.posters.tablet.avif}
@@ -65,7 +65,7 @@ const config = { ...VIDEO_CONFIG, ...Astro.props };
     srcset={VIDEO_CONFIG.posters.tablet.webp}
     type="image/webp"
   />
-  
+
   <source
     media={`(min-width: ${VIDEO_CONFIG.BREAKPOINTS.tablet}px)`}
     srcset={VIDEO_CONFIG.posters.desktop.avif}
@@ -76,7 +76,7 @@ const config = { ...VIDEO_CONFIG, ...Astro.props };
     srcset={VIDEO_CONFIG.posters.desktop.webp}
     type="image/webp"
   />
-  
+
   <img
     src={VIDEO_CONFIG.posters.desktop.webp}
     alt="Hero background"
@@ -87,16 +87,14 @@ const config = { ...VIDEO_CONFIG, ...Astro.props };
 
 <!-- Vidéo -->
 <video
-  autoplay
   muted
   loop
   playsinline
   webkit-playsinline
   class="video-bg"
-  poster={config.posterUrl}
   preload="none"
+  poster="data:,"
   data-fallback-url={config.fallbackUrl}
-  data-timeout={config.timeout}
 >
   <source
     src={config.mobileWebm}

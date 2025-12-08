@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import { VIDEO_CONFIG } from '../video/video-config.mjs';
+import { VIDEO_CONFIG } from './src/video/video-config.mjs';
 import react from '@astrojs/react';
 
 export default defineConfig({

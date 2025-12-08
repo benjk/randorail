@@ -3,10 +3,10 @@ import { VIDEO_CONFIG } from '../config';
 const THRESHOLDS = {
   // Bande passante (Mbps)
   bandwidth: {
-    minForVideo: 0.6, // En dessous → poster
-    sd: 0.6, // 1.5-2.5 Mbps → SD
-    hd: 2.5, // 2.5-5 Mbps → HD
-    uhd: 5.0, // >= 5 Mbps → UHD
+    minForVideo: 0.18, // En dessous → poster
+    sd: 0.18,
+    hd: 1.45,
+    uhd: 5.0,
   },
 
   // Device (limites hardware)
@@ -18,19 +18,17 @@ const THRESHOLDS = {
 
   // Speed test
   speedTest: {
-    timeout: 3000,
+    timeout: 15000, // Apres 15s de speed-test : POSTER
     fileSizeKb: 433,
   },
 
-  videoTimeoutMax: 13000,
+  videoTimeoutMax: 130000,
 } as const;
 
 export async function initVideoFunction(): Promise<void> {
   console.log('🎬 Init video system');
 
   const video = document.querySelector('.video-bg') as HTMLVideoElement;
-  const posterHD = document.querySelector('.video-poster') as HTMLElement;
-  const posterBlur = document.querySelector('.video-blur') as HTMLElement;
   const btn = document.querySelector('.video-icon-link') as HTMLElement;
 
   if (!video) {
@@ -57,7 +55,6 @@ export async function initVideoFunction(): Promise<void> {
 
   const sdSource = device.preferMp4 ? VIDEO_CONFIG.sdMp4 : VIDEO_CONFIG.sdWebm;
 
-  video.removeAttribute('autoplay');
   video.preload = 'auto';
   video.src = sdSource;
   console.log('📥 Preload SD démarré:', sdSource);
@@ -98,7 +95,7 @@ export async function initVideoFunction(): Promise<void> {
 
   // 7. PLAY VIDEO
   try {
-    await playVideo(video, posterHD, posterBlur, btn);
+    await playVideo(video, btn);
   } catch (error) {
     console.error('❌ Erreur lecture vidéo:', error);
     fallbackTriggered = true;
@@ -230,11 +227,11 @@ async function performSpeedTest(): Promise<number | null> {
     console.log('📱 Device faible → SD forcé');
     return 'SD';
   }
-  
+
   console.log('📱 Device : ');
   console.log(bandwidth);
   console.log(screenWidth);
-  console.log( THRESHOLDS.device.minWidthForUHD);
+  console.log(THRESHOLDS.device.minWidthForUHD);
   // Bande passante suffisante pour UHD ET écran large ?
   if (
     bandwidth >= THRESHOLDS.bandwidth.uhd &&
@@ -273,19 +270,20 @@ function getVideoSource(quality: string, device: DeviceCapabilities): string {
 
 async function playVideo(
   video: HTMLVideoElement,
-  posterHD: HTMLElement,
-  posterBlur: HTMLElement,
   btn: HTMLElement | null,
 ): Promise<void> {
+  console.log('🎬 playVideo() APPELÉ');
+
   return new Promise((resolve, reject) => {
     const timeout = setTimeout(() => {
       reject(new Error('Video load timeout'));
     }, THRESHOLDS.videoTimeoutMax);
 
-    const onCanPlay = () => {
+    const startPlayback = () => {
       clearTimeout(timeout);
       console.log('🎥 Vidéo prête');
       video.setAttribute('autoplay', '');
+      video.classList.add('playing');
 
       video
         .play()
@@ -301,11 +299,35 @@ async function playVideo(
         .catch(reject);
     };
 
-    video.addEventListener('canplay', onCanPlay, { once: true });
+    // Si la vidéo est DÉJÀ prête
+    if (video.readyState >= 3) {
+      console.log('⚡ Vidéo déjà prête (readyState:', video.readyState, ')');
+      startPlayback();
+      return;
+    }
+
+    console.log(
+      '⏳ Attente canplay (readyState actuel:',
+      video.readyState,
+      ')',
+    );
+
+    const handleReady = () => {
+      video.removeEventListener('canplay', handleReady);
+      video.removeEventListener('loadeddata', handleReady);
+      video.removeEventListener('canplaythrough', handleReady);
+      startPlayback();
+    };
+
+    video.addEventListener('canplay', handleReady, { once: true });
+    video.addEventListener('loadeddata', handleReady, { once: true });
+    video.addEventListener('canplaythrough', handleReady, { once: true });
+
     video.addEventListener(
       'error',
-      () => {
+      (e) => {
         clearTimeout(timeout);
+        console.error('❌ Video error event:', e);
         reject(new Error('Video error'));
       },
       { once: true },
