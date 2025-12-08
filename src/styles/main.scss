@@ -236,7 +236,7 @@ html {
               z-index: 5;
               cursor: pointer;
 
-              @media screen and (max-width: $mobile-breakpoint) {
+              @media screen and (max-width: $mobile-breakpoint-s) {
                 width: 2em;
                 bottom: calc($margin-l * -0.5);
               }

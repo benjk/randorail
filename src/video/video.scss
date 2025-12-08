@@ -6,6 +6,7 @@
   width: 100%;
   max-width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .video-blur {
@@ -16,7 +17,7 @@
 
 .video-poster {
   z-index: 2;
-  
+
   img {
     width: 100%;
     height: 100%;

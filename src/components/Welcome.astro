@@ -1,6 +1,6 @@
 ---
 import content from '../data/content.json';
-import { GOOGLE_MAP_URL } from '../config';
+import { GOOGLE_MAP_URL, VIDEO_CONFIG } from '../config';
 import HighlightOnHash from './Highlight';
 import { imageWithHash } from '../admin/components/images/imageWithHash';
 import { blocRules } from '../admin/data/blocRules';
@@ -215,11 +215,13 @@ import VideoHero from '../video/VideoHero.astro';
   </section>
   <!-- SECTION 3 : VIDEO OVERLAY -->
   <section class="video-section-overlay">
-    <img
-      class="video-icon video-control-btn"
-      src="/img/icons/icon-video.svg"
-      alt="Le Randorail en images"
-    />
+    <a class="video-icon-link" target="_blank" href=`${VIDEO_CONFIG.fallbackUrl}`>
+      <img
+        class="video-icon"
+        src="/img/icons/icon-video.svg"
+        alt="Le Randorail en images"
+      />
+    </a>
   </section>
   <section class="section4">
     <p>BIENTÔT NOUVELLE ACTIVITE ! Le parc de Filets !!</p>
