@@ -24,17 +24,45 @@ export const IMG_PUBLIC_FOLDER = '/img/';
 export const GOOGLE_MAP_URL =
   'https://www.google.com/maps/dir/?api=1&destination=le+rando-rail+et+Trotti-trail+du+Pays+de+LUMBRES';
 
-// VIDEO
+// --- VIDEO ---
+const globalCdnUrl = 'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev';
 export const VIDEO_CONFIG = {
-  globalCdnUrl: 'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev',
-  desktopWebm: 'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/video-desktop.webm',
-  desktopMp4: 'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/video-desktop.mp4',
-  mobileWebm: 'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/video-mobile.webm',
-  mobileMp4: 'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/video-mobile.mp4',
-  posterUrl: `https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev/video-poster.webp`,
+  globalCdnUrl: globalCdnUrl,
+
+  // --- VIDEOS ---
+  sdMp4: `${globalCdnUrl}/video-hero-sd.mp4`,
+  sdWebm: `${globalCdnUrl}/video-hero-sd.webm`,
+
+  hdMp4: `${globalCdnUrl}/video-hero-hd.mp4`,
+  hdWebm: `${globalCdnUrl}/video-hero-hd.webm`,
+
+  uhdWebm: `${globalCdnUrl}/video-hero-uhd.webm`,
+
+  speedTestVideo: `${globalCdnUrl}/video-hero-speedtest.mp4`,
+
+  // --- POSTERS ---
+  posters: {
+    mobile: {
+      avif: `${globalCdnUrl}/video-hero-poster-mobile.avif`,
+      webp: `${globalCdnUrl}/video-hero-poster-mobile.webp`,
+    },
+    tablet: {
+      avif: `${globalCdnUrl}/video-hero-poster-tablet.avif`,
+      webp: `${globalCdnUrl}/video-hero-poster-tablet.webp`,
+    },
+    desktop: {
+      avif: `${globalCdnUrl}/video-hero-poster-desktop.avif`,
+      webp: `${globalCdnUrl}/video-hero-poster-desktop.webp`,
+    },
+  },
+
   posterBlurBase64:
-    'data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAALAAtAAD//gAQTGF2YzYxLjMzLjEwMgD/2wBDAAgUFBcUFxsbGxsbGyAeICEhISAgICAhISEkJCQqKiokJCQhISQkKCgqKi4vLisrKisvLzIyMjw8OTlGRkhWVmf/xABlAAACAwEAAAAAAAAAAAAAAAADBQQAAgYBAQEBAAAAAAAAAAAAAAAAAAIBBBAAAQIDBwUBAAAAAAAAAAAAAREAkQMCYVEhMtESBKHBghRxUhEBAQEAAAAAAAAAAAAAAAAAAAER/8AAEQgACwAUAwEiAAIRAAMRAP/aAAwDAQACEQMRAD8A44Vzzia5h8z3KtoeTNwJFRQIpNRJAt3OIDu3E3p0sYZ2QfXj20GKuQFzVx1UsfsD9TIjRrIu43mJaV//2Q==',
+    'data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAiACHAAD//gAQTGF2YzYxLjMzLjEwMgD/2wBDAAg+Pkk+SVVVVVVVVWRdZGhoaGRkZGRoaGhwcHCDg4NwcHBoaHBwfHyDg4+Tj4eHg4eTk5ubm7q6srLZ2eD/////xABeAAEBAQEAAAAAAAAAAAAAAAAFBAIGAQADAQEAAAAAAAAAAAAAAAAEAQMAAhAAAgEEAgMBAAAAAAAAAAAAAAECMnGRETFREhMDQhEBAQAAAAAAAAAAAAAAAAAAABH/wAARCAARAB4DASIAAhEAAxEA/9oADAMBAAIRAxEAPwDjPZJ/p5YzH6STqeQ/WumY0ugSpmPO+SNt95Ya9IKM6Oqp2KCdVOxQRJFPkGGZ8gwQb//Z',
+  // --- CONFIG ---
   fallbackUrl: 'https://youtu.be/xxx',
   timeout: 50000,
-  mobileBreakpoint: 768,
+  BREAKPOINTS: {
+    mobile: 768,
+    tablet: 1024,
+  },
 } as const;

@@ -10,7 +10,6 @@ const {
   }
 } = Astro.props;
 ---
-
 <!-- PRECONNECT CDN -->
 <link rel="dns-prefetch" href={VIDEO_CONFIG.globalCdnUrl} />
 <link rel="preconnect" href={VIDEO_CONFIG.globalCdnUrl} crossorigin />
@@ -42,17 +41,3 @@ const {
   href="/img/static/header_logo.webp"
   fetchpriority={priorities.logo || undefined}
 />
-
-<!-- PRELOADS HOME (vidéo) -->
-{homePreload && (
-  <>
-    {priorities.poster && (
-      <link
-        rel="preload"
-        as="image"
-        href={VIDEO_CONFIG.posterUrl}
-        fetchpriority={priorities.poster}
-      />
-    )}
-  </>
-)}

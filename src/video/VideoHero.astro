@@ -42,13 +42,48 @@ const config = { ...VIDEO_CONFIG, ...Astro.props };
 >
 </div>
 
-<!-- Poster HD -->
-<img
-  src={config.posterUrl}
-  alt="Hero background"
-  class="video-poster"
-  loading="eager"
-/>
+<!-- Poster AVIF + WebP -->
+<picture class="video-poster">
+  <source
+    media={`(max-width: ${VIDEO_CONFIG.BREAKPOINTS.mobile - 1}px)`}
+    srcset={VIDEO_CONFIG.posters.mobile.avif}
+    type="image/avif"
+  />
+  <source
+    media={`(max-width: ${VIDEO_CONFIG.BREAKPOINTS.mobile - 1}px)`}
+    srcset={VIDEO_CONFIG.posters.mobile.webp}
+    type="image/webp"
+  />
+  
+  <source
+    media={`(min-width: ${VIDEO_CONFIG.BREAKPOINTS.mobile}px) and (max-width: ${VIDEO_CONFIG.BREAKPOINTS.tablet - 1}px)`}
+    srcset={VIDEO_CONFIG.posters.tablet.avif}
+    type="image/avif"
+  />
+  <source
+    media={`(min-width: ${VIDEO_CONFIG.BREAKPOINTS.mobile}px) and (max-width: ${VIDEO_CONFIG.BREAKPOINTS.tablet - 1}px)`}
+    srcset={VIDEO_CONFIG.posters.tablet.webp}
+    type="image/webp"
+  />
+  
+  <source
+    media={`(min-width: ${VIDEO_CONFIG.BREAKPOINTS.tablet}px)`}
+    srcset={VIDEO_CONFIG.posters.desktop.avif}
+    type="image/avif"
+  />
+  <source
+    media={`(min-width: ${VIDEO_CONFIG.BREAKPOINTS.tablet}px)`}
+    srcset={VIDEO_CONFIG.posters.desktop.webp}
+    type="image/webp"
+  />
+  
+  <img
+    src={VIDEO_CONFIG.posters.desktop.webp}
+    alt="Hero background"
+    loading="eager"
+    decoding="async"
+  />
+</picture>
 
 <!-- Vidéo -->
 <video
@@ -59,7 +94,7 @@ const config = { ...VIDEO_CONFIG, ...Astro.props };
   webkit-playsinline
   class="video-bg"
   poster={config.posterUrl}
-  preload="metadata"
+  preload="none"
   data-fallback-url={config.fallbackUrl}
   data-timeout={config.timeout}
 >
