@@ -1,6 +1,8 @@
 import { defineConfig } from 'astro/config';
-import { VIDEO_CONFIG } from './src/video/video-config.mjs';
 import react from '@astrojs/react';
+
+// Doublon avec config
+const globalCdnUrl = 'https://pub-ca5bf3a17c594a06b80231f68df0f27c.r2.dev';
 
 export default defineConfig({
   integrations: [react()],
@@ -12,11 +14,11 @@ export default defineConfig({
     },
   },
   image: {
-    domains: [new URL(VIDEO_CONFIG.globalCdnUrl).hostname],
+    domains: [new URL(globalCdnUrl).hostname],
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: new URL(VIDEO_CONFIG.globalCdnUrl).hostname,
+        hostname: new URL(globalCdnUrl).hostname,
       },
     ],
   },
