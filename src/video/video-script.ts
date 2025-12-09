@@ -29,6 +29,8 @@ export async function initVideoFunction(): Promise<void> {
   console.log('🎬 Init video system');
 
   const video = document.querySelector('.video-bg') as HTMLVideoElement;
+  const posterBlur = document.querySelector('.video-blur') as HTMLVideoElement;
+  const poster = document.querySelector('.video-poster') as HTMLVideoElement;
   const btn = document.querySelector('.video-icon-link') as HTMLElement;
 
   if (!video) {
@@ -100,273 +102,278 @@ export async function initVideoFunction(): Promise<void> {
     console.error('❌ Erreur lecture vidéo:', error);
     fallbackTriggered = true;
   }
-}
 
-/* Test Si 2g ou mode saveData ON -> Fallback POSTER instant */
-function shouldAttemptVideo(): boolean {
-  const connection =
-    (navigator as any).connection ||
-    (navigator as any).mozConnection ||
-    (navigator as any).webkitConnection;
+  /* Test Si 2g ou mode saveData ON -> Fallback POSTER instant */
+  function shouldAttemptVideo(): boolean {
+    const connection =
+      (navigator as any).connection ||
+      (navigator as any).mozConnection ||
+      (navigator as any).webkitConnection;
 
-  // Pas de Connection API → passer au speed test
-  if (!connection) {
-    console.log('⚠️ Connection API indisponible → Speed test requis');
+    // Pas de Connection API → passer au speed test
+    if (!connection) {
+      console.log('⚠️ Connection API indisponible → Speed test requis');
+      return true;
+    }
+
+    // Save Data activé → POSTER
+    if (connection.saveData === true) {
+      console.log('💾 Save Data activé → connexion considérée faible');
+      return false;
+    }
+
+    // effectiveType vaut 2G/slow-2g → POSTER
+    if (
+      connection.effectiveType &&
+      ['slow-2g', '2g'].includes(connection.effectiveType)
+    ) {
+      console.log(
+        `📶 ${connection.effectiveType} détecté → connexion considérée faible`,
+      );
+      return false;
+    }
+
+    // Tous les autres cas (3g, 4g, etc.) → connexion semble OK --> SPEED TEST
+    console.log(
+      `📶 ${connection.effectiveType || 'unknown'} → connexion présumée OK`,
+    );
     return true;
   }
 
-  // Save Data activé → POSTER
-  if (connection.saveData === true) {
-    console.log('💾 Save Data activé → connexion considérée faible');
-    return false;
+  /**
+   * Détecte les capacités de l'appareil (CPU, RAM, écran, OS)
+   */
+  function detectDeviceCapabilities(): DeviceCapabilities {
+    const ua = navigator.userAgent.toLowerCase();
+
+    // Safari (desktop + mobile) = MP4 obligatoire (support WebM pourri)
+    const isSafari =
+      ua.includes('safari') &&
+      !ua.includes('chrome') &&
+      !ua.includes('android');
+
+    const preferMp4 = isSafari;
+
+    return {
+      hardwareConcurrency: navigator.hardwareConcurrency || 2,
+      deviceMemory: (navigator as any).deviceMemory,
+      screenWidth: window.innerWidth,
+      preferMp4,
+    };
   }
 
-  // effectiveType vaut 2G/slow-2g → POSTER
-  if (
-    connection.effectiveType &&
-    ['slow-2g', '2g'].includes(connection.effectiveType)
-  ) {
-    console.log(
-      `📶 ${connection.effectiveType} détecté → connexion considérée faible`,
-    );
-    return false;
+  /**
+   * Mesure la bande passante réelle via un fichier test
+   * @returns Bande passante en Mbps, ou null si échec/timeout
+   */
+  async function performSpeedTest(): Promise<number | null> {
+    const { timeout, fileSizeKb } = THRESHOLDS.speedTest;
+    const testFileUrl = VIDEO_CONFIG.speedTestVideo;
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeout);
+
+    try {
+      const startTime = performance.now();
+
+      const response = await fetch(testFileUrl, {
+        signal: controller.signal,
+        cache: 'no-store', // sinon le speedTest mesure le cache -> triche !
+      });
+
+      if (!response.ok) {
+        throw new Error(`Fetch failed: ${response.status}`);
+      }
+
+      // Attend la fin du téléchargement
+      await response.blob();
+
+      const endTime = performance.now();
+      clearTimeout(timeoutId);
+
+      const durationSeconds = (endTime - startTime) / 1000;
+      const bandwidthMbps = (fileSizeKb * 8) / (durationSeconds * 1000);
+
+      console.log(
+        `⚡ Speed test: ${bandwidthMbps.toFixed(2)} Mbps en ${durationSeconds.toFixed(2)}s`,
+      );
+
+      return bandwidthMbps;
+    } catch (error: any) {
+      clearTimeout(timeoutId);
+
+      if (error.name === 'AbortError') {
+        console.warn('⏱️ Speed test timeout (>3s)');
+      } else {
+        console.error('❌ Speed test error:', error);
+      }
+
+      return null;
+    }
   }
 
-  // Tous les autres cas (3g, 4g, etc.) → connexion semble OK --> SPEED TEST
-  console.log(
-    `📶 ${connection.effectiveType || 'unknown'} → connexion présumée OK`,
-  );
-  return true;
-}
+  /**
+   * Sélectionne la qualité vidéo optimale selon bande passante + device
+   */ function selectVideoQuality(
+    bandwidth: number,
+    device: DeviceCapabilities,
+  ): VideoQuality {
+    const { hardwareConcurrency, deviceMemory, screenWidth } = device;
 
-/**
- * Détecte les capacités de l'appareil (CPU, RAM, écran, OS)
- */
-function detectDeviceCapabilities(): DeviceCapabilities {
-  const ua = navigator.userAgent.toLowerCase();
+    // Device trop faible → SD forcé
+    const isLowEndDevice =
+      hardwareConcurrency < THRESHOLDS.device.minCoresForHD ||
+      (deviceMemory !== undefined &&
+        deviceMemory < THRESHOLDS.device.minMemoryForHD);
 
-  // Safari (desktop + mobile) = MP4 obligatoire (support WebM pourri)
-  const isSafari =
-    ua.includes('safari') && !ua.includes('chrome') && !ua.includes('android');
-
-  const preferMp4 = isSafari;
-
-  return {
-    hardwareConcurrency: navigator.hardwareConcurrency || 2,
-    deviceMemory: (navigator as any).deviceMemory,
-    screenWidth: window.innerWidth,
-    preferMp4,
-  };
-}
-
-/**
- * Mesure la bande passante réelle via un fichier test
- * @returns Bande passante en Mbps, ou null si échec/timeout
- */
-async function performSpeedTest(): Promise<number | null> {
-  const { timeout, fileSizeKb } = THRESHOLDS.speedTest;
-  const testFileUrl = VIDEO_CONFIG.speedTestVideo;
-
-  const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), timeout);
-
-  try {
-    const startTime = performance.now();
-
-    const response = await fetch(testFileUrl, {
-      signal: controller.signal,
-      cache: 'no-store', // sinon le speedTest mesure le cache -> triche !
-    });
-
-    if (!response.ok) {
-      throw new Error(`Fetch failed: ${response.status}`);
+    if (isLowEndDevice) {
+      console.log('📱 Device faible → SD forcé');
+      return 'SD';
     }
 
-    // Attend la fin du téléchargement
-    await response.blob();
-
-    const endTime = performance.now();
-    clearTimeout(timeoutId);
-
-    const durationSeconds = (endTime - startTime) / 1000;
-    const bandwidthMbps = (fileSizeKb * 8) / (durationSeconds * 1000);
-
-    console.log(
-      `⚡ Speed test: ${bandwidthMbps.toFixed(2)} Mbps en ${durationSeconds.toFixed(2)}s`,
-    );
-
-    return bandwidthMbps;
-  } catch (error: any) {
-    clearTimeout(timeoutId);
-
-    if (error.name === 'AbortError') {
-      console.warn('⏱️ Speed test timeout (>3s)');
-    } else {
-      console.error('❌ Speed test error:', error);
+    console.log('📱 Device : ');
+    console.log(bandwidth);
+    console.log(screenWidth);
+    console.log(THRESHOLDS.device.minWidthForUHD);
+    // Bande passante suffisante pour UHD ET écran large ?
+    if (
+      bandwidth >= THRESHOLDS.bandwidth.uhd &&
+      screenWidth >= THRESHOLDS.device.minWidthForUHD
+    ) {
+      console.log('🎥 UHD sélectionné');
+      return 'UHD';
     }
 
-    return null;
-  }
-}
+    // Bande passante suffisante pour HD ?
+    if (bandwidth >= THRESHOLDS.bandwidth.hd) {
+      console.log('🎥 HD sélectionné');
+      return 'HD';
+    }
 
-/**
- * Sélectionne la qualité vidéo optimale selon bande passante + device
- */ function selectVideoQuality(
-  bandwidth: number,
-  device: DeviceCapabilities,
-): VideoQuality {
-  const { hardwareConcurrency, deviceMemory, screenWidth } = device;
-
-  // Device trop faible → SD forcé
-  const isLowEndDevice =
-    hardwareConcurrency < THRESHOLDS.device.minCoresForHD ||
-    (deviceMemory !== undefined &&
-      deviceMemory < THRESHOLDS.device.minMemoryForHD);
-
-  if (isLowEndDevice) {
-    console.log('📱 Device faible → SD forcé');
+    // Par défaut → SD
+    console.log('🎥 SD sélectionné');
     return 'SD';
   }
 
-  console.log('📱 Device : ');
-  console.log(bandwidth);
-  console.log(screenWidth);
-  console.log(THRESHOLDS.device.minWidthForUHD);
-  // Bande passante suffisante pour UHD ET écran large ?
-  if (
-    bandwidth >= THRESHOLDS.bandwidth.uhd &&
-    screenWidth >= THRESHOLDS.device.minWidthForUHD
-  ) {
-    console.log('🎥 UHD sélectionné');
-    return 'UHD';
+  // Retourne l'url
+  function getVideoSource(quality: string, device: DeviceCapabilities): string {
+    const { preferMp4 } = device;
+
+    switch (quality) {
+      case 'SD':
+        return preferMp4 ? VIDEO_CONFIG.sdMp4 : VIDEO_CONFIG.sdWebm;
+      case 'HD':
+        return preferMp4 ? VIDEO_CONFIG.hdMp4 : VIDEO_CONFIG.hdWebm;
+      case 'UHD':
+        return preferMp4 ? VIDEO_CONFIG.hdMp4 : VIDEO_CONFIG.uhdWebm;
+      default:
+        return VIDEO_CONFIG.sdMp4;
+    }
   }
 
-  // Bande passante suffisante pour HD ?
-  if (bandwidth >= THRESHOLDS.bandwidth.hd) {
-    console.log('🎥 HD sélectionné');
-    return 'HD';
+  async function playVideo(
+    video: HTMLVideoElement,
+    btn: HTMLElement | null,
+  ): Promise<void> {
+    console.log('🎬 playVideo() APPELÉ');
+
+    return new Promise((resolve, reject) => {
+      const timeout = setTimeout(() => {
+        reject(new Error('Video load timeout'));
+      }, THRESHOLDS.videoTimeoutMax);
+
+      const startPlayback = () => {
+        clearTimeout(timeout);
+        console.log('🎥 Vidéo prête');
+        video.setAttribute('autoplay', '');
+        video.classList.add('playing');
+
+        posterBlur?.remove();
+        poster?.remove();
+
+        video
+          .play()
+          .then(() => {
+            console.log('▶️ Lecture démarrée');
+
+            if (btn) {
+              setupPlayPauseButton(btn, video);
+            }
+
+            resolve();
+          })
+          .catch(reject);
+      };
+
+      // Si la vidéo est DÉJÀ prête
+      if (video.readyState >= 3) {
+        console.log('⚡ Vidéo déjà prête (readyState:', video.readyState, ')');
+        startPlayback();
+        return;
+      }
+
+      console.log(
+        '⏳ Attente canplay (readyState actuel:',
+        video.readyState,
+        ')',
+      );
+
+      const handleReady = () => {
+        video.removeEventListener('canplay', handleReady);
+        video.removeEventListener('loadeddata', handleReady);
+        video.removeEventListener('canplaythrough', handleReady);
+        startPlayback();
+      };
+
+      video.addEventListener('canplay', handleReady, { once: true });
+      video.addEventListener('loadeddata', handleReady, { once: true });
+      video.addEventListener('canplaythrough', handleReady, { once: true });
+
+      video.addEventListener(
+        'error',
+        (e) => {
+          clearTimeout(timeout);
+          console.error('❌ Video error event:', e);
+          reject(new Error('Video error'));
+        },
+        { once: true },
+      );
+    });
   }
 
-  // Par défaut → SD
-  console.log('🎥 SD sélectionné');
-  return 'SD';
-}
-
-// Retourne l'url
-function getVideoSource(quality: string, device: DeviceCapabilities): string {
-  const { preferMp4 } = device;
-
-  switch (quality) {
-    case 'SD':
-      return preferMp4 ? VIDEO_CONFIG.sdMp4 : VIDEO_CONFIG.sdWebm;
-    case 'HD':
-      return preferMp4 ? VIDEO_CONFIG.hdMp4 : VIDEO_CONFIG.hdWebm;
-    case 'UHD':
-      return preferMp4 ? VIDEO_CONFIG.hdMp4 : VIDEO_CONFIG.uhdWebm;
-    default:
-      return VIDEO_CONFIG.sdMp4;
-  }
-}
-
-async function playVideo(
-  video: HTMLVideoElement,
-  btn: HTMLElement | null,
-): Promise<void> {
-  console.log('🎬 playVideo() APPELÉ');
-
-  return new Promise((resolve, reject) => {
-    const timeout = setTimeout(() => {
-      reject(new Error('Video load timeout'));
-    }, THRESHOLDS.videoTimeoutMax);
-
-    const startPlayback = () => {
-      clearTimeout(timeout);
-      console.log('🎥 Vidéo prête');
-      video.setAttribute('autoplay', '');
-      video.classList.add('playing');
-
-      video
-        .play()
-        .then(() => {
-          console.log('▶️ Lecture démarrée');
-
-          if (btn) {
-            setupPlayPauseButton(btn, video);
-          }
-
-          resolve();
-        })
-        .catch(reject);
-    };
-
-    // Si la vidéo est DÉJÀ prête
-    if (video.readyState >= 3) {
-      console.log('⚡ Vidéo déjà prête (readyState:', video.readyState, ')');
-      startPlayback();
+  /**
+   * Remplace le comportement du lien fallback par play/pause
+   */
+  function setupPlayPauseButton(
+    link: HTMLElement,
+    video: HTMLVideoElement,
+  ): void {
+    if (!link) {
+      console.warn('⚠️ Pas de btn trouvé');
       return;
     }
 
-    console.log(
-      '⏳ Attente canplay (readyState actuel:',
-      video.readyState,
-      ')',
-    );
+    // Vire le href pour désactiver l'ouverture d'onglet
+    link.removeAttribute('href');
+    link.style.cursor = 'pointer';
 
-    const handleReady = () => {
-      video.removeEventListener('canplay', handleReady);
-      video.removeEventListener('loadeddata', handleReady);
-      video.removeEventListener('canplaythrough', handleReady);
-      startPlayback();
-    };
+    // Ajoute le toggle play/pause
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
 
-    video.addEventListener('canplay', handleReady, { once: true });
-    video.addEventListener('loadeddata', handleReady, { once: true });
-    video.addEventListener('canplaythrough', handleReady, { once: true });
+      if (video.paused) {
+        video.play();
+        link.classList.remove('paused');
+        link.classList.add('playing');
+        console.log('▶️ Play');
+      } else {
+        video.pause();
+        link.classList.remove('playing');
+        link.classList.add('paused');
+        console.log('⏸️ Pause');
+      }
+    });
 
-    video.addEventListener(
-      'error',
-      (e) => {
-        clearTimeout(timeout);
-        console.error('❌ Video error event:', e);
-        reject(new Error('Video error'));
-      },
-      { once: true },
-    );
-  });
-}
-
-/**
- * Remplace le comportement du lien fallback par play/pause
- */
-function setupPlayPauseButton(
-  link: HTMLElement,
-  video: HTMLVideoElement,
-): void {
-  if (!link) {
-    console.warn('⚠️ Pas de btn trouvé');
-    return;
+    console.log('🎮 Play/Pause activé sur le bouton');
   }
-
-  // Vire le href pour désactiver l'ouverture d'onglet
-  link.removeAttribute('href');
-  link.style.cursor = 'pointer';
-
-  // Ajoute le toggle play/pause
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-
-    if (video.paused) {
-      video.play();
-      link.classList.remove('paused');
-      link.classList.add('playing');
-      console.log('▶️ Play');
-    } else {
-      video.pause();
-      link.classList.remove('playing');
-      link.classList.add('paused');
-      console.log('⏸️ Pause');
-    }
-  });
-
-  console.log('🎮 Play/Pause activé sur le bouton');
 }
