@@ -33,6 +33,26 @@ export async function initVideoFunction(): Promise<void> {
   const poster = document.querySelector('.video-poster') as HTMLVideoElement;
   const btn = document.querySelector('.video-icon-link') as HTMLElement;
 
+  if (posterBlur && poster) {
+    const img = poster.querySelector('img');
+
+    if (img) {
+      // Si déjà chargée ET décodée
+      if (img.complete && img.naturalHeight > 0) {
+        posterBlur.remove();
+      } else {
+        // Sinon attends le load
+        img.addEventListener(
+          'load',
+          () => {
+            posterBlur.remove();
+          },
+          { once: true },
+        );
+      }
+    }
+  }
+
   if (!video) {
     console.error('❌ Vidéo manquante');
     return;
@@ -210,7 +230,7 @@ export async function initVideoFunction(): Promise<void> {
       hardwareConcurrency < THRESHOLDS.device.minCoresForHD ||
       (deviceMemory !== undefined &&
         deviceMemory < THRESHOLDS.device.minMemoryForHD) ||
-        screenWidth < VIDEO_CONFIG.BREAKPOINTS.tablet;
+      screenWidth < VIDEO_CONFIG.BREAKPOINTS.tablet;
 
     if (isLowEndDevice) {
       console.log('📱 Device faible → SD forcé');
