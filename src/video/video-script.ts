@@ -128,7 +128,9 @@ export async function initVideoFunction(): Promise<void> {
       !ua.includes('chrome') &&
       !ua.includes('android');
 
-    const preferMp4 = isSafari;
+    const isAndroid = /android/i.test(navigator.userAgent);
+
+    const preferMp4 = isSafari || isAndroid;
 
     return {
       hardwareConcurrency: navigator.hardwareConcurrency || 2,
