@@ -52,18 +52,13 @@ export async function initVideoFunction(): Promise<void> {
   const device = detectDeviceCapabilities();
   console.log('📱 Device:', device);
 
-  // 3. PRELOAD OPTIMISTE SD FBI
-  // Lance speed test
+  // 3. SPEED TEST
   const bandwidth = await performSpeedTest();
 
   // 4. ANALYSE RÉSULTAT
   if (!bandwidth || bandwidth < THRESHOLDS.bandwidth.minForVideo) {
     console.log(`📸 Speed test insuffisant → Poster`);
     fallbackTriggered = true;
-
-    // Abort preload SD
-    video.preload = 'none';
-    video.src = '';
     return;
   }
 
@@ -71,21 +66,10 @@ export async function initVideoFunction(): Promise<void> {
   const quality = selectVideoQuality(bandwidth, device);
   console.log(`🎥 Qualité finale: ${quality} (${bandwidth.toFixed(2)} Mbps)`);
 
-  // 6. SWITCH VERS HD/UHD SI NÉCESSAIRE
-  if (quality !== 'SD') {
-    console.log(`🔄 Switch SD → ${quality}`);
-
-    // Abort SD
-    video.preload = 'none';
-    video.src = '';
-
-    // Charge la bonne qualité
-    const newSource = getVideoSource(quality, device);
-    video.src = newSource;
-    video.preload = 'auto';
-  } else {
-    console.log('✅ SD OK, on garde');
-  }
+  // Charge la bonne qualité
+  const newSource = getVideoSource(quality, device);
+  video.src = newSource;
+  // video.preload = 'auto';
 
   // 7. PLAY VIDEO
   try {
@@ -177,8 +161,14 @@ export async function initVideoFunction(): Promise<void> {
         throw new Error(`Fetch failed: ${response.status}`);
       }
 
-      // Attend la fin du téléchargement
-      await response.blob();
+      const reader = response.body!.getReader();
+      let bytesRead = 0;
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        bytesRead += value.length;
+      }
 
       const endTime = performance.now();
       clearTimeout(timeoutId);
@@ -278,7 +268,6 @@ export async function initVideoFunction(): Promise<void> {
       const startPlayback = () => {
         clearTimeout(timeout);
         console.log('🎥 Vidéo prête');
-        video.setAttribute('autoplay', '');
         video.classList.add('playing');
 
         posterBlur?.remove();
@@ -314,13 +303,11 @@ export async function initVideoFunction(): Promise<void> {
       const handleReady = () => {
         video.removeEventListener('canplay', handleReady);
         video.removeEventListener('loadeddata', handleReady);
-        video.removeEventListener('canplaythrough', handleReady);
         startPlayback();
       };
 
       video.addEventListener('canplay', handleReady, { once: true });
       video.addEventListener('loadeddata', handleReady, { once: true });
-      video.addEventListener('canplaythrough', handleReady, { once: true });
 
       video.addEventListener(
         'error',
