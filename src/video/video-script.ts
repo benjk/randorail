@@ -52,16 +52,8 @@ export async function initVideoFunction(): Promise<void> {
   const device = detectDeviceCapabilities();
   console.log('📱 Device:', device);
 
-  // 3. PRELOAD OPTIMISTE SD + SPEED TEST EN PARALLÈLE
-  console.log('⚡ Preload SD optimiste + speed test...');
-
-  const sdSource = device.preferMp4 ? VIDEO_CONFIG.sdMp4 : VIDEO_CONFIG.sdWebm;
-
-  video.preload = 'auto';
-  video.src = sdSource;
-  console.log('📥 Preload SD démarré:', sdSource);
-
-  // Lance speed test en parallèle
+  // 3. PRELOAD OPTIMISTE SD FBI
+  // Lance speed test
   const bandwidth = await performSpeedTest();
 
   // 4. ANALYSE RÉSULTAT
