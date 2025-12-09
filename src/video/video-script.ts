@@ -5,7 +5,7 @@ const THRESHOLDS = {
   bandwidth: {
     minForVideo: 0.18, // En dessous → poster
     sd: 0.18,
-    hd: 1.45,
+    hd: 2,
     uhd: 5.0,
   },
 
@@ -13,7 +13,7 @@ const THRESHOLDS = {
   device: {
     minCoresForHD: 4, // < 4 threads → max SD
     minMemoryForHD: 4, // < 4 GB RAM → max SD (si dispo)
-    minWidthForUHD: 1080, // < 1920px largeur → pas de UHD
+    minWidthForUHD: 1080, // < 1080px largeur → pas de UHD
   },
 
   // Speed test
@@ -214,7 +214,8 @@ export async function initVideoFunction(): Promise<void> {
 
   /**
    * Sélectionne la qualité vidéo optimale selon bande passante + device
-   */ function selectVideoQuality(
+   */
+  function selectVideoQuality(
     bandwidth: number,
     device: DeviceCapabilities,
   ): VideoQuality {
