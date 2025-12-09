@@ -64,7 +64,6 @@
           box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 
           &::before {
-            backdrop-filter: none;
             background: none;
           }
 
@@ -100,6 +99,10 @@
         transition: transform 0.4s ease;
         border-radius: $card-radius;
         inset: 1px;
+
+        @media screen and (max-width: $mobile-breakpoint-s) {
+          display: none;
+        }
       }
 
       &::before {
@@ -109,14 +112,13 @@
         background: $color3;
         z-index: 2;
         transition: background 0.5s ease;
-        backdrop-filter: brightness(0.9);
       }
 
       .activity-card-content {
         position: relative;
         z-index: 3;
         display: grid;
-        grid-template-rows: auto 1fr; // L'icône prend sa taille, le titre le reste
+        grid-template-rows: auto 1fr;
         align-items: center;
         justify-content: center;
         height: 100%;

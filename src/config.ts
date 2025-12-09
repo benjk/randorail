@@ -61,7 +61,7 @@ export const VIDEO_CONFIG = {
   // --- CONFIG ---
   fallbackUrl: 'https://youtu.be/xxx',
   BREAKPOINTS: {
-    mobile: 768,
-    tablet: 1024,
+    mobile: 740,
+    tablet: 992,
   },
 } as const;
