@@ -11,8 +11,8 @@ const THRESHOLDS = {
 
   // Device (limites hardware)
   device: {
-    minCoresForHD: 4, // < 4 threads → max SD
-    minMemoryForHD: 4, // < 4 GB RAM → max SD (si dispo)
+    minCoresForHD: 6, // < 4 threads → max SD
+    minMemoryForHD: 8, // < 4 GB RAM → max SD (si dispo)
     minWidthForUHD: 1080, // < 1080px largeur → pas de UHD
   },
 
