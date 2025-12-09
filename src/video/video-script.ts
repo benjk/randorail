@@ -281,6 +281,7 @@ export async function initVideoFunction(): Promise<void> {
     btn: HTMLElement | null,
   ): Promise<void> {
     console.log('🎬 playVideo() APPELÉ');
+    video.classList.add('playing');
 
     return new Promise((resolve, reject) => {
       const timeout = setTimeout(() => {
@@ -290,10 +291,6 @@ export async function initVideoFunction(): Promise<void> {
       const startPlayback = () => {
         clearTimeout(timeout);
         console.log('🎥 Vidéo prête');
-        video.classList.add('playing');
-
-        posterBlur?.remove();
-        poster?.remove();
 
         video
           .play()
@@ -303,6 +300,18 @@ export async function initVideoFunction(): Promise<void> {
             if (btn) {
               setupPlayPauseButton(btn, video);
             }
+
+            const removePosters = () => {
+              if (video.currentTime > 0 && !video.paused) {
+                console.log('🎞️ Première frame affichée, remove posters');
+                posterBlur?.remove();
+                poster?.remove();
+              } else {
+                requestAnimationFrame(removePosters);
+              }
+            };
+
+            removePosters();
 
             resolve();
           })
@@ -356,12 +365,11 @@ export async function initVideoFunction(): Promise<void> {
       return;
     }
 
-    
     if (!device.preferMp4) {
       link.removeAttribute('href');
       link.addEventListener('click', (e) => {
         e.preventDefault();
-  
+
         if (video.paused) {
           video.play();
           link.classList.remove('paused');
@@ -374,7 +382,7 @@ export async function initVideoFunction(): Promise<void> {
           console.log('⏸️ Pause');
         }
       });
-  
+
       console.log('🎮 Play/Pause activé sur le bouton');
     }
   }
