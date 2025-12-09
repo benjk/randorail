@@ -28,8 +28,10 @@
 .video-bg {
   z-index: 3;
   opacity: 0;
+  display: none;
 
   &.playing {
     opacity: 1;
+    display: block;
   }
 }
