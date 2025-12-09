@@ -5,7 +5,7 @@ const THRESHOLDS = {
   bandwidth: {
     minForVideo: 0.18, // En dessous → poster
     sd: 0.18,
-    hd: 2,
+    hd: 1.4,
     uhd: 5.0,
   },
 
