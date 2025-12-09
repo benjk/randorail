@@ -90,6 +90,7 @@ html {
             padding-left: $margin-l;
             padding-right: $margin-l;
             padding-bottom: $margin-xl;
+            display: none;
 
             @media screen and (max-width: $mobile-breakpoint) {
               width: 92%;
@@ -243,7 +244,6 @@ html {
             @include flex-box(0);
             padding-top: calc($margin-xl);
             padding-bottom: calc($margin-l);
-            display: none;
 
             background-image: $bg-texture-url;
 
