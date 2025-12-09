@@ -69,7 +69,7 @@ export async function initVideoFunction(): Promise<void> {
   // Charge la bonne qualité
   const newSource = getVideoSource(quality, device);
   video.src = newSource;
-  // video.preload = 'auto';
+  video.load();
 
   // 7. PLAY VIDEO
   try {
