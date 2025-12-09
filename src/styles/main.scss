@@ -136,7 +136,7 @@ html {
                 top: 110%;
                 pointer-events: none;
                 z-index: 1; // Derrière le contenu
-                
+
                 @media screen and (max-width: $mobile-breakpoint) {
                   display: none;
                 }
@@ -216,12 +216,13 @@ html {
 
             .video-icon {
               width: 3em;
-              height: auto;
+              height: 3em;
               position: absolute;
               top: calc($margin-m);
               right: $margin-m;
               z-index: 5;
               cursor: pointer;
+              fill: $color3;
 
               @media screen and (max-width: $mobile-breakpoint-s) {
                 width: 2em;
@@ -231,7 +232,6 @@ html {
           }
 
           .section2 {
-            // visibility: hidden;
             @include slanted-border();
             z-index: 15;
             width: 100%;
@@ -347,7 +347,6 @@ html {
                     .info-icon {
                       width: calc($picto-size);
                       height: calc($picto-size);
-                      background-color: $color2;
                       fill: $color2;
 
                       &.resto-icon {
@@ -560,6 +559,8 @@ html {
             border-top: $border-section-separation;
             @include flex-box();
             padding: $margin-m $margin-s;
+            content-visibility: auto;
+            contain-intrinsic-size: auto 20rem;
           }
 
           .section5 {
@@ -572,6 +573,7 @@ html {
             border-top: $border-section-separation;
             padding: $margin-xl $margin-m;
             @include flex-box(0);
+            content-visibility: auto;
 
             .content-wrapper {
               max-width: 70%;

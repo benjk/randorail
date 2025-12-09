@@ -19,6 +19,8 @@ $social-svg-width-mobile: calc($social-svg-width * 0.8);
   left: 0;
   font-family: $text-font;
   font-size: calc($text-font-size * 0.75);
+  content-visibility: auto;
+  contain-intrinsic-size: auto $footer-height;
 
   .footer-content {
     flex: 1;
@@ -70,7 +72,7 @@ $social-svg-width-mobile: calc($social-svg-width * 0.8);
             text-transform: uppercase;
             color: $color2;
             font-family: $title-font;
-            letter-spacing: calc($letter-spacing-basic *3);
+            letter-spacing: calc($letter-spacing-basic * 3);
             text-shadow: $text-shadow-light;
           }
         }

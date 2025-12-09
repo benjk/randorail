@@ -144,17 +144,10 @@
         margin-bottom: $margin-s;
         width: $picto-size;
         height: $picto-size;
-        background-color: $fill-color;
         text-shadow: $text-shadow-basic;
-        transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        -webkit-mask-repeat: no-repeat;
-        -webkit-mask-position: center;
-        -webkit-mask-size: contain;
-        mask-repeat: no-repeat;
-        mask-position: center;
-        mask-size: contain;
         align-self: end;
         justify-self: center;
+        fill: $fill-color;
 
         @media screen and (max-width: $mobile-breakpoint-s) {
           margin-bottom: 0;

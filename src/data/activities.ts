@@ -7,32 +7,32 @@ const activityMeta: Record<
 > = {
   'activities/randorail': {
     bgImage: '/img/activities/rando-card.webp',
-    icon: '/img/icons/picto-rail.svg',
+    icon: 'picto-rail',
     description: 'Découvrez le Randorail du pays de Lumbres',
   },
   'activities/trottitrail': {
     bgImage: '/img/activities/trotti-card.webp',
-    icon: '/img/icons/picto-trotti.svg',
+    icon: 'picto-trotti',
     description: 'Balades en trottinette tout terrain',
   },
   'activities/bivouac': {
     bgImage: '/img/activities/bivouac-card.webp',
-    icon: '/img/icons/picto-bivouac.svg',
+    icon: 'picto-bivouac',
     description: 'Nuit en pleine nature',
   },
   'activities/chasse-au-tresor': {
     bgImage: '/img/activities/chasse-card.webp',
-    icon: '/img/icons/picto-carte.svg',
+    icon: 'picto-carte',
     description: 'Jeu d’aventure pour petits et grands',
   },
   groupes: {
     bgImage: '/img/activities/seminaires-card.webp',
-    icon: '/img/icons/picto-groupe.svg',
+    icon: 'picto-groupe',
     description: 'Séminaires, team-buulding, et événements d’entreprise',
   },
   'activities/filets': {
     bgImage: '/img/activities/bivouac-card.webp',
-    icon: '/img/icons/picto-filet.svg',
+    icon: 'picto-filet',
     description: 'Le parc du filet qui va bientôt ouvrir ses portes',
   },
 };

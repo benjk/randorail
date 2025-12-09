@@ -88,15 +88,9 @@ import VideoHero from '../video/VideoHero.astro';
             data-animate-group="cards-section-2"
           >
             <div class="card-link unic-link">
-              <div
-                class="info-icon"
-                style={{
-                  mask: "url('/img/icons/picto-pin.svg') no-repeat center / contain",
-                  WebkitMask:
-                    "url('/img/icons/picto-pin.svg') no-repeat center / contain",
-                }}
-              >
-              </div>
+              <svg class="info-icon">
+                <use href=`#picto-pin`></use>
+              </svg>
               <span class="card-action">Itinéraire</span>
             </div>
             <div class="address-card">
@@ -117,27 +111,15 @@ import VideoHero from '../video/VideoHero.astro';
             <p class="card-title">Besoin d'infos ?</p>
             <div class="infos-wrapper">
               <a href="/activites" class="card-link">
-                <div
-                  class="info-icon"
-                  style={{
-                    mask: "url('/img/icons/picto-rail.svg') no-repeat center / contain",
-                    WebkitMask:
-                      "url('/img/icons/picto-rail.svg') no-repeat center / contain",
-                  }}
-                >
-                </div>
+                <svg class="info-icon">
+                  <use href=`#picto-rail`></use>
+                </svg>
                 <span>Horaires & Tarifs</span>
               </a>
               <a href="/restauration" class="card-link">
-                <div
-                  class="info-icon resto-icon"
-                  style={{
-                    mask: "url('/img/icons/picto-food.svg') no-repeat center / contain",
-                    WebkitMask:
-                      "url('/img/icons/picto-food.svg') no-repeat center / contain",
-                  }}
-                >
-                </div>
+                <svg class="info-icon resto-icon">
+                  <use href=`#picto-food`></use>
+                </svg>
                 <span>Restauration</span>
               </a>
             </div>
@@ -151,15 +133,9 @@ import VideoHero from '../video/VideoHero.astro';
             data-animate-mobile="right"
             data-animate-group="cards-section-2"
           >
-            <div
-              class="info-icon"
-              style={{
-                mask: "url('/img/icons/picto-groupe.svg') no-repeat center / contain",
-                WebkitMask:
-                  "url('/img/icons/picto-groupe.svg') no-repeat center / contain",
-              }}
-            >
-            </div>
+            <svg class="info-icon">
+              <use href=`#picto-groupe`></use>
+            </svg>
             <p class="card-title">Venir en groupe</p>
             <span class="card-link unic-link">Comment ça marche ?</span>
           </a>
@@ -215,12 +191,14 @@ import VideoHero from '../video/VideoHero.astro';
   </section>
   <!-- SECTION 3 : VIDEO OVERLAY -->
   <section class="video-section-overlay">
-    <a class="video-icon-link" target="_blank" href=`${VIDEO_CONFIG.fallbackUrl}`>
-      <img
-        class="video-icon"
-        src="/img/icons/icon-video.svg"
-        alt="Le Randorail en images"
-      />
+    <a
+      class="video-icon-link"
+      target="_blank"
+      href=`${VIDEO_CONFIG.fallbackUrl}`
+    >
+      <svg class="video-icon">
+        <use href=`#picto-video`></use>
+      </svg>
     </a>
   </section>
   <section class="section4">
