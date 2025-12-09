@@ -26,7 +26,7 @@ const activityMeta: Record<
     description: 'Jeu d’aventure pour petits et grands',
   },
   groupes: {
-    bgImage: '/img/activities/seminaires-card.webp',
+    bgImage: '/img/activities/groupes-card.webp',
     icon: 'picto-groupe',
     description: 'Séminaires, team-buulding, et événements d’entreprise',
   },
