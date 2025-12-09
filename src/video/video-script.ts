@@ -345,6 +345,7 @@ export async function initVideoFunction(): Promise<void> {
 
   /**
    * Remplace le comportement du lien fallback par play/pause
+   * Fallback si Mobile
    */
   function setupPlayPauseButton(
     link: HTMLElement,
@@ -355,27 +356,26 @@ export async function initVideoFunction(): Promise<void> {
       return;
     }
 
-    // Vire le href pour désactiver l'ouverture d'onglet
-    link.removeAttribute('href');
-    link.style.cursor = 'pointer';
-
-    // Ajoute le toggle play/pause
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-
-      if (video.paused) {
-        video.play();
-        link.classList.remove('paused');
-        link.classList.add('playing');
-        console.log('▶️ Play');
-      } else {
-        video.pause();
-        link.classList.remove('playing');
-        link.classList.add('paused');
-        console.log('⏸️ Pause');
-      }
-    });
-
-    console.log('🎮 Play/Pause activé sur le bouton');
+    
+    if (!device.preferMp4) {
+      link.removeAttribute('href');
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+  
+        if (video.paused) {
+          video.play();
+          link.classList.remove('paused');
+          link.classList.add('playing');
+          console.log('▶️ Play');
+        } else {
+          video.pause();
+          link.classList.remove('playing');
+          link.classList.add('paused');
+          console.log('⏸️ Pause');
+        }
+      });
+  
+      console.log('🎮 Play/Pause activé sur le bouton');
+    }
   }
 }
