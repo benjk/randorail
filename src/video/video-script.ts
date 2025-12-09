@@ -209,7 +209,8 @@ export async function initVideoFunction(): Promise<void> {
     const isLowEndDevice =
       hardwareConcurrency < THRESHOLDS.device.minCoresForHD ||
       (deviceMemory !== undefined &&
-        deviceMemory < THRESHOLDS.device.minMemoryForHD);
+        deviceMemory < THRESHOLDS.device.minMemoryForHD) ||
+        screenWidth < VIDEO_CONFIG.BREAKPOINTS.tablet;
 
     if (isLowEndDevice) {
       console.log('📱 Device faible → SD forcé');
