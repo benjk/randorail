@@ -137,9 +137,8 @@ html {
                 pointer-events: none;
                 z-index: 1; // Derrière le contenu
                 
-                @media screen and (max-width: $mobile-breakpoint-s) {
-                  width: 90%;
-                  left: $margin-s;
+                @media screen and (max-width: $mobile-breakpoint) {
+                  display: none;
                 }
 
                 .rail-svg {
