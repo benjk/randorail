@@ -1,55 +1,113 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 import HighlightOnHash from '../components/Highlight';
-import '../styles/activity_page.scss'
+import '../styles/activity_page.scss';
 import MainLayout from './MainLayout.astro';
-const { title, topImages = [], mainImg, text, tarifs = [], horaires = [], reserveUrl, secondaryText, faq = [] } = Astro.props;
+import type { ActivityFull, FAQItem } from '../data/activities-type';
+
+interface Props extends ActivityFull {
+  faq: FAQItem[];
+}
+
+const {
+  docTitle,
+  title,
+  image1,
+  mainText= [],
+  tarifs = [],
+  horaires = [],
+  url,
+  image2,
+  secondaryText = [],
+  faq = [],
+} = Astro.props;
 ---
 
-<MainLayout>
-<div class="activity-page-layout content-container">
-
-  <!-- BG principal -->
-  {mainImg && <div class="activity-bg" style={`background-image:url(${mainImg})`}></div>}
+<MainLayout title={docTitle}>
+  <div class="content-container">
+    <div class="activity-page-layout">
   
-  <h2>{title}</h2>
-  <!-- Texte descriptif -->
-  <section class="activity-text">
-    {text.split('\n').map((line: string) => <p>{line}</p>)}
-  </section>
+      <h1>{title}</h1>
 
-  <!-- Tarifs et horaires -->
-  <section class="activity-info">
-    <!-- <div class="tarifs-grid">
-      {tarifs.map(t => (
-        <div class="tarif-item">
-          <strong>{t.label}</strong>
-          <span>{t.price}</span>
+      <!-- Hero : Image + Texte côte à côte -->
+      <section class="activity-main-info-container">
+        {image1 && (
+          <div class="activity-main-img" style={`background-image:url(${image1})`}></div>
+        )}
+        
+         <div class="activity-text">
+          {mainText.map((paragraph) => <p>{paragraph}</p>)}
         </div>
-      ))}
-    </div> -->
-    <div class="horaires">
-      {horaires.map((h: string) => <p>{h}</p>)}
+      </section>
+
+      <!-- Gros bouton réservation -->
+      {url && (
+        <div class="reserve-btn-container">
+          <a class="reserve-btn" href={url} target="_blank" rel="noopener noreferrer">
+            Réserver
+          </a>
+        </div>
+      )}
+
+      <!-- Tarifs + Horaires sur 2 colonnes -->
+      <section class="activity-info-practical">
+        {tarifs.length > 0 && (
+          <div class="tarifs-section practical-info-card">
+            <h3>Tarifs</h3>
+            <div class="tarifs-grid">
+              {tarifs.map((t) => (
+                <div class="tarif-item">
+                  <strong>{t.label}</strong>
+                  <span>{t.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {horaires.length > 0 && (
+      <div class="horaires-section practical-info-card">
+        <h3>Horaires</h3>
+        <div class="practical-grid">
+          {horaires.map((h) => (
+            <div class="practical-item">
+              <strong>{h.label}</strong>
+              <span>{h.value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+      </section>
+
+      <!-- SI JAI BESOIN : Slot pour contenu custom AVANT le contenu secondaire par défaut -->
+      <slot name="secondary-slot" />
+
+      <!-- Image secondaire -->
+      {image2 && (
+        <div class="activity-secondary-image" style={`background-image:url(${image2})`}></div>
+      )}
+
+      <!-- Texte secondaire -->
+      {secondaryText.length > 0 && (
+        <section class="activity-secondary">
+          {secondaryText.map((paragraph) => <p>{paragraph}</p>)}
+        </section>
+      )}
+
+      <!-- FAQ -->
+      {faq.length > 0 && (
+        <section class="activity-faq">
+          <h2>Questions fréquentes</h2>
+          <!-- Tu pourras mettre ton composant FAQ ici -->
+        </section>
+      )}
+
+      <section class="activity-faq">
+          <h2>Questions fréquentes</h2>
+          <p>ICI une FAQ comme avant</p>
+        </section>
     </div>
-    {reserveUrl && <a class="reserve-btn" href={reserveUrl} target="_blank">Réserver</a>}
-  </section>
-
-  <!-- Texte secondaire -->
-  {secondaryText && <section class="activity-secondary">
-    {secondaryText.split('\n').map((line: string) => <p>{line}</p>)}
-  </section>}
-
-  <!-- FAQ -->
-  <!-- {faq.length > 0 && <section class="activity-faq">
-    {faq.map(({ q, a }) => (
-      <details>
-        <summary>{q}</summary>
-        <p>{a}</p>
-      </details>
-    ))}
-  </section>} -->
-</div>
+  </div>
 </MainLayout>
 
 <HighlightOnHash client:load />

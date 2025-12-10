@@ -4,8 +4,154 @@
 @use './animations' as *;
 
 .activity-page-layout {
+  background-color: $color1;
+  background-image: $bg-texture-url;
+  color: $color3;
+  padding-top: $margin-s;
+  padding-bottom: $margin-xl;
+  @include flex-box($margin-l);
+  gap: $margin-l;
+  width: 1300px;
+  max-width: 90%;
+
+  // --- Titre principal ---
+  h1 {
+    @include page-h2();
+  }
+
+  .activity-main-info-container {
+    @include flex-row($margin-m);
     width: 100%;
-    background-color: $color1;
-    color: $color3;
-    padding-top:calc($header-height + $margin-m);
+
+    @media screen and (max-width: $mobile-breakpoint-s) {
+      flex-direction: column;
+    }
+
+    .activity-main-img {
+      width: 30%;
+      height: auto;
+      background-size: cover;
+      background-position: center;
+
+      @media screen and (min-width: $mobile-breakpoint-s) {
+        min-height: 250px;
+      }
+    }
+
+    .activity-text {
+      font-size: 1.125rem;
+      line-height: 1.7;
+
+      p {
+        margin-bottom: $margin-s;
+      }
+    }
+  }
+
+  // --- Bouton réservation (gros CTA) ---
+  .reserve-btn-container {
+    text-align: center;
+
+    .reserve-btn {
+      @include custom-btn();
+    }
+  }
+
+  // --- Tarifs + Horaires sur 2 colonnes ---
+  .activity-info-practical {
+    @include flex-row($margin-m);
+    align-items: stretch;
+    width: 100%;
+
+    @media screen and (max-width: $mobile-breakpoint-s) {
+      flex-direction: column;
+    }
+
+    .practical-info-card {
+      @include flex-box($margin-s);
+      height: auto;
+      background: $color3;
+      padding: $margin-m $margin-m;
+      border-radius: $card-radius;
+      box-shadow: $cards-shadow;
+      color: $color1;
+      flex: 1;
+      text-decoration: none;
+
+      h3 {
+        color: $color2;
+        font-size: 1.5rem;
+        text-align: center;
+      }
+    }
+
+    // Bloc tarifs
+    .tarifs-section {
+      .tarifs-grid {
+        display: flex;
+        flex-direction: column;
+        gap: $margin-xs;
+
+        .tarif-item {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: $margin-s;
+          background: rgba($color1, 0.6);
+          background-image: $bg-texture-url;
+          border-radius: $card-radius;
+
+          strong {
+            color: $color3;
+            font-size: 1.0625rem;
+          }
+
+          span {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: $color2;
+          }
+        }
+      }
+    }
+
+    // Bloc horaires
+    .horaires-section {
+      .horaires {
+        p {
+          margin-bottom: $margin-s;
+          font-size: 1.0625rem;
+          line-height: 1.6;
+        }
+      }
+    }
+  }
+
+  // --- Image secondaire ---
+  .activity-secondary-image {
+    width: 100%;
+    height: auto;
+    min-height: 300px;
+    margin: 0 auto $margin-l;
+    background-size: cover;
+    background-position: center;
+  }
+
+  // --- Texte secondaire ---
+  .activity-secondary {
+    max-width: 800px;
+  }
+
+  // --- FAQ ---
+  .activity-faq {
+    max-width: 900px;
+    margin: 0 auto;
+
+    h2 {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      margin-bottom: $margin-l;
+      color: $color2;
+      text-align: center;
+    }
+  }
 }

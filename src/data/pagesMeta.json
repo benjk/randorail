@@ -6,5 +6,5 @@
   "randorail": { "label": "Randorail", "editable": true, "parent": "activities" },
   "trotti": { "label": "Trotti-Trail", "editable": true, "parent": "activities" },
   "bivouac": { "label": "Bivouac", "editable": true, "parent": "activities" },
-  "chasse-au-tresor": { "label": "Chasse au trésor", "editable": true, "parent": "activities" }
+  "chasse": { "label": "Chasse au trésor", "editable": true, "parent": "activities" }
 }

@@ -1,29 +1,15 @@
 ---
 import ActivityLayout from '../../layouts/ActivityLayout.astro';
 
-const randorailContent = {
-  title: 'RandOrRail',
-  mainImg: '/img/activities/randorail/bg.jpg',
-  topImages: [
-    '/img/activities/randorail/1.jpg',
-    '/img/activities/randorail/2.jpg',
-    '/img/activities/randorail/3.jpg'
-  ],
-  text: `Découvrez notre activité RandOrRail.\nUne expérience unique entre randonnée et sensations ferroviaires.`,
-  tarifs: [
-    { label: 'Adulte', price: '25€' },
-    { label: 'Enfant', price: '15€' },
-    { label: 'Groupe (+10)', price: '20€/pers' }
-  ],
-  horaires: ['Tous les jours: 9h - 18h', 'Week-end: 10h - 20h'],
-  reserveUrl: 'https://www.euresto.com/reservation/randorail',
-  secondaryText: `Infos complémentaires:\n- Chaussures adaptées\n- Prévoir pique-nique\n- Accessible dès 8 ans`,
-  faq: [
-    { q: 'Durée de l’activité ?', a: 'Environ 3 heures, pauses incluses.' },
-    { q: 'Est-ce adapté aux enfants ?', a: 'Oui, dès 8 ans, accompagnés d’un adulte.' },
-    { q: 'Peut-on venir en groupe ?', a: 'Oui, tarifs préférentiels pour +10 personnes.' }
-  ]
-};
+import { getActivityContent, getActivityFAQ } from '../../data/activities';
+
+const activityData = getActivityContent('randorail')
+const faqData = getActivityFAQ('randorail');
+
 ---
 
-<ActivityLayout {...randorailContent} />
+<ActivityLayout {...activityData} faq={faqData}>
+  <section slot="secondary-slot" class="activity-map">
+    <h2>SI Besoin de contenu spécifique par activité cest possible !</h2>
+  </section>
+</ActivityLayout>
