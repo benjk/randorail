@@ -45,7 +45,68 @@
       "text1": "Le Randorail du pays de Lumbres"
     }
   },
+  "faq": [
+    {
+      "question": "Quelle est la durée de l'activité ?",
+      "answer": "Environ 3 heures, pauses incluses.",
+      "tags": [
+        "randorail"
+      ]
+    },
+    {
+      "question": "Est-ce adapté aux enfants ?",
+      "answer": "Oui, dès 8 ans, accompagnés d'un adulte.",
+      "tags": [
+        "randorail",
+        "trottitrail",
+        "bivouac"
+      ]
+    }
+  ],
   "pages": {
+    "randorail": {
+      "docTitle": "Le Randorail",
+      "title": "Rando-rail",
+      "image1": "/img/activities/rando-card.webp",
+      "mainText": [
+        "Découvrez notre activité RandOrRail...",
+        "Profitez d'une aventure unique..."
+      ],
+      "tarifs": [
+        {
+          "label": "Adulte",
+          "value": "25€"
+        },
+        {
+          "label": "Enfant (-12 ans)",
+          "value": "15€"
+        },
+        {
+          "label": "Groupe (+10 pers)",
+          "value": "20€/pers"
+        }
+      ],
+      "horaires": [
+        {
+          "label": "Lundi - Vendredi",
+          "value": "9h - 18h"
+        },
+        {
+          "label": "Week-end",
+          "value": "10h - 20h"
+        },
+        {
+          "label": "Jours fériés",
+          "value": "Fermé"
+        }
+      ],
+      "image2": "/img/activities/bivouac-card.webp",
+      "secondaryText": [
+        "Infos complémentaires:\n- Chaussures de randonnée recommandées",
+        "- Prévoir pique-nique",
+        "- Accessible dès 8 ans"
+      ]
+    },
     "mentions": {
       "docTitle": "Mentions Légales",
       "title": "Mentions Légales",
