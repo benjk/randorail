@@ -1,8 +1,9 @@
 ---
 import HighlightOnHash from '../components/Highlight';
-import '../styles/activity_page.scss';
 import MainLayout from './MainLayout.astro';
+import '../styles/activity_page.scss';
 import type { ActivityFull, FAQItem } from '../data/activities-type';
+import { Image } from 'astro:assets';
 
 interface Props extends ActivityFull {
   faq: FAQItem[];
@@ -12,100 +13,136 @@ const {
   docTitle,
   title,
   image1,
-  mainText= [],
+  mainText = [],
   tarifs = [],
   horaires = [],
   url,
   image2,
   secondaryText = [],
   faq = [],
+  icon,
 } = Astro.props;
 ---
 
 <MainLayout title={docTitle}>
   <div class="content-container">
     <div class="activity-page-layout">
-  
-      <h1>{title}</h1>
+      <section class="activity-main-info-container activity-page-section">
+        {
+          image1 && (
+            <div class="activity-main-img">
+              <Image
+                src={image1}
+                alt={`Photo de l'activité ${title}`}
+                width={1200}
+                height={800}
+                loading="eager"
+              />
+            </div>
+          )
+        }
 
-      <!-- Hero : Image + Texte côte à côte -->
-      <section class="activity-main-info-container">
-        {image1 && (
-          <div class="activity-main-img" style={`background-image:url(${image1})`}></div>
-        )}
-        
-         <div class="activity-text">
-          {mainText.map((paragraph) => <p>{paragraph}</p>)}
+        <div class="activity-text-card">
+          <h1>{title}</h1>
+          <div class="p-container">
+            {mainText.map((paragraph) => <p>{paragraph}</p>)}
+          </div>
+
+          <!-- Gros bouton réservation -->
+          {
+            url && (
+              <div class="reserve-btn-container">
+                <a
+                  class="reserve-btn"
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg class="btn-icon">
+                    <use href={`#${icon}`} />
+                  </svg>
+                  Réserver
+                </a>
+              </div>
+            )
+          }
         </div>
       </section>
 
-      <!-- Gros bouton réservation -->
-      {url && (
-        <div class="reserve-btn-container">
-          <a class="reserve-btn" href={url} target="_blank" rel="noopener noreferrer">
-            Réserver
-          </a>
-        </div>
-      )}
-
       <!-- Tarifs + Horaires sur 2 colonnes -->
-      <section class="activity-info-practical">
-        {tarifs.length > 0 && (
-          <div class="tarifs-section practical-info-card">
-            <h3>Tarifs</h3>
-            <div class="tarifs-grid">
-              {tarifs.map((t) => (
-                <div class="tarif-item">
-                  <strong>{t.label}</strong>
-                  <span>{t.value}</span>
+      <section class="activity-info-practical activity-page-section">
+        <h3>Tarifs & Horaires</h3>
+        <div class="practical-wrapper">
+          {
+            tarifs.length > 0 && (
+              <div class="tarifs-section practical-info-card">
+                <div class="tarifs-grid">
+                  {tarifs.map((t) => (
+                    <div class="tarif-item">
+                      <strong>{t.label}</strong>
+                      <span>{t.value}</span>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
-        )}
+              </div>
+            )
+          }
+          <hr />
 
-        {horaires.length > 0 && (
-      <div class="horaires-section practical-info-card">
-        <h3>Horaires</h3>
-        <div class="practical-grid">
-          {horaires.map((h) => (
-            <div class="practical-item">
-              <strong>{h.label}</strong>
-              <span>{h.value}</span>
-            </div>
-          ))}
+          {
+            horaires.length > 0 && (
+              <div class="horaires-section practical-info-card">
+                <div class="horaire-container">
+                  {horaires.map((h) => (
+                    <div class="horaire-item">
+                      <strong>{h.label}</strong>
+                      <span>{h.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )
+          }
         </div>
-      </div>
-    )}
       </section>
 
       <!-- SI JAI BESOIN : Slot pour contenu custom AVANT le contenu secondaire par défaut -->
       <slot name="secondary-slot" />
 
       <!-- Image secondaire -->
-      {image2 && (
-        <div class="activity-secondary-image" style={`background-image:url(${image2})`}></div>
-      )}
+      {
+        image2 && (
+          <div class="activity-secondary-image">
+              <Image
+                src={image2}
+                alt={`Photo de l'activité ${title}`}
+                width={1800}
+                height={600}
+                loading="lazy"
+              />
+            </div>
+        )
+      }
 
       <!-- Texte secondaire -->
-      {secondaryText.length > 0 && (
-        <section class="activity-secondary">
-          {secondaryText.map((paragraph) => <p>{paragraph}</p>)}
-        </section>
-      )}
+      {
+        secondaryText.length > 0 && (
+          <section class="activity-secondary">
+            {secondaryText.map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
+          </section>
+        )
+      }
 
       <!-- FAQ -->
-      {faq.length > 0 && (
-        <section class="activity-faq">
-          <h2>Questions fréquentes</h2>
-          <!-- Tu pourras mettre ton composant FAQ ici -->
-        </section>
-      )}
-
-      <section class="activity-faq">
-          <h2>Questions fréquentes</h2>
-          <p>ICI une FAQ comme avant</p>
-        </section>
+      {
+        faq.length > 0 && (
+          <section class="activity-faq">
+            <h2>Questions fréquentes</h2>
+          </section>
+        )
+      }
     </div>
   </div>
 </MainLayout>

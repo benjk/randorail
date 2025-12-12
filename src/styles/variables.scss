@@ -63,6 +63,8 @@ $text-shadow-light: 0 2px 36px rgba($color3, 0.3);
 $mobile-breakpoint: 992px;
 $mobile-breakpoint-s: 740px;
 $header-height: 4rem;
+$mobile-header-height: calc($header-height * 0.85);
+
 $footer-height: 11rem;
 
 $title1-font-size: clamp(2rem, 0.357rem + 5.714vw, 4rem);

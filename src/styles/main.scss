@@ -41,6 +41,10 @@ html {
         min-height: calc(100vh - $footer-height);
         padding-top: $header-height;
 
+        @media screen and (max-width: $mobile-breakpoint) {
+          padding-top: $mobile-header-height;
+        }
+
         h2 {
           font-size: $title2-font-size;
           font-family: $title-font;
@@ -594,7 +598,7 @@ html {
                   width: 32vw;
                   object-fit: contain;
                   height: auto;
-                  border: 3px solid $color2;
+                  border: 2px solid $color3;
                   @media screen and (max-width: $mobile-breakpoint) {
                     width: 100%;
                     align-self: flex-end;

@@ -61,8 +61,11 @@
     "randorail": {
       "docTitle": "Le Randorail",
       "title": "Rando-rail",
-      "image1": "/img/activities/rando-card.webp",
-      "mainText": ["Découvrez notre activité RandOrRail...", "Profitez d'une aventure unique..."],
+      "image1": "/img/activities/rando-main.webp",
+      "mainText": [
+        "Deux parcours Rando-rail sont accessibles. Nous vous accueillons sur le site de l'ancien dépôt de la gare de Nielles lès Bléquin et la voie utilisée désservait les communes entre Saint-Omer et Hédigneul.",
+        "Profitez d'une aventure unique..."
+      ],
       "tarifs": [
         { "label": "Adulte", "value": "25€" },
         { "label": "Enfant (-12 ans)", "value": "15€" },
@@ -73,8 +76,7 @@
         { "label": "Week-end", "value": "10h - 20h" },
         { "label": "Jours fériés", "value": "Fermé" }
       ],
-      "image2": "/img/activities/bivouac-card.webp",
-      "secondaryText": ["Infos complémentaires:\n- Chaussures de randonnée recommandées", "- Prévoir pique-nique", "- Accessible dès 8 ans"]
+      "image2": "/img/activities/rando-frise.webp"
     },
     "mentions": {
       "docTitle": "Mentions Légales",

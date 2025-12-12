@@ -4,7 +4,6 @@
 $header-logo-padding: 10px;
 $margin-side: 12%;
 $content-height: 80%;
-$mobile-header: calc($header-height * 0.85);
 
 $shadow-menu:
   0 4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -344,7 +343,7 @@ $header-bg-color: $color-bg-stronger;
 
   /* === Responsive === */
   @media screen and (max-width: $mobile-breakpoint) {
-    height: $mobile-header;
+    height: $mobile-header-height;
 
     .navbar {
       padding-left: calc($margin-side * 0.5);
@@ -366,7 +365,7 @@ $header-bg-color: $color-bg-stronger;
     }
 
     .mobile-menu-container {
-      top: $mobile-header;
+      top: $mobile-header-height;
     }
   }
 }

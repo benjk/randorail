@@ -4,124 +4,235 @@
 @use './animations' as *;
 
 .activity-page-layout {
+  $mgap: $margin-xl;
   background-color: $color1;
   background-image: $bg-texture-url;
   color: $color3;
-  padding-top: $margin-s;
-  padding-bottom: $margin-xl;
-  @include flex-box($margin-l);
-  gap: $margin-l;
-  width: 1300px;
-  max-width: 90%;
+  padding-top: $mgap;
+  // padding-bottom: $mgap;
+  @include flex-box($margin-xl);
+  width: 100%;
 
-  // --- Titre principal ---
-  h1 {
-    @include page-h2();
+  @media screen and (max-width: $mobile-breakpoint) {
+    padding-top: 0;
+  }
+
+  .activity-page-section {
+    max-width: 100%;
   }
 
   .activity-main-info-container {
-    @include flex-row($margin-m);
-    width: 100%;
+    display: flex;
+    width: 1600px;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
 
-    @media screen and (max-width: $mobile-breakpoint-s) {
+    @media screen and (max-width: $mobile-breakpoint) {
       flex-direction: column;
+      width: 100%;
     }
 
     .activity-main-img {
-      width: 30%;
-      height: auto;
-      background-size: cover;
-      background-position: center;
+      flex: 0 0 auto;
+      height: 44vh;
+      min-height: 400px;
 
-      @media screen and (min-width: $mobile-breakpoint-s) {
-        min-height: 250px;
+      img {
+        width: auto;
+        height: 100%;
+        display: block;
+        border-radius: $card-radius;
+        box-shadow: $basic-shadow;
+      }
+
+      @media screen and (max-width: $mobile-breakpoint) {
+        width: 100%;
+        min-height: 0;
+        height: auto;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
       }
     }
 
-    .activity-text {
-      font-size: 1.125rem;
-      line-height: 1.7;
+    .activity-text-card {
+      @include flex-box($margin-m);
+      box-shadow: $cards-shadow;
+      background: $color3;
+      margin-left: -2.2em;
+      border: 1px solid $color2;
+      width: 40%;
 
-      p {
-        margin-bottom: $margin-s;
+      padding: $margin-m $margin-l;
+      border-radius: 8px;
+
+      @media screen and (max-width: $mobile-breakpoint) {
+        width: 90%;
+        margin-left: 0;
+        margin-top: -3.2rem;
       }
-    }
-  }
 
-  // --- Bouton réservation (gros CTA) ---
-  .reserve-btn-container {
-    text-align: center;
+      h1 {
+        @include content-h2();
+        margin: 0;
 
-    .reserve-btn {
-      @include custom-btn();
+        &:after {
+          margin-top: 0;
+        }
+      }
+
+      .p-container {
+        @include flex-box($margin-xs);
+        color: $color1;
+        text-align: justify;
+        align-items: start;
+      }
+
+      // --- Bouton réservation (gros CTA) ---
+      .reserve-btn-container {
+        text-align: center;
+
+        .reserve-btn {
+          @include custom-btn();
+          padding-left: $margin-m;
+
+          svg {
+            height: 30px;
+            width: 30px;
+            fill: currentColor;
+            margin-right: 0.9rem;
+          }
+        }
+      }
     }
   }
 
   // --- Tarifs + Horaires sur 2 colonnes ---
   .activity-info-practical {
-    @include flex-row($margin-m);
-    align-items: stretch;
-    width: 100%;
+    max-width: 80%;
+    width: 1100px;
 
-    @media screen and (max-width: $mobile-breakpoint-s) {
-      flex-direction: column;
+    h3 {
+      color: $color3;
+      font-size: $title2-font-size;
+      text-align: center;
+      text-shadow: $light-shadow;
+      margin-bottom: $margin-m;
+      font-weight: normal;
     }
-
-    .practical-info-card {
-      @include flex-box($margin-s);
-      height: auto;
-      background: $color3;
-      padding: $margin-m $margin-m;
-      border-radius: $card-radius;
-      box-shadow: $cards-shadow;
-      color: $color1;
-      flex: 1;
-      text-decoration: none;
+    @media screen and (max-width: $mobile-breakpoint) {
+      flex-direction: column;
+      max-width: 100%;
+      width: 90%;
 
       h3 {
-        color: $color2;
-        font-size: 1.5rem;
-        text-align: center;
+        margin-bottom: $margin-l;
       }
     }
 
-    // Bloc tarifs
-    .tarifs-section {
-      .tarifs-grid {
-        display: flex;
+    .practical-wrapper {
+      @include flex-row($margin-l);
+      align-items: stretch;
+      justify-content: center;
+
+      @media screen and (max-width: $mobile-breakpoint) {
         flex-direction: column;
-        gap: $margin-xs;
+      }
 
-        .tarif-item {
+      .practical-info-card {
+        @include flex-box($margin-m);
+        height: auto;
+        color: $color1;
+        text-decoration: none;
+        background: transparent;
+        width: 26rem;
+
+        @media screen and (max-width: $mobile-breakpoint) {
+          width: 100%;
+        }
+      }
+
+      // Bloc tarifs
+      .tarifs-section {
+        .tarifs-grid {
           display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: $margin-s;
-          background: rgba($color1, 0.6);
-          background-image: $bg-texture-url;
-          border-radius: $card-radius;
+          flex-direction: column;
+          gap: $margin-xs;
+          width: 100%;
 
-          strong {
-            color: $color3;
-            font-size: 1.0625rem;
-          }
+          .tarif-item {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: $margin-xs $margin-s;
+            background: $color3;
 
-          span {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: $color2;
+            background-image: $bg-texture-url;
+            border-radius: $card-radius;
+            box-shadow: $light-shadow;
+
+            strong {
+              color: $color1;
+              font-size: $text-font-size;
+              font-weight: normal;
+            }
+
+            span {
+              font-size: $text-font-size;
+              font-weight: bold;
+              color: $color2;
+            }
           }
         }
       }
-    }
 
-    // Bloc horaires
-    .horaires-section {
-      .horaires {
-        p {
-          margin-bottom: $margin-s;
-          font-size: 1.0625rem;
-          line-height: 1.6;
+      hr {
+        @include custom-hr();
+        width: 6rem;
+        margin: auto;
+        @media screen and (min-width: $mobile-breakpoint) {
+          display: none;
+        }
+      }
+
+      // Bloc horaires
+      .horaires-section {
+        .horaire-container {
+          width: 100%;
+          background: $color3;
+          background-image: $bg-texture-url;
+          box-shadow: $light-shadow;
+          border-radius: $card-radius;
+          padding: $margin-s $margin-m;
+          @include flex-box($margin-xs);
+
+          .horaire-item {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: $margin-xs;
+            background: $color3;
+
+            background-image: $bg-texture-url;
+            border-radius: $card-radius;
+
+            strong {
+              color: $color1;
+              font-size: $text-font-size;
+              font-weight: normal;
+            }
+
+            span {
+              font-size: $text-font-size;
+              font-weight: bold;
+              color: $color2;
+            }
+          }
         }
       }
     }
@@ -130,11 +241,26 @@
   // --- Image secondaire ---
   .activity-secondary-image {
     width: 100%;
-    height: auto;
-    min-height: 300px;
-    margin: 0 auto $margin-l;
-    background-size: cover;
-    background-position: center;
+    height: 265px;
+    overflow: hidden;
+    border-top: $border-section-separation;
+
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center 40%;
+    }
+    @media screen and (max-width: $mobile-breakpoint) {
+      min-height: 100px;
+      height: 280px;
+    }
+
+        @media screen and (max-width: $mobile-breakpoint-s) {
+      min-height: 100px;
+      height: 190px;
+    }
   }
 
   // --- Texte secondaire ---
