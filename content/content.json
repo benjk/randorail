@@ -100,12 +100,7 @@
           "value": "Fermé"
         }
       ],
-      "image2": "/img/activities/bivouac-card.webp",
-      "secondaryText": [
-        "Infos complémentaires:\n- Chaussures de randonnée recommandées",
-        "- Prévoir pique-nique",
-        "- Accessible dès 8 ans"
-      ]
+      "image2": "/img/activities/bivouac-card.webp"
     },
     "mentions": {
       "docTitle": "Mentions Légales",
