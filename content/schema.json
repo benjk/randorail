@@ -1,6 +1,6 @@
 {
   "document": {
-    "title": "Le Randorail du pays de Lumbres",
+    "title": "Le Randorail",
     "description": "Cette description est une description SEO.",
     "og": {
       "ogTitle": "Le titre de mon site OpenGraph",
@@ -8,7 +8,7 @@
     }
   },
   "contact": {
-    "mainLabel": "Benji",
+    "mainLabel": "Safari Rail Aventure",
     "email": "ben@ben.ben",
     "tel": "0651993655",
     "street": "123 Rue des Exemples",
@@ -38,7 +38,7 @@
       ]
     },
     "firstSection": {
-      "mainTitle": "Rando-rail",
+      "mainTitle": "Randorail",
       "subTitle": "du pays de Lumbres"
     },
     "secondSection": {
@@ -67,9 +67,9 @@
     "randorail": {
       "docTitle": "Le Randorail",
       "title": "Rando-rail",
-      "image1": "/img/activities/rando-card.webp",
+      "image1": "/img/activities/rando-main.webp",
       "mainText": [
-        "Découvrez notre activité RandOrRail...",
+        "Deux parcours Rando-rail sont accessibles. Nous vous accueillons sur le site de l'ancien dépôt de la gare de Nielles lès Bléquin et la voie utilisée désservait les communes entre Saint-Omer et Hédigneul.",
         "Profitez d'une aventure unique..."
       ],
       "tarifs": [
@@ -100,7 +100,7 @@
           "value": "Fermé"
         }
       ],
-      "image2": "/img/activities/bivouac-card.webp"
+      "image2": "/img/activities/rando-frise.webp"
     },
     "trottitrail": {
       "docTitle": "Le Trotti-trail",
@@ -282,6 +282,7 @@
     {
       "title": "Activités",
       "type": "submenu",
+      "slug": "activites",
       "children": [
         {
           "title": "Rando-rail",
@@ -305,7 +306,12 @@
         },
         {
           "title": "Chasse au trésor",
-          "slug": "activities/chasse-au-tresor",
+          "slug": "activities/chasse",
+          "type": "page"
+        },
+        {
+          "title": "Restauration",
+          "slug": "restauration",
           "type": "page"
         }
       ]
@@ -355,5 +361,5 @@
       "type": "page"
     }
   ],
-  "contentVersion": "2025-11-12T09:28:45.930Z"
+  "contentVersion": "2150-07-22T14:41:33.720Z"
 }
