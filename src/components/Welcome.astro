@@ -7,6 +7,7 @@ import { blocRules } from '../admin/data/blocRules';
 import CardsGrid from './CardsGrid.astro';
 import RailSVG from './RailSVG.astro';
 import VideoHero from '../video/VideoHero.astro';
+import { Image } from 'astro:assets';
 ---
 
 <div id="home-container" class="content-container">
@@ -208,9 +209,12 @@ import VideoHero from '../video/VideoHero.astro';
   <section class="section5">
     <div class="content-wrapper">
       <div class="img-wrapper">
-        <img
+        <Image
           src="/img/groups-img.webp"
-          alt="Célébration en famille au Randorail"
+          alt={`Photo de célébration en famille au Randorail`}
+          width={1000}
+          height={800}
+          loading="lazy"
         />
       </div>
       <div class="text-wrapper">
