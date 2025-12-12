@@ -12,16 +12,19 @@ const activityMeta: Record<string, ActivityMeta> = {
     bgImage: '/img/activities/trotti-card.webp',
     icon: 'picto-trotti',
     description: 'Balades en trottinette tout terrain',
+    url: 'https://resa.euresto.com/6d6136a2-375f-40b5-8b38-7d9f1f85934f/3135200c-b322-11f0-8145-00505639ca82',
   },
   bivouac: {
     bgImage: '/img/activities/bivouac-card.webp',
     icon: 'picto-bivouac',
     description: 'Nuit en pleine nature',
+    url: 'https://resa.euresto.com/6d6136a2-375f-40b5-8b38-7d9f1f85934f/3135200c-b322-11f0-8145-00505639ca82',
   },
   chasse: {
     bgImage: '/img/activities/chasse-card.webp',
     icon: 'picto-carte',
     description: "Jeu d'aventure pour petits et grands",
+    url: 'https://resa.euresto.com/6d6136a2-375f-40b5-8b38-7d9f1f85934f/3135200c-b322-11f0-8145-00505639ca82',
   },
   groupes: {
     bgImage: '/img/activities/groupes-card.webp',

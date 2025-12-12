@@ -598,11 +598,14 @@ html {
                   width: 32vw;
                   object-fit: contain;
                   height: auto;
-                  border: 2px solid $color3;
+                  border-radius: $card-radius;
+                  box-shadow: $basic-shadow;
                   @media screen and (max-width: $mobile-breakpoint) {
                     width: 100%;
                     align-self: flex-end;
                     border: none;
+                    box-shadow: none;
+                    border-radius: 0;
                   }
                 }
                 @media screen and (max-width: $mobile-breakpoint) {

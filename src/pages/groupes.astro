@@ -1,9 +1,14 @@
 ---
-import ActivityLayout from '../layouts/ActivityLayout.astro';
-
-import { getActivityContent } from '../data/activities';
-
-const activityData = getActivityContent('randorail')
+import MainLayout from '../layouts/MainLayout.astro';
+import HighlightOnHash from '../components/Highlight';
 ---
 
-<ActivityLayout {...activityData} />
+<MainLayout title="Groupes - Safari Rail Aventure">
+  <div id="page-groupes-container" class="content-container groupes-page">
+    <h2>Groupes</h2>
+    <div class="groupes-container">
+      <p>Un groupe = + de 20 personnes</p>
+    </div>
+  </div>
+</MainLayout>
+<HighlightOnHash client:load />
