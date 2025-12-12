@@ -102,6 +102,145 @@
       ],
       "image2": "/img/activities/bivouac-card.webp"
     },
+    "trottitrail": {
+      "docTitle": "Le Trotti-trail",
+      "title": "Trotti-rail",
+      "image1": "/img/activities/trotti-main.webp",
+      "mainText": [
+        "La balade en trotti-trail se déroule de façon autonome, sans encadrement. Seul un Road-book sera votre compagnon de route. A chaque intersection rencontrée, il vous faudra vous arrêter,  une photo et un schéma seront là pour vous aider à trouver votre chemin.",
+        "Profitez d'une aventure unique..."
+      ],
+      "tarifs": [
+        {
+          "label": "Adulte",
+          "value": "325€"
+        },
+        {
+          "label": "Enfant (-12 ans)",
+          "value": "15€"
+        },
+        {
+          "label": "Groupe (+10 pers)",
+          "value": "20€/pers"
+        }
+      ],
+      "horaires": [
+        {
+          "label": "Lundi - Vendredi",
+          "value": "9h - 18h"
+        },
+        {
+          "label": "Week-end",
+          "value": "10h - 20h"
+        },
+        {
+          "label": "Jours fériés",
+          "value": "Fermé"
+        }
+      ],
+      "image2": "/img/activities/rando-frise.webp"
+    },
+    "bivouac": {
+      "docTitle": "Bivouac sur notre site !",
+      "title": "Bivouac-ô-rail",
+      "image1": "/img/activities/bivouac-main.webp",
+      "mainText": [
+        "Une nuit insolite, dans un hamac, à l’abri de la pluie mais pas des courants d’air.",
+        "Profitez d'une aventure unique..."
+      ],
+      "tarifs": [
+        {
+          "label": "Adulte",
+          "value": "50K€"
+        },
+        {
+          "label": "Enfant (-12 ans)",
+          "value": "0€"
+        },
+        {
+          "label": "Groupe (+10 pers)",
+          "value": "20€/pers"
+        }
+      ],
+      "horaires": [
+        {
+          "label": "Octobre à Mars",
+          "value": "Fermé"
+        },
+        {
+          "label": "Avril à Septembre",
+          "value": "20H - 10H"
+        }
+      ],
+      "image2": "/img/activities/rando-frise.webp"
+    },
+    "chasse": {
+      "docTitle": "Chasse au trésor",
+      "title": "Chasse au trésor",
+      "image1": "/img/activities/chasse-main.webp",
+      "mainText": [
+        "En famille, entre amis, ou avec l’école, la chasse au trésor vous permettra de parcourir 5 à 6 km à pied dans le village et la campagne de Nielles les Bléquin. Votre balade progressera au rythme des énigmes, problèmes et autres épreuves que vous rencontrerez . L’objectif est de découvrir le trésor du chevalier de la Chapelle du Mont. Mais attention, si vous ne découvrez pas toutes les solutions, votre périple risque de durer",
+        "Profitez d'une aventure unique..."
+      ],
+      "tarifs": [
+        {
+          "label": "Adulte",
+          "value": "50K€"
+        },
+        {
+          "label": "Enfant (-12 ans)",
+          "value": "0€"
+        },
+        {
+          "label": "Groupe (+10 pers)",
+          "value": "20€/pers"
+        }
+      ],
+      "horaires": [
+        {
+          "label": "Octobre à Mars",
+          "value": "Fermé"
+        },
+        {
+          "label": "Avril à Septembre",
+          "value": "20H - 10H"
+        }
+      ],
+      "image2": "/img/activities/rando-frise.webp"
+    },
+    "filets": {
+      "docTitle": "Parc de filets - à venir !",
+      "title": "Parc de filets",
+      "image1": "/img/activities/bivouac-main.webp",
+      "mainText": [
+        "Venez découvrir notre nouvel attraction dès l'été prochain !"
+      ],
+      "tarifs": [
+        {
+          "label": "Adulte",
+          "value": "50K€"
+        },
+        {
+          "label": "Enfant (-12 ans)",
+          "value": "0€"
+        },
+        {
+          "label": "Groupe (+10 pers)",
+          "value": "20€/pers"
+        }
+      ],
+      "horaires": [
+        {
+          "label": "Octobre à Mars",
+          "value": "Fermé"
+        },
+        {
+          "label": "Avril à Septembre",
+          "value": "20H - 10H"
+        }
+      ],
+      "image2": "/img/activities/rando-frise.webp"
+    },
     "mentions": {
       "docTitle": "Mentions Légales",
       "title": "Mentions Légales",
