@@ -64,6 +64,15 @@
     }
   ],
   "pages": {
+    "activities": {
+      "docTitle": "Nos activités",
+      "title": "Explorez nos Activités !",
+      "mainText": [
+        "Tarifs, Horaires, Informations pratiques, FAQ, vous trouverez tous les renseigements concernant nos activités.",
+        "Réservez en ligne pour assurer le bon déroulement de votre journée !"
+      ],
+      "accessible": true
+    },
     "randorail": {
       "docTitle": "Le Randorail",
       "title": "Rando-rail",
@@ -271,7 +280,7 @@
       "mainText": "Envoyez nous un message via le formulaire ou appelez au ",
       "accessible": true
     },
-    "seminaires": {
+    "groupes": {
       "docTitle": "Nos séminaires",
       "title": "Nos séminaires",
       "mainText": "Contactez-nous pour savoir comment réserver un séminaire",
@@ -282,7 +291,7 @@
     {
       "title": "Activités",
       "type": "submenu",
-      "slug": "activites",
+      "slug": "activities",
       "children": [
         {
           "title": "Rando-rail",
