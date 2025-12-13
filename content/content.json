@@ -49,21 +49,24 @@
     {
       "question": "Quelle est la durée de l'activité ?",
       "answer": "Environ 3 heures, pauses incluses.",
-      "tags": [
-        "randorail"
-      ]
+      "tags": ["randorail"]
     },
     {
       "question": "Est-ce adapté aux enfants ?",
       "answer": "Oui, dès 8 ans, accompagnés d'un adulte.",
-      "tags": [
-        "randorail",
-        "trottitrail",
-        "bivouac"
-      ]
+      "tags": ["randorail", "trottitrail", "bivouac"]
     }
   ],
   "pages": {
+    "activities": {
+      "docTitle": "Nos activités",
+      "title": "Explorez nos Activités !",
+      "mainText": [
+        "Tarifs, Horaires, Informations pratiques, FAQ, vous trouverez tous les renseigements concernant nos activités.",
+        "Réservez en ligne pour assurer le bon déroulement de votre journée !"
+      ],
+      "accessible": true
+    },
     "randorail": {
       "docTitle": "Le Randorail",
       "title": "Rando-rail",
@@ -73,32 +76,14 @@
         "Profitez d'une aventure unique..."
       ],
       "tarifs": [
-        {
-          "label": "Adulte",
-          "value": "25€"
-        },
-        {
-          "label": "Enfant (-12 ans)",
-          "value": "15€"
-        },
-        {
-          "label": "Groupe (+10 pers)",
-          "value": "20€/pers"
-        }
+        { "label": "Adulte", "value": "25€" },
+        { "label": "Enfant (-12 ans)", "value": "15€" },
+        { "label": "Groupe (+10 pers)", "value": "20€/pers" }
       ],
       "horaires": [
-        {
-          "label": "Lundi - Vendredi",
-          "value": "9h - 18h"
-        },
-        {
-          "label": "Week-end",
-          "value": "10h - 20h"
-        },
-        {
-          "label": "Jours fériés",
-          "value": "Fermé"
-        }
+        { "label": "Lundi - Vendredi", "value": "9h - 18h" },
+        { "label": "Week-end", "value": "10h - 20h" },
+        { "label": "Jours fériés", "value": "Fermé" }
       ],
       "image2": "/img/activities/rando-frise.webp"
     },
@@ -111,32 +96,14 @@
         "Profitez d'une aventure unique..."
       ],
       "tarifs": [
-        {
-          "label": "Adulte",
-          "value": "325€"
-        },
-        {
-          "label": "Enfant (-12 ans)",
-          "value": "15€"
-        },
-        {
-          "label": "Groupe (+10 pers)",
-          "value": "20€/pers"
-        }
+        { "label": "Adulte", "value": "325€" },
+        { "label": "Enfant (-12 ans)", "value": "15€" },
+        { "label": "Groupe (+10 pers)", "value": "20€/pers" }
       ],
       "horaires": [
-        {
-          "label": "Lundi - Vendredi",
-          "value": "9h - 18h"
-        },
-        {
-          "label": "Week-end",
-          "value": "10h - 20h"
-        },
-        {
-          "label": "Jours fériés",
-          "value": "Fermé"
-        }
+        { "label": "Lundi - Vendredi", "value": "9h - 18h" },
+        { "label": "Week-end", "value": "10h - 20h" },
+        { "label": "Jours fériés", "value": "Fermé" }
       ],
       "image2": "/img/activities/rando-frise.webp"
     },
@@ -149,28 +116,13 @@
         "Profitez d'une aventure unique..."
       ],
       "tarifs": [
-        {
-          "label": "Adulte",
-          "value": "50K€"
-        },
-        {
-          "label": "Enfant (-12 ans)",
-          "value": "0€"
-        },
-        {
-          "label": "Groupe (+10 pers)",
-          "value": "20€/pers"
-        }
+        { "label": "Adulte", "value": "50K€" },
+        { "label": "Enfant (-12 ans)", "value": "0€" },
+        { "label": "Groupe (+10 pers)", "value": "20€/pers" }
       ],
       "horaires": [
-        {
-          "label": "Octobre à Mars",
-          "value": "Fermé"
-        },
-        {
-          "label": "Avril à Septembre",
-          "value": "20H - 10H"
-        }
+        { "label": "Octobre à Mars", "value": "Fermé" },
+        { "label": "Avril à Septembre", "value": "20H - 10H" }
       ],
       "image2": "/img/activities/rando-frise.webp"
     },
@@ -183,28 +135,13 @@
         "Profitez d'une aventure unique..."
       ],
       "tarifs": [
-        {
-          "label": "Adulte",
-          "value": "50K€"
-        },
-        {
-          "label": "Enfant (-12 ans)",
-          "value": "0€"
-        },
-        {
-          "label": "Groupe (+10 pers)",
-          "value": "20€/pers"
-        }
+        { "label": "Adulte", "value": "50K€" },
+        { "label": "Enfant (-12 ans)", "value": "0€" },
+        { "label": "Groupe (+10 pers)", "value": "20€/pers" }
       ],
       "horaires": [
-        {
-          "label": "Octobre à Mars",
-          "value": "Fermé"
-        },
-        {
-          "label": "Avril à Septembre",
-          "value": "20H - 10H"
-        }
+        { "label": "Octobre à Mars", "value": "Fermé" },
+        { "label": "Avril à Septembre", "value": "20H - 10H" }
       ],
       "image2": "/img/activities/rando-frise.webp"
     },
@@ -216,28 +153,13 @@
         "Venez découvrir notre nouvel attraction dès l'été prochain !"
       ],
       "tarifs": [
-        {
-          "label": "Adulte",
-          "value": "50K€"
-        },
-        {
-          "label": "Enfant (-12 ans)",
-          "value": "0€"
-        },
-        {
-          "label": "Groupe (+10 pers)",
-          "value": "20€/pers"
-        }
+        { "label": "Adulte", "value": "50K€" },
+        { "label": "Enfant (-12 ans)", "value": "0€" },
+        { "label": "Groupe (+10 pers)", "value": "20€/pers" }
       ],
       "horaires": [
-        {
-          "label": "Octobre à Mars",
-          "value": "Fermé"
-        },
-        {
-          "label": "Avril à Septembre",
-          "value": "20H - 10H"
-        }
+        { "label": "Octobre à Mars", "value": "Fermé" },
+        { "label": "Avril à Septembre", "value": "20H - 10H" }
       ],
       "image2": "/img/activities/rando-frise.webp"
     },
@@ -271,7 +193,7 @@
       "mainText": "Envoyez nous un message via le formulaire ou appelez au ",
       "accessible": true
     },
-    "seminaires": {
+    "groupes": {
       "docTitle": "Nos séminaires",
       "title": "Nos séminaires",
       "mainText": "Contactez-nous pour savoir comment réserver un séminaire",
@@ -282,7 +204,7 @@
     {
       "title": "Activités",
       "type": "submenu",
-      "slug": "activites",
+      "slug": "activities",
       "children": [
         {
           "title": "Rando-rail",
@@ -299,11 +221,7 @@
           "slug": "activities/filets",
           "type": "page"
         },
-        {
-          "title": "Bivouac",
-          "slug": "activities/bivouac",
-          "type": "page"
-        },
+        { "title": "Bivouac", "slug": "activities/bivouac", "type": "page" },
         {
           "title": "Chasse au trésor",
           "slug": "activities/chasse",
@@ -338,28 +256,12 @@
         }
       ]
     },
-    {
-      "title": "Contact",
-      "slug": "contact",
-      "type": "page"
-    }
+    { "title": "Contact", "slug": "contact", "type": "page" }
   ],
   "footerMenu": [
-    {
-      "title": "Administration",
-      "slug": "admin",
-      "type": "page"
-    },
-    {
-      "title": "Mentions Légales",
-      "slug": "mentions",
-      "type": "page"
-    },
-    {
-      "title": "Contact",
-      "slug": "contact",
-      "type": "page"
-    }
+    { "title": "Administration", "slug": "admin", "type": "page" },
+    { "title": "Mentions Légales", "slug": "mentions", "type": "page" },
+    { "title": "Contact", "slug": "contact", "type": "page" }
   ],
   "contentVersion": "2150-07-22T14:41:33.720Z"
 }
