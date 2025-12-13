@@ -25,6 +25,8 @@ export const AdminPage: React.FC<AdminPageProps> = React.memo(
 
     const routePath = useMemo(() => getRouteFromPageKey(pageKey), [pageKey]);
     const groups: EditableGroup[] = !isLoaded ? [] : getPageSnapshot(routePath);
+    console.log(`Groups for page ${routePath}`, groups);
+    
 
     const renderedContent = useMemo(() => {
       if (

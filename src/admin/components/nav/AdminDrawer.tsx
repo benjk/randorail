@@ -35,7 +35,7 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
 
   const staticPages: Page[] = [
     { key: 'globals', label: 'Paramètres globaux', group: 'Général' },
-    { key: 'contact', label: 'Contact', group: 'Général' },
+    { key: 'contact-globals', label: 'Contact', group: 'Général' },
   ];
 
   const dynamicPages: Page[] = editablePages.map(({ key, title }) => ({

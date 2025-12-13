@@ -49,6 +49,7 @@ export const blocRules: Record<string, BlocRule> = {
     maxItem: 15,
     minItem: 1,
     isDuplicable: true,
+    rank: 6,
     textFields: createTextRules({
       MENTIONS_BLOC_TITLE: {
         label: 'Titre de section de mentions légales',
@@ -72,48 +73,6 @@ export const blocRules: Record<string, BlocRule> = {
       },
     }),
     imageFields: {},
-  }),
-  MENTIONS_BLOC2: createBlocRule({
-    blocTitle: 'TEST : 2eme bloc dans une page',
-    itemLabel: 'Test Bis',
-    jsonKey: 'pages.mentions.blocs2',
-    maxItem: 15,
-    minItem: 1,
-    textFields: createTextRules({
-      MENTIONS_BLOC_TEXT: {
-        label: 'Texte de section',
-        key: 'content',
-        maxLength: 3000,
-        minLength: 20,
-        lineBreakable: true,
-        isUnic: false,
-        linkTo: { route: '/mentions', selector: '' },
-        extraInfo: 'Vous retrouvez ce texte dans la section Mentions légales',
-        rank: 3,
-      },
-      MENTIONS_BLOC_TITLE: {
-        label: 'Titre de section',
-        key: 'title',
-        maxLength: 100,
-        minLength: 2,
-        lineBreakable: false,
-        isUnic: false,
-        linkTo: { route: '/mentions', selector: '' },
-        extraInfo: 'Vous retrouvez ce texte dans la section Mentions légales',
-        rank: 1,
-      },
-    }),
-    imageFields: createImageRules({
-      SERVICES_BLOC_IMG: {
-        name: 'imgName',
-        label: 'Image de section test',
-        idealRatio: 1.5,
-        isUnic: false,
-        linkTo: { route: '/mentions', selector: '' },
-        folder: '/img/mentions/',
-        rank: 2,
-      },
-    }),
   }),
   SERVICES_BLOC: createBlocRule({
     blocTitle: 'Mes services',

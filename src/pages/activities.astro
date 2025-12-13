@@ -2,14 +2,18 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import HighlightOnHash from '../components/Highlight';
 import CardsGrid from '../components/CardsGrid.astro';
+import content from '../data/content.json';
 ---
 
-<MainLayout title="Nos Activites - Safari Rail Aventure">
+<MainLayout
+  title={content.pages.activities.docTitle}
+  withSeo={true}
+  commonPreloads={true}
+>
   <div id="page-activites-container" class="content-container activities-page">
-    <h2>Explorez nos Activités !</h2>
+    <h2>{content.pages.activities.title}</h2>
     <div class="p-wrapper">
-        <p>Tarifs, Horaires, Informations pratiques, FAQ, vous trouverez tous les renseigements concernant nos activités.</p>
-        <p>Réservez en ligne pour assurer le bon déroulement de votre journée !</p>
+      {content.pages.activities.mainText.map((paragraph) => <p>{paragraph}</p>)}
     </div>
     <div class="activities-container">
       <CardsGrid />

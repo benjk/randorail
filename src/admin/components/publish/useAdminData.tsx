@@ -692,6 +692,9 @@ export const AdminDataProvider: React.FC<{ children: ReactNode }> = ({
           return g.fields[0]?.rule?.rank ?? Infinity;
         if (g.kind === 'fields' && g.blocKey)
           return blocStore.getBlocGroup(g.blocKey)?.rule?.rank ?? Infinity;
+        if (g.kind === 'fields')
+          return 5; //Defaut is 5 : on peut se placer avant ou apres
+
         return Infinity;
       };
       return getRank(a) - getRank(b);

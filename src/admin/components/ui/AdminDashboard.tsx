@@ -38,7 +38,7 @@ export function AdminDashboard() {
     let component: React.ReactNode;
     if (currentPage === 'globals') {
       component = <AdminGlobals />;
-    } else if (currentPage === 'contact') {
+    } else if (currentPage === 'contact-globals') {
       component = <AdminContact />;
     } else {
       component = <AdminPage pageKey={currentPage} pageTitle={title} />;

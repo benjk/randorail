@@ -44,6 +44,7 @@ export const textRules = createTextRules({
     lineBreakable: false,
     isUnic: true,
     linkTo: { route: '/mentions', selector: '' },
+    rank: 1
   },
 
   // ================================

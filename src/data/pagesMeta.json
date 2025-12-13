@@ -1,10 +1,31 @@
 {
   "home": { "label": "Accueil", "editable": true },
-  "contact": { "label": "Contact", "editable": true },
-  "mentions": { "label": "Mentions légales", "editable": true },
-  "seminaires": { "label": "Séminaires", "editable": true },
-  "randorail": { "label": "Randorail", "editable": true, "parent": "activities" },
-  "trotti": { "label": "Trotti-Trail", "editable": true, "parent": "activities" },
+  "contact": { "label": "Page Contact", "editable": true },
+  "activities": { "label": "Activités", "editable": true },
+  "randorail": {
+    "label": "Rando-rail",
+    "editable": true,
+    "parent": "activities"
+  },
+  "trotti": {
+    "label": "Trotti-Trail",
+    "editable": true,
+    "parent": "activities"
+  },
   "bivouac": { "label": "Bivouac", "editable": true, "parent": "activities" },
-  "chasse": { "label": "Chasse au trésor", "editable": true, "parent": "activities" }
+  "chasse": {
+    "label": "Chasse au trésor",
+    "editable": true,
+    "parent": "activities"
+  },
+  "groupes": { "label": "Groupes", "editable": true },
+  "filets": { "label": "Parc de filets", "editable": true },
+  "entreprises": {
+    "label": "Entreprises",
+    "editable": true,
+    "parent": "groupes"
+  },
+  "scolaires": { "label": "Scolaires", "editable": true, "parent": "groupes" },
+  "centres": { "label": "Centres", "editable": true, "parent": "groupes" },
+  "mentions": { "label": "Mentions légales", "editable": true }
 }
