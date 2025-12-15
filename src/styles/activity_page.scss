@@ -245,8 +245,19 @@
   }
 
   // --- Texte secondaire ---
-  .activity-secondary {
-    max-width: 800px;
+  .activity-secondary-image {
+    width: 45%;
+    margin: auto;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      width: 85%;
+    }
   }
 
   // --- FAQ ---
@@ -261,7 +272,7 @@
     }
 
     .faq-item {
-      margin-bottom: $margin-xs;
+      margin-bottom: $margin-m;
       transition: margin-bottom 0.35s ease;
 
       .faq-question {
@@ -288,29 +299,22 @@
       }
 
       .faq-answer {
-        padding-top: 0;
-        opacity: 0;
+        display: grid;
+        padding-top: $margin-s;
         overflow: hidden;
-        transform-origin: left;
-        transform: scaleY(0);
-        transition:
-          transform 0.35s ease,
-          opacity 0.9s ease,
-          padding 0.35s ease;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.3s ease;
 
         p {
           font-size: $text-font-size;
           font-style: $text-font;
+          min-height: 0;
         }
       }
 
       &.open {
-        margin-bottom: $margin-m;
-
         .faq-answer {
-          transform: scaleY(1);
-          padding-top: $margin-s;
-          opacity: 1;
+          grid-template-rows: 1fr;
         }
 
         .chevron {
