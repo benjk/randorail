@@ -12,8 +12,34 @@ import content from '../data/content.json';
 >
   <div id="page-activites-container" class="content-container activities-page">
     <h1>{content.pages.activities.title}</h1>
-    <div class="p-wrapper">
-      {content.pages.activities.mainText.map((paragraph) => <p>{paragraph}</p>)}
+    <div class="content-wrapper">
+      <div class="info-wrapper">
+        <svg class="info-icon" style="margin-bottom: -0.8rem">
+          <use href=`#picto-schedule`></use>
+        </svg>
+        <p>Horaires</p>
+      </div>
+      <div class="separator"></div>
+      <div class="info-wrapper">
+        <svg class="info-icon" style="margin-bottom: -0.7rem">
+          <use href=`#picto-info`></use>
+        </svg>
+        <p>Infos Pratiques</p>
+      </div>
+      <div class="separator"></div>
+      <div class="info-wrapper">
+        <svg class="info-icon" style="margin-bottom: -0.4rem">
+          <use href=`#picto-price`></use>
+        </svg>
+        <p>Tarifs</p>
+      </div>
+      <div class="separator"></div>
+      <div class="info-wrapper">
+        <svg class="info-icon" style="margin-bottom: -0.2rem">
+          <use href=`#picto-resa`></use>
+        </svg>
+        <p>Réservation en ligne</p>
+      </div>
     </div>
     <div class="activities-container">
       <CardsGrid />

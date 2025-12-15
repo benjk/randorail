@@ -11,18 +11,67 @@ html body #main-container {
       height: auto;
       justify-content: center;
       gap: $page-spacing;
-      padding: calc($page-spacing + $header-height) 0 calc($page-spacing * 2) 0;
+      padding: calc($margin-s + $header-height) 0 calc($margin-m * 2) 0;
+
+      @media screen and (max-width: $mobile-breakpoint-s) {
+        padding-top: calc($margin-l + $header-height);
+      }
 
       h1 {
         @include page-h1();
       }
 
-      .p-wrapper {
-        @include flex-box($margin-s);
-        p {
-          @include basic-text-page();
+      .content-wrapper {
+        @include flex-row($margin-s);
+        flex-wrap: wrap;
+        $size: calc($picto-size * 1.1);
+
+        .info-wrapper {
+          display: grid;
+          grid-template-columns: $size 1fr;
+          gap: $margin-xs;
+          align-items: center;
+
+          .info-icon {
+            width: $size;
+            height: auto;
+            fill: $color2;
+            aspect-ratio: 1;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          p {
+            @include basic-text-page();
+            text-align: start;
+          }
+        }
+
+        .separator {
+          width: 2rem;
+          height: 2px;
+          background-color: $color2;
+        }
+
+        @media screen and (max-width: $mobile-breakpoint-s) {
+          flex-direction: column;
+          align-items: start;
+          gap: $margin-m;
+
+          .info-wrapper {
+            gap: $margin-m;
+            flex: 0 0 auto;
+            width: 100%;
+          }
+
+          .separator {
+            display: none;
+          }
         }
       }
+
       @media screen and (max-width: $mobile-breakpoint) {
         padding-bottom: $page-spacing;
         .p-wrapper {
@@ -31,7 +80,7 @@ html body #main-container {
         }
 
         h2 {
-            margin-bottom: $margin-m;
+          margin-bottom: $margin-m;
         }
       }
     }

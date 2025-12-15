@@ -76,10 +76,6 @@
     "activities": {
       "docTitle": "Nos activités",
       "title": "Explorez nos Activités !",
-      "mainText": [
-        "Tarifs, Horaires, Informations pratiques, FAQ, vous trouverez tous les renseigements concernant nos activités.",
-        "Réservez en ligne pour assurer le bon déroulement de votre journée !"
-      ],
       "accessible": true
     },
     "randorail": {
