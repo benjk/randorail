@@ -71,7 +71,7 @@ const {
 
       <!-- Tarifs + Horaires sur 2 colonnes -->
       <section class="activity-info-practical activity-page-section">
-        <h3>Tarifs & Horaires</h3>
+        <h2>Tarifs & Horaires</h2>
         <div class="practical-wrapper">
           {
             tarifs.length > 0 && (
@@ -139,12 +139,44 @@ const {
       {
         faq.length > 0 && (
           <section class="activity-faq">
-            <h2>Questions fréquentes</h2>
+            <h2>FAQ</h2>
+            {faq.map((q) => (
+              <div class="faq-item">
+                <button class="faq-question" type="button">
+                  <span class="chevron">&gt;</span>
+                  {q.question}
+                </button>
+                <div class="faq-answer">
+                  <p>{q.answer}</p>
+                </div>
+              </div>
+            ))}
           </section>
         )
       }
+
+      <div class="activity-bottom-image">
+        <Image
+          src="/img/activities/rando-frise.webp"
+          alt={`Photo de l'activité ${title}`}
+          width={1800}
+          height={600}
+          loading="lazy"
+        />
+      </div>
     </div>
   </div>
 </MainLayout>
 
 <HighlightOnHash client:load />
+<script>
+  document.addEventListener('click', (e) => {
+    const target = e.target as Element | null;
+    if (!target) return;
+
+    const btn = target.closest('.faq-question');
+    if (!btn) return;
+
+    btn.parentElement?.classList.toggle('open');
+  });
+</script>

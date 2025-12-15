@@ -11,10 +11,10 @@ html body #main-container {
       height: auto;
       justify-content: center;
       gap: $page-spacing;
-      padding-bottom: calc($margin-m + $page-spacing * 2);
+      padding: calc($page-spacing + $header-height) 0 calc($page-spacing * 2) 0;
 
-      h2 {
-        @include page-h2();
+      h1 {
+        @include page-h1();
       }
 
       .p-wrapper {
@@ -45,6 +45,7 @@ html body #main-container {
     font-size: $title3-font-size;
     font-family: $title-font;
     color: $color2;
+    font-weight: normal;
   }
 
   .mention-container {

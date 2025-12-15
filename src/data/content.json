@@ -52,9 +52,24 @@
       "tags": ["randorail"]
     },
     {
+      "question": "Quels sont les modes de paiement ?",
+      "answer": "Chèques, espèce, chèque vacances.",
+      "tags": ["all"]
+    },
+    {
+      "question": "Les chiens sont-ils acceptés ?",
+      "answer": "Sans soucis, sous réserve qu'ils soient tenus en laisse et ne mangent pas les autres chiens.",
+      "tags": ["randorail", "bivouac"]
+    },
+    {
       "question": "Est-ce adapté aux enfants ?",
       "answer": "Oui, dès 8 ans, accompagnés d'un adulte.",
       "tags": ["randorail", "trottitrail", "bivouac"]
+    },
+    {
+      "question": "Comment réserver ?",
+      "answer": "La réservation se fait depuis notre site internet, pour les demandes particulières, contactez nous par téléphoneLa réservation se fait depuis notre site internet, pour les demandes particulières, contactez nous par téléphone",
+      "tags": ["randorail", "trottitrail", "bivouac", "chasse"]
     }
   ],
   "pages": {
@@ -104,8 +119,7 @@
         { "label": "Lundi - Vendredi", "value": "9h - 18h" },
         { "label": "Week-end", "value": "10h - 20h" },
         { "label": "Jours fériés", "value": "Fermé" }
-      ],
-      "image2": "/img/activities/rando-frise.webp"
+      ]
     },
     "bivouac": {
       "docTitle": "Bivouac sur notre site !",
@@ -123,8 +137,7 @@
       "horaires": [
         { "label": "Octobre à Mars", "value": "Fermé" },
         { "label": "Avril à Septembre", "value": "20H - 10H" }
-      ],
-      "image2": "/img/activities/rando-frise.webp"
+      ]
     },
     "chasse": {
       "docTitle": "Chasse au trésor",
@@ -142,8 +155,7 @@
       "horaires": [
         { "label": "Octobre à Mars", "value": "Fermé" },
         { "label": "Avril à Septembre", "value": "20H - 10H" }
-      ],
-      "image2": "/img/activities/rando-frise.webp"
+      ]
     },
     "filets": {
       "docTitle": "Parc de filets - à venir !",
@@ -160,8 +172,7 @@
       "horaires": [
         { "label": "Octobre à Mars", "value": "Fermé" },
         { "label": "Avril à Septembre", "value": "20H - 10H" }
-      ],
-      "image2": "/img/activities/rando-frise.webp"
+      ]
     },
     "mentions": {
       "docTitle": "Mentions Légales",

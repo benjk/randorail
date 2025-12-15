@@ -77,7 +77,7 @@
   font-weight: normal;
 }
 
-@mixin page-h2($color: $color3) {
+@mixin page-h1($color: $color3) {
   text-align: center;
   font-size: calc($title2-font-size * 1.5);
   font-family: $home-font;
@@ -92,6 +92,21 @@
     width: 60%;
     @include custom-hr();
   }
+}
+
+@mixin page-h2($color: $color3) {
+  color: $color;
+  font-size: $title2-font-size;
+  text-align: center;
+  text-shadow: $light-shadow;
+  font-weight: normal;
+}
+
+@mixin content-h4($color: $color2) {
+  color: $color;
+  font-size: $text-font-size;
+  font-family: $title-font;
+  font-weight: normal;
 }
 
 @mixin inline-link() {

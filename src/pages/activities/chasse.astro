@@ -1,9 +1,12 @@
 ---
 import ActivityLayout from '../../layouts/ActivityLayout.astro';
 
-import { getActivityContent } from '../../data/activities';
+import { getActivityContent, getActivityFAQ } from '../../data/activities';
 
 const activityData = getActivityContent('chasse')
+const faqData = getActivityFAQ('chasse');
+
 ---
 
-<ActivityLayout {...activityData} />
+<ActivityLayout {...activityData} faq={faqData}>
+</ActivityLayout>

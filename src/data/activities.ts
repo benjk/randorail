@@ -121,6 +121,6 @@ export function getActivityFAQ(slug: string) {
   const simpleKey = getSimpleKey(slug);
 
   return (content.faq || []).filter((item: any) =>
-    item.tags.includes(simpleKey),
+    item.tags.includes(simpleKey) || item.tags.includes('all'),
   );
 }
