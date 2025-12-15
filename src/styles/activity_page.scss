@@ -283,9 +283,10 @@
         gap: $margin-s;
         width: 100%;
         padding-bottom: $margin-xs;
+        padding-inline-start: $margin-xs;
         @include content-h4();
         border-bottom: 1px solid $color2;
-        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 2px 0px rgba(0, 0, 0, 0.08);
 
         .chevron {
           display: inline-block;
