@@ -24,18 +24,19 @@ html body #main-container {
       .content-wrapper {
         @include flex-row($margin-s);
         flex-wrap: wrap;
-        $size: calc($picto-size * 1.1);
+        $size: calc($picto-size * 0.85);
+        padding: $margin-xs $margin-s;
 
         .info-wrapper {
           display: grid;
           grid-template-columns: $size 1fr;
-          gap: $margin-xs;
+          gap: 0.15rem;
           align-items: center;
 
           .info-icon {
             width: $size;
             height: auto;
-            fill: $color2;
+            fill: $color3;
             aspect-ratio: 1;
 
             display: flex;
@@ -50,9 +51,9 @@ html body #main-container {
         }
 
         .separator {
-          width: 2rem;
+          width: 1rem;
           height: 2px;
-          background-color: $color2;
+          background-color: transparent;
         }
 
         @media screen and (max-width: $mobile-breakpoint-s) {
