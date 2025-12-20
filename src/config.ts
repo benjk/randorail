@@ -2,7 +2,7 @@ export const SITE_TITLE = 'Site créé par BENKI';
 export const SITE_LANG = 'fr';
 export const META_DESCRIPTION =
   'Voici le meilleur site Astro généré par un CLI énervé.';
-export const META_SITE_URL = 'https://ucbk.benkielinski.fr/';
+export const META_SITE_URL = 'https://rando.benkielinski.fr/';
 
 // OPENGRAPH
 export const META_OG_TITLE = 'Mon Site - BENKI Création';
