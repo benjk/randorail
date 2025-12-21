@@ -1,0 +1,150 @@
+@use './variables' as *;
+@use './base';
+@use './mixin' as *;
+@use './animations' as *;
+
+.rail-wrapper {
+  // Commons
+  $sleepers-dash: 20 40;
+  $rail-item-width: 8;
+  $sleepers-width: 85;
+  $rail-color: $color2-strong;
+
+  // Config de positionnement
+  $rail-width: 215%;
+  $rail-left: -85%;
+  $rail-top: -25%;
+
+  // Config des paths
+  $rail1-length: 3771.96;
+  $rail2-length: 3884.09;
+
+  // Config animation
+  $animation-duration: 2.5s;
+  $animation-rail-delay: 0.8s;
+  $animation-sleepers-delay: calc($animation-rail-delay * 1.02);
+  $rail2-duration: calc($animation-duration * ($rail2-length / $rail1-length));
+
+  // Video config - Positionnement
+  $video-rail-width: 45%;
+  $video-rail-left: 57%;
+  $video-rail-top: -40%;
+
+  // Video config - Dimensions visuelles
+  $video-sleepers-dash: 15 30;
+  $video-rail-item-width: 8;
+  $video-sleepers-width: 85;
+
+  // Video config - Paths
+  $video-rail1-length: 5467.36;
+  $video-rail2-length: 5408.12;
+
+  // Video config - Animation
+  $video-animation-duration: 2s;
+  $video-rail2-duration: calc(
+    $video-animation-duration * ($video-rail2-length / $video-rail1-length)
+  );
+
+  position: absolute;
+  width: $rail-width;
+  left: $rail-left;
+  top: $rail-top;
+  pointer-events: none;
+  z-index: 1;
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    display: none;
+  }
+
+  .rail-svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    color: $rail-color;
+
+    .rail-path,
+    .rail-sleepers {
+      fill: none;
+      stroke: $rail-color;
+    }
+
+    .rail-path {
+      stroke-width: $rail-item-width;
+      animation: drawRail $animation-duration ease-out forwards;
+      animation-delay: $animation-rail-delay;
+
+      &:nth-of-type(1) {
+        stroke-dasharray: $rail1-length;
+        stroke-dashoffset: $rail1-length;
+      }
+
+      &:nth-of-type(2) {
+        stroke-dasharray: $rail2-length;
+        stroke-dashoffset: $rail2-length;
+        animation-duration: $rail2-duration;
+      }
+    }
+
+    .rail-sleepers {
+      stroke-dasharray: $sleepers-dash;
+    }
+
+    .rail-sleepers,
+    .reveal-mask-path {
+      stroke-width: $sleepers-width;
+    }
+
+    .reveal-mask-path {
+      stroke-dasharray: $rail1-length;
+      stroke-dashoffset: $rail1-length;
+      animation: drawRail $animation-duration ease-out forwards;
+      animation-delay: $animation-sleepers-delay;
+    }
+
+    @keyframes drawRail {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+  }
+
+  &.video-rail-wrapper {
+    width: $video-rail-width;
+    left: $video-rail-left;
+    top: $video-rail-top;
+
+    .rail-svg {
+      .rail-path {
+        stroke-width: $video-rail-item-width;
+        animation-duration: $video-animation-duration;
+
+        &:nth-of-type(1) {
+          stroke-dasharray: $video-rail1-length;
+          stroke-dashoffset: $video-rail1-length;
+        }
+
+        &:nth-of-type(2) {
+          stroke-dasharray: $video-rail2-length;
+          stroke-dashoffset: $video-rail2-length;
+          animation-duration: $video-rail2-duration;
+        }
+      }
+
+      .rail-sleepers {
+        stroke-dasharray: $video-sleepers-dash;
+        stroke-dashoffset: $video-rail1-length;
+      }
+
+      .rail-sleepers,
+      .reveal-mask-path {
+        stroke-width: $video-sleepers-width;
+      }
+
+      .reveal-mask-path {
+        stroke-dasharray: $video-rail1-length;
+        stroke-dashoffset: $video-rail1-length;
+        animation-duration: $video-animation-duration;
+      }
+    }
+  }
+}

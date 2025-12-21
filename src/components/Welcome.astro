@@ -8,6 +8,7 @@ import CardsGrid from './CardsGrid.astro';
 import RailSVG from './RailSVG.astro';
 import VideoHero from '../video/VideoHero.astro';
 import { Image } from 'astro:assets';
+import RailVideoSVG from './RailVideoSVG.astro';
 ---
 
 <div id="home-container" class="content-container">
@@ -192,6 +193,9 @@ import { Image } from 'astro:assets';
   </section>
   <!-- SECTION 3 : VIDEO OVERLAY -->
   <section class="video-section-overlay">
+    <div class="rail-wrapper video-rail-wrapper">
+      <RailVideoSVG />
+    </div>
     <a
       class="video-icon-link"
       target="_blank"
