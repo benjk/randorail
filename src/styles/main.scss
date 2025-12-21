@@ -117,20 +117,33 @@ html {
               }
 
               .rail-wrapper {
-                $rail1-length: 1207.43;
-                $rail2-length: 1181.34;
-                $sleepers-dash: 8 12;
-                $animation-duration: 2s;
-                $animation-duration-mobile: 3.5s;
+                // Config de positionnement
+                $rail-width: 215%;
+                $rail-left: -85%;
+                $rail-top: -25%;
+
+                // Config des paths
+                $rail-color: $color2-strong;
+                $rail1-length: 3771.96;
+                $rail2-length: 3884.09;
+                $sleepers-dash: 20 40;
+                $rail-item-width: 8px;
+                $sleepers-width: 75px;
+
+                // Config animation
+                $animation-duration: 2.5s;
                 $animation-rail-delay: 0.8s;
                 $animation-sleepers-delay: calc($animation-rail-delay * 1.02);
+                $rail2-duration: calc(
+                  $animation-duration * ($rail2-length / $rail1-length)
+                );
 
                 position: absolute;
-                width: 62%;
-                left: 20%;
-                top: 110%;
+                width: $rail-width;
+                left: $rail-left;
+                top: $rail-top;
                 pointer-events: none;
-                z-index: 1; // Derrière le contenu
+                z-index: 1;
 
                 @media screen and (max-width: $mobile-breakpoint) {
                   display: none;
@@ -140,22 +153,18 @@ html {
                   width: 100%;
                   height: 100%;
                   display: block;
-                  color: $color2;
+                  color: $rail-color;
 
                   .rail-path,
                   .rail-sleepers {
                     fill: none;
-                    stroke: $color2;
+                    stroke: $rail-color;
                   }
 
                   .rail-path {
-                    animation: drawRailWeb $animation-duration ease-out forwards;
+                    stroke-width: $rail-item-width;
+                    animation: drawRail $animation-duration ease-out forwards;
                     animation-delay: $animation-rail-delay !important;
-
-                    @media screen and (max-width: $mobile-breakpoint) {
-                      animation: drawRail $animation-duration-mobile ease-out
-                        forwards;
-                    }
 
                     &:nth-of-type(1) {
                       stroke-dasharray: $rail1-length;
@@ -165,6 +174,7 @@ html {
                     &:nth-of-type(2) {
                       stroke-dasharray: $rail2-length;
                       stroke-dashoffset: $rail2-length;
+                      animation-duration: $rail2-duration;
                     }
                   }
 
@@ -172,27 +182,20 @@ html {
                     stroke-dasharray: $sleepers-dash;
                   }
 
+                  .rail-sleepers, .reveal-mask-path {
+                    stroke-width: $sleepers-width;
+                  }
+
                   .reveal-mask-path {
                     stroke-dasharray: $rail1-length;
                     stroke-dashoffset: $rail1-length;
-                    animation: drawRailWeb $animation-duration ease-out forwards;
+                    animation: drawRail $animation-duration ease-out forwards;
                     animation-delay: $animation-sleepers-delay !important;
-
-                    @media screen and (max-width: $mobile-breakpoint) {
-                      animation: drawRail $animation-duration-mobile ease-out
-                        forwards;
-                    }
                   }
 
                   @keyframes drawRail {
                     to {
                       stroke-dashoffset: 0;
-                    }
-                  }
-
-                  @keyframes drawRailWeb {
-                    to {
-                      stroke-dashoffset: calc($rail1-length * 0);
                     }
                   }
                 }
