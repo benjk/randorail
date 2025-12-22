@@ -26,12 +26,21 @@ const THRESHOLDS = {
 } as const;
 
 export async function initVideoFunction(): Promise<void> {
-  console.log('🎬 Init video system');
-
   const video = document.querySelector('.video-bg') as HTMLVideoElement;
   const posterBlur = document.querySelector('.video-blur') as HTMLVideoElement;
   const poster = document.querySelector('.video-poster') as HTMLVideoElement;
   const btn = document.querySelector('.video-icon-link') as HTMLElement;
+
+  let railNotified = false;
+  const notifyPosterReady = () => {
+    if (railNotified) return;
+    railNotified = true;
+
+    setTimeout(() => {
+      console.log('🚂 Déclenchement rail home');
+      document.dispatchEvent(new CustomEvent('posterReady'));
+    }, 400); // Toujours 400ms de délai
+  };
 
   if (posterBlur && poster) {
     const img = poster.querySelector('img');
@@ -40,12 +49,21 @@ export async function initVideoFunction(): Promise<void> {
       // Si déjà chargée ET décodée
       if (img.complete && img.naturalHeight > 0) {
         posterBlur.remove();
+        notifyPosterReady();
       } else {
         // Sinon attends le load
         img.addEventListener(
           'load',
           () => {
             posterBlur.remove();
+            notifyPosterReady();
+          },
+          { once: true },
+        );
+        img.addEventListener(
+          'error',
+          () => {
+            notifyPosterReady(); // ← Fail = notify quand même
           },
           { once: true },
         );

@@ -62,26 +62,44 @@
   pointer-events: none;
   z-index: 1;
 
-  @media screen and (max-width: 1400px) {
-    &.home-rail-wrapper {
+  @keyframes drawRail {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  &.home-rail-wrapper {
+    @media screen and (max-width: 1400px) {
       width: calc($rail-width * $rail-width-ratio);
       left: auto;
       right: 1.5%;
       top: $tablet-rail-top;
     }
-  }
 
-  @media screen and (max-width: $mobile-breakpoint) {
-    &.home-rail-wrapper {
+    @media screen and (max-width: $mobile-breakpoint) {
       width: $tablet-rail-width;
       right: $tablet-rail-right;
       left: auto;
     }
-  }
 
-  @media screen and (max-width: $mobile-breakpoint-s) {
-    &.home-rail-wrapper {
+    @media screen and (max-width: $mobile-breakpoint-s) {
       display: none;
+    }
+
+    &.is-animating {
+      .rail-svg {
+        .rail-path {
+          animation: drawRail $animation-duration ease-out forwards;
+
+          &:nth-of-type(2) {
+            animation-duration: $rail2-duration;
+          }
+        }
+
+        .reveal-mask-path {
+          animation: drawRail $animation-duration ease-out forwards;
+        }
+      }
     }
   }
 
@@ -99,7 +117,6 @@
 
     .rail-path {
       stroke-width: $rail-item-width;
-      animation: drawRail $animation-duration ease-out forwards;
 
       &:nth-of-type(1) {
         stroke-dasharray: $rail1-length;
@@ -109,7 +126,6 @@
       &:nth-of-type(2) {
         stroke-dasharray: $rail2-length;
         stroke-dashoffset: $rail2-length;
-        animation-duration: $rail2-duration;
       }
     }
 
@@ -125,13 +141,6 @@
     .reveal-mask-path {
       stroke-dasharray: $rail1-length;
       stroke-dashoffset: $rail1-length;
-      animation: drawRail $animation-duration ease-out forwards;
-    }
-
-    @keyframes drawRail {
-      to {
-        stroke-dashoffset: 0;
-      }
     }
   }
 
@@ -146,7 +155,6 @@
     .rail-svg {
       .rail-path {
         stroke-width: $video-rail-item-width;
-        animation-duration: $video-animation-duration;
 
         &:nth-of-type(1) {
           stroke-dasharray: $video-rail1-length;
@@ -156,7 +164,6 @@
         &:nth-of-type(2) {
           stroke-dasharray: $video-rail2-length;
           stroke-dashoffset: $video-rail2-length;
-          animation-duration: $video-rail2-duration;
         }
       }
 
@@ -173,19 +180,22 @@
       .reveal-mask-path {
         stroke-dasharray: $video-rail2-length;
         stroke-dashoffset: $video-rail2-length;
-        animation-duration: $video-animation-duration;
       }
     }
 
-    .rail-path,
-    .reveal-mask-path {
-      animation-play-state: paused;
-    }
-
     &.is-visible {
-      .rail-path,
-      .reveal-mask-path {
-        animation-play-state: running;
+      .rail-svg {
+        .rail-path {
+          animation: drawRail $video-animation-duration ease-out forwards;
+
+          &:nth-of-type(2) {
+            animation-duration: $video-rail2-duration;
+          }
+        }
+
+        .reveal-mask-path {
+          animation: drawRail $video-animation-duration ease-out forwards;
+        }
       }
     }
 

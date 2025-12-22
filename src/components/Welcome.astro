@@ -261,4 +261,17 @@ import RailVideoSVG from './RailVideoSVG.astro';
   // Trigger quand 20% de l'élément est visible
   initScrollAnimations(0.2);
   initVideoFunction();
+
+  // Déclencher le rail home
+  document.addEventListener(
+    'posterReady',
+    () => {
+      console.log('🚂 Déclenchement animation rail home');
+      const homeRail = document.querySelector('.home-rail-wrapper');
+      if (homeRail) {
+        homeRail.classList.add('is-animating');
+      }
+    },
+    { once: true },
+  );
 </script>
