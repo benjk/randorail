@@ -9,7 +9,7 @@ export function initScrollAnimations(visibilityThreshold: number = 0.2): void {
       const children = Array.from(
         group.querySelectorAll<HTMLElement>('[data-animate]'),
       );
-      const staggerDelay = parseInt(group.dataset.animateStagger || '50');
+      const staggerDelay = parseInt(group.dataset.animateStagger || '5');
 
       const observer = new IntersectionObserver(
         (entries) => {

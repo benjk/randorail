@@ -21,8 +21,15 @@
   $tablet-rail-top: 26%;
 
   // Config des paths
+  // ⚠️ Les longueurs de path sont a extraire manuellement si le SVG change (+ simple que de calculer en JS)
+  //   document.querySelectorAll('.cls-1').forEach((p, i) => {
+  //   console.log(`Rail ${i+1}: ${p.getTotalLength()}`);
+  // });
   $rail1-length: 8978.73;
   $rail2-length: 9067.2;
+  // Video config - Paths
+  $video-rail1-length: 5345.5;
+  $video-rail2-length: 5358.53;
 
   // Config animation
   $animation-duration: 2.5s;
@@ -43,10 +50,6 @@
   $video-sleepers-dash: 35 78;
   $video-rail-item-width: 12;
   $video-sleepers-width: 135;
-
-  // Video config - Paths
-  $video-rail1-length: 5345.5;
-  $video-rail2-length: 5358.53;
 
   // Video config - Animation
   $video-animation-duration: 1.8s;
@@ -70,9 +73,9 @@
     }
   }
 
-    @media screen and (max-width: $mobile-breakpoint) {
+  @media screen and (max-width: $mobile-breakpoint) {
     &.home-rail-wrapper {
-      width : $tablet-rail-width;
+      width: $tablet-rail-width;
       right: $tablet-rail-right;
       left: auto;
     }
@@ -172,22 +175,20 @@
       }
 
       .reveal-mask-path {
-        stroke-dasharray: $video-rail1-length;
-        stroke-dashoffset: $video-rail1-length;
+        stroke-dasharray: $video-rail2-length;
+        stroke-dashoffset: $video-rail2-length;
         animation-duration: $video-animation-duration;
       }
     }
 
     @media screen and (max-width: 1400px) {
-      width: calc($video-rail-width * $rail-width-ratio)
-
+      width: calc($video-rail-width * $rail-width-ratio);
     }
 
     @media screen and (max-width: $mobile-breakpoint) {
       height: $tablet-video-rail-height;
       width: auto;
       top: $tablet-video-rail-top;
-      
     }
     @media screen and (max-width: $mobile-breakpoint-s) {
       height: $middle-video-rail-height;

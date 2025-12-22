@@ -242,7 +242,7 @@ html {
                       }
 
                       &:nth-child(2) {
-                        border-radius: $light-radius $light-radius 0 0;
+                        border-radius: 0 0 $light-radius $light-radius;
                       }
 
                       &:nth-child(3) {

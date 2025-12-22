@@ -50,6 +50,20 @@ $anim-opacity-end: 1 !default;
 
 // Plus de flexibilité avec data-animate-mobile
 @media screen and (max-width: $mobile-breakpoint) {
+  [data-animate-tablet='left'] {
+    translate: $anim-distance-x 0;
+  }
+
+  [data-animate-tablet='right'] {
+    translate: (-$anim-distance-x) 0;
+  }
+
+  [data-animate-tablet='up'] {
+    translate: 0 $anim-distance-y;
+  }
+}
+
+@media screen and (max-width: $mobile-breakpoint-s) {
   [data-animate-mobile='left'] {
     translate: $anim-distance-x 0;
   }
