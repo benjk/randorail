@@ -9,16 +9,16 @@
   $rail-item-width: 12;
   $sleepers-width: 135;
   $rail-color: $color2-strong;
-  $rail-color: $color2;
+  $rail-color: rgba($color1, 0.85);
 
   // Config de positionnement
-  $rail-width: 255%;
-  $rail-left: -100%;
-  $rail-top: 5%;
+  $rail-width: 103%;
+  $rail-left: -8%;
+  $rail-top: 18%;
 
   // Config des paths
   $rail1-length: 8978.73;
-  $rail2-length: 9067.20;
+  $rail2-length: 9067.2;
 
   // Config animation
   $animation-duration: 2.5s;
@@ -27,21 +27,27 @@
   $rail2-duration: calc($animation-duration * ($rail2-length / $rail1-length));
 
   // Video config - Positionnement
-  $video-rail-width: 18%;
-  $video-rail-left: 65%;
-  $video-rail-top: -50%;
+  $video-rail-width: 14%;
+  $video-rail-right: 1%;
+  $video-rail-top: -63%;
+  // TABLET
+  $tablet-video-rail-width: 32%;
+  $tablet-video-rail-top: -54%;
+  // MOBILE
+  $mobile-video-rail-width: 38%;
+  $mobile-video-rail-top: -51%;
 
   // Video config - Dimensions visuelles
-  $video-sleepers-dash: 15 30;
-  $video-rail-item-width: 8;
-  $video-sleepers-width: 85;
+  $video-sleepers-dash: 35 78;
+  $video-rail-item-width: 12;
+  $video-sleepers-width: 135;
 
   // Video config - Paths
-  $video-rail1-length: 3443.32;
-  $video-rail2-length: 3415.52;
+  $video-rail1-length: 5345.5;
+  $video-rail2-length: 5358.53;
 
   // Video config - Animation
-  $video-animation-duration: 2s;
+  $video-animation-duration: 1.8s;
   $video-rail2-duration: calc(
     $video-animation-duration * ($video-rail2-length / $video-rail1-length)
   );
@@ -54,7 +60,9 @@
   z-index: 1;
 
   @media screen and (max-width: $mobile-breakpoint) {
-    display: none;
+    &.home-rail-wrapper {
+      display: none;
+    }
   }
 
   .rail-svg {
@@ -111,9 +119,8 @@
 
   &.video-rail-wrapper {
     width: $video-rail-width;
-    // left: $video-rail-left;
     left: auto;
-    right: 0;
+    right: $video-rail-right;
     top: $video-rail-top;
 
     .rail-svg {
@@ -148,6 +155,16 @@
         stroke-dashoffset: $video-rail1-length;
         animation-duration: $video-animation-duration;
       }
+    }
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      width: $tablet-video-rail-width;
+      top: $tablet-video-rail-top;
+    }
+
+    @media screen and (max-width: $mobile-breakpoint-s) {
+      width: $mobile-video-rail-width;
+      top: $mobile-video-rail-top;
     }
   }
 }
