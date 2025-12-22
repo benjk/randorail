@@ -10,6 +10,9 @@ export function initScrollAnimations(visibilityThreshold: number = 0.2): void {
         group.querySelectorAll<HTMLElement>('[data-animate]'),
       );
       const staggerDelay = parseInt(group.dataset.animateStagger || '5');
+      const threshold = parseFloat(
+        group.dataset.threshold || String(visibilityThreshold),
+      );
 
       const observer = new IntersectionObserver(
         (entries) => {
@@ -30,7 +33,7 @@ export function initScrollAnimations(visibilityThreshold: number = 0.2): void {
             }
           });
         },
-        { threshold: visibilityThreshold },
+        { threshold },
       );
 
       observer.observe(group);

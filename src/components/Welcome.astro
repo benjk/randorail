@@ -194,8 +194,16 @@ import RailVideoSVG from './RailVideoSVG.astro';
     <br />
   </section>
   <!-- SECTION 3 : VIDEO OVERLAY -->
-  <section class="video-section-overlay">
-    <div class="rail-wrapper video-rail-wrapper">
+  <section
+    class="video-section-overlay"
+    data-animate-group="video-section"
+    data-threshold="0.6"
+  >
+    <div
+      class="rail-wrapper video-rail-wrapper"
+      data-animate="rail"
+      data-animate-group="video-section"
+    >
       <RailVideoSVG />
     </div>
     <a

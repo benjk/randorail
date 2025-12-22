@@ -32,9 +32,7 @@
   $video-rail2-length: 5358.53;
 
   // Config animation
-  $animation-duration: 2.5s;
-  $animation-rail-delay: 0.8s;
-  $animation-sleepers-delay: calc($animation-rail-delay * 1.02);
+  $animation-duration: 3s;
   $rail2-duration: calc($animation-duration * ($rail2-length / $rail1-length));
 
   // Video config - Positionnement
@@ -52,7 +50,7 @@
   $video-sleepers-width: 135;
 
   // Video config - Animation
-  $video-animation-duration: 1.8s;
+  $video-animation-duration: 2.5s;
   $video-rail2-duration: calc(
     $video-animation-duration * ($video-rail2-length / $video-rail1-length)
   );
@@ -102,7 +100,6 @@
     .rail-path {
       stroke-width: $rail-item-width;
       animation: drawRail $animation-duration ease-out forwards;
-      animation-delay: $animation-rail-delay;
 
       &:nth-of-type(1) {
         stroke-dasharray: $rail1-length;
@@ -129,7 +126,6 @@
       stroke-dasharray: $rail1-length;
       stroke-dashoffset: $rail1-length;
       animation: drawRail $animation-duration ease-out forwards;
-      animation-delay: $animation-sleepers-delay;
     }
 
     @keyframes drawRail {
@@ -178,6 +174,18 @@
         stroke-dasharray: $video-rail2-length;
         stroke-dashoffset: $video-rail2-length;
         animation-duration: $video-animation-duration;
+      }
+    }
+
+    .rail-path,
+    .reveal-mask-path {
+      animation-play-state: paused;
+    }
+
+    &.is-visible {
+      .rail-path,
+      .reveal-mask-path {
+        animation-play-state: running;
       }
     }
 
