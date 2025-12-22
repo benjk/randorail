@@ -12,9 +12,13 @@
   $rail-color: rgba($color1, 0.85);
 
   // Config de positionnement
-  $rail-width: 103%;
-  $rail-left: -8%;
-  $rail-top: 18%;
+  $rail-width: 100%;
+  $rail-width-ratio: 1.4;
+  $rail-left: -10%;
+  $rail-top: 20%;
+  $tablet-rail-width: 205%;
+  $tablet-rail-right: -1%;
+  $tablet-rail-top: 26%;
 
   // Config des paths
   $rail1-length: 8978.73;
@@ -27,17 +31,15 @@
   $rail2-duration: calc($animation-duration * ($rail2-length / $rail1-length));
 
   // Video config - Positionnement
-  $video-rail-width: 14%;
-  $video-rail-right: 1%;
+  $video-rail-width: 16%;
+  $video-rail-right: 3%;
   $video-rail-top: -63%;
   // TABLET
-  $tablet-video-rail-width: 32%;
-  $tablet-video-rail-top: -54%;
-  // MOBILE
-  $mobile-video-rail-width: 38%;
-  $mobile-video-rail-top: -51%;
+  $middle-video-rail-height: 142%;
+  $tablet-video-rail-height: 160%;
+  $tablet-video-rail-top: -53%;
 
-  // Video config - Dimensions visuelles
+  // Video config - Dimensions visuelles - IDEM QUE DESSUS
   $video-sleepers-dash: 35 78;
   $video-rail-item-width: 12;
   $video-sleepers-width: 135;
@@ -59,7 +61,24 @@
   pointer-events: none;
   z-index: 1;
 
-  @media screen and (max-width: $mobile-breakpoint) {
+  @media screen and (max-width: 1400px) {
+    &.home-rail-wrapper {
+      width: calc($rail-width * $rail-width-ratio);
+      left: auto;
+      right: 1.5%;
+      top: $tablet-rail-top;
+    }
+  }
+
+    @media screen and (max-width: $mobile-breakpoint) {
+    &.home-rail-wrapper {
+      width : $tablet-rail-width;
+      right: $tablet-rail-right;
+      left: auto;
+    }
+  }
+
+  @media screen and (max-width: $mobile-breakpoint-s) {
     &.home-rail-wrapper {
       display: none;
     }
@@ -119,9 +138,11 @@
 
   &.video-rail-wrapper {
     width: $video-rail-width;
+    height: auto;
     left: auto;
     right: $video-rail-right;
     top: $video-rail-top;
+    bottom: auto;
 
     .rail-svg {
       .rail-path {
@@ -157,14 +178,21 @@
       }
     }
 
-    @media screen and (max-width: $mobile-breakpoint) {
-      width: $tablet-video-rail-width;
-      top: $tablet-video-rail-top;
+    @media screen and (max-width: 1400px) {
+      width: calc($video-rail-width * $rail-width-ratio)
+
     }
 
+    @media screen and (max-width: $mobile-breakpoint) {
+      height: $tablet-video-rail-height;
+      width: auto;
+      top: $tablet-video-rail-top;
+      
+    }
     @media screen and (max-width: $mobile-breakpoint-s) {
-      width: $mobile-video-rail-width;
-      top: $mobile-video-rail-top;
+      height: $middle-video-rail-height;
+      bottom: -3.5%;
+      top: auto;
     }
   }
 }
