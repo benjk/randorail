@@ -10,9 +10,12 @@ export function initScrollAnimations(visibilityThreshold: number = 0.2): void {
         group.querySelectorAll<HTMLElement>('[data-animate]'),
       );
       const staggerDelay = parseInt(group.dataset.animateStagger || '5');
-      const threshold = parseFloat(
+      const thresholdValue = parseFloat(
         group.dataset.threshold || String(visibilityThreshold),
       );
+
+      const elementHeight = group.getBoundingClientRect().height;
+      const bottomOffset = -((1 - thresholdValue) * elementHeight);
 
       const observer = new IntersectionObserver(
         (entries) => {
@@ -24,7 +27,6 @@ export function initScrollAnimations(visibilityThreshold: number = 0.2): void {
                     child.classList.add('is-visible'),
                   );
 
-                  // Compteur
                   if (child.dataset.counter) animateCounter(child);
                 }, index * staggerDelay);
               });
@@ -33,33 +35,45 @@ export function initScrollAnimations(visibilityThreshold: number = 0.2): void {
             }
           });
         },
-        { threshold },
+        {
+          threshold: 0,
+          rootMargin: `0px 0px ${bottomOffset}px 0px`,
+        },
       );
 
       observer.observe(group);
     });
 
   // ----------- Animation pour éléments individuels ----------
-  const individualObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const el = entry.target as HTMLElement;
-          el.classList.add('is-visible');
-
-          if (el.dataset.counter) animateCounter(el);
-          individualObserver.unobserve(el);
-        }
-      });
-    },
-    { threshold: visibilityThreshold },
-  );
-
   document
     .querySelectorAll<HTMLElement>(
       '[data-animate]:not([data-animate-group]), [data-counter]:not([data-animate-group])',
     )
-    .forEach((el) => individualObserver.observe(el));
+    .forEach((el) => {
+      const thresholdValue = visibilityThreshold;
+      const elementHeight = el.getBoundingClientRect().height;
+      const bottomOffset = -((1 - thresholdValue) * elementHeight);
+
+      const individualObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const target = entry.target as HTMLElement;
+              target.classList.add('is-visible');
+
+              if (target.dataset.counter) animateCounter(target);
+              individualObserver.unobserve(target);
+            }
+          });
+        },
+        {
+          threshold: 0,
+          rootMargin: `0px 0px ${bottomOffset}px 0px`,
+        },
+      );
+
+      individualObserver.observe(el);
+    });
 
   // ----------- Fonction compteur ----------
   function animateCounter(element: HTMLElement): void {

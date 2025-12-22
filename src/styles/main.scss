@@ -120,6 +120,7 @@ html {
 
           .video-section-overlay {
             height: $video-section-overlay-height;
+            min-height: 55rem;
             width: 100%;
             position: relative;
 
