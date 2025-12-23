@@ -25,7 +25,7 @@ html body #main-container {
         @include flex-row($margin-s);
         flex-wrap: wrap;
         $size: calc($picto-size * 0.85);
-        padding: $margin-xs $margin-s;
+        padding: $margin-xs $margin-m;
 
         .info-wrapper {
           display: grid;

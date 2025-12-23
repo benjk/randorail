@@ -1,5 +1,5 @@
 ---
-import "../styles/footer.scss"
+import '../styles/footer.scss';
 const currentYear = new Date().getFullYear();
 import content from '../data/content.json';
 const footerMenu = content.footerMenu;
@@ -10,9 +10,14 @@ const { href, display } = formatFrenchPhone(content.contact.tel);
 <footer class="footer">
   <div class="footer-content">
     <div class="footer-left">
-      <a href="/" title="Accueil">
-        <img src="/img/static/header_logo.webp" alt="Logo" />
-      </a>
+      <div class="logo-container">
+        <a href="https://www.route-62.fr/" title="Route62">
+          <img src="/img/static/route62.webp" alt="Logo" />
+        </a>
+        <a href="/" title="Accueil">
+          <img src="/img/static/header_logo.webp" alt="Logo" />
+        </a>
+      </div>
       <div class="footer-contact">
         <address>
           <p><strong>{content.contact.mainLabel}</strong></p>

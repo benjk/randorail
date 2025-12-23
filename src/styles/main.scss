@@ -68,7 +68,9 @@ html {
             }
             @media screen and (max-width: $mobile-breakpoint) {
               height: calc(100vh + $video-section-overlay-height-mobile);
+              max-height: 5rem;
             }
+            
           }
 
           .section1 {
@@ -127,6 +129,8 @@ html {
 
             @media screen and (max-width: $mobile-breakpoint) {
               height: $video-section-overlay-height-mobile;
+              min-height: 24rem;
+              max-height: 35rem;
             }
 
             .video-icon {

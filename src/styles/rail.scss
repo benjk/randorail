@@ -207,7 +207,25 @@
       height: $tablet-video-rail-height;
       width: auto;
       top: $tablet-video-rail-top;
+
+      // Sur tablet et mobile : le rail est plus long : on réduit la durée de l'anim pour meilleur effet
+      &.is-visible {
+        .rail-svg {
+          .rail-path {
+            animation-duration: calc($video-animation-duration * 0.6);
+
+            &:nth-of-type(2) {
+              animation-duration: calc($video-rail2-duration * 0.6);
+            }
+          }
+
+          .reveal-mask-path {
+            animation-duration: calc($video-animation-duration * 0.6);
+          }
+        }
+      }
     }
+    
     @media screen and (max-width: $mobile-breakpoint-s) {
       height: $middle-video-rail-height;
       bottom: -3.5%;

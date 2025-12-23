@@ -4,7 +4,6 @@ $footer-bg: $color-bg-stronger;
 $footer-text-color: $color1;
 
 $social-svg-width: 2.5rem;
-$social-svg-width-mobile: calc($social-svg-width * 0.8);
 
 .footer {
   z-index: 100;
@@ -26,8 +25,8 @@ $social-svg-width-mobile: calc($social-svg-width * 0.8);
     flex: 1;
     display: flex;
     flex-direction: row;
-    padding: 0 clamp(2rem, 12%, 7rem);
-    gap: calc($margin-xl * 1.7);
+    padding: 0 $margin-s;
+    gap: $margin-xl;
     align-items: center;
     justify-content: center;
     background-color: transparent;
@@ -40,16 +39,24 @@ $social-svg-width-mobile: calc($social-svg-width * 0.8);
       justify-content: center;
       gap: $margin-xl;
 
-      a {
-        display: flex;
-        align-items: center;
+      .logo-container {
         height: 100%;
-      }
+        display: flex;
+        flex-direction: row;
+        gap: $margin-m;
+        align-items: center;
 
-      img {
-        max-height: 50%;
-        width: auto;
-        object-fit: contain;
+        a {
+          display: flex;
+          align-items: center;
+          height: 100%;
+
+          img {
+            max-height: 60%;
+            width: auto;
+            object-fit: contain;
+          }
+        }
       }
 
       .footer-contact {
@@ -161,18 +168,19 @@ $social-svg-width-mobile: calc($social-svg-width * 0.8);
     }
 
     @media screen and (max-width: $mobile-breakpoint) {
-      flex-direction: column;
-      gap: $margin-l;
-      padding: $margin-m $margin-s;
-      justify-content: space-between;
+      gap: $margin-xs;
+      padding: $margin-m $margin-xl;
+      justify-content: space-around;
+      overflow: auto;
+      height: auto;
+      min-height: $footer-height;
 
       .footer-left {
-        width: 100%;
-        justify-content: space-evenly;
-        gap: $margin-xs;
+        flex-direction: column-reverse;
+        gap: $margin-m;
 
-        a img {
-          max-height: calc($footer-height * 0.3);
+        .logo-container a img {
+          max-height: 5rem;
         }
 
         .footer-contact address p {
@@ -185,30 +193,37 @@ $social-svg-width-mobile: calc($social-svg-width * 0.8);
       }
 
       .footer-right {
-        width: 100%;
         flex-direction: column;
-        gap: $margin-m;
+        align-items: center;
+        gap: $margin-l;
 
         .footer-social {
           justify-content: center;
 
           a {
-            width: $social-svg-width-mobile;
-            height: $social-svg-width-mobile;
+            width: calc($social-svg-width * 1.3);
+            height: calc($social-svg-width * 1.3);
 
             svg {
-              width: calc($social-svg-width-mobile * 0.5);
-              height: calc($social-svg-width-mobile * 0.5);
+              width: calc($social-svg-width * 0.6);
+              height: calc($social-svg-width * 0.6);
             }
           }
         }
 
         .footer-nav ul {
           max-height: none;
-          justify-content: space-evenly;
-          flex-direction: row;
-          gap: $margin-m;
+          gap: $margin-s;
         }
+      }
+    }
+
+    @media screen and (max-width: $mobile-breakpoint-s) {
+      flex-direction: column;
+      gap: $margin-l;
+
+      .footer-left .logo-container a img {
+        max-height: 4rem;
       }
     }
   }
@@ -228,10 +243,16 @@ $social-svg-width-mobile: calc($social-svg-width * 0.8);
 
   @media screen and (max-width: $mobile-breakpoint) {
     height: auto;
+    min-height: $footer-height;
 
-    .footer-content {
-      flex-direction: column;
-      gap: $margin-s;
+    .footer-right .footer-social a {
+      width: $social-svg-width;
+      height: $social-svg-width;
+
+      svg {
+        width: calc($social-svg-width * 0.5);
+        height: calc($social-svg-width * 0.5);
+      }
     }
   }
 }
