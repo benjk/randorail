@@ -3,7 +3,7 @@
 @use './mixin' as *;
 @use './animations' as *;
 
-$video-section-overlay-height: 85vh;
+$video-section-overlay-height: 78vh;
 $video-section-overlay-height-mobile: 80vh;
 
 // DEBUG TRIX
@@ -139,7 +139,7 @@ html {
 
           .video-section-overlay {
             height: $video-section-overlay-height;
-            min-height: 55rem;
+            min-height: 38rem;
             width: 100%;
             position: relative;
 
