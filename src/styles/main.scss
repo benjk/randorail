@@ -91,7 +91,8 @@ html {
               height: auto;
               padding-left: 0;
               padding-right: 0;
-              padding-bottom: calc($margin-xl * 1.5);
+              padding-bottom: calc($margin-xl * 1.2);
+              min-height: 70vh;
             }
 
             .title-container {
@@ -160,7 +161,7 @@ html {
 
             @media screen and (max-width: $mobile-breakpoint) {
               height: auto;
-              min-height: 70vh;
+              min-height: 55vh;
             }
 
             .section-wrapper {
@@ -486,6 +487,7 @@ html {
             z-index: 12;
             border-top: $border-section-separation;
             padding: $margin-xl $margin-m;
+            margin-bottom: -1px;
             @include flex-box(0);
             content-visibility: auto;
 
@@ -502,6 +504,7 @@ html {
               .img-wrapper {
                 @media screen and (max-width: $mobile-breakpoint) {
                   @include slanted-border('left');
+                  width: 100%;
                 }
 
                 img {

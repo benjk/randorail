@@ -1,79 +1,93 @@
 /**
  * Initialise les animations au scroll, section par section
- * @param {number} visibilityThreshold - % de l'élément visible pour trigger (0 à 1)
+ * @param {number} visibilityThreshold - % de l'élément qui doit être au-dessus de la ligne de flottaison (0 à 1)
  */
-export function initScrollAnimations(visibilityThreshold: number = 0.2): void {
-  document
-    .querySelectorAll<HTMLElement>('[data-animate-group]')
-    .forEach((group) => {
-      const children = Array.from(
-        group.querySelectorAll<HTMLElement>('[data-animate]'),
-      );
-      const staggerDelay = parseInt(group.dataset.animateStagger || '5');
-      const thresholdValue = parseFloat(
-        group.dataset.threshold || String(visibilityThreshold),
-      );
+export function initScrollAnimations(visibilityThreshold: number = 0.25): void {
+  const animatedGroups = new Set<HTMLElement>();
+  const animatedElements = new Set<HTMLElement>();
 
-      const elementHeight = group.getBoundingClientRect().height;
-      const bottomOffset = -((1 - thresholdValue) * elementHeight);
+  // Groupes d'éléments
+  const groups = Array.from(
+    document.querySelectorAll<HTMLElement>('[data-animate-group]')
+  );
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              children.forEach((child, index) => {
-                setTimeout(() => {
-                  requestAnimationFrame(() =>
-                    child.classList.add('is-visible'),
-                  );
-
-                  if (child.dataset.counter) animateCounter(child);
-                }, index * staggerDelay);
-              });
-
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        {
-          threshold: 0,
-          rootMargin: `0px 0px ${bottomOffset}px 0px`,
-        },
-      );
-
-      observer.observe(group);
-    });
-
-  // ----------- Animation pour éléments individuels ----------
-  document
-    .querySelectorAll<HTMLElement>(
-      '[data-animate]:not([data-animate-group]), [data-counter]:not([data-animate-group])',
+  // Éléments individuels
+  const individuals = Array.from(
+    document.querySelectorAll<HTMLElement>(
+      '[data-animate]:not([data-animate-group] [data-animate]), [data-counter]:not([data-animate-group] [data-counter])'
     )
-    .forEach((el) => {
-      const thresholdValue = visibilityThreshold;
-      const elementHeight = el.getBoundingClientRect().height;
-      const bottomOffset = -((1 - thresholdValue) * elementHeight);
+  );
 
-      const individualObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const target = entry.target as HTMLElement;
-              target.classList.add('is-visible');
+  function checkElement(
+    element: HTMLElement,
+    threshold: number,
+    processedSet: Set<HTMLElement>
+  ): boolean {
+    if (processedSet.has(element)) return false;
 
-              if (target.dataset.counter) animateCounter(target);
-              individualObserver.unobserve(target);
-            }
-          });
-        },
-        {
-          threshold: 0,
-          rootMargin: `0px 0px ${bottomOffset}px 0px`,
-        },
+    const rect = element.getBoundingClientRect();
+    const elementHeight = rect.height;
+    const elementTop = rect.top + window.scrollY;
+    const scrollPosition = window.scrollY + window.innerHeight; // Ligne de flottaison (bas du viewport)
+
+    // Calcul : combien de % de l'élément est au-dessus de la ligne de flottaison
+    const distanceScrolled = scrollPosition - elementTop;
+    const percentScrolled = distanceScrolled / elementHeight;
+
+    if (percentScrolled >= threshold) {
+      processedSet.add(element);
+      return true;
+    }
+
+    return false;
+  }
+
+  function handleScroll(): void {
+    // Gérer les groupes
+    groups.forEach((group) => {
+      const threshold = parseFloat(
+        group.dataset.threshold || String(visibilityThreshold)
       );
 
-      individualObserver.observe(el);
+      if (checkElement(group, threshold, animatedGroups)) {
+        const children = Array.from(
+          group.querySelectorAll<HTMLElement>('[data-animate]')
+        );
+        const staggerDelay = parseInt(group.dataset.animateStagger || '5');
+
+        children.forEach((child, index) => {
+          setTimeout(() => {
+            requestAnimationFrame(() => child.classList.add('is-visible'));
+            if (child.dataset.counter) animateCounter(child);
+          }, index * staggerDelay);
+        });
+      }
     });
+
+    // Gérer les éléments individuels
+    individuals.forEach((el) => {
+      if (checkElement(el, visibilityThreshold, animatedElements)) {
+        requestAnimationFrame(() => el.classList.add('is-visible'));
+        if (el.dataset.counter) animateCounter(el);
+      }
+    });
+
+    // Cleanup : retirer le listener si tout est animé
+    if (
+      animatedGroups.size === groups.length &&
+      animatedElements.size === individuals.length
+    ) {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    }
+  }
+
+  // Vérifier au chargement
+  handleScroll();
+
+  // Écouter le scroll et le resize
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  window.addEventListener('resize', handleScroll, { passive: true });
 
   // ----------- Fonction compteur ----------
   function animateCounter(element: HTMLElement): void {
