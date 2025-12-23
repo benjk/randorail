@@ -68,9 +68,7 @@ html {
             }
             @media screen and (max-width: $mobile-breakpoint) {
               height: calc(100vh + $video-section-overlay-height-mobile);
-              max-height: 5rem;
             }
-            
           }
 
           .section1 {
@@ -95,6 +93,24 @@ html {
               padding-right: 0;
               padding-bottom: calc($margin-xl * 1.2);
               min-height: 70vh;
+            }
+
+            .rando-sublabel {
+              position: absolute;
+              top: 0;
+              right: 0;
+              padding: 0.25rem;
+
+              p {
+                font-family: $text-font;
+                color: $color3;
+                font-size: calc($subtext-font-size * 0.75);
+              }
+
+              @media screen and (max-width: $mobile-breakpoint) {
+                right: -2.5%;
+                top: -8px;
+              }
             }
 
             .title-container {
@@ -130,7 +146,11 @@ html {
             @media screen and (max-width: $mobile-breakpoint) {
               height: $video-section-overlay-height-mobile;
               min-height: 24rem;
-              max-height: 35rem;
+              max-height: 48rem;
+            }
+
+            @media screen and (max-width: $mobile-breakpoint-s) {
+              max-height: 38rem;
             }
 
             .video-icon {

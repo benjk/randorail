@@ -179,8 +179,11 @@ $social-svg-width: 2.5rem;
         flex-direction: column-reverse;
         gap: $margin-m;
 
-        .logo-container a img {
-          max-height: 5rem;
+        .logo-container {
+          gap: $margin-l;
+          a img {
+            max-height: 5rem;
+          }
         }
 
         .footer-contact address p {
@@ -225,6 +228,10 @@ $social-svg-width: 2.5rem;
       .footer-left .logo-container a img {
         max-height: 4rem;
       }
+
+      .footer-right .footer-social {
+        gap: $margin-xl;
+      }
     }
   }
 
@@ -244,15 +251,5 @@ $social-svg-width: 2.5rem;
   @media screen and (max-width: $mobile-breakpoint) {
     height: auto;
     min-height: $footer-height;
-
-    .footer-right .footer-social a {
-      width: $social-svg-width;
-      height: $social-svg-width;
-
-      svg {
-        width: calc($social-svg-width * 0.5);
-        height: calc($social-svg-width * 0.5);
-      }
-    }
   }
 }

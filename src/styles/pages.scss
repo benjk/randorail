@@ -73,6 +73,20 @@ html body #main-container {
         }
       }
 
+      .contact-wrapper {
+        @include flex-box($margin-m);
+
+        .p-wrapper {
+          p {
+            @include basic-text-page();
+          }
+        }
+        
+        .info-btn {
+          @include custom-btn();
+        }
+      }
+
       @media screen and (max-width: $mobile-breakpoint) {
         padding-bottom: $page-spacing;
         .p-wrapper {

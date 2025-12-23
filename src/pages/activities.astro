@@ -35,7 +35,10 @@ import content from '../data/content.json';
       </div>
       <div class="separator"></div>
       <div class="info-wrapper">
-        <svg class="info-icon" style="margin-bottom: -0.2rem; margin-right: -45rem">
+        <svg
+          class="info-icon"
+          style="margin-bottom: -0.2rem; margin-right: -45rem"
+        >
           <use href=`#picto-resa`></use>
         </svg>
         <p>Réservation en ligne</p>
@@ -43,6 +46,14 @@ import content from '../data/content.json';
     </div>
     <div class="activities-container">
       <CardsGrid />
+    </div>
+    <div class="contact-wrapper">
+      <div class="p-wrapper">
+        <p class="contact-text">
+          Si vous souhaitez combiner plusieurs activités, contactez-nous pour organiser votre journée !
+        </p>
+      </div>
+      <a href="/contact" class="info-btn">Contactez-nous</a>
     </div>
   </div>
 </MainLayout>

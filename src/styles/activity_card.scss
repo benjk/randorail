@@ -126,6 +126,10 @@
         text-align: center;
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
+        @media screen and (max-width: $mobile-breakpoint) {
+          padding: $margin-l $margin-s;
+        }
+
         @media screen and (max-width: $mobile-breakpoint-s) {
           width: 94%;
           padding: $margin-m;
