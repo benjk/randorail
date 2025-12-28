@@ -28,7 +28,6 @@ function unlockScroll(): void {
 
 async function openModal(): Promise<void> {
   const modal = document.querySelector('.announcement-modal') as HTMLElement;
-  const banner = document.querySelector('.announcement-banner') as HTMLElement;
   const img = modal?.querySelector('.announcement-img') as HTMLImageElement;
 
   if (!modal) return;
@@ -51,7 +50,6 @@ async function openModal(): Promise<void> {
 
 function showBanner(): void {
   const banner = document.querySelector('.announcement-banner') as HTMLElement;
-
   if (banner) {
     banner.classList.add('is-visible');
     document
@@ -177,7 +175,6 @@ function setupEventListeners(): void {
 // ========================================
 
 export function initAnnouncement(): void {
-  // const hasSeenAnnouncement = false;
   const hasSeenAnnouncement = sessionStorage.getItem(STORAGE_KEY) === 'true';
 
   setupEventListeners();
