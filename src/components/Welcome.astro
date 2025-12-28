@@ -12,44 +12,6 @@ import RailVideoSVG from './RailVideoSVG.astro';
 ---
 
 <div id="home-container" class="content-container">
-  {
-    content.home.announcement?.enabled &&
-      (() => {
-        const { sourceBlocKey, blocIndex } = content.home.announcement;
-        const blocRule = blocRules[sourceBlocKey];
-        if (!blocRule) return null;
-
-        const jsonPath = blocRule.jsonKey.split('.');
-        let blocData: any = content;
-        for (const part of jsonPath) {
-          if (!blocData) break;
-          blocData = blocData[part];
-        }
-
-        const item = blocData?.items?.[blocIndex];
-        if (!item) return null;
-
-        const firstImageField = Object.values(
-          blocRules[sourceBlocKey].imageFields || {},
-        )[0];
-        const folder = firstImageField?.folder || '';
-
-        return (
-          <section id="announcement" class="announcement-section">
-            <div
-              class="announcement-wrapper"
-              style={`background-image: url('${imageWithHash(item.imgName, folder)}')`}
-            >
-              <div class="announcement-content">
-                <h3 class="announcement-title">{item.title}</h3>
-                <p class="announcement-text">{item.content}</p>
-              </div>
-            </div>
-          </section>
-        );
-      })()
-  }
-
   <!-- SECTION VIDEO (fond) -->
   <section class="video-wrapper">
     <div class="video-section">

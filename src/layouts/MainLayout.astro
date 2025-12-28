@@ -1,4 +1,5 @@
 ---
+import content from '../data/content.json';
 import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -8,55 +9,30 @@ const {
   title = SITE_TITLE,
   withSeo = true,
   commonPreloads = true,
-  homePreload = false,
+  isHome = false,
 } = Astro.props;
 import sprite from '../assets/sprite.svg?raw';
+
+const shouldRenderAnnouncement = isHome && content.home.announcement?.enabled;
+let AnnouncementModal;
+if (shouldRenderAnnouncement) {
+  AnnouncementModal = (await import('../announcement/AnnouncementModal.astro'))
+    .default;
+}
 ---
 
 <BaseLayout {title} {withSeo}>
-  {commonPreloads && <PreloadsLayout slot="head-preloads" {homePreload} />}
+  {commonPreloads && <PreloadsLayout slot="head-preloads" {isHome} />}
+  {
+    shouldRenderAnnouncement && (
+      <script src="../announcement/announcementController.ts" />
+    )
+  }
   <main id="main-container">
-    <Header />
+    <Header shouldRenderBanner={shouldRenderAnnouncement} />
+    {shouldRenderAnnouncement && AnnouncementModal && <AnnouncementModal />}
     <Fragment set:html={sprite} />
     <slot />
     <Footer />
   </main>
 </BaseLayout>
-<script is:inline>
-  // Evite les effets de FOUC (Flash of Unstyled Content)
-  // document.addEventListener('DOMContentLoaded', function() {
-  //   const images = document.querySelectorAll('img');
-  //   let loadedImages = 0;
-  //   const contentContainers = document.querySelectorAll('.content-container');
-
-  //   if (images.length === 0) {
-  //     // S'il n'y a pas d'images, afficher immédiatement les conteneurs
-  //     contentContainers.forEach(container => {
-  //       container.style.opacity = '1';
-  //     });
-  //   } else {
-  //     // Sinon, attendre que toutes les images soient chargées
-  //     images.forEach(img => {
-  //       if (img.complete) {
-  //         loadedImages++;
-  //       } else {
-  //         img.addEventListener('load', () => {
-  //           loadedImages++;
-  //           if (loadedImages === images.length) {
-  //             contentContainers.forEach(container => {
-  //               container.style.opacity = '1';
-  //             });
-  //           }
-  //         });
-  //       }
-  //     });
-
-  //     // Vérifier si toutes les images sont déjà chargées
-  //     if (loadedImages === images.length) {
-  //       contentContainers.forEach(container => {
-  //         container.style.opacity = '1';
-  //       });
-  //     }
-  //   }
-  // });
-</script>

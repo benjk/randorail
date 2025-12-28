@@ -1,0 +1,256 @@
+@use '../styles/variables' as *;
+@use '../styles/base';
+@use '../styles/mixin' as *;
+@use '../styles/animations' as *;
+
+.announcement-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  &.is-visible {
+    display: flex;
+  }
+
+  .modal-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-content {
+    position: relative;
+    background-color: $color3;
+    background-image: $bg-texture-url;
+    border-radius: $card-radius;
+    border: 1px solid $color1;
+    max-width: 90%;
+    max-height: 94vh;
+    width: 55rem;
+    overflow-y: auto;
+    box-shadow: $strong-shadow;
+
+    // Animation d'entrée
+    animation: modalFadeIn 0.3s ease-out;
+
+    .modal-close {
+      position: absolute;
+      top: $margin-xs;
+      right: $margin-xs;
+      background-color: transparent;
+      border: none;
+      border-radius: 50%;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 2;
+
+      .modal-close-icon {
+        width: 100%;
+        height: 100%;
+        fill: $color2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: fill 0.4s;
+        margin-bottom: -0.3rem;
+      }
+
+      &:hover {
+        .modal-close-icon {
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    .announcement-img {
+      height: auto;
+      max-height: 175rem;
+      width: auto;
+      border-radius: $card-radius;
+      display: block;
+    }
+
+    .modal-text {
+      padding: $margin-m $margin-m $margin-l $margin-s;
+
+      @media (min-width: $mobile-breakpoint-s) {
+        padding: $margin-m;
+      }
+
+      .modal-title {
+        @include content-h2();
+      }
+
+      .modal-description {
+        @include flex-box($margin-xs);
+        p {
+          @include basic-text-page($color1);
+        }
+      }
+    }
+  }
+
+  // ========================================
+  // LAYOUT: Avec image
+  // ========================================
+  &.layout-with-image {
+    .modal-content {
+      width: 70rem;
+
+      // Desktop : row (image à gauche, texte à droite)
+      @media (min-width: $mobile-breakpoint-s) {
+        @include flex-row($margin-s);
+
+        .announcement-img {
+          width: 50%;
+          object-fit: cover;
+          border-radius: $card-radius 0 0 $card-radius;
+        }
+
+        .modal-text {
+          flex: 1;
+          padding: $margin-l;
+        }
+      }
+
+      // Mobile : colonne (image en haut, texte en bas)
+      @media (max-width: $mobile-breakpoint-s) {
+        display: flex;
+        flex-direction: column;
+
+        .announcement-img {
+          border-radius: $card-radius $card-radius 0 0;
+        }
+      }
+    }
+  }
+
+  // Cas spécial : image seule sans texte (pas de padding sur modal-text)
+  &.no-text {
+    .modal-content {
+      flex-direction: column;
+      width: 35rem;
+      max-width: 60%;
+      gap: 0;
+
+      .announcement-img {
+        width: 100%;
+      }
+
+      .modal-text {
+        padding: $margin-s $margin-l;
+
+        .modal-title {
+          margin: 0;
+        }
+      }
+      @media (max-width: $mobile-breakpoint-s) {
+        max-width: 90%;
+      }
+    }
+  }
+
+  // ========================================
+  // LAYOUT: Sans image (texte seul)
+  // ========================================
+  &.layout-no-image {
+    .modal-content {
+      width: auto;
+    }
+  }
+
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-2rem) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+}
+
+// ========================================
+// ANNOUNCEMENT BANNER (dans le Header)
+// ========================================
+
+.announcement-banner {
+  height: 100%;
+  width: auto;
+  display: none;
+  gap: $margin-xs;
+  max-height: 70%;
+  align-items: center;
+  justify-content: center;
+  padding: $margin-xs $margin-s;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  box-shadow: $text-shadow-basic;
+  border-radius: $card-radius;
+  flex: 1;
+  max-width: 30rem;
+
+  &.is-visible {
+    display: flex;
+  }
+
+  &:hover {
+    opacity: 0.8;
+    // TODO anim mieux
+  }
+
+  // Mobile : ligne complète au-dessus
+  @media (max-width: $mobile-breakpoint) {
+    width: 100%;
+    border-radius: 0;
+    max-height: none;
+  }
+
+  .banner-title {
+    font-size: $text-font-size;
+    font-family: $title-font;
+    color: $color3;
+  }
+
+  .banner-icon {
+    $iconSize: $mobile-banner-height;
+    width: $iconSize;
+    max-width: $iconSize;
+    height: $iconSize;
+    max-height: $iconSize;
+    fill: $color3;
+    display: block;
+    padding-top: 0.15rem;
+  }
+
+  @media (max-width: $mobile-breakpoint) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $mobile-banner-height;
+    transform: translateY(-100%);
+    z-index: 102;
+    max-width: none;
+    border-radius: 0;
+  }
+}
+
+// ========================================
+// BODY SCROLL LOCK
+// ========================================
+
+body.modal-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}

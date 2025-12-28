@@ -1,0 +1,77 @@
+---
+import content from '../data/content.json';
+import './announcement.scss';
+import { imageWithHash } from '../admin/components/images/imageWithHash';
+import { blocRules } from '../admin/data/blocRules';
+
+const { sourceBlocKey, blocIndex } = content.home.announcement;
+const blocRule = blocRules[sourceBlocKey];
+
+if (!blocRule) {
+  throw new Error(`Bloc rule not found for key: ${sourceBlocKey}`);
+}
+
+const jsonPath = blocRule.jsonKey.split('.');
+let blocData: any = content;
+for (const part of jsonPath) {
+  if (!blocData) break;
+  blocData = blocData[part];
+}
+
+const announcement = blocData?.items?.[blocIndex];
+
+if (!announcement) {
+  throw new Error(`Announcement not found at index ${blocIndex}`);
+}
+
+const firstImageField = Object.values(blocRule.imageFields || {})[0];
+const folder = firstImageField?.folder || '';
+
+const { title, textContent = [], imgName } = announcement;
+
+// Simple vérification : imgName existe et n'est pas vide
+const hasImage = !!(imgName && imgName.trim() !== '');
+const hasText = textContent.length > 0;
+
+let layoutClasses = hasImage 
+  ? `layout-with-image ${!hasText ? 'no-text' : ''}`
+  : 'layout-no-image';
+---
+
+<div
+  class={`announcement-modal ${layoutClasses}`} 
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-title"
+>
+  <div class="modal-overlay"></div>
+
+  <div class="modal-content">
+    <button class="modal-close" aria-label="Fermer l'annonce">
+      <svg class="modal-close-icon">
+        <use href="#picto-close"></use>
+      </svg>
+    </button>
+
+    {hasImage && (
+      <img
+        class="announcement-img"
+        src={imageWithHash(imgName, folder)}
+        alt={title}
+        onerror="this.style.display='none'" 
+      />
+    )}
+
+    <div class="modal-text">
+      <h2 id="modal-title" class="modal-title">{title}</h2>
+
+      {hasText && (
+        <div class="modal-description">
+          {textContent.map((text: string) => (
+            <p>{text}</p>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+</div>

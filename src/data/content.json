@@ -23,16 +23,17 @@
   },
   "home": {
     "announcement": {
-      "enabled": false,
+      "enabled": true,
       "sourceBlocKey": "ANNONCE_BLOC",
+      "backgroundColor": "#0065a4",
       "blocIndex": 0
     },
     "annonces": {
       "items": [
         {
           "title": "Site en construction",
-          "content": "Ce site internet est en cours de construction. Revenez plus tard !",
-          "imgName": "chantier.webp",
+          "textContent": ["Ce site internet est en cours de construction. Revenez plus tard !", "Ceci est un test mais ça n'a rieeeen à voir"],
+          "imgName": "announcementDef.png",
           "order": 1
         }
       ]

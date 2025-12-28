@@ -37,7 +37,7 @@ export const blocRules: Record<string, BlocRule> = {
         label: 'Illustration de l\'annonce',
         idealRatio: 1.5,
         imgFormat: 'landscape',
-        folder: '/img/annonces/',
+        folder: '/img/announcements/',
         linkTo: { route: '/', selector: '' },
       },
     }),

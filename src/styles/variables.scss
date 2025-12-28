@@ -64,6 +64,7 @@ $mobile-breakpoint: 1025px;
 $mobile-breakpoint-s: 740px;
 $header-height: 4rem;
 $mobile-header-height: calc($header-height * 0.85);
+$mobile-banner-height: calc($mobile-header-height * 0.75);
 
 $footer-height: 11rem;
 

@@ -2,7 +2,7 @@
 
 /* === Header variables === */
 $header-logo-padding: 10px;
-$margin-side: 12%;
+$margin-side: $margin-xl;
 $content-height: 80%;
 
 $shadow-menu:
@@ -44,6 +44,7 @@ $header-bg-color: $color-bg-stronger;
   .navbar {
     display: flex;
     justify-content: space-between;
+    gap: $margin-m;
     padding-left: $margin-side;
     padding-right: $margin-side;
     align-items: center;
@@ -61,7 +62,6 @@ $header-bg-color: $color-bg-stronger;
       .logo-link {
         display: flex;
         align-items: center;
-        margin-right: $margin-side;
         height: 100%;
         text-decoration: none;
         position: relative;
@@ -366,6 +366,14 @@ $header-bg-color: $color-bg-stronger;
 
     .mobile-menu-container {
       top: $mobile-header-height;
+    }
+  }
+}
+
+.has-mobile-banner {
+  .header {
+    @media (max-width: $mobile-breakpoint) {
+      margin-top: calc($mobile-banner-height - 0.1rem);
     }
   }
 }

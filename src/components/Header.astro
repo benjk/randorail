@@ -4,6 +4,7 @@ import '../styles/header.scss';
 import type { MenuItem, PagesMap } from '../admin/components/nav/menu.types';
 import { GOOGLE_MAP_URL } from '../config';
 
+const { shouldRenderBanner = false } = Astro.props;
 
 const pages: PagesMap = content.pages;
 const rawMenu = content.menu as MenuItem[];
@@ -23,6 +24,13 @@ const menuItems = rawMenu.filter((item) => {
   }
   return true;
 });
+
+let AnnouncementBanner;
+if (shouldRenderBanner) {
+  AnnouncementBanner = (
+    await import('../announcement/AnnouncementBanner.astro')
+  ).default;
+}
 ---
 
 <header class="header">
@@ -32,6 +40,8 @@ const menuItems = rawMenu.filter((item) => {
         <img id="logo-home" src="/img/static/header_logo.webp" alt="Logo" />
       </a>
     </div>
+
+    {shouldRenderBanner && AnnouncementBanner && <AnnouncementBanner />}
 
     <div class="menu-desktop">
       {
@@ -111,7 +121,6 @@ const menuItems = rawMenu.filter((item) => {
       >
         <span>Itinéraire</span>
       </a>
-    </div>
     </div>
 
     <button class="burger" id="burger-btn" aria-label="Toggle menu">

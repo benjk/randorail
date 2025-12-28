@@ -1,0 +1,43 @@
+---
+import content from '../data/content.json';
+import './announcement.scss';
+import { blocRules } from '../admin/data/blocRules';
+
+const { sourceBlocKey, blocIndex } = content.home.announcement;
+const blocRule = blocRules[sourceBlocKey];
+
+if (!blocRule) {
+  throw new Error(`Bloc rule not found for key: ${sourceBlocKey}`);
+}
+
+const jsonPath = blocRule.jsonKey.split('.');
+let blocData: any = content;
+for (const part of jsonPath) {
+  if (!blocData) break;
+  blocData = blocData[part];
+}
+
+const announcement = blocData?.items?.[blocIndex];
+
+if (!announcement) {
+  throw new Error(`Announcement not found at index ${blocIndex}`);
+}
+
+const { title } = announcement;
+
+// Récupération de la couleur de fond (à ajouter dans content.json)
+const backgroundColor = content.home.announcement.backgroundColor || '#ff6b6b';
+---
+
+<div
+  class="announcement-banner"
+  style={`background-color: ${backgroundColor}`}
+  role="button"
+  tabindex="0"
+  aria-label="Ouvrir l'annonce"
+>
+  <svg class="banner-icon">
+    <use href="#picto-info"></use>
+  </svg>
+  <span class="banner-title">{title}</span>
+</div>
