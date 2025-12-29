@@ -3,16 +3,48 @@
 // ========================================
 
 const STORAGE_KEY = 'announcementSeen';
+const EXPIRATION_DELAY = 24 * 60 * 60 * 1000; // 24h en millisecondes
+
+// ========================================
+// Variables globales du module
+// ========================================
+
+let modal: HTMLElement | null = null;
+let banner: HTMLElement | null = null;
+let container: HTMLElement | null = null;
+
+// Event handlers pour le cleanup
+let handleTabKey: ((e: KeyboardEvent) => void) | null = null;
+let handleEscKey: ((e: KeyboardEvent) => void) | null = null;
+
+// ========================================
+// Gestion localStorage avec expiration
+// ========================================
+
+function hasSeenRecentlyAnnouncement(): boolean {
+  const seenTimestamp = localStorage.getItem(STORAGE_KEY);
+  
+  if (!seenTimestamp) return false;
+  
+  const now = Date.now();
+  const seenDate = parseInt(seenTimestamp, 10);
+  
+  // Si le timestamp est invalide ou trop vieux (> 24h)
+  if (isNaN(seenDate) || (now - seenDate) > EXPIRATION_DELAY) {
+    return false;
+  }
+  
+  return true;
+}
 
 // ========================================
 // Gestion de la modale
 // ========================================
 
 async function openModal(): Promise<void> {
-  const modal = document.querySelector('.announcement-modal') as HTMLElement;
-  const img = modal?.querySelector('.announcement-img') as HTMLImageElement;
-
   if (!modal) return;
+  
+  const img = modal.querySelector('.announcement-img') as HTMLImageElement;
 
   // Attend le chargement de l'image si présente
   if (img && !img.complete) {
@@ -22,48 +54,44 @@ async function openModal(): Promise<void> {
     });
   }
 
-  // Affiche la modale
   modal.classList.add('is-visible');
-
-  // Focus trap et accessibilité
-  setupModalAccessibility(modal);
+  setupModalAccessibility();
 }
 
 function showBanner(): void {
-  const banner = document.querySelector('.announcement-banner') as HTMLElement;
   if (banner) {
     banner.classList.add('is-visible');
-    document
-      .querySelector('#main-container')
-      ?.classList.add('has-mobile-banner');
+    container?.classList.add('has-mobile-banner');
   }
 }
 
 function closeModal(): void {
-  const modal = document.querySelector('.announcement-modal') as HTMLElement;
-  const banner = document.querySelector('.announcement-banner') as HTMLElement;
-
   if (!modal) return;
 
   modal.classList.remove('is-visible');
 
   if (banner) {
     banner.classList.add('is-visible');
-
-    // Ajoute classe sur body
-    if (window.innerWidth <= 768) {
-      document.body.classList.add('has-mobile-banner');
-    }
+    container?.classList.add('has-mobile-banner');
   }
 
-  sessionStorage.setItem(STORAGE_KEY, 'true');
+  // Stocke le timestamp actuel
+  localStorage.setItem(STORAGE_KEY, Date.now().toString());
+  
+  // Cleanup des event listeners
+  cleanupModalListeners();
 }
 
 // ========================================
 // Accessibilité modale
 // ========================================
 
-function setupModalAccessibility(modal: HTMLElement): void {
+function setupModalAccessibility(): void {
+  if (!modal) return;
+  
+  // Nettoie les anciens listeners si existent
+  cleanupModalListeners();
+  
   // Elements focusables dans la modale
   const focusableElements = modal.querySelectorAll<HTMLElement>(
     'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
@@ -78,7 +106,7 @@ function setupModalAccessibility(modal: HTMLElement): void {
   firstFocusable.focus();
 
   // Focus trap
-  const handleTabKey = (e: KeyboardEvent) => {
+  handleTabKey = (e: KeyboardEvent) => {
     if (e.key !== 'Tab') return;
 
     if (e.shiftKey) {
@@ -97,20 +125,25 @@ function setupModalAccessibility(modal: HTMLElement): void {
   };
 
   // ESC pour fermer
-  const handleEscKey = (e: KeyboardEvent) => {
+  handleEscKey = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
       closeModal();
-      cleanup();
     }
-  };
-
-  const cleanup = () => {
-    document.removeEventListener('keydown', handleTabKey);
-    document.removeEventListener('keydown', handleEscKey);
   };
 
   document.addEventListener('keydown', handleTabKey);
   document.addEventListener('keydown', handleEscKey);
+}
+
+function cleanupModalListeners(): void {
+  if (handleTabKey) {
+    document.removeEventListener('keydown', handleTabKey);
+    handleTabKey = null;
+  }
+  if (handleEscKey) {
+    document.removeEventListener('keydown', handleEscKey);
+    handleEscKey = null;
+  }
 }
 
 // ========================================
@@ -118,8 +151,6 @@ function setupModalAccessibility(modal: HTMLElement): void {
 // ========================================
 
 function setupEventListeners(): void {
-  const modal = document.querySelector('.announcement-modal');
-  const banner = document.querySelector('.announcement-banner');
   const closeBtn = modal?.querySelector('.modal-close');
   const overlay = modal?.querySelector('.modal-overlay');
 
@@ -155,15 +186,23 @@ function setupEventListeners(): void {
 // ========================================
 
 export function initAnnouncement(): void {
-  const hasSeenAnnouncement = sessionStorage.getItem(STORAGE_KEY) === 'true';
+  // Cache les éléments DOM
+  modal = document.querySelector('.announcement-modal');
+  banner = document.querySelector('.announcement-banner');
+  container = document.querySelector('#main-container');
+  
+  // Early return si pas de modale
+  if (!modal) return;
+  
+  const hasSeenRecently = hasSeenRecentlyAnnouncement();
 
   setupEventListeners();
 
-  if (hasSeenAnnouncement) {
-    // Déjà vue → affiche juste le banner
+  if (hasSeenRecently) {
+    // Déjà vue récemment → affiche juste le banner
     showBanner();
   } else {
-    // Pas encore vue → ouvre la modale
+    // Pas vue ou expirée → ouvre la modale
     openModal();
   }
 }
