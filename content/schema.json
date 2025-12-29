@@ -25,7 +25,6 @@
     "announcement": {
       "enabled": true,
       "sourceBlocKey": "ANNONCE_BLOC",
-      "backgroundColor": "#0065a4",
       "blocIndex": 0
     },
     "annonces": {
