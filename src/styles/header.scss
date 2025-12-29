@@ -153,14 +153,14 @@ $header-bg-color: $color-bg-stronger;
     }
 
     /* === Burger === */
-    $burger-line-height: 2px;
+    $burger-line-height: 3px;
     $burger-height: $content-height * 0.5;
 
     .burger {
       display: none;
       height: $burger-height;
       width: calc($burger-height * 0.2);
-      max-width: 2.2em;
+      max-width: 1.8em;
       background: transparent;
       border: none;
       cursor: pointer;

@@ -85,7 +85,7 @@ html {
           .section1 {
             position: relative;
             width: 100%;
-            min-height: calc(90vh - $header-height);
+            min-height: calc(84vh - $header-height);
             height: auto;
             z-index: 10;
             display: flex;
@@ -118,7 +118,7 @@ html {
               }
 
               @media screen and (max-width: $mobile-breakpoint) {
-                right: -5px;
+                right: -10px;
                 top: -3px;
               }
             }
