@@ -163,20 +163,77 @@ html {
               max-height: 38rem;
             }
 
-            .video-icon {
-              width: 3em;
-              height: 3em;
+            .video-icon-link {
               position: absolute;
-              top: calc($margin-m);
+              top: $margin-m;
               right: $margin-m;
               z-index: 5;
-              cursor: pointer;
-              fill: $color3;
+              text-decoration: none;
 
-              @media screen and (max-width: $mobile-breakpoint-s) {
-                width: 2em;
-                bottom: calc($margin-l * -0.5);
+              display: flex;
+              flex-direction: row-reverse;
+              align-items: center;
+              gap: $margin-m;
+
+              .video-icon {
+                width: 3em;
+                height: 3em;
+                cursor: pointer;
+                fill: $color3;
+
+                @media screen and (max-width: $mobile-breakpoint-s) {
+                  width: 2em;
+                }
               }
+
+              .video-tooltip {
+                color: $color3;
+                background-color: $color2;
+                padding: $margin-xs $margin-s;
+                border-radius: 0.5rem;
+                font-size: $subtext-font-size;
+                white-space: nowrap;
+                cursor: pointer;
+                margin-top: -0.2rem;
+                box-shadow: $cards-shadow;
+                display: none;
+
+                &::after {
+                  content: '';
+                  position: absolute;
+                  right: -6px;
+                  top: 50%;
+                  transform: translateY(-50%);
+
+                  width: 0;
+                  height: 0;
+                  border-left: 6px solid $color2;
+                  border-top: 6px solid transparent;
+                  border-bottom: 6px solid transparent;
+                }
+
+                // Visible uniquement mobile/tablette
+                @media screen and (max-width: $mobile-breakpoint) {
+                  display: block;
+                }
+
+                // État animé
+                &.is-visible {
+                  opacity: 1;
+                  pointer-events: auto; // Réactivé quand visible
+                  animation: tooltip-pulse 2s ease-in-out infinite;
+                }
+              }
+            }
+          }
+
+          @keyframes tooltip-pulse {
+            0%,
+            100% {
+              transform: scale(1);
+            }
+            50% {
+              transform: scale(1.08);
             }
           }
 

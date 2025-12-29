@@ -29,7 +29,6 @@ export async function initVideoFunction(): Promise<void> {
   const video = document.querySelector('.video-bg') as HTMLVideoElement;
   const posterBlur = document.querySelector('.video-blur') as HTMLVideoElement;
   const poster = document.querySelector('.video-poster') as HTMLVideoElement;
-  const btn = document.querySelector('.video-icon-link') as HTMLElement;
 
   let railNotified = false;
   const notifyPosterReady = () => {
@@ -111,7 +110,7 @@ export async function initVideoFunction(): Promise<void> {
 
   // 7. PLAY VIDEO
   try {
-    await playVideo(video, btn);
+    await playVideo(video);
   } catch (error) {
     console.error('❌ Erreur lecture vidéo:', error);
     fallbackTriggered = true;
@@ -295,10 +294,8 @@ export async function initVideoFunction(): Promise<void> {
   }
 
   async function playVideo(
-    video: HTMLVideoElement,
-    btn: HTMLElement | null,
+    video: HTMLVideoElement
   ): Promise<void> {
-    console.log('🎬 playVideo() APPELÉ');
     video.classList.add('playing');
 
     return new Promise((resolve, reject) => {
@@ -314,10 +311,6 @@ export async function initVideoFunction(): Promise<void> {
           .play()
           .then(() => {
             console.log('▶️ Lecture démarrée');
-
-            if (btn) {
-              setupPlayPauseButton(btn, video);
-            }
 
             const removePosters = () => {
               if (video.currentTime > 0 && !video.paused) {
@@ -368,40 +361,5 @@ export async function initVideoFunction(): Promise<void> {
         { once: true },
       );
     });
-  }
-
-  /**
-   * Remplace le comportement du lien fallback par play/pause
-   * Fallback si Mobile
-   */
-  function setupPlayPauseButton(
-    link: HTMLElement,
-    video: HTMLVideoElement,
-  ): void {
-    if (!link) {
-      console.warn('⚠️ Pas de btn trouvé');
-      return;
-    }
-
-    if (!device.preferMp4) {
-      link.removeAttribute('href');
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-
-        if (video.paused) {
-          video.play();
-          link.classList.remove('paused');
-          link.classList.add('playing');
-          console.log('▶️ Play');
-        } else {
-          video.pause();
-          link.classList.remove('playing');
-          link.classList.add('paused');
-          console.log('⏸️ Pause');
-        }
-      });
-
-      console.log('🎮 Play/Pause activé sur le bouton');
-    }
   }
 }

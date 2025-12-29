@@ -162,7 +162,7 @@ import RailVideoSVG from './RailVideoSVG.astro';
   <section
     class="video-section-overlay"
     data-animate-group="video-section"
-    data-threshold="0.4"
+    data-threshold="0.3"
   >
     <div
       class="rail-wrapper video-rail-wrapper"
@@ -179,6 +179,14 @@ import RailVideoSVG from './RailVideoSVG.astro';
       <svg class="video-icon">
         <use href=`#picto-video`></use>
       </svg>
+      <!-- Tooltip -->
+      <span
+        class="video-tooltip"
+        data-animate="pulse"
+        data-animate-group="video-section"
+      >
+        Voir en plein écran
+      </span>
     </a>
   </section>
   <section class="section4">

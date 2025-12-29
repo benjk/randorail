@@ -36,7 +36,7 @@
   $rail2-duration: calc($animation-duration * ($rail2-length / $rail1-length));
 
   // Video config - Positionnement
-  $video-rail-width: 16%;
+  $video-rail-width: 15%;
   $video-rail-right: 3%;
   $video-rail-top: -63%;
   // TABLET
@@ -204,9 +204,9 @@
     }
 
     @media screen and (max-width: $mobile-breakpoint) {
-      height: $tablet-video-rail-height;
-      width: auto;
+      width: calc($video-rail-width * $rail-width-ratio * 1.2);
       top: $tablet-video-rail-top;
+      right: 1rem;
 
       // Sur tablet et mobile : le rail est plus long : on réduit la durée de l'anim pour meilleur effet
       &.is-visible {
@@ -225,10 +225,11 @@
         }
       }
     }
-    
+
     @media screen and (max-width: $mobile-breakpoint-s) {
-      height: $middle-video-rail-height;
-      bottom: -30%;
+      height: $tablet-video-rail-height;
+      width: auto;
+      bottom: -16%;
       top: auto;
     }
   }

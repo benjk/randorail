@@ -26,9 +26,6 @@ interface Props {
 
   /** URL de secours (YouTube/Cloudflare) si vidéo fail */
   fallbackUrl?: string;
-
-  /** Timeout en ms avant de garder le poster si vidéo pas prête (défaut: 5000) */
-  timeout?: number;
 }
 
 const config = { ...VIDEO_CONFIG, ...Astro.props };
