@@ -19,7 +19,10 @@
     position: absolute;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(4px);
+
+    @media (min-width: $mobile-breakpoint) {
+      backdrop-filter: blur(2px);
+    }
   }
 
   .modal-content {
@@ -33,16 +36,17 @@
     width: 55rem;
     overflow-y: auto;
     box-shadow: $strong-shadow;
+    contain: layout style paint;
 
-    // Animation d'entrée
-    animation: modalFadeIn 0.3s ease-out;
+    // Animation d'entrée + opti GPU
+    transform: translateZ(0);
+    animation: modalFadeIn 0.2s ease-out;
 
     .modal-close {
       position: absolute;
       top: $margin-xs;
       right: $margin-xs;
       background-color: transparent;
-      border: none;
       border-radius: 50%;
       width: 2.5rem;
       height: 2.5rem;
@@ -51,6 +55,8 @@
       justify-content: center;
       cursor: pointer;
       z-index: 2;
+      outline: none;
+      border: none;
 
       .modal-close-icon {
         width: 100%;
@@ -61,6 +67,7 @@
         justify-content: center;
         transition: fill 0.4s;
         margin-bottom: -0.3rem;
+        outline: none;
       }
 
       &:hover {
@@ -80,6 +87,7 @@
 
     .modal-text {
       padding: $margin-m $margin-m $margin-l $margin-s;
+      @include flex-box(0);
 
       @media (min-width: $mobile-breakpoint-s) {
         padding: $margin-m;
@@ -104,20 +112,30 @@
   &.layout-with-image {
     .modal-content {
       width: 70rem;
+      max-height: 85vh;
+      overflow: hidden;
 
       // Desktop : row (image à gauche, texte à droite)
       @media (min-width: $mobile-breakpoint-s) {
         @include flex-row($margin-s);
+        align-items: stretch;
 
         .announcement-img {
           width: 50%;
+          min-width: 50%;
+          height: auto;
+          min-height: 100%;
+          max-height: none;
           object-fit: cover;
+          object-position: center;
           border-radius: $card-radius 0 0 $card-radius;
         }
 
         .modal-text {
           flex: 1;
-          padding: $margin-l;
+          padding: 0 $margin-m $margin-l $margin-s;
+          overflow-y: auto;
+          max-height: 100%;
         }
       }
 
@@ -170,11 +188,11 @@
   @keyframes modalFadeIn {
     from {
       opacity: 0;
-      transform: translateY(-2rem) scale(0.95);
+      transform: translateY(-2rem) translateZ(0);
     }
     to {
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: translateY(0) translateZ(0);
     }
   }
 }
@@ -198,6 +216,7 @@
   border-radius: $card-radius;
   flex: 1;
   max-width: 30rem;
+  background-color: $color2;
 
   &.is-visible {
     display: flex;
@@ -243,14 +262,4 @@
     max-width: none;
     border-radius: 0;
   }
-}
-
-// ========================================
-// BODY SCROLL LOCK
-// ========================================
-
-body.modal-open {
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
 }

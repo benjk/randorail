@@ -34,15 +34,15 @@ html {
 
     #main-container {
       min-height: calc(100vh - $footer-height - $header-height);
-      .has-mobile-banner {
+      &.has-mobile-banner {
         @media (max-width: $mobile-breakpoint) {
           min-height: calc(
             100vh - $footer-height - $header-height - $mobile-banner-height
           );
 
-          .content-container#home-container {
+          #home-container {
             height: auto;
-            padding-top: $mobile-banner-height;
+            padding-top: calc($mobile-header-height + $mobile-banner-height);
           }
         }
       }
@@ -88,7 +88,6 @@ html {
             min-height: calc(90vh - $header-height);
             height: auto;
             z-index: 10;
-            top: calc($header-height);
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
@@ -119,8 +118,8 @@ html {
               }
 
               @media screen and (max-width: $mobile-breakpoint) {
-                right: -2.5%;
-                top: -8px;
+                right: -5px;
+                top: -3px;
               }
             }
 

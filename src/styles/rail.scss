@@ -40,7 +40,7 @@
   $video-rail-right: 3%;
   $video-rail-top: -63%;
   // TABLET
-  $middle-video-rail-height: 142%;
+  $middle-video-rail-height: 192%;
   $tablet-video-rail-height: 160%;
   $tablet-video-rail-top: -53%;
 
@@ -228,7 +228,7 @@
     
     @media screen and (max-width: $mobile-breakpoint-s) {
       height: $middle-video-rail-height;
-      bottom: -3.5%;
+      bottom: -30%;
       top: auto;
     }
   }

@@ -24,14 +24,10 @@ if (!announcement) {
 }
 
 const { title } = announcement;
-
-// Récupération de la couleur de fond (à ajouter dans content.json)
-const backgroundColor = content.home.announcement.backgroundColor || '#ff6b6b';
 ---
 
 <div
   class="announcement-banner"
-  style={`background-color: ${backgroundColor}`}
   role="button"
   tabindex="0"
   aria-label="Ouvrir l'annonce"

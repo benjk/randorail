@@ -4,24 +4,6 @@
 
 const STORAGE_KEY = 'announcementSeen';
 
-let scrollY = 0;
-
-// ========================================
-// Utilitaires Scroll Lock
-// ========================================
-
-function lockScroll(): void {
-  scrollY = window.scrollY;
-  document.body.style.top = `-${scrollY}px`;
-  document.body.classList.add('modal-open');
-}
-
-function unlockScroll(): void {
-  document.body.classList.remove('modal-open');
-  document.body.style.top = '';
-  window.scrollTo(0, scrollY);
-}
-
 // ========================================
 // Gestion de la modale
 // ========================================
@@ -42,7 +24,6 @@ async function openModal(): Promise<void> {
 
   // Affiche la modale
   modal.classList.add('is-visible');
-  lockScroll();
 
   // Focus trap et accessibilité
   setupModalAccessibility(modal);
@@ -65,7 +46,6 @@ function closeModal(): void {
   if (!modal) return;
 
   modal.classList.remove('is-visible');
-  unlockScroll();
 
   if (banner) {
     banner.classList.add('is-visible');
