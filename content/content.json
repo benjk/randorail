@@ -1,6 +1,6 @@
 {
   "document": {
-    "title": "Le Rando-rail du pays de Lumbres",
+    "title": "Le Randorail",
     "description": "Cette description est une description SEO.",
     "og": {
       "ogTitle": "Le titre de mon site OpenGraph",
@@ -8,7 +8,7 @@
     }
   },
   "contact": {
-    "mainLabel": "Benji",
+    "mainLabel": "Safari Rail Aventure",
     "email": "ben@ben.ben",
     "tel": "0651993655",
     "street": "123 Rue des Exemples",
@@ -31,23 +31,153 @@
       "items": [
         {
           "title": "Site en construction",
-          "content": "Ce site internet est en cours de construction. Revenez plus tard !",
-          "imgName": "chantier.webp",
+          "textContent": [
+            "Ce site internet est en cours de construction. Revenez plus tard !",
+            "Ceci est un test mais ça n'a rieeeen à voir"
+          ],
+          "imgName": "announcementDef.png",
           "order": 1
         }
       ]
     },
     "firstSection": {
-      "mainTitle": "Nicolas D",
-      "subTitle": "Site en construction"
+      "mainTitle": "Randorail",
+      "subTitle": "du pays de Lumbres"
     },
     "secondSection": {
-      "text1": "",
-      "text2": "Site en construction",
-      "text3": "Site en construction"
+      "text1": "Le Randorail du pays de Lumbres"
     }
   },
+  "faq": [
+    {
+      "question": "Quelle est la durée de l'activité ?",
+      "answer": "Environ 3 heures, pauses incluses.",
+      "tags": ["randorail"]
+    },
+    {
+      "question": "Quels sont les modes de paiement ?",
+      "answer": "Chèques, espèce, chèque vacances.",
+      "tags": ["all"]
+    },
+    {
+      "question": "Les chiens sont-ils acceptés ?",
+      "answer": "Sans soucis, sous réserve qu'ils soient tenus en laisse et ne mangent pas les autres chiens.",
+      "tags": ["randorail", "bivouac"]
+    },
+    {
+      "question": "Est-ce adapté aux enfants ?",
+      "answer": "Oui, dès 8 ans, accompagnés d'un adulte.",
+      "tags": ["randorail", "trottitrail", "bivouac"]
+    },
+    {
+      "question": "Comment réserver ?",
+      "answer": "La réservation se fait depuis notre site internet, pour les demandes particulières, contactez nous par téléphoneLa réservation se fait depuis notre site internet, pour les demandes particulières, contactez nous par téléphone",
+      "tags": ["randorail", "trottitrail", "bivouac", "chasse"]
+    },
+    {
+      "question": "Dois je prendre mon pyj ?",
+      "answer": "C'est mieux pour pas avoir froid",
+      "tags": ["bivouac"]
+    }
+  ],
   "pages": {
+    "activities": {
+      "docTitle": "Nos activités",
+      "title": "Explorez nos Activités !",
+      "accessible": true
+    },
+    "randorail": {
+      "docTitle": "Le Randorail",
+      "title": "Rando-rail",
+      "image1": "/img/activities/rando-main.webp",
+      "mainText": [
+        "Deux parcours Rando-rail sont accessibles. Nous vous accueillons sur le site de l'ancien dépôt de la gare de Nielles lès Bléquin et la voie utilisée désservait les communes entre Saint-Omer et Hédigneul.",
+        "Profitez d'une aventure unique..."
+      ],
+      "tarifs": [
+        { "label": "Adulte", "value": "25€" },
+        { "label": "Enfant (-12 ans)", "value": "15€" },
+        { "label": "Groupe (+10 pers)", "value": "20€/pers" }
+      ],
+      "horaires": [
+        { "label": "Lundi - Vendredi", "value": "9h - 18h" },
+        { "label": "Week-end", "value": "10h - 20h" },
+        { "label": "Jours fériés", "value": "Fermé" }
+      ],
+      "image2": "/img/activities/rando-frise.webp"
+    },
+    "trottitrail": {
+      "docTitle": "Le Trotti-trail",
+      "title": "Trotti-rail",
+      "image1": "/img/activities/trotti-main.webp",
+      "mainText": [
+        "La balade en trotti-trail se déroule de façon autonome, sans encadrement. Seul un Road-book sera votre compagnon de route. A chaque intersection rencontrée, il vous faudra vous arrêter,  une photo et un schéma seront là pour vous aider à trouver votre chemin.",
+        "Profitez d'une aventure unique..."
+      ],
+      "tarifs": [
+        { "label": "Adulte", "value": "325€" },
+        { "label": "Enfant (-12 ans)", "value": "15€" },
+        { "label": "Groupe (+10 pers)", "value": "20€/pers" }
+      ],
+      "horaires": [
+        { "label": "Lundi - Vendredi", "value": "9h - 18h" },
+        { "label": "Week-end", "value": "10h - 20h" },
+        { "label": "Jours fériés", "value": "Fermé" }
+      ]
+    },
+    "bivouac": {
+      "docTitle": "Bivouac sur notre site !",
+      "title": "Bivouac-ô-rail",
+      "image1": "/img/activities/bivouac-main.webp",
+      "mainText": [
+        "Une nuit insolite, dans un hamac, à l’abri de la pluie mais pas des courants d’air.",
+        "Profitez d'une aventure unique..."
+      ],
+      "tarifs": [
+        { "label": "Adulte", "value": "50K€" },
+        { "label": "Enfant (-12 ans)", "value": "0€" },
+        { "label": "Groupe (+10 pers)", "value": "20€/pers" }
+      ],
+      "horaires": [
+        { "label": "Octobre à Mars", "value": "Fermé" },
+        { "label": "Avril à Septembre", "value": "20H - 10H" }
+      ]
+    },
+    "chasse": {
+      "docTitle": "Chasse au trésor",
+      "title": "Chasse au trésor",
+      "image1": "/img/activities/chasse-main.webp",
+      "mainText": [
+        "En famille, entre amis, ou avec l’école, la chasse au trésor vous permettra de parcourir 5 à 6 km à pied dans le village et la campagne de Nielles les Bléquin. Votre balade progressera au rythme des énigmes, problèmes et autres épreuves que vous rencontrerez . L’objectif est de découvrir le trésor du chevalier de la Chapelle du Mont. Mais attention, si vous ne découvrez pas toutes les solutions, votre périple risque de durer",
+        "Profitez d'une aventure unique..."
+      ],
+      "tarifs": [
+        { "label": "Adulte", "value": "50K€" },
+        { "label": "Enfant (-12 ans)", "value": "0€" },
+        { "label": "Groupe (+10 pers)", "value": "20€/pers" }
+      ],
+      "horaires": [
+        { "label": "Octobre à Mars", "value": "Fermé" },
+        { "label": "Avril à Septembre", "value": "20H - 10H" }
+      ]
+    },
+    "filets": {
+      "docTitle": "Parc de filets - à venir !",
+      "title": "Parc de filets",
+      "image1": "/img/activities/bivouac-main.webp",
+      "mainText": [
+        "Venez découvrir notre nouvel attraction dès l'été prochain !"
+      ],
+      "tarifs": [
+        { "label": "Adulte", "value": "50K€" },
+        { "label": "Enfant (-12 ans)", "value": "0€" },
+        { "label": "Groupe (+10 pers)", "value": "20€/pers" }
+      ],
+      "horaires": [
+        { "label": "Octobre à Mars", "value": "Fermé" },
+        { "label": "Avril à Septembre", "value": "20H - 10H" }
+      ]
+    },
     "mentions": {
       "docTitle": "Mentions Légales",
       "title": "Mentions Légales",
@@ -70,90 +200,127 @@
             "order": 2
           }
         ]
-      },
-      "blocs2": {
-        "items": [
-          {
-            "title": "Titre premier",
-            "content": "Ce bloc contient un titre, un paragraphe et une image.",
-            "imgName": "moi.jpg",
-            "order": 1
-          }
-        ]
       }
     },
-    "about": {
-      "docTitle": "À propos",
-      "title": "Qui suis-je ?",
-      "mainText": "Ce court paragraphe est là pour me présenter, moi ma personne et mon entreprise.",
+    "contact": {
+      "docTitle": "Contactez-nous",
+      "title": "Contactez-nous",
+      "mainText": "Envoyez nous un message via le formulaire ou appelez au ",
       "accessible": true
     },
-    "services": {
-      "docTitle": "Nos Services",
-      "title": "Mes Services et tarifs",
-      "mainText": "Un paragraphe plus ou moins long pour présenter les différents services que je propose",
-      "accessible": true,
-      "blocs": {
-        "items": [
-          {
-            "title": "Conception de site internet",
-            "content": "Je fais des sites Webs, je les héberge, les publie et effectue la maintenance pour vous.",
-            "imgName": "rob1.jpg",
-            "order": 2
-          },
-          {
-            "title": "Conception d'application mobile",
-            "content": "Je propose de réaliser des applications Android sur mesure",
-            "imgName": "moi.jpg",
-            "order": 1
-          }
-        ]
-      },
-      "carousel": {
-        "items": [
-          {
-            "title": [
-              "Mes projets",
-              "Un autre texte"
-            ],
-            "carImgs": [
-              "rob1.jpg",
-              "moi.jpg"
-            ],
-            "order": 1
-          }
-        ]
-      }
+    "groupes": {
+      "docTitle": "Nos séminaires",
+      "title": "Nos séminaires",
+      "mainText": "Contactez-nous pour savoir comment réserver un séminaire",
+      "accessible": true
+    },
+    "reglements": {
+      "docTitle": "Règlements des activités",
+      "title": "Règlements Rando-rail et Trotti-trail",
+      "rando": [
+        "Art 1: La distance obligatoire entre chaque Rando-Rail est de 100 M",
+        "Art 2: La randonnée à rando-rail demeure une promenade familiale et non une course de vitesse. Votre attention est donc fortement attirée sur les particularités et les dangers afférents à l’utilisation et à la circulation des Vélo-rails.",
+        "Art 3: Les descentes sont dangereuses. Freinez simultanement tous les 20 mètres et par à coups successifs. Des voies humides augmentent les distances de freinage.",
+        "Art 4: Il est obligatoire  d'arrêter le RANDO-RAIL et de le pousser pour traverser toutes les routes et chemins.",
+        "Art 5: Des repères hectométriques placés sur la voie vous permettent d’indiquer votre position en cas d’incident.",
+        "Art 6: 4 personnes au maximum par rando-rail ou 4 personnes + un enfant de 4 ans et 15 kg maximum (siège enfant type « vélo » à disposition).",
+        "Art 7: Les accotements caillouteux sont peu stables et chaotiques. Des chaussures adaptées sont souhaitables. Les Rando-rails peuvent projeter de l’eau souillée de rouille et de la boue. Des vêtements adaptés sont souhaitables.",
+        "Art 8: Il est formellement interdit de descendre ou de monter en marche, ainsi que de se lever et de pédaler debout quand le vélo-rail est en mouvement.",
+        "Art 9: La présence d’une personne majeure est obligatoire sur chaque Vélo-rail. Pour les groupes, une personne majeure devra être présente dans le premier et le dernier vélo-rail ainsi que tous les deux vélo-rails. Les systèmes de retournement ne devront être utilisées que par des personnes majeures.",
+        "Art 10: Vous vous promenez dans un site naturel et fragile, respectez-le. De nombreuses vipères sillonnent les herbes et le ballast longeant la voie. Il est déconseillé d’y marcher.",
+        "Art 11: Tout retour dépassant 2h sera facturé 31 euros l’heure entamée.",
+        "Art 12: Le non-respect des dispositifs et consignes de sécurité engage la seule responsabilité des locataires et non celle de la société gestionnaire du site. Toute dégradation du matériel due au non respect de ces consignes sera facturée au locataire. Des poursuites judiciaires pourront être engagées."
+      ],
+      "trotti": [
+        "Art 1: les Trottinettes sont soumises au code de la route",
+        "Art 2: Je rends la trotinette à la fin de l'activité",
+        "Art 3: Je ne ferai pas de trotti-tamponeuse"
+      ]
     }
   },
   "menu": [
     {
-      "title": "Services",
-      "slug": "services",
-      "type": "page"
+      "title": "Activités",
+      "type": "submenu",
+      "slug": "activities",
+      "children": [
+        {
+          "title": "Rando-rail",
+          "slug": "activities/randorail",
+          "type": "page"
+        },
+        {
+          "title": "Trotti-trail",
+          "slug": "activities/trottitrail",
+          "type": "page"
+        },
+        {
+          "title": "Parc de filets",
+          "slug": "activities/filets",
+          "type": "page"
+        },
+        { "title": "Bivouac", "slug": "activities/bivouac", "type": "page" },
+        {
+          "title": "Chasse au trésor",
+          "slug": "activities/chasse",
+          "type": "page"
+        }
+      ]
     },
     {
-      "title": "Contact",
-      "slug": "openContactPopup",
-      "type": "action"
-    }
+      "title": "Groupes",
+      "type": "submenu",
+      "slug": "groupes",
+      "children": [
+        {
+          "title": "Scolaire",
+          "slug": "groupes/scolaires",
+          "type": "page"
+        },
+        {
+          "title": "Centres",
+          "slug": "groupes/centres",
+          "type": "page"
+        },
+        {
+          "title": "Entreprises",
+          "slug": "groupes/entreprises",
+          "type": "page"
+        }
+      ]
+    },
+    {
+      "title": "Infos",
+      "type": "submenu",
+      "children": [
+        {
+          "title": "Itinéraire",
+          "slug": "https://www.google.com/maps/dir/?api=1&destination=le+rando-rail+et+Trotti-trail+du+Pays+de+LUMBRES",
+          "type": "external"
+        },
+        {
+          "title": "Restauration",
+          "slug": "restauration",
+          "type": "external"
+        },
+        {
+          "title": "FAQ",
+          "slug": "faq",
+          "type": "page"
+        },
+        {
+          "title": "Règlements",
+          "slug": "reglements",
+          "type": "page"
+        }
+      ]
+    },
+    { "title": "Contact", "slug": "contact", "type": "page" }
   ],
   "footerMenu": [
-    {
-      "title": "Administration",
-      "slug": "admin",
-      "type": "page"
-    },
-    {
-      "title": "Mentions Légales",
-      "slug": "mentions",
-      "type": "page"
-    },
-    {
-      "title": "Contact",
-      "slug": "openContactPopup",
-      "type": "action"
-    }
+    { "title": "Administration", "slug": "admin", "type": "page" },
+    { "title": "Mentions Légales", "slug": "mentions", "type": "page" },
+    { "title": "Contact", "slug": "contact", "type": "page" }
   ],
-  "contentVersion": "2025-10-22T11:54:46.443Z"
+  "contentVersion": "2150-07-22T14:41:33.720Z"
 }
