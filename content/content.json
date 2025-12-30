@@ -404,7 +404,7 @@
         {
           "title": "Restauration",
           "slug": "restauration",
-          "type": "external"
+          "type": "page"
         },
         {
           "title": "FAQ",
