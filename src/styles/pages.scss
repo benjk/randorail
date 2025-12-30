@@ -11,7 +11,7 @@ html body #main-container {
       height: auto;
       justify-content: center;
       gap: $page-spacing;
-      padding: calc($margin-s + $header-height) 0 calc($margin-m * 2) 0;
+      padding: calc($margin-l + $header-height) 0 calc($margin-m * 2) 0;
 
       @media screen and (max-width: $mobile-breakpoint-s) {
         padding-top: calc($margin-l + $header-height);
@@ -81,7 +81,7 @@ html body #main-container {
             @include basic-text-page();
           }
         }
-        
+
         .info-btn {
           @include custom-btn();
         }
@@ -97,6 +97,18 @@ html body #main-container {
         h2 {
           margin-bottom: $margin-m;
         }
+      }
+    }
+
+    &.faq-wrapper {
+      @include flex-box(0);
+      justify-content: center;
+
+      .faq-container {
+        padding-top: $margin-m;
+        padding-bottom: $margin-s;
+        width: 100%;
+        height: 100%;
       }
     }
   }

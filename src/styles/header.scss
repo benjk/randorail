@@ -2,7 +2,7 @@
 
 /* === Header variables === */
 $header-logo-padding: 10px;
-$margin-side: $margin-xl;
+$margin-side: $margin-l;
 $content-height: 80%;
 
 $shadow-menu:
@@ -43,7 +43,7 @@ $header-bg-color: $color-bg-stronger;
 
   .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     gap: $margin-m;
     padding-left: $margin-side;
     padding-right: $margin-side;
@@ -346,8 +346,7 @@ $header-bg-color: $color-bg-stronger;
     height: $mobile-header-height;
 
     .navbar {
-      padding-left: calc($margin-side * 0.5);
-      padding-right: calc($margin-side * 0.5);
+      justify-content: space-between;
 
       .logo-container .logo-link img {
         height: calc($content-height * 0.8);

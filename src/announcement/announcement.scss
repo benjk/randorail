@@ -204,13 +204,15 @@
 .announcement-banner {
   height: 100%;
   width: auto;
-  display: none;
+  opacity: 0;
+  display: flex;
   gap: $margin-xs;
   max-height: 70%;
   align-items: center;
   justify-content: center;
   padding: $margin-xs $margin-s;
-  cursor: pointer;
+  cursor: auto;
+  pointer-events: none;
   transition: opacity 0.3s ease;
   box-shadow: $text-shadow-basic;
   border-radius: $card-radius;
@@ -219,12 +221,13 @@
   background-color: $color2;
 
   &.is-visible {
-    display: flex;
+    opacity: 1;
+    cursor: pointer;
+    pointer-events: auto;
   }
 
   &:hover {
-    opacity: 0.8;
-    // TODO anim mieux
+    box-shadow: $basic-shadow;
   }
 
   // Mobile : ligne complète au-dessus

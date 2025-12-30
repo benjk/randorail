@@ -3,6 +3,7 @@ import content from '../data/content.json';
 import './announcement.scss';
 import { blocRules } from '../admin/data/blocRules';
 
+const { isVisible = true } = Astro.props;
 const { sourceBlocKey, blocIndex } = content.home.announcement;
 const blocRule = blocRules[sourceBlocKey];
 
@@ -27,8 +28,7 @@ const { title } = announcement;
 ---
 
 <div
-  class="announcement-banner"
-  role="button"
+class:list={['announcement-banner', { 'is-visible': isVisible }]}  role="button"
   tabindex="0"
   aria-label="Ouvrir l'annonce"
 >

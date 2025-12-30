@@ -2,7 +2,7 @@
 import content from '../data/content.json';
 import '../styles/header.scss';
 import type { MenuItem, PagesMap } from '../admin/components/nav/menu.types';
-import { GOOGLE_MAP_URL } from '../config';
+import AnnouncementBanner from '../announcement/AnnouncementBanner.astro';
 
 const { shouldRenderBanner = false } = Astro.props;
 
@@ -24,13 +24,6 @@ const menuItems = rawMenu.filter((item) => {
   }
   return true;
 });
-
-let AnnouncementBanner;
-if (shouldRenderBanner) {
-  AnnouncementBanner = (
-    await import('../announcement/AnnouncementBanner.astro')
-  ).default;
-}
 ---
 
 <header class="header">
@@ -41,7 +34,7 @@ if (shouldRenderBanner) {
       </a>
     </div>
 
-    {shouldRenderBanner && AnnouncementBanner && <AnnouncementBanner />}
+    <AnnouncementBanner isVisible={shouldRenderBanner} />
 
     <div class="menu-desktop">
       {
@@ -113,14 +106,6 @@ if (shouldRenderBanner) {
           ),
         )
       }
-      <!-- Bouton Itinéraire en dur -->
-      <a
-        target="_blank"
-        href={GOOGLE_MAP_URL}
-        class="menu-link menu-link-itinerary"
-      >
-        <span>Itinéraire</span>
-      </a>
     </div>
 
     <button class="burger" id="burger-btn" aria-label="Toggle menu">
@@ -213,15 +198,6 @@ if (shouldRenderBanner) {
           </li>
         ))
       }
-      <li>
-        <a
-          target="_blank"
-          href={GOOGLE_MAP_URL}
-          class="menu-link menu-link-itinerary"
-        >
-          <span>Itinéraire</span>
-        </a>
-      </li>
     </ul>
   </div>
 

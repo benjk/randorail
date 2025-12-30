@@ -1,0 +1,40 @@
+---
+import { FAQItem } from '../data/activities-type';
+
+interface Props {
+  items: FAQItem[];
+  title?: string;
+}
+
+const { items, title = 'FAQ' } = Astro.props;
+
+if (!items || items.length === 0) return null;
+---
+
+<section class="activity-faq">
+  <h2>{title}</h2>
+  {
+    items.map((q) => (
+      <div class="faq-item">
+        <button class="faq-question" type="button">
+          <span class="chevron">&gt;</span>
+          {q.question}
+        </button>
+        <div class="faq-answer">
+          <p>{q.answer}</p>
+        </div>
+      </div>
+    ))
+  }
+</section>
+<script>
+  document.addEventListener('click', (e) => {
+    const target = e.target as Element | null;
+    if (!target) return;
+
+    const btn = target.closest('.faq-question');
+    if (!btn) return;
+
+    btn.parentElement?.classList.toggle('open');
+  });
+</script>

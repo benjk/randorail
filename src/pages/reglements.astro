@@ -1,0 +1,26 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import content from '../data/content.json';
+const data = content.pages.reglements;
+---
+
+<MainLayout title={data.docTitle} withSeo={true}>
+  <div class="reglements-wrapper content-container">
+    <h2>{data.title}</h2>
+    <div class="reglements-container">
+      <section>
+        <h3>Rando-rail</h3>
+        {data.rando.map((article) => (
+          <p>{article}</p>
+        ))}
+      </section>
+      
+      <section>
+        <h3>Trotti-trail</h3>
+        {data.trotti.map((article) => (
+          <p>{article}</p>
+        ))}
+      </section>
+    </div>
+  </div>
+</MainLayout>
