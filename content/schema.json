@@ -89,6 +89,13 @@
         "bivouac",
         "chasse"
       ]
+    },
+    {
+      "question": "Dois je prendre mon pyj ?",
+      "answer": "C'est mieux pour pas avoir froid",
+      "tags": [
+        "bivouac"
+      ]
     }
   ],
   "pages": {
@@ -305,6 +312,29 @@
       "title": "Nos séminaires",
       "mainText": "Contactez-nous pour savoir comment réserver un séminaire",
       "accessible": true
+    },
+    "reglements": {
+      "docTitle": "Règlements des activités",
+      "title": "Règlements Rando-rail et Trotti-trail",
+      "rando": [
+        "Art 1: La distance obligatoire entre chaque Rando-Rail est de 100 M",
+        "Art 2: La randonnée à rando-rail demeure une promenade familiale et non une course de vitesse. Votre attention est donc fortement attirée sur les particularités et les dangers afférents à l’utilisation et à la circulation des Vélo-rails.",
+        "Art 3: Les descentes sont dangereuses. Freinez simultanement tous les 20 mètres et par à coups successifs. Des voies humides augmentent les distances de freinage.",
+        "Art 4: Il est obligatoire  d'arrêter le RANDO-RAIL et de le pousser pour traverser toutes les routes et chemins.",
+        "Art 5: Des repères hectométriques placés sur la voie vous permettent d’indiquer votre position en cas d’incident.",
+        "Art 6: 4 personnes au maximum par rando-rail ou 4 personnes + un enfant de 4 ans et 15 kg maximum (siège enfant type « vélo » à disposition).",
+        "Art 7: Les accotements caillouteux sont peu stables et chaotiques. Des chaussures adaptées sont souhaitables. Les Rando-rails peuvent projeter de l’eau souillée de rouille et de la boue. Des vêtements adaptés sont souhaitables.",
+        "Art 8: Il est formellement interdit de descendre ou de monter en marche, ainsi que de se lever et de pédaler debout quand le vélo-rail est en mouvement.",
+        "Art 9: La présence d’une personne majeure est obligatoire sur chaque Vélo-rail. Pour les groupes, une personne majeure devra être présente dans le premier et le dernier vélo-rail ainsi que tous les deux vélo-rails. Les systèmes de retournement ne devront être utilisées que par des personnes majeures.",
+        "Art 10: Vous vous promenez dans un site naturel et fragile, respectez-le. De nombreuses vipères sillonnent les herbes et le ballast longeant la voie. Il est déconseillé d’y marcher.",
+        "Art 11: Tout retour dépassant 2h sera facturé 31 euros l’heure entamée.",
+        "Art 12: Le non-respect des dispositifs et consignes de sécurité engage la seule responsabilité des locataires et non celle de la société gestionnaire du site. Toute dégradation du matériel due au non respect de ces consignes sera facturée au locataire. Des poursuites judiciaires pourront être engagées."
+      ],
+      "trotti": [
+        "Art 1: les Trottinettes sont soumises au code de la route",
+        "Art 2: Je rends la trotinette à la fin de l'activité",
+        "Art 3: Je ne ferai pas de trotti-tamponeuse"
+      ]
     }
   },
   "menu": [
@@ -337,11 +367,6 @@
           "title": "Chasse au trésor",
           "slug": "activities/chasse",
           "type": "page"
-        },
-        {
-          "title": "Restauration",
-          "slug": "restauration",
-          "type": "page"
         }
       ]
     },
@@ -363,6 +388,32 @@
         {
           "title": "Entreprises",
           "slug": "groupes/entreprises",
+          "type": "page"
+        }
+      ]
+    },
+    {
+      "title": "Infos",
+      "type": "submenu",
+      "children": [
+        {
+          "title": "Itinéraire",
+          "slug": "https://www.google.com/maps/dir/?api=1&destination=le+rando-rail+et+Trotti-trail+du+Pays+de+LUMBRES",
+          "type": "external"
+        },
+        {
+          "title": "Restauration",
+          "slug": "restauration",
+          "type": "external"
+        },
+        {
+          "title": "FAQ",
+          "slug": "faq",
+          "type": "page"
+        },
+        {
+          "title": "Règlements",
+          "slug": "reglements",
           "type": "page"
         }
       ]
