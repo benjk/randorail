@@ -328,6 +328,7 @@
     .faq-answer {
       display: grid;
       padding-top: $margin-s;
+      padding-inline-start: $margin-s;
       overflow: hidden;
       grid-template-rows: 0fr;
       transition: grid-template-rows 0.3s ease;

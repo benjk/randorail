@@ -577,32 +577,37 @@ html {
             color: $color3;
             z-index: 12;
             border-top: $border-section-separation;
-            padding: $margin-xl $margin-m;
+            padding: 0;
             margin-bottom: -1px;
             @include flex-box(0);
             content-visibility: auto;
 
             .content-wrapper {
-              max-width: 70%;
-              @include flex-row($margin-xl);
+              max-width: 100%;
+              @include flex-row(0);
+              align-items: stretch;
 
               @media screen and (max-width: $mobile-breakpoint) {
                 max-width: 100%;
                 flex-direction: column-reverse;
                 gap: $margin-l;
+                padding-top: $margin-l;
               }
 
               .img-wrapper {
+                flex: 0 0 52%;
+
                 @media screen and (max-width: $mobile-breakpoint) {
                   @include slanted-border('left');
                   width: 100%;
                 }
 
                 img {
-                  width: 32vw;
-                  object-fit: contain;
-                  height: auto;
-                  border-radius: $card-radius;
+                  height: 100%;
+                  width: 100%;
+                  object-fit: cover;
+                  object-position: right;
+                  // border-radius: 0 $card-radius $card-radius 0;
                   box-shadow: $basic-shadow;
                   @media screen and (max-width: $mobile-breakpoint) {
                     width: 100%;
@@ -620,11 +625,22 @@ html {
 
               .text-wrapper {
                 @include basic-text-wrapper();
+                padding: $margin-l $margin-xl;
+                flex: 1;
+                gap: $margin-xs;
+
                 .info-btn {
                   margin-top: $margin-m;
                   @media screen and (max-width: $mobile-breakpoint) {
                     margin-top: $margin-l;
                   }
+                }
+
+                @media screen and (max-width: $mobile-breakpoint) {
+                  width: 100%;
+                  min-width: 100%;
+                  max-width: 100%;
+                  padding: $margin-m $margin-m;
                 }
               }
             }

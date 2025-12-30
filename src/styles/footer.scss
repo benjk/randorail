@@ -221,6 +221,12 @@ $social-svg-width: 2.5rem;
       }
     }
 
+    @media screen and (max-width: $mobile-breakpoint) {
+      .footer-nav {
+        text-align: center;
+      }
+    }
+
     @media screen and (max-width: $mobile-breakpoint-s) {
       flex-direction: column;
       gap: $margin-l;
@@ -231,10 +237,6 @@ $social-svg-width: 2.5rem;
 
       .footer-right .footer-social {
         gap: $margin-xl;
-      }
-
-      .footer-nav {
-        text-align: center;
       }
     }
   }
