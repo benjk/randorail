@@ -403,18 +403,18 @@
   ],
   "footerMenu": [
     {
-      "title": "Administration",
-      "slug": "admin",
-      "type": "page"
-    },
-    {
       "title": "Mentions Légales",
       "slug": "mentions",
       "type": "page"
     },
     {
-      "title": "Contact",
-      "slug": "contact",
+      "title": "CGV",
+      "slug": "cgv",
+      "type": "page"
+    },
+    {
+      "title": "Administration",
+      "slug": "admin",
       "type": "page"
     }
   ],
