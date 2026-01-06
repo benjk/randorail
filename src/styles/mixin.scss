@@ -307,3 +307,63 @@
     }
   }
 }
+
+// Dans ton fichier de mixins
+
+@mixin info-card-base {
+  @include flex-box($margin-s);
+  height: auto;
+  background: $color3;
+  padding: $margin-l $margin-m;
+  border-radius: $card-radius;
+  box-shadow: $cards-shadow;
+  color: $color1;
+  text-decoration: none;
+  position: relative;
+
+  @media screen and (max-width: 1700px) {
+    padding: $margin-m;
+  }
+
+  // Bordure bottom animée
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: $color2;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+
+  .card-title {
+    font-family: $title-font;
+    font-size: calc($title4-font-size * 1.5);
+    text-align: center;
+    text-shadow: $light-shadow;
+  }
+
+  .info-icon {
+    width: $picto-size;
+    height: $picto-size;
+    fill: $color2;
+  }
+
+  .card-link {
+    @include inline-link();
+    @include flex-row($margin-s);
+    align-items: center;
+  }
+}

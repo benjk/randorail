@@ -1,0 +1,226 @@
+@use './variables' as *;
+@use './base';
+@use './mixin' as *;
+@use './animations' as *;
+
+#contact-container {
+  .full-wrapper {
+    @include full-page-wrapper();
+
+    &.full-height {
+      padding-top: $margin-xl;
+      padding-bottom: 0 !important;
+      min-height: 100%;
+    }
+
+    .full-content {
+      @include full-page-content-container();
+      padding-bottom: $margin-xl;
+      gap: $margin-xl !important;
+
+      > h1 {
+        @include page-h1();
+      }
+
+      // Row des 2 cards principales
+      .contact-cards-row {
+        display: grid;
+        gap: $margin-l;
+        width: 100%;
+
+        @media (min-width: $mobile-breakpoint) {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: $mobile-breakpoint-s) {
+          gap: $margin-m;
+        }
+
+        .contact-card {
+          @include info-card-base();
+
+          .card-title {
+            font-family: $title-font;
+            font-size: calc($title4-font-size * 1.5);
+            text-align: center;
+            text-shadow: $light-shadow;
+          }
+
+          // Card adresse
+          &.address-card {
+            gap: $margin-m;
+            address {
+              font-style: normal;
+              color: $color1;
+              text-align: center;
+
+              p {
+                margin: 0.25rem 0;
+                font-size: $subtext-font-size;
+                text-shadow: $light-shadow;
+              }
+            }
+
+            .info-btn {
+              @include custom-btn();
+            }
+          }
+
+          // Card contact info
+          &.contact-info-card {
+            gap: $margin-s;
+
+            .contact-item {
+              @include flex-box($margin-xs);
+
+              strong {
+                @include content-h4($color2-strong);
+                font-size: $title4-font-size;
+                text-align: center;
+              }
+
+              a {
+                @include inline-link();
+              }
+
+              &.socials {
+                .social-links {
+                  display: flex;
+                  gap: $margin-m;
+                  justify-content: center;
+                  margin-top: $margin-xs;
+
+                  a {
+                    $social-size: clamp(3rem, 2.5rem + 1vw, 3.5rem);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: $social-size;
+                    height: $social-size;
+                    border-radius: 50%;
+                    background: linear-gradient(
+                      135deg,
+                      $color2,
+                      darken($color2, 8%)
+                    );
+                    box-shadow: $light-shadow;
+                    transition: all $anim-hover-duration ease;
+                    position: relative;
+                    overflow: hidden;
+
+                    // Effet brillance
+                    &::before {
+                      content: '';
+                      position: absolute;
+                      top: -50%;
+                      left: -50%;
+                      width: 200%;
+                      height: 200%;
+                      background: radial-gradient(
+                        circle,
+                        rgba(white, 0.3) 0%,
+                        transparent 70%
+                      );
+                      transform: translate(-100%, -100%);
+                      transition: transform 0.6s ease;
+                    }
+
+                    svg {
+                      width: calc($social-size * 0.5);
+                      height: calc($social-size * 0.5);
+                      fill: $color3;
+                      transition: transform $anim-hover-duration ease;
+                      z-index: 1;
+                    }
+
+                    &:hover {
+                      transform: translateY(-4px) scale(1.05);
+                      box-shadow: $basic-shadow;
+
+                      &::before {
+                        transform: translate(0, 0);
+                      }
+
+                      svg {
+                        transform: rotate(5deg);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // Section raisons
+      .contact-reasons {
+        width: 100%;
+
+        > h2 {
+          @include page-h2($color2-strong);
+          margin-bottom: $margin-l;
+        }
+
+        .reasons-grid {
+          display: grid;
+          gap: $margin-m;
+
+          @media (min-width: $mobile-breakpoint) {
+            grid-template-columns: repeat(3, 1fr);
+          }
+
+          @media (max-width: $mobile-breakpoint) and (min-width: $mobile-breakpoint-s) {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .reason-card {
+            @include info-card-base();
+            padding: $margin-m; // Plus compact que les cards principales
+
+            h3 {
+              @include content-h4($color2-strong);
+              text-align: start;
+              margin-bottom: $margin-xs;
+              font-size: $title4-font-size;
+            }
+
+            p {
+              @include basic-text-page($color1);
+              text-align: start;
+              margin: 0;
+              font-size: $subtext-font-size;
+              line-height: 1.6;
+            }
+          }
+        }
+      }
+
+      // Note finale
+      .contact-note {
+        width: 100%;
+        padding: $margin-l;
+        background: $color3;
+        background-image: $bg-texture-url;
+        border-radius: $basic-radius;
+        border-left: 4px solid $color2;
+
+        p {
+          @include basic-text-page($color1);
+          text-align: center;
+          margin: $margin-xs 0;
+
+          a {
+            @include inline-link();
+            color: $color2-strong;
+            font-weight: bold;
+          }
+        }
+
+        @media (max-width: $mobile-breakpoint) {
+          padding: $margin-s;
+        }
+      }
+    }
+  }
+}

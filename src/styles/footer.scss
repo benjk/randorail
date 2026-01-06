@@ -20,6 +20,7 @@ $social-svg-width: 2.5rem;
   font-size: calc($text-font-size * 0.75);
   content-visibility: auto;
   contain-intrinsic-size: auto $footer-height;
+  overflow: hidden;
 
   .footer-content {
     flex: 1;
