@@ -1,4 +1,4 @@
-@use "./variables" as *;
+@use './variables' as *;
 
 /**
 * box-sizing
@@ -66,4 +66,8 @@ select {
 
 * {
   -webkit-tap-highlight-color: transparent;
+}
+
+strong {
+  color: $color2-strong;
 }

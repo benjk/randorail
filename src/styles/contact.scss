@@ -91,7 +91,7 @@
                   margin-top: $margin-xs;
 
                   a {
-                    $social-size: clamp(3rem, 2.5rem + 1vw, 3.5rem);
+                    $social-size: $margin-l;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -156,15 +156,17 @@
       // Section raisons
       .contact-reasons {
         width: 100%;
+        @include flex-box($margin-xs);
 
         > h2 {
           @include page-h2($color2-strong);
-          margin-bottom: $margin-l;
         }
 
         .reasons-grid {
           display: grid;
-          gap: $margin-m;
+          gap: $margin-s;
+          width: 110%;
+          grid-auto-rows: 1fr;
 
           @media (min-width: $mobile-breakpoint) {
             grid-template-columns: repeat(3, 1fr);
@@ -176,7 +178,8 @@
 
           .reason-card {
             @include info-card-base();
-            padding: $margin-m; // Plus compact que les cards principales
+            padding: $margin-m;
+            border-left: 4px solid $color2;
 
             h3 {
               @include content-h4($color2-strong);
@@ -187,10 +190,9 @@
 
             p {
               @include basic-text-page($color1);
-              text-align: start;
-              margin: 0;
+              text-align: center;
               font-size: $subtext-font-size;
-              line-height: 1.6;
+              line-height: 1.3;
             }
           }
         }
@@ -203,7 +205,6 @@
         background: $color3;
         background-image: $bg-texture-url;
         border-radius: $basic-radius;
-        border-left: 4px solid $color2;
 
         p {
           @include basic-text-page($color1);

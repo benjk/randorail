@@ -20,7 +20,7 @@ const contactData = content.contact;
           <div class="contact-card contact-info-card">
             <h3 class="card-title">{content.pages.contact.title}</h3>
             <div class="contact-item">
-              <a href={href}>{display}</a>
+              <a href={`tel:${href}`}>{display}</a>
             </div>
 
             <div class="contact-item">
@@ -112,7 +112,8 @@ const contactData = content.contact;
           <p>
             Pour les réservations de <a href="/activities/randorail"
               >Rando-rail</a
-            > et <a href="/activities/trottitrail">Trotti-trail</a>, consultez nos disponibilités et reservez en ligne.
+            > et <a href="/activities/trottitrail">Trotti-trail</a>, consultez
+            nos disponibilités et reservez en ligne.
           </p>
         </div>
       </div>
