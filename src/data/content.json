@@ -310,9 +310,9 @@
     { "title": "Contact", "slug": "contact", "type": "page" }
   ],
   "footerMenu": [
-    { "title": "Administration", "slug": "admin", "type": "page" },
     { "title": "Mentions Légales", "slug": "mentions", "type": "page" },
-    { "title": "Contact", "slug": "contact", "type": "page" }
+    { "title": "CGV", "slug": "cgv", "type": "page" },
+    { "title": "Administration", "slug": "admin", "type": "page" }
   ],
   "contentVersion": "2150-07-22T14:41:33.720Z"
 }

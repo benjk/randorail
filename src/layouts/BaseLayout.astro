@@ -14,43 +14,49 @@ const currentUrl = Astro.url.href;
 <!doctype html>
 <!-- SITE BASICS  -->
 <html lang={SITE_LANG}>
-  <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-  />
-  <title>{title}</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>{title}</title>
 
-  <!-- FAVICONS  -->
-  <link rel="shortcut icon" type="image/x-icon" href="/img/icons/favicon.png" />
-  <link
-    rel="apple-touch-icon"
-    sizes="180x180"
-    href="/img/icons/apple-touch-icon.png"
-  />
-  <link
-    rel="icon"
-    type="image/png"
-    sizes="32x32"
-    href="/img/icons/favicon-32x32.png"
-  />
-  <link
-    rel="icon"
-    type="image/png"
-    sizes="16x16"
-    href="/img/icons/favicon-16x16.png"
-  />
+    <!-- FAVICONS  -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="/img/icons/favicon.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/img/icons/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/img/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/img/icons/favicon-16x16.png"
+    />
 
-  <!-- SLOT POUR PRELOADS -->
-  <slot name="head-preloads" />
+    <!-- SLOT POUR PRELOADS -->
+    <slot name="head-preloads" />
 
-  {
-    isProd && withSeo ? (
-      <Seo currentUrl={currentUrl} />
-    ) : (
-      <meta name="robots" content="noindex, nofollow" />
-    )
-  }
+    {
+      isProd && withSeo ? (
+        <Seo currentUrl={currentUrl} />
+      ) : (
+        <meta name="robots" content="noindex, nofollow" />
+      )
+    }
+  </head>
 
   <body>
     <slot />
