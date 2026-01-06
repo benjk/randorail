@@ -52,50 +52,32 @@
     {
       "question": "Quelle est la durée de l'activité ?",
       "answer": "Environ 3 heures, pauses incluses.",
-      "tags": [
-        "randorail"
-      ]
+      "tags": ["randorail"]
     },
     {
       "question": "Quels sont les modes de paiement ?",
       "answer": "Chèques, espèce, chèque vacances.",
-      "tags": [
-        "all"
-      ]
+      "tags": ["all"]
     },
     {
       "question": "Les chiens sont-ils acceptés ?",
       "answer": "Sans soucis, sous réserve qu'ils soient tenus en laisse et ne mangent pas les autres chiens.",
-      "tags": [
-        "randorail",
-        "bivouac"
-      ]
+      "tags": ["randorail", "bivouac"]
     },
     {
       "question": "Est-ce adapté aux enfants ?",
       "answer": "Oui, dès 8 ans, accompagnés d'un adulte.",
-      "tags": [
-        "randorail",
-        "trottitrail",
-        "bivouac"
-      ]
+      "tags": ["randorail", "trottitrail", "bivouac"]
     },
     {
       "question": "Comment réserver ?",
       "answer": "La réservation se fait depuis notre site internet, pour les demandes particulières, contactez nous par téléphoneLa réservation se fait depuis notre site internet, pour les demandes particulières, contactez nous par téléphone",
-      "tags": [
-        "randorail",
-        "trottitrail",
-        "bivouac",
-        "chasse"
-      ]
+      "tags": ["randorail", "trottitrail", "bivouac", "chasse"]
     },
     {
       "question": "Dois je prendre mon pyj ?",
       "answer": "C'est mieux pour pas avoir froid",
-      "tags": [
-        "bivouac"
-      ]
+      "tags": ["bivouac"]
     }
   ],
   "pages": {
@@ -113,32 +95,14 @@
         "Profitez d'une aventure unique..."
       ],
       "tarifs": [
-        {
-          "label": "Adulte",
-          "value": "25€"
-        },
-        {
-          "label": "Enfant (-12 ans)",
-          "value": "15€"
-        },
-        {
-          "label": "Groupe (+10 pers)",
-          "value": "20€/pers"
-        }
+        { "label": "Adulte", "value": "25€" },
+        { "label": "Enfant (-12 ans)", "value": "15€" },
+        { "label": "Groupe (+10 pers)", "value": "20€/pers" }
       ],
       "horaires": [
-        {
-          "label": "Lundi - Vendredi",
-          "value": "9h - 18h"
-        },
-        {
-          "label": "Week-end",
-          "value": "10h - 20h"
-        },
-        {
-          "label": "Jours fériés",
-          "value": "Fermé"
-        }
+        { "label": "Lundi - Vendredi", "value": "9h - 18h" },
+        { "label": "Week-end", "value": "10h - 20h" },
+        { "label": "Jours fériés", "value": "Fermé" }
       ],
       "image2": "/img/activities/rando-frise.webp"
     },
@@ -151,32 +115,14 @@
         "Profitez d'une aventure unique..."
       ],
       "tarifs": [
-        {
-          "label": "Adulte",
-          "value": "325€"
-        },
-        {
-          "label": "Enfant (-12 ans)",
-          "value": "15€"
-        },
-        {
-          "label": "Groupe (+10 pers)",
-          "value": "20€/pers"
-        }
+        { "label": "Adulte", "value": "325€" },
+        { "label": "Enfant (-12 ans)", "value": "15€" },
+        { "label": "Groupe (+10 pers)", "value": "20€/pers" }
       ],
       "horaires": [
-        {
-          "label": "Lundi - Vendredi",
-          "value": "9h - 18h"
-        },
-        {
-          "label": "Week-end",
-          "value": "10h - 20h"
-        },
-        {
-          "label": "Jours fériés",
-          "value": "Fermé"
-        }
+        { "label": "Lundi - Vendredi", "value": "9h - 18h" },
+        { "label": "Week-end", "value": "10h - 20h" },
+        { "label": "Jours fériés", "value": "Fermé" }
       ]
     },
     "bivouac": {
@@ -188,28 +134,13 @@
         "Profitez d'une aventure unique..."
       ],
       "tarifs": [
-        {
-          "label": "Adulte",
-          "value": "50K€"
-        },
-        {
-          "label": "Enfant (-12 ans)",
-          "value": "0€"
-        },
-        {
-          "label": "Groupe (+10 pers)",
-          "value": "20€/pers"
-        }
+        { "label": "Adulte", "value": "50K€" },
+        { "label": "Enfant (-12 ans)", "value": "0€" },
+        { "label": "Groupe (+10 pers)", "value": "20€/pers" }
       ],
       "horaires": [
-        {
-          "label": "Octobre à Mars",
-          "value": "Fermé"
-        },
-        {
-          "label": "Avril à Septembre",
-          "value": "20H - 10H"
-        }
+        { "label": "Octobre à Mars", "value": "Fermé" },
+        { "label": "Avril à Septembre", "value": "20H - 10H" }
       ]
     },
     "chasse": {
@@ -221,28 +152,13 @@
         "Profitez d'une aventure unique..."
       ],
       "tarifs": [
-        {
-          "label": "Adulte",
-          "value": "50K€"
-        },
-        {
-          "label": "Enfant (-12 ans)",
-          "value": "0€"
-        },
-        {
-          "label": "Groupe (+10 pers)",
-          "value": "20€/pers"
-        }
+        { "label": "Adulte", "value": "50K€" },
+        { "label": "Enfant (-12 ans)", "value": "0€" },
+        { "label": "Groupe (+10 pers)", "value": "20€/pers" }
       ],
       "horaires": [
-        {
-          "label": "Octobre à Mars",
-          "value": "Fermé"
-        },
-        {
-          "label": "Avril à Septembre",
-          "value": "20H - 10H"
-        }
+        { "label": "Octobre à Mars", "value": "Fermé" },
+        { "label": "Avril à Septembre", "value": "20H - 10H" }
       ]
     },
     "filets": {
@@ -335,11 +251,7 @@
           "slug": "activities/filets",
           "type": "page"
         },
-        {
-          "title": "Bivouac",
-          "slug": "activities/bivouac",
-          "type": "page"
-        },
+        { "title": "Bivouac", "slug": "activities/bivouac", "type": "page" },
         {
           "title": "Chasse au trésor",
           "slug": "activities/chasse",
@@ -395,28 +307,12 @@
         }
       ]
     },
-    {
-      "title": "Contact",
-      "slug": "contact",
-      "type": "page"
-    }
+    { "title": "Contact", "slug": "contact", "type": "page" }
   ],
   "footerMenu": [
-    {
-      "title": "Administration",
-      "slug": "admin",
-      "type": "page"
-    },
-    {
-      "title": "Mentions Légales",
-      "slug": "mentions",
-      "type": "page"
-    },
-    {
-      "title": "Contact",
-      "slug": "contact",
-      "type": "page"
-    }
+    { "title": "Mentions Légales", "slug": "mentions", "type": "page" },
+    { "title": "CGV", "slug": "cgv", "type": "page" },
+    { "title": "Administration", "slug": "admin", "type": "page" }
   ],
   "contentVersion": "2150-07-22T14:41:33.720Z"
 }
