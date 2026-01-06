@@ -13,9 +13,15 @@
   flex-direction: row;
 }
 
-@mixin basic-text-wrapper($bg-color: $color1, $text-color: $color3) {
-  @include flex-box(0);
+@mixin basic-text-wrapper(
+  $bg-color: $color1,
+  $text-color: $color3,
+  $gap: $margin-xs
+) {
+  @include flex-box($gap);
   $color: $text-color;
+  background-color: $bg-color;
+  background-image: $bg-texture-url;
 
   h3 {
     @include content-h3();
@@ -49,19 +55,71 @@
       margin-top: $margin-l;
     }
   }
+}
 
-  @media screen and (max-width: $mobile-breakpoint) {
-    max-width: 92%;
-    height: auto;
-    text-align: center;
+@mixin full-page-wrapper {
+  @include flex-box(0);
+  width: 100%;
+}
+
+@mixin full-page-content-container {
+  max-width: 80%;
+  width: 1100px;
+  margin: 0 auto;
+  @include flex-box($margin-l);
+
+  h2,
+  h1 {
+    @include page-h2();
+    margin-bottom: $margin-m;
+  }
+
+  .title-container {
+    margin-bottom: $margin-m;
+    h2,
+    h1 {
+      @include page-h2();
+      margin-bottom: 0;
+    }
   }
 }
 
-@mixin content-h3($color: $color2) {
+@mixin full-page-text-wrapper {
+  width: 100%;
+  align-self: start;
+
+  h3,
+  h4 {
+    color: $color2;
+    font-family: $title-font;
+    font-weight: normal;
+    font-size: $title3-font-size;
+  }
+
+  .p-wrapper {
+    @include flex-box($margin-s);
+    align-items: start;
+    color: $color3;
+    font-size: $subtext-font-size;
+    letter-spacing: 0.02rem;
+    line-height: calc($subtext-font-size * 1.6);
+    text-align: start;
+    font-family: $text-font;
+    width: 100%;
+
+    .separated-p {
+      width: 100%;
+      border-bottom: 1px solid $color2;
+      box-shadow: 0 1px 0px rgba(0, 0, 0, 0.08);
+      padding-inline-start: $margin-xs;
+    }
+  }
+}
+
+@mixin content-h3($color: $color3) {
   font-size: $title3-font-size;
   font-family: $title-font;
-  color: $color2;
-  color: $color3;
+  color: $color;
   text-align: center;
   font-weight: normal;
 }

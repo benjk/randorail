@@ -1,8 +1,5 @@
 ---
-const {
-  title = SITE_TITLE,
-  withSeo = true
-} = Astro.props;
+const { title = SITE_TITLE, withSeo = true } = Astro.props;
 
 import { SITE_LANG, SITE_TITLE } from '../config';
 import '../styles/main.scss';
@@ -11,6 +8,7 @@ import '../styles/animations.scss';
 import Seo from './Seo.astro';
 
 const isProd = import.meta.env.PROD;
+const currentUrl = Astro.url.href;
 ---
 
 <!doctype html>
@@ -46,7 +44,13 @@ const isProd = import.meta.env.PROD;
   <!-- SLOT POUR PRELOADS -->
   <slot name="head-preloads" />
 
-  {isProd && withSeo && <Seo />}
+  {
+    isProd && withSeo ? (
+      <Seo currentUrl={currentUrl} />
+    ) : (
+      <meta name="robots" content="noindex, nofollow" />
+    )
+  }
 
   <body>
     <slot />

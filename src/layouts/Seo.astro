@@ -10,6 +10,11 @@ import {
   META_OG_IMG_SQUARE_HEIGHT,
 } from "../config";
 import content from "../data/content.json";
+interface Props {
+  currentUrl?: string;
+}
+
+const { currentUrl = META_SITE_URL } = Astro.props;
 ---
 
 <!-- SEO  -->
@@ -17,13 +22,13 @@ import content from "../data/content.json";
 <meta name="description" content={content.document.description} />
 
 <meta name="robots" content="index, follow" />
-<link rel="canonical" href={META_SITE_URL} />
+<link rel="canonical" href={currentUrl} />
 
 <!-- OpenGraph  -->
 <!-- Aperçu Facebook -->
 <meta property="og:title" content={content.document.og.ogTitle} />
 <meta property="og:description" content={content.document.og.ogDescription} />
-<meta property="og:url" content={META_SITE_URL} />
+<meta property="og:url" content={currentUrl} />
 <meta property="og:type" content="website" />
 <meta property="og:image" content={META_OG_URL_IMG} />
 <meta property="og:image:width" content={META_OG_IMG_WIDTH} />

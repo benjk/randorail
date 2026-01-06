@@ -8,18 +8,22 @@ const sortedBlocs = sortBlocsByOrder(blocs);
 
 <MainLayout title={content.pages.mentions.docTitle} withSeo={false}>
   <div class="mention-wrapper content-container">
-    <h2>{content.pages.mentions.title}</h2>
-    <div class="mention-container">
-      {
-        sortedBlocs.map(({ title, content }) => (
-          <section>
-            <h3>{title}</h3>
-            {content.split('\n').map((line) => (
-              <p>{line}</p>
-            ))}
-          </section>
-        ))
-      }
+    <div class="full-wrapper full-height">
+      <div class="mention-container full-content">
+        <h2>{content.pages.mentions.title}</h2>
+        {
+          sortedBlocs.map(({ title, content }) => (
+            <section class="full-text-section-wrapper">
+              <h3>{title}</h3>
+              <div class="p-wrapper">
+                {content.split('\n').map((line) => (
+                  <p>{line}</p>
+                ))}
+              </div>
+            </section>
+          ))
+        }
+      </div>
     </div>
   </div>
 </MainLayout>

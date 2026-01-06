@@ -9,7 +9,6 @@
   background-image: $bg-texture-url;
   color: $color3;
   padding-top: $mgap;
-  // padding-bottom: $mgap;
   @include flex-box($margin-xl);
   width: 100%;
 
@@ -35,7 +34,7 @@
 
     .activity-main-img {
       flex: 0 0 auto;
-      height: 44vh;
+      height: 54vh;
       min-height: 400px;
 
       img {
@@ -89,6 +88,8 @@
         color: $color1;
         text-align: justify;
         align-items: start;
+        font-family: $text-font;
+        font-size: $subtext-font-size;
       }
 
       // --- Bouton réservation (gros CTA) ---
@@ -272,7 +273,7 @@
       height: 100%;
       display: block;
       object-fit: cover;
-      object-position: center 40%;
+      object-position: center 38%;
     }
     @media screen and (max-width: $mobile-breakpoint) {
       min-height: 100px;
@@ -288,17 +289,13 @@
 
 // --- FAQ ---
 .activity-faq {
-  max-width: 80%;
-  width: 1100px;
-  margin: 0 auto;
-
+  min-width: 100%;
   h2 {
     @include page-h2();
-    margin-bottom: $margin-l;
   }
 
   .faq-item {
-    margin-bottom: $margin-m;
+    margin-bottom: $margin-s;
     transition: margin-bottom 0.35s ease;
 
     .faq-question {
@@ -308,11 +305,11 @@
       align-items: center;
       gap: $margin-s;
       width: 100%;
-      padding-bottom: $margin-xs;
+      padding-bottom: 0.25rem;
       padding-inline-start: $margin-xs;
       @include content-h4();
       border-bottom: 1px solid $color2;
-      box-shadow: 0 2px 0px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 1px 0px rgba(0, 0, 0, 0.08);
 
       .chevron {
         display: inline-block;
@@ -335,6 +332,7 @@
 
       p {
         font-size: $text-font-size;
+        font-size: $subtext-font-size;
         font-family: $text-font;
         min-height: 0;
         color: $color3;

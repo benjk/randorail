@@ -627,7 +627,6 @@ html {
                 @include basic-text-wrapper();
                 padding: $margin-l $margin-xl;
                 flex: 1;
-                gap: $margin-xs;
 
                 .info-btn {
                   margin-top: $margin-m;

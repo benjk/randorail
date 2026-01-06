@@ -5,11 +5,11 @@
 
 html body #main-container {
   .content-container {
+    justify-content: center;
     &.activities-page {
       $page-spacing: $margin-l;
 
       height: auto;
-      justify-content: center;
       gap: $page-spacing;
       padding: calc($margin-l + $header-height) 0 calc($margin-m * 2) 0;
 
@@ -100,37 +100,43 @@ html body #main-container {
       }
     }
 
-    &.faq-wrapper {
+    .full-wrapper {
       @include flex-box(0);
       justify-content: center;
+      @include full-page-wrapper();
 
-      .faq-container {
-        padding-top: $margin-m;
-        padding-bottom: $margin-s;
-        width: 100%;
-        height: 100%;
+      &.full-height {
+        padding-top: $margin-xl;
+        padding-bottom: $margin-xl;
+        min-height: 100%;
+      }
+
+      .full-content {
+        @include full-page-content-container();
+
+        .full-text-section-wrapper {
+          @include full-page-text-wrapper();
+        }
+
+        &.reglements-container {
+          h3 {
+            margin-bottom: $margin-xs;
+          }
+
+          .p-wrapper {
+            gap: $margin-m;
+
+            .strong-span {
+              font-weight: bold;
+              text-transform: uppercase;
+            }
+          }
+        }
       }
     }
   }
 }
 
-.mention-wrapper {
-  padding: $margin-m;
-
-  h3 {
-    font-size: $title3-font-size;
-    font-family: $title-font;
-    color: $color2;
-    font-weight: normal;
-  }
-
-  .mention-container {
-    display: flex;
-    flex-direction: column;
-    gap: $margin-m;
-    max-width: 1400px;
-  }
-}
 .page-not-found-wrapper {
   height: 100vh;
   width: 100%;
