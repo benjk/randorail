@@ -13,72 +13,81 @@ const contactData = content.contact;
 
 <MainLayout title={content.pages.contact.docTitle}>
   <div id="contact-container" class="content-container">
-    <div class="full-wrapper full-height">
-      <div class="full-content">
-        <div class="contact-cards-row">
-          <!-- Card : Contact (tel, email, socials) -->
-          <div class="contact-card contact-info-card">
-            <h3 class="card-title">{content.pages.contact.title}</h3>
-            <div class="contact-item">
-              <a href={`tel:${href}`}>{display}</a>
-            </div>
+    <!-- SECTION 1 : Cards contact avec bg image -->
+    <section class="section1">
+      <div class="full-wrapper">
+        <div class="full-content">
+          <div class="contact-cards-row">
+            <!-- Card : Contact (tel, email, socials) -->
+            <div class="contact-card contact-info-card">
+              <h3 class="card-title">{content.pages.contact.title}</h3>
+              <div class="contact-item">
+                <a href={`tel:${href}`}>{display}</a>
+              </div>
 
-            <div class="contact-item">
-              <a href={`mailto:${contactData.email}`}>{contactData.email}</a>
-            </div>
+              <div class="contact-item">
+                <a href={`mailto:${contactData.email}`}>{contactData.email}</a>
+              </div>
 
-            <div class="contact-item socials-wrapper">
-              <div class="social-links">
-                <a
-                  href={contactData.socials.facebook}
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Facebook"
-                >
-                  <svg>
-                    <use href="#social-facebook"></use>
-                  </svg>
-                </a>
-                <a
-                  href={contactData.socials.insta}
-                  target="_blank"
-                  rel="noopener"
-                  aria-label="Instagram"
-                >
-                  <svg>
-                    <use href="#social-instagram"></use>
-                  </svg>
-                </a>
+              <div class="contact-item socials-wrapper">
+                <div class="social-links">
+                  <a
+                    href={contactData.socials.facebook}
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Facebook"
+                  >
+                    <svg>
+                      <use href="#social-facebook"></use>
+                    </svg>
+                  </a>
+                  <a
+                    href={contactData.socials.insta}
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Instagram"
+                  >
+                    <svg>
+                      <use href="#social-instagram"></use>
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
 
-          <!-- Card : Adresse -->
-          <div class="contact-card address-card">
-            <address>
-              <h3 class="card-title">{contactData.mainLabel}</h3>
-              <p>{contactData.street}</p>
-              <p>
-                {contactData.postalCode}
-                {contactData.city}
-                {contactData.country && `- ${contactData.country}`}
-              </p>
-            </address>
-            <a
-              href={GOOGLE_MAP_URL}
-              target="_blank"
-              rel="noopener"
-              class="info-btn"
-            >
-              Itinéraire
-            </a>
+            <!-- Card : Adresse -->
+            <div class="contact-card address-card">
+              <address>
+                <h3 class="card-title">{contactData.mainLabel}</h3>
+                <p>{contactData.street}</p>
+                <p>
+                  {contactData.postalCode}
+                  {contactData.city}
+                  {contactData.country && `- ${contactData.country}`}
+                </p>
+              </address>
+              <a
+                href={GOOGLE_MAP_URL}
+                target="_blank"
+                rel="noopener"
+                class="info-btn"
+              >
+                Itinéraire
+              </a>
+            </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- Section raisons -->
-        <section class="contact-reasons">
-          <h2>Quand nous contacter ?</h2>
-
+    <!-- SECTION 2 : Raisons de contact -->
+    <section class="section2">
+      <div class="full-wrapper">
+        <div class="full-content">
+          <div class="header-wrapper">
+            <h3>Quand nous contacter ?</h3>
+            <hr class="main-hr" />
+          </div>
           <div class="reasons-grid" -group>
             <div class="reason-card">
               <h3>💡 Questions générales</h3>
@@ -105,28 +114,25 @@ const contactData = content.contact;
               <p>Tarifs et organisation adaptés aux grands groupes</p>
             </div>
           </div>
-        </section>
-
-        <!-- Note finale -->
-        <div class="contact-note">
-          <p>
-            Pour les réservations de <a href="/activities/randorail"
-              >Rando-rail</a
-            > et <a href="/activities/trottitrail">Trotti-trail</a>, consultez
-            nos disponibilités et reservez en ligne.
-          </p>
         </div>
       </div>
-      <div class="page-bottom-image">
-        <Image
-          src="/img/activities/rando-frise.webp"
-          alt={`Illustration du site du rando-rail`}
-          width={1800}
-          height={600}
-          loading="lazy"
-        />
+    </section>
+
+    <!-- SECTION 3 : Note finale -->
+    <section class="section3">
+      <div class="full-wrapper">
+        <div class="full-content">
+          <div class="contact-note">
+            <p>
+              Pour les réservations de <a href="/activities/randorail"
+                >Rando-rail</a
+              > et <a href="/activities/trottitrail">Trotti-trail</a>, consultez
+              nos disponibilités et reservez en ligne !
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   </div>
 </MainLayout>
 <HighlightOnHash client:load />

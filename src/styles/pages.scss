@@ -103,7 +103,7 @@ html body #main-container {
     // --- Image du bas ---
     .page-bottom-image {
       width: 100%;
-      height: 265px;
+      height: $bottom-img-height;
       overflow: hidden;
       border-top: $border-section-separation;
 

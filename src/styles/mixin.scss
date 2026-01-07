@@ -182,7 +182,7 @@
 @mixin basic-text-page($text-color: $color3) {
   color: $text-color;
   font-size: calc($text-font-size * 1.1);
-  letter-spacing: 0.03rem;
+  letter-spacing: 0.02rem;
   line-height: calc($text-font-size * 1.4);
   text-align: center;
   font-family: $text-font;
@@ -312,7 +312,8 @@
 @mixin info-card-base {
   @include flex-box($margin-s);
   height: auto;
-  background: $color3;
+  background: $bg-texture-url;
+  background-color: $color3;
   padding: $margin-l $margin-m;
   border-radius: $card-radius;
   box-shadow: $cards-shadow;

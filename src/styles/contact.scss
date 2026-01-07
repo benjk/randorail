@@ -4,113 +4,184 @@
 @use './animations' as *;
 
 #contact-container {
-  .full-wrapper {
-    @include full-page-wrapper();
+  $section1-height: 60vh;
+  $slanted-padding: 6rem;
 
-    &.full-height {
-      padding-bottom: 0 !important;
-      min-height: 100%;
+  @media screen and (max-width: $mobile-breakpoint) {
+    $slanted-padding: 5rem;
+  }
+
+  @media screen and (max-width: $mobile-breakpoint-s) {
+    $slanted-padding: 4rem;
+  }
+
+  justify-content: start !important;
+
+  .section1 {
+    position: relative;
+    width: 100%;
+    min-height: $section1-height;
+    height: $section1-height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: $slanted-padding;
+
+    @media (max-width: $mobile-breakpoint) {
+      height: auto;
     }
 
-    .full-content {
-      @include full-page-content-container($maxWidth: 1100px);
-      padding-bottom: $margin-l;
-      gap: $margin-l !important;
+    // Background image
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('/img/activities/rando-frise.webp');
+      background-size: cover;
+      background-position: center;
+      z-index: 1;
+    }
 
-      > h1 {
-        @include page-h1();
-      }
+    .full-wrapper {
+      @include full-page-wrapper();
+      position: relative;
+      z-index: 10;
+      padding: $margin-xl 0;
 
-      // Row des 2 cards principales
-      .contact-cards-row {
-        display: grid;
-        gap: $margin-m;
-        width: 100%;
-        justify-items: center;
+      .full-content {
+        @include full-page-content-container($maxWidth: 1100px);
 
-        @media (min-width: $mobile-breakpoint-s) {
-          grid-template-columns: repeat(2, 1fr);
-          width: auto;
-        }
-
-        @media (max-width: $mobile-breakpoint-s) {
-          aspect-ratio: auto;
-        }
-
-        .contact-card {
-          @include info-card-base();
+        .contact-cards-row {
+          display: grid;
+          gap: $margin-m;
           width: 100%;
+          justify-items: center;
+
           @media (min-width: $mobile-breakpoint-s) {
-            width: fit-content;
-            min-width: 320px;
-            max-width: 100%;
-            aspect-ratio: 1 / 1;
+            grid-template-columns: repeat(2, 1fr);
+            width: auto;
           }
 
-          .card-title {
-            font-family: $title-font;
-            font-size: calc($title4-font-size * 1.5);
-            text-align: center;
+          @media (max-width: $mobile-breakpoint-s) {
+            aspect-ratio: auto;
+          }
+
+          .contact-card {
+            @include info-card-base();
+            width: 100%;
+            @media (min-width: $mobile-breakpoint-s) {
+              width: fit-content;
+              min-width: 320px;
+              max-width: 100%;
+              aspect-ratio: 1 / 1;
+            }
+
+            .card-title {
+              font-family: $title-font;
+              font-size: calc($title4-font-size * 1.5);
+              text-align: center;
+              text-shadow: $light-shadow;
+            }
+
+            // Card adresse
+            &.address-card {
+              gap: $margin-m;
+              address {
+                font-style: normal;
+                color: $color1;
+                text-align: center;
+
+                p {
+                  margin: 0.25rem 0;
+                  font-size: $subtext-font-size;
+                  text-shadow: $ultra-light-shadow;
+                }
+              }
+
+              .info-btn {
+                @include custom-btn();
+              }
+            }
+
+            // Card contact info
+            &.contact-info-card {
+              gap: $margin-s;
+
+              .contact-item {
+                @include flex-box($margin-xs);
+
+                strong {
+                  @include content-h4($color2-strong);
+                  font-size: $title4-font-size;
+                  text-align: center;
+                }
+
+                a {
+                  @include inline-link();
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .section-wrapper {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 1100px;
+      padding: 0 $margin-m;
+    }
+  }
+
+  .section2 {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    margin-top: calc($slanted-padding * -1);
+    padding-top: calc($slanted-padding * 0.8);
+
+    @include slanted-border('right', $color2);
+    z-index: 20;
+    background-color: $color1;
+    background-image: $bg-texture-url;
+
+    .full-wrapper {
+      @include full-page-wrapper();
+
+      .full-content {
+        @include full-page-content-container($width: 90%, $maxWidth: 1100px);
+
+        .header-wrapper {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: $margin-s;
+          h3 {
+            @include content-h3();
+            font-weight: normal;
+            font-size: calc($title2-font-size * 0.8);
+            font-family: $home-font;
+            color: $color3;
             text-shadow: $light-shadow;
           }
 
-          // Card adresse
-          &.address-card {
-            gap: $margin-m;
-            address {
-              font-style: normal;
-              color: $color1;
-              text-align: center;
-
-              p {
-                margin: 0.25rem 0;
-                font-size: $subtext-font-size;
-                text-shadow: $light-shadow;
-              }
-            }
-
-            .info-btn {
-              @include custom-btn();
-            }
+          .main-hr {
+            @include custom-hr($color3);
+            width: 8rem;
+            margin-left: $margin-s;
           }
-
-          // Card contact info
-          &.contact-info-card {
-            gap: $margin-s;
-
-            .contact-item {
-              @include flex-box($margin-xs);
-
-              strong {
-                @include content-h4($color2-strong);
-                font-size: $title4-font-size;
-                text-align: center;
-              }
-
-              a {
-                @include inline-link();
-              }
-            }
-          }
-        }
-      }
-
-      // Section raisons
-      .contact-reasons {
-        width: 100%;
-        @include flex-box($margin-xs);
-
-        > h2 {
-          @include page-h2($color3);
         }
 
         .reasons-grid {
           display: grid;
           gap: $margin-s;
           grid-auto-rows: 1fr;
-          @media (min-width: $mobile-breakpoint) {
-            width: 110%;
-          }
 
           @media (min-width: $mobile-breakpoint) {
             grid-template-columns: repeat(3, 1fr);
@@ -139,24 +210,39 @@
               text-align: center;
               font-size: $subtext-font-size;
               line-height: 1.3;
+              text-shadow: $ultra-light-shadow;
             }
           }
         }
       }
+    }
+  }
 
-      // Note finale
-      .contact-note {
-        width: 100%;
-        padding: $margin-s;
+  .section3 {
+    width: 100%;
+    flex: 1;
+    @include flex-box(0);
+    .full-wrapper {
+      @include full-page-wrapper();
+      padding: $margin-l 0;
 
-        p {
-          @include basic-text-page($color3);
-          text-align: center;
+      .full-content {
+        @include full-page-content-container($width: 94%, $maxWidth: 1100px);
 
-          a {
-            @include inline-link();
-            color: $color2-strong;
-            font-weight: bold;
+        .contact-note {
+          width: 100%;
+          padding: $margin-s;
+
+          p {
+            @include basic-text-page($color3);
+            text-align: center;
+            text-shadow: $text-shadow-light;
+
+            a {
+              @include inline-link();
+              color: $color2-strong;
+              font-weight: bold;
+            }
           }
         }
       }

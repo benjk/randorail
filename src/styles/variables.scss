@@ -54,6 +54,7 @@ $margin-xl: clamp(3.5rem, 2.923rem + 1.846vw, 5rem);
 /****************** GLOBAL ******************/
 $classic-btn-size: clamp(12.2rem, 1.861rem + 16.139vw, 18rem);
 $basic-radius: 15px;
+$ultra-light-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
 $light-shadow: 0px 2px 4px rgba(0, 0, 0, 0.12);
 $basic-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 $strong-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
@@ -81,6 +82,7 @@ $subtext-font-size: calc($text-font-size * 0.85);
 $letter-spacing-basic: 0.5px;
 
 $annonce-height: 16em;
+$bottom-img-height: 265px;
 
 $card-radius: 6px;
 $border-section-separation: 3px solid $color2;
