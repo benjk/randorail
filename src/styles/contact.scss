@@ -5,16 +5,7 @@
 
 #contact-container {
   $section1-height: 60vh;
-  $slanted-padding: 6rem;
-
-  @media screen and (max-width: $mobile-breakpoint) {
-    $slanted-padding: 5rem;
-  }
-
-  @media screen and (max-width: $mobile-breakpoint-s) {
-    $slanted-padding: 4rem;
-  }
-
+  $slanted-padding: clamp(4rem, 3.382rem + 1.798vw, 5rem);
   justify-content: start !important;
 
   .section1 {
@@ -83,7 +74,7 @@
               font-family: $title-font;
               font-size: calc($title4-font-size * 1.5);
               text-align: center;
-              text-shadow: $light-shadow;
+              text-shadow: $ultra-light-shadow;
             }
 
             // Card adresse
@@ -150,6 +141,10 @@
     background-color: $color1;
     background-image: $bg-texture-url;
 
+    @media (max-width: $mobile-breakpoint) {
+    padding-top: $slanted-padding;
+    }
+
     .full-wrapper {
       @include full-page-wrapper();
 
@@ -162,6 +157,11 @@
           flex-direction: column;
           align-items: flex-start;
           gap: $margin-s;
+
+          @media (max-width: $mobile-breakpoint) {
+            align-items: center;
+          }
+
           h3 {
             @include content-h3();
             font-weight: normal;
