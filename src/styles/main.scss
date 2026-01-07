@@ -306,6 +306,8 @@ html {
                 padding-top: $margin-s;
 
                 .cards-row {
+                  $strong-radius: 25px;
+                  $light-radius: $card-radius;
                   @include flex-row($margin-s);
                   width: 100%;
                   align-items: stretch;
@@ -313,22 +315,30 @@ html {
                   .info-card {
                     @include info-card-base(); // <-- Le mixin
                     flex: 1;
+                    &:nth-child(1) {
+                      border-radius: $light-radius $strong-radius 0 0;
+                    }
+
+                    &:nth-child(2) {
+                      border-radius: 0;
+                    }
+
+                    &:nth-child(3) {
+                      border-radius: 0 0 $light-radius $strong-radius;
+                    }
 
                     // Styles spécifiques home : les radius custom
                     @media screen and (min-width: $mobile-breakpoint-s) {
-                      $strong-radius: 25px;
-                      $light-radius: $card-radius;
-
                       &:nth-child(1) {
-                        border-radius: $strong-radius $light-radius 0 0;
+                        border-radius: $strong-radius 0 0 0;
                       }
 
                       &:nth-child(2) {
-                        border-radius: 0 0 $light-radius $light-radius;
+                        border-radius: 0;
                       }
 
                       &:nth-child(3) {
-                        border-radius: $light-radius $strong-radius 0 0;
+                        border-radius: 0 $strong-radius 0 0;
                       }
                     }
 

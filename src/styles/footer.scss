@@ -125,45 +125,9 @@ $social-svg-width: 2.5rem;
       }
 
       .footer-social {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-
         a {
-          $hover-delay: $anim-hover-duration;
-          display: flex;
-          align-items: center;
-          justify-content: center;
           width: $social-svg-width;
           height: $social-svg-width;
-          border-radius: 50%;
-          background-color: rgba($footer-text-color, 0.9);
-          transition: background-color $hover-delay ease;
-          animation-name: none;
-
-          svg {
-            width: calc($social-svg-width * 0.5);
-            height: calc($social-svg-width * 0.5);
-            transition: fill $hover-delay ease;
-            fill: $color3;
-
-            g {
-              fill: $color3;
-            }
-          }
-
-          &:hover {
-            background-color: rgba($color2, 0.9);
-            animation: spin-once calc($hover-delay * 1) ease-in-out;
-
-            svg {
-              fill: $color3;
-
-              g {
-                fill: $color3;
-              }
-            }
-          }
         }
       }
     }

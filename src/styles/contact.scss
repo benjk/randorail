@@ -38,6 +38,9 @@
 
         .contact-card {
           @include info-card-base();
+          @media (min-width: $mobile-breakpoint) {
+            aspect-ratio: 1 / 1;
+          }
 
           .card-title {
             font-family: $title-font;
@@ -82,72 +85,6 @@
               a {
                 @include inline-link();
               }
-
-              &.socials {
-                .social-links {
-                  display: flex;
-                  gap: $margin-m;
-                  justify-content: center;
-                  margin-top: $margin-xs;
-
-                  a {
-                    $social-size: $margin-l;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    width: $social-size;
-                    height: $social-size;
-                    border-radius: 50%;
-                    background: linear-gradient(
-                      135deg,
-                      $color2,
-                      darken($color2, 8%)
-                    );
-                    box-shadow: $light-shadow;
-                    transition: all $anim-hover-duration ease;
-                    position: relative;
-                    overflow: hidden;
-
-                    // Effet brillance
-                    &::before {
-                      content: '';
-                      position: absolute;
-                      top: -50%;
-                      left: -50%;
-                      width: 200%;
-                      height: 200%;
-                      background: radial-gradient(
-                        circle,
-                        rgba(white, 0.3) 0%,
-                        transparent 70%
-                      );
-                      transform: translate(-100%, -100%);
-                      transition: transform 0.6s ease;
-                    }
-
-                    svg {
-                      width: calc($social-size * 0.5);
-                      height: calc($social-size * 0.5);
-                      fill: $color3;
-                      transition: transform $anim-hover-duration ease;
-                      z-index: 1;
-                    }
-
-                    &:hover {
-                      transform: translateY(-4px) scale(1.05);
-                      box-shadow: $basic-shadow;
-
-                      &::before {
-                        transform: translate(0, 0);
-                      }
-
-                      svg {
-                        transform: rotate(5deg);
-                      }
-                    }
-                  }
-                }
-              }
             }
           }
         }
@@ -165,8 +102,10 @@
         .reasons-grid {
           display: grid;
           gap: $margin-s;
-          width: 110%;
           grid-auto-rows: 1fr;
+          @media (min-width: $mobile-breakpoint) {
+            width: 110%;
+          }
 
           @media (min-width: $mobile-breakpoint) {
             grid-template-columns: repeat(3, 1fr);

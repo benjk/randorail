@@ -71,3 +71,71 @@ select {
 strong {
   color: $color2-strong;
 }
+
+.socials-wrapper {
+  display: flex;
+  gap: $margin-s;
+  justify-content: center;
+  align-items: center;
+  .social-links {
+    display: flex;
+    gap: $margin-s;
+    justify-content: center;
+    align-items: center;
+
+    a {
+      $social-size: calc($margin-l * 1.2);
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: $social-size;
+      height: $social-size;
+      border-radius: 50%;
+      background: linear-gradient(135deg, $color2, darken($color2, 8%));
+      box-shadow: $light-shadow;
+      transition: all $anim-hover-duration ease;
+      position: relative;
+      overflow: hidden;
+
+      // Effet brillance
+      &::before {
+        content: '';
+        position: absolute;
+        inset: -50%;
+        background: radial-gradient(
+          circle,
+          rgba(white, 0.3) 0%,
+          transparent 70%
+        );
+        transform: translate(-100%, -100%);
+        transition: transform 0.6s ease;
+      }
+
+      svg {
+        width: 50%;
+        height: 50%;
+        fill: $color3;
+        transition: transform $anim-hover-duration ease;
+        z-index: 1;
+
+        g {
+          fill: $color3;
+        }
+      }
+
+      &:hover {
+        transform: translateY(-4px) scale(1.05);
+        box-shadow: $basic-shadow;
+
+        &::before {
+          transform: translate(0, 0);
+        }
+
+        svg {
+          transform: rotate(5deg);
+        }
+      }
+    }
+  }
+}

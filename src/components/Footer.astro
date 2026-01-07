@@ -43,32 +43,34 @@ const { href, display } = formatFrenchPhone(content.contact.tel);
       </div>
     </div>
     <div class="footer-right">
-      <div class="footer-social">
-        <a
-          href={content.contact.socials.facebook}
-          target="_blank"
-          rel="noopener"
-          aria-label="Facebook"
-        >
-          <svg>
-            <use href="#social-facebook"></use>
-          </svg>
-        </a>
-        <a
-          href={content.contact.socials.insta}
-          target="_blank"
-          rel="noopener"
-          aria-label="Instagram"
-        >
-          <svg>
-            <use href="#social-instagram"></use>
-          </svg>
-        </a>
-        <a href="/contact" data-action="openContactPopup" aria-label="Email">
-          <svg>
-            <use href="#social-email"></use>
-          </svg>
-        </a>
+      <div class="footer-social socials-wrapper">
+        <div class="social-links">
+          <a
+            href={content.contact.socials.facebook}
+            target="_blank"
+            rel="noopener"
+            aria-label="Facebook"
+          >
+            <svg>
+              <use href="#social-facebook"></use>
+            </svg>
+          </a>
+          <a
+            href={content.contact.socials.insta}
+            target="_blank"
+            rel="noopener"
+            aria-label="Instagram"
+          >
+            <svg>
+              <use href="#social-instagram"></use>
+            </svg>
+          </a>
+          <a href="/contact" data-action="openContactPopup" aria-label="Email">
+            <svg>
+              <use href="#social-email"></use>
+            </svg>
+          </a>
+        </div>
       </div>
       <nav class="footer-nav">
         <ul>
