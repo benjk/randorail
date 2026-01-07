@@ -61,7 +61,7 @@ const contactData = content.contact;
               <p>
                 {contactData.postalCode}
                 {contactData.city}
-                {contactData.country && `, ${contactData.country}`}
+                {contactData.country && `- ${contactData.country}`}
               </p>
             </address>
             <a
@@ -70,7 +70,7 @@ const contactData = content.contact;
               rel="noopener"
               class="info-btn"
             >
-              Obtenir l'itinéraire
+              Itinéraire
             </a>
           </div>
         </div>

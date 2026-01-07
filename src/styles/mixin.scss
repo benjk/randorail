@@ -168,7 +168,7 @@
 }
 
 @mixin inline-link() {
-  color: $color2;
+  color: $color2-strong;
   font-family: $title-font;
   font-weight: normal;
   text-decoration: none;

@@ -8,15 +8,14 @@
     @include full-page-wrapper();
 
     &.full-height {
-      padding-top: $margin-xl;
       padding-bottom: 0 !important;
       min-height: 100%;
     }
 
     .full-content {
-      @include full-page-content-container();
-      padding-bottom: $margin-xl;
-      gap: $margin-xl !important;
+      @include full-page-content-container($maxWidth: 1100px);
+      padding-bottom: $margin-l;
+      gap: $margin-l !important;
 
       > h1 {
         @include page-h1();
@@ -25,20 +24,26 @@
       // Row des 2 cards principales
       .contact-cards-row {
         display: grid;
-        gap: $margin-l;
+        gap: $margin-m;
         width: 100%;
+        justify-items: center;
 
-        @media (min-width: $mobile-breakpoint) {
+        @media (min-width: $mobile-breakpoint-s) {
           grid-template-columns: repeat(2, 1fr);
+          width: auto;
         }
 
         @media (max-width: $mobile-breakpoint-s) {
-          gap: $margin-m;
+          aspect-ratio: auto;
         }
 
         .contact-card {
           @include info-card-base();
-          @media (min-width: $mobile-breakpoint) {
+          width: 100%;
+          @media (min-width: $mobile-breakpoint-s) {
+            width: fit-content;
+            min-width: 320px;
+            max-width: 100%;
             aspect-ratio: 1 / 1;
           }
 
@@ -96,7 +101,7 @@
         @include flex-box($margin-xs);
 
         > h2 {
-          @include page-h2($color2-strong);
+          @include page-h2($color3);
         }
 
         .reasons-grid {
@@ -119,6 +124,8 @@
             @include info-card-base();
             padding: $margin-m;
             border-left: 4px solid $color2;
+            background: $bg-texture-url;
+            background-color: $color3;
 
             h3 {
               @include content-h4($color2-strong);
@@ -140,25 +147,17 @@
       // Note finale
       .contact-note {
         width: 100%;
-        padding: $margin-l;
-        background: $color3;
-        background-image: $bg-texture-url;
-        border-radius: $basic-radius;
+        padding: $margin-s;
 
         p {
-          @include basic-text-page($color1);
+          @include basic-text-page($color3);
           text-align: center;
-          margin: $margin-xs 0;
 
           a {
             @include inline-link();
             color: $color2-strong;
             font-weight: bold;
           }
-        }
-
-        @media (max-width: $mobile-breakpoint) {
-          padding: $margin-s;
         }
       }
     }
