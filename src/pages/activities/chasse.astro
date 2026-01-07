@@ -3,10 +3,11 @@ import ActivityLayout from '../../layouts/ActivityLayout.astro';
 
 import { getActivityContent, getActivityFAQ } from '../../data/activities';
 
-const activityData = getActivityContent('chasse')
-const faqData = getActivityFAQ('chasse');
+const slug = 'chasse';
+const activityData = getActivityContent(slug)
+const faqData = getActivityFAQ(slug);
 
 ---
 
-<ActivityLayout {...activityData} faq={faqData}>
+<ActivityLayout {...activityData} faq={faqData} fullSlug={slug}>
 </ActivityLayout>

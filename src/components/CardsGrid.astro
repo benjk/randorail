@@ -1,11 +1,24 @@
 ---
 import ActivityCard from '../components/ActivityCard.astro';
 import { activitiesWithMeta } from '../data/activities';
+import '../styles/activity_card.scss';
+
+interface Props {
+  exclude?: string[];
+}
+
+const { exclude = [] } = Astro.props;
+const filteredActivities = activitiesWithMeta.filter((activity) => {
+  const activityKey = activity.slug.replace('activities/', '');
+  return !exclude.includes(activityKey);
+});
+
+const cardCount = filteredActivities.length;
 ---
 
-<div class="cards-grid">
+<div class="cards-grid" data-count={cardCount}>
   {
-    activitiesWithMeta.map((activity) => (
+    filteredActivities.map((activity) => (
       <ActivityCard
         bgImage={activity.bgImage}
         icon={activity.icon}

@@ -3,12 +3,13 @@ import ActivityLayout from '../../layouts/ActivityLayout.astro';
 
 import { getActivityContent, getActivityFAQ } from '../../data/activities';
 
-const activityData = getActivityContent('filets');
-const faqData = getActivityFAQ('filets');
+const slug = 'filets';
+const activityData = getActivityContent(slug)
+const faqData = getActivityFAQ(slug);
 
 ---
 
-<ActivityLayout {...activityData} faq={faqData} isFilet={true}>
+<ActivityLayout {...activityData} faq={faqData} fullSlug={slug}>
   <section slot="secondary-slot" class="activity-map">
     <h2>Contenu Bonus par activité ici</h2>
     <h2>Arrivée du parc de filets SOUS PEU !!</h2>

@@ -27,8 +27,21 @@
     width: 100%;
     max-width: 100%;
 
+    &[data-count='5'] {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    &[data-count='4'] {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
     @media screen and (max-width: 1350px) {
       grid-template-columns: repeat(3, 1fr);
+
+      &[data-count='5'],
+      &[data-count='4'] {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
 
     @media screen and (max-width: $mobile-breakpoint-s) {
@@ -36,6 +49,11 @@
       width: 100%;
       gap: $margin-m;
       grid-template-columns: 1fr;
+
+      &[data-count='5'],
+      &[data-count='4'] {
+        grid-template-columns: 1fr;
+      }
     }
 
     .activity-card {

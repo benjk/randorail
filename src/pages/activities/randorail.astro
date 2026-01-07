@@ -3,10 +3,11 @@ import ActivityLayout from '../../layouts/ActivityLayout.astro';
 
 import { getActivityContent, getActivityFAQ } from '../../data/activities';
 
-const activityData = getActivityContent('randorail')
-const faqData = getActivityFAQ('randorail');
+const slug = 'randorail';
+const activityData = getActivityContent(slug)
+const faqData = getActivityFAQ(slug);
 
 ---
 
-<ActivityLayout {...activityData} faq={faqData}>
+<ActivityLayout {...activityData} faq={faqData} fullSlug={slug}>
 </ActivityLayout>

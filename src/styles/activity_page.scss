@@ -151,7 +151,6 @@
 
       .practical-info-card {
         @include flex-box($margin-m);
-        height: auto;
         color: $color1;
         text-decoration: none;
         background: transparent;
@@ -164,11 +163,13 @@
 
       // Bloc tarifs
       .tarifs-section {
+        align-self: stretch;
         .tarifs-grid {
           display: flex;
           flex-direction: column;
           gap: $margin-xs;
           width: 100%;
+          height: 100%;
 
           .tarif-item {
             width: 100%;
@@ -208,8 +209,10 @@
 
       // Bloc horaires
       .horaires-section {
+        align-self: stretch;
         .horaire-container {
           width: 100%;
+          height: 100%;
           background: $color3;
           background-image: $bg-texture-url;
           box-shadow: $light-shadow;
@@ -262,7 +265,21 @@
   }
 }
 
+.other-activities-wrapper {
+  width: auto;
 
+  @media screen and (max-width: $mobile-breakpoint) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h2 {
+    @include page-h2();
+    margin-bottom: $margin-m;
+  }
+}
 
 // --- FAQ ---
 .activity-faq {

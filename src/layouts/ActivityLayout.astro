@@ -6,10 +6,11 @@ import '../styles/pages.scss';
 import type { ActivityFull, FAQItem } from '../data/activities-type';
 import { Image } from 'astro:assets';
 import FaqList from '../components/FaqList.astro';
+import CardsGrid from '../components/CardsGrid.astro';
 
 interface Props extends ActivityFull {
   faq: FAQItem[];
-  isFilet?: boolean;
+  fullSlug: string;
 }
 
 const {
@@ -24,8 +25,10 @@ const {
   secondaryText = [],
   icon,
   faq = [],
-  isFilet = false,
+  fullSlug,
 } = Astro.props;
+
+const isFilet = fullSlug.includes('filets');
 ---
 
 <MainLayout title={docTitle}>
@@ -124,7 +127,7 @@ const {
       <!-- Image secondaire -->
       {
         image2 && (
-          <div class="activity-secondary-image">
+          <section class="activity-secondary-image">
             <Image
               src={image2}
               alt={`Photo de l'activité ${title}`}
@@ -132,7 +135,7 @@ const {
               height={600}
               loading="lazy"
             />
-          </div>
+          </section>
         )
       }
 
@@ -147,13 +150,20 @@ const {
         )
       }
 
-      <div class="full-wrapper">
-        <div class="faq-wrapper full-content">
-          <FaqList items={faq} />
+      <div class="other-activities-wrapper">
+        <h2>Explorez nos activités</h2>
+        <div class="activities-container">
+          <CardsGrid exclude={[fullSlug]} />
         </div>
       </div>
 
-      <div class="page-bottom-image">
+      <section class="full-wrapper">
+        <div class="faq-wrapper full-content">
+          <FaqList items={faq} />
+        </div>
+      </section>
+
+      <section class="page-bottom-image">
         <Image
           src="/img/activities/rando-frise.webp"
           alt={`Photo du site du rando-rail`}
@@ -161,7 +171,7 @@ const {
           height={600}
           loading="lazy"
         />
-      </div>
+      </section>
     </div>
   </div>
   <HighlightOnHash client:load />
