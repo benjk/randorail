@@ -20,6 +20,7 @@
 
     @media (max-width: $mobile-breakpoint) {
       height: auto;
+      min-height: 45vh;
     }
 
     // Background image
@@ -47,13 +48,14 @@
 
         .contact-cards-row {
           display: grid;
-          gap: $margin-m;
+          gap: $margin-s;
           width: 100%;
           justify-items: center;
 
           @media (min-width: $mobile-breakpoint-s) {
             grid-template-columns: repeat(2, 1fr);
             width: auto;
+            gap: $margin-l;
           }
 
           @media (max-width: $mobile-breakpoint-s) {
@@ -99,19 +101,35 @@
 
             // Card contact info
             &.contact-info-card {
-              gap: $margin-s;
+              gap: $margin-m;
 
-              .contact-item {
+              .contact-wrapper {
                 @include flex-box($margin-xs);
 
-                strong {
-                  @include content-h4($color2-strong);
-                  font-size: $title4-font-size;
-                  text-align: center;
-                }
+                .contact-item {
+                  @include flex-row($margin-xs);
+                  text-decoration: none;
+                  color: $color2-strong;
 
-                a {
-                  @include inline-link();
+                  &:hover {
+                    text-decoration: underline;
+                  }
+
+                  .contact-icon {
+                    width: $margin-s;
+                    height: $margin-s;
+                    fill: $color2-strong;
+                  }
+
+                  strong {
+                    @include content-h4($color2-strong);
+                    font-size: $title4-font-size;
+                    text-align: center;
+                  }
+
+                  a {
+                    @include inline-link();
+                  }
                 }
               }
             }
@@ -142,7 +160,7 @@
     background-image: $bg-texture-url;
 
     @media (max-width: $mobile-breakpoint) {
-    padding-top: $slanted-padding;
+      padding-top: $slanted-padding;
     }
 
     .full-wrapper {

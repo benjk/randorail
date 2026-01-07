@@ -5,7 +5,6 @@ import HighlightOnHash from '../components/Highlight';
 import { formatFrenchPhone } from '../utils/utils';
 import '../styles/contact.scss';
 import { GOOGLE_MAP_URL } from '../config';
-import { Image } from 'astro:assets';
 
 const { href, display } = formatFrenchPhone(content.contact.tel);
 const contactData = content.contact;
@@ -21,12 +20,19 @@ const contactData = content.contact;
             <!-- Card : Contact (tel, email, socials) -->
             <div class="contact-card contact-info-card">
               <h3 class="card-title">{content.pages.contact.title}</h3>
-              <div class="contact-item">
-                <a href={`tel:${href}`}>{display}</a>
-              </div>
-
-              <div class="contact-item">
-                <a href={`mailto:${contactData.email}`}>{contactData.email}</a>
+              <div class="contact-wrapper">
+                <a href={`tel:${href}`} class="contact-item">
+                  <svg class="contact-icon">
+                    <use href=`#social-tel`></use>
+                  </svg>
+                  {display}
+                </a>
+                <a href={`mailto:${contactData.email}`} class="contact-item">
+                  <svg class="contact-icon">
+                    <use href=`#social-email`></use>
+                  </svg>
+                  {contactData.email}
+                </a>
               </div>
 
               <div class="contact-item socials-wrapper">
