@@ -30,7 +30,7 @@ const activityMeta: Record<string, ActivityMeta> = {
     description: "Séminaires, team-building, et événements d'entreprise",
   },
   filets: {
-    bgImage: '/img/activities/bivouac-card.webp',
+    bgImage: '/img/activities/filets-card.webp',
     icon: 'picto-filet',
     description: 'Le parc du filet qui va bientôt ouvrir ses portes',
   },

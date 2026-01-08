@@ -120,6 +120,52 @@ import RailVideoSVG from './RailVideoSVG.astro';
       </div>
     </div>
   </section>
+  <section class="section4">
+    <Image
+      src="/img/activities/filets-main.webp"
+      alt="Parc de filets Safari Rail Aventure"
+      width={1920}
+      height={640}
+      loading="lazy"
+      class="bg-image"
+    />
+    <div class="overlay"></div>
+    <div class="content">
+      <h2>Bientôt : Le Parc de Filets !</h2>
+      <a href="/activites/filets" class="cta-button"> En savoir plus </a>
+    </div>
+  </section>
+  <!-- SECTION 3 VIDEO OVERLAY -->
+  <section
+    class="video-section-overlay"
+    data-animate-group="video-section"
+    data-threshold="0.3"
+  >
+    <div
+      class="rail-wrapper video-rail-wrapper"
+      data-animate="rail"
+      data-animate-group="video-section"
+    >
+      <RailVideoSVG />
+    </div>
+    <a
+      class="video-icon-link"
+      target="_blank"
+      href=`${VIDEO_CONFIG.fallbackUrl}`
+    >
+      <svg class="video-icon">
+        <use href=`#picto-video`></use>
+      </svg>
+      <!-- Tooltip -->
+      <span
+        class="video-tooltip"
+        data-animate="pulse"
+        data-animate-group="video-section"
+      >
+        Voir en plein écran
+      </span>
+    </a>
+  </section>
   <section class="section3">
     <div
       class="counter-wrapper"
@@ -155,41 +201,6 @@ import RailVideoSVG from './RailVideoSVG.astro';
       </div>
     </div>
     <br />
-  </section>
-  <!-- SECTION 3 : VIDEO OVERLAY -->
-  <section
-    class="video-section-overlay"
-    data-animate-group="video-section"
-    data-threshold="0.3"
-  >
-    <div
-      class="rail-wrapper video-rail-wrapper"
-      data-animate="rail"
-      data-animate-group="video-section"
-    >
-      <RailVideoSVG />
-    </div>
-    <a
-      class="video-icon-link"
-      target="_blank"
-      href=`${VIDEO_CONFIG.fallbackUrl}`
-    >
-      <svg class="video-icon">
-        <use href=`#picto-video`></use>
-      </svg>
-      <!-- Tooltip -->
-      <span
-        class="video-tooltip"
-        data-animate="pulse"
-        data-animate-group="video-section"
-      >
-        Voir en plein écran
-      </span>
-    </a>
-  </section>
-  <section class="section4">
-    <p>BIENTÔT NOUVELLE ACTIVITE ! Le parc de Filets !!</p>
-    <p>Imaginons un beau Visuel</p>
   </section>
   <section class="section5">
     <div class="content-wrapper">
