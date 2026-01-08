@@ -98,14 +98,27 @@ export const processAndCompressImage = async (
       exifOrientation: -1, // Supprime les données EXIF
     });
 
+    const getExtension = (mimeType: string): string => {
+      const map: Record<string, string> = {
+        'image/webp': 'webp',
+        'image/jpeg': 'jpg',
+        'image/png': 'png',
+        'image/gif': 'gif',
+      };
+      return map[mimeType] || 'jpg';
+    };
+
     const originalName = file.name;
     const nameWithoutExtension = originalName.substring(
       0,
       originalName.lastIndexOf('.'),
     );
 
-    // Créer un nouveau File avec juste le nom sans extension
-    const renamedFile = new File([compressedFile], nameWithoutExtension, {
+    // Ajouter la bonne extension ✅
+    const extension = getExtension(compressedFile.type);
+    const finalName = `${nameWithoutExtension}.${extension}`;
+
+    const renamedFile = new File([compressedFile], finalName, {
       type: compressedFile.type,
       lastModified: compressedFile.lastModified,
     });
