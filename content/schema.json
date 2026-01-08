@@ -89,6 +89,13 @@
         "bivouac",
         "chasse"
       ]
+    },
+    {
+      "question": "Dois je prendre mon pyj ?",
+      "answer": "C'est mieux pour pas avoir froid",
+      "tags": [
+        "bivouac"
+      ]
     }
   ],
   "pages": {
@@ -244,30 +251,6 @@
       "image1": "/img/activities/bivouac-main.webp",
       "mainText": [
         "Venez découvrir notre nouvel attraction dès l'été prochain !"
-      ],
-      "tarifs": [
-        {
-          "label": "Adulte",
-          "value": "50K€"
-        },
-        {
-          "label": "Enfant (-12 ans)",
-          "value": "0€"
-        },
-        {
-          "label": "Groupe (+10 pers)",
-          "value": "20€/pers"
-        }
-      ],
-      "horaires": [
-        {
-          "label": "Octobre à Mars",
-          "value": "Fermé"
-        },
-        {
-          "label": "Avril à Septembre",
-          "value": "20H - 10H"
-        }
       ]
     },
     "mentions": {
@@ -305,6 +288,30 @@
       "title": "Nos séminaires",
       "mainText": "Contactez-nous pour savoir comment réserver un séminaire",
       "accessible": true
+    },
+    "reglements": {
+      "docTitle": "Règlements des activités",
+      "title": "Règlements",
+      "subTitle": "Rando-rail et Trotti-trail",
+      "rando": [
+        "La distance obligatoire entre chaque Rando-Rail est de 100 M",
+        "La randonnée à rando-rail demeure une promenade familiale et non une course de vitesse. Votre attention est donc fortement attirée sur les particularités et les dangers afférents à l’utilisation et à la circulation des Vélo-rails.",
+        "Les descentes sont dangereuses. Freinez simultanement tous les 20 mètres et par à coups successifs. Des voies humides augmentent les distances de freinage.",
+        "Il est obligatoire  d'arrêter le RANDO-RAIL et de le pousser pour traverser toutes les routes et chemins.",
+        "Des repères hectométriques placés sur la voie vous permettent d’indiquer votre position en cas d’incident.",
+        "4 personnes au maximum par rando-rail ou 4 personnes + un enfant de 4 ans et 15 kg maximum (siège enfant type « vélo » à disposition).",
+        "Les accotements caillouteux sont peu stables et chaotiques. Des chaussures adaptées sont souhaitables. Les Rando-rails peuvent projeter de l’eau souillée de rouille et de la boue. Des vêtements adaptés sont souhaitables.",
+        "Il est formellement interdit de descendre ou de monter en marche, ainsi que de se lever et de pédaler debout quand le vélo-rail est en mouvement.",
+        "La présence d’une personne majeure est obligatoire sur chaque Vélo-rail. Pour les groupes, une personne majeure devra être présente dans le premier et le dernier vélo-rail ainsi que tous les deux vélo-rails. Les systèmes de retournement ne devront être utilisées que par des personnes majeures.",
+        "Vous vous promenez dans un site naturel et fragile, respectez-le. De nombreuses vipères sillonnent les herbes et le ballast longeant la voie. Il est déconseillé d’y marcher.",
+        "Tout retour dépassant 2h sera facturé 31 euros l’heure entamée.",
+        "Le non-respect des dispositifs et consignes de sécurité engage la seule responsabilité des locataires et non celle de la société gestionnaire du site. Toute dégradation du matériel due au non respect de ces consignes sera facturée au locataire. Des poursuites judiciaires pourront être engagées."
+      ],
+      "trotti": [
+        "Les Trottinettes sont soumises au code de la route",
+        "Je rends la trotinette à la fin de l'activité",
+        "Je ne ferai pas de trotti-tamponeuse"
+      ]
     }
   },
   "menu": [
@@ -337,11 +344,6 @@
           "title": "Chasse au trésor",
           "slug": "activities/chasse",
           "type": "page"
-        },
-        {
-          "title": "Restauration",
-          "slug": "restauration",
-          "type": "page"
         }
       ]
     },
@@ -368,6 +370,32 @@
       ]
     },
     {
+      "title": "Infos",
+      "type": "submenu",
+      "children": [
+        {
+          "title": "Itinéraire",
+          "slug": "https://www.google.com/maps/dir/?api=1&destination=le+rando-rail+et+Trotti-trail+du+Pays+de+LUMBRES",
+          "type": "external"
+        },
+        {
+          "title": "Restauration",
+          "slug": "restauration",
+          "type": "external"
+        },
+        {
+          "title": "FAQ",
+          "slug": "faq",
+          "type": "page"
+        },
+        {
+          "title": "Règlements",
+          "slug": "reglements",
+          "type": "page"
+        }
+      ]
+    },
+    {
       "title": "Contact",
       "slug": "contact",
       "type": "page"
@@ -375,18 +403,18 @@
   ],
   "footerMenu": [
     {
-      "title": "Administration",
-      "slug": "admin",
-      "type": "page"
-    },
-    {
       "title": "Mentions Légales",
       "slug": "mentions",
       "type": "page"
     },
     {
-      "title": "Contact",
-      "slug": "contact",
+      "title": "CGV",
+      "slug": "cgv",
+      "type": "page"
+    },
+    {
+      "title": "Administration",
+      "slug": "admin",
       "type": "page"
     }
   ],
