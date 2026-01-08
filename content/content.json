@@ -35,7 +35,7 @@
             "Ce site internet est en cours de construction. Revenez plus tard !",
             "Ceci est un test mais ça n'a rieeeen à voir"
           ],
-          "imgName": "announcementDef.webp",
+          "imgName": "moipro.webp",
           "order": 1
         }
       ]
@@ -418,5 +418,5 @@
       "type": "page"
     }
   ],
-  "contentVersion": "2026-01-08T17:08:00.110Z"
+  "contentVersion": "2026-01-08T17:35:56.131Z"
 }
