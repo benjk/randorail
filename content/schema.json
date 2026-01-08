@@ -278,8 +278,8 @@
       }
     },
     "contact": {
-      "docTitle": "Contactez-nous",
-      "title": "Contactez-nous",
+      "docTitle": "Nous contacter",
+      "title": "Nous contacter",
       "mainText": "Envoyez nous un message via le formulaire ou appelez au ",
       "accessible": true
     },
