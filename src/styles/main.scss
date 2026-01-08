@@ -85,7 +85,7 @@ html {
           .section1 {
             position: relative;
             width: 100%;
-            min-height: calc(84vh - $header-height);
+            min-height: calc(80vh - $header-height);
             height: auto;
             z-index: 10;
             display: flex;
@@ -94,7 +94,7 @@ html {
             align-items: center;
             padding-left: $margin-l;
             padding-right: $margin-l;
-            padding-bottom: $margin-xl;
+            padding-bottom: $margin-l;
 
             @media screen and (max-width: $mobile-breakpoint) {
               width: 92%;
@@ -125,7 +125,7 @@ html {
 
             .title-container {
               position: relative;
-              margin-top: $margin-xl;
+              margin-top: $margin-l;
               margin-bottom: $margin-xl;
               @media screen and (max-width: $mobile-breakpoint) {
                 margin-top: calc($margin-xl * 1.4);
@@ -247,6 +247,7 @@ html {
             @include flex-box(0);
             padding-top: calc($margin-xl);
             padding-bottom: calc($margin-l);
+            margin-bottom: -3px;
 
             background-image: $bg-texture-url;
 
@@ -427,6 +428,7 @@ html {
                     .contact-text {
                       @include basic-text-page();
                       text-shadow: $basic-shadow;
+                      font-family: $title-font;
                     }
                   }
 
@@ -516,17 +518,58 @@ html {
           }
 
           .section4 {
+            position: relative;
             width: 100%;
-            max-width: 100%;
             height: 20rem;
-            background-color: $color3;
-            color: $color2-strong;
-            z-index: 12;
+            overflow: hidden;
             border-top: $border-section-separation;
-            @include flex-box();
-            padding: $margin-m $margin-s;
-            content-visibility: auto;
-            contain-intrinsic-size: auto 20rem;
+            z-index: 12;
+
+            .bg-image {
+              position: absolute;
+              inset: 0;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              z-index: 1;
+              object-position: center 40%;
+            }
+
+            .overlay {
+              position: absolute;
+              inset: 0;
+              background-color: rgba(
+                black,
+                0.45
+              ); // Ajuste l'opacité selon ton besoin
+              z-index: 2;
+            }
+
+            .content {
+              position: relative;
+              z-index: 3;
+              @include flex-box();
+              flex-direction: column;
+              gap: $margin-m;
+              height: 100%;
+              padding: $margin-m $margin-s;
+              color: $color2-strong;
+              text-align: center;
+              border-top: $margin-s solid $color3;
+              border-bottom: $margin-s solid $color3;
+
+              h2 {
+                font-size: $title2-font-size;
+                font-family: $home-font;
+                color: $color3;
+                font-weight: normal;
+              }
+
+              .cta-button {
+                @include custom-btn();
+                background-color: $color2-strong;
+              }
+            }
           }
 
           .section5 {
@@ -536,9 +579,8 @@ html {
             background-image: $bg-texture-url;
             color: $color3;
             z-index: 12;
-            border-top: $border-section-separation;
             padding: 0;
-            margin-bottom: -1px;
+            // margin-bottom: -1px;
             @include flex-box(0);
             content-visibility: auto;
 

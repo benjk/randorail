@@ -95,6 +95,7 @@
       // --- Bouton réservation (gros CTA) ---
       .reserve-btn-container {
         text-align: center;
+        @include flex-box($margin-s);
 
         .reserve-btn {
           @include custom-btn();
@@ -105,6 +106,18 @@
             width: 30px;
             fill: currentColor;
             margin-right: 0.9rem;
+          }
+        }
+
+        .reservation-info {
+          font-size: $subtext-font-size;
+          font-family: $title-font;
+          color: $color2-strong;
+          font-weight: normal;
+
+          a {
+            color: $color2-strong;
+            text-decoration: underline;
           }
         }
       }

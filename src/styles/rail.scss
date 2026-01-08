@@ -42,7 +42,7 @@
   // TABLET
   $middle-video-rail-height: 192%;
   $tablet-video-rail-height: 160%;
-  $tablet-video-rail-top: -53%;
+  $tablet-video-rail-top: -49%;
 
   // Video config - Dimensions visuelles - IDEM QUE DESSUS
   $video-sleepers-dash: 35 78;
@@ -152,6 +152,17 @@
     top: $video-rail-top;
     bottom: auto;
 
+    // Hack uniquement pour mobile sans aspect-ratio
+    @media screen and (max-width: $mobile-breakpoint) {
+      @supports not (aspect-ratio: 1) {
+        margin-right: -4.2rem;
+      }
+    }
+
+    @supports (aspect-ratio: 1) {
+      aspect-ratio: 814 / 5149;
+    }
+
     .rail-svg {
       .rail-path {
         stroke-width: $video-rail-item-width;
@@ -206,7 +217,7 @@
     @media screen and (max-width: $mobile-breakpoint) {
       width: calc($video-rail-width * $rail-width-ratio * 1.2);
       top: $tablet-video-rail-top;
-      right: 1rem;
+      right: 2%;
 
       // Sur tablet et mobile : le rail est plus long : on réduit la durée de l'anim pour meilleur effet
       &.is-visible {

@@ -247,7 +247,7 @@
 }
 
 // Mixin avec gestion des écrans étroits
-@mixin slanted-border($direction: 'right', $color: $color2) {
+@mixin slanted-border($direction: 'right', $color: $color2-strong) {
   position: relative;
 
   // Clip-path selon direction

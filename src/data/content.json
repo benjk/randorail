@@ -164,7 +164,7 @@
     "filets": {
       "docTitle": "Parc de filets - à venir !",
       "title": "Parc de filets",
-      "image1": "/img/activities/bivouac-main.webp",
+      "image1": "/img/activities/filets-main.webp",
       "mainText": [
         "Venez découvrir notre nouvel attraction dès l'été prochain !"
       ]
@@ -275,8 +275,13 @@
           "type": "page"
         },
         {
-          "title": "Entreprises",
-          "slug": "groupes/entreprises",
+          "title": "Séminaires",
+          "slug": "groupes/seminaires",
+          "type": "page"
+        },
+        {
+          "title": "Anniversaires",
+          "slug": "groupes/anniversaires",
           "type": "page"
         }
       ]

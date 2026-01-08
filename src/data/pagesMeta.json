@@ -20,12 +20,13 @@
   },
   "groupes": { "label": "Groupes", "editable": true },
   "filets": { "label": "Parc de filets", "editable": true },
-  "entreprises": {
-    "label": "Entreprises",
+  "seminaires": {
+    "label": "Séminaires",
     "editable": true,
     "parent": "groupes"
   },
   "scolaires": { "label": "Scolaires", "editable": true, "parent": "groupes" },
   "centres": { "label": "Centres", "editable": true, "parent": "groupes" },
+  "anniversaires": { "label": "Anniversaires", "editable": true, "parent": "groupes" },
   "mentions": { "label": "Mentions légales", "editable": true }
 }

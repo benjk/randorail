@@ -29,7 +29,7 @@ if (shouldRenderAnnouncement) {
     )
   }
   <main id="main-container">
-    <Header shouldRenderBanner={shouldRenderAnnouncement} />
+    <Header shouldRenderBanner={shouldRenderAnnouncement} {isHome}/>
     {shouldRenderAnnouncement && AnnouncementModal && <AnnouncementModal />}
     <Fragment set:html={sprite} />
     <slot />

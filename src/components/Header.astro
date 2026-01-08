@@ -4,7 +4,7 @@ import '../styles/header.scss';
 import type { MenuItem, PagesMap } from '../admin/components/nav/menu.types';
 import AnnouncementBanner from '../announcement/AnnouncementBanner.astro';
 
-const { shouldRenderBanner = false } = Astro.props;
+const { shouldRenderBanner = false, isHome = false } = Astro.props;
 
 const pages: PagesMap = content.pages;
 const rawMenu = content.menu as MenuItem[];
@@ -26,7 +26,7 @@ const menuItems = rawMenu.filter((item) => {
 });
 ---
 
-<header class="header">
+<header class={`header ${isHome ? 'header-home' : ''}`}>
   <nav class="navbar">
     <div class="logo-container">
       <a class="logo-link" href="/">
