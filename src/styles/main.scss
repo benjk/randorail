@@ -85,7 +85,7 @@ html {
           .section1 {
             position: relative;
             width: 100%;
-            min-height: calc(84vh - $header-height);
+            min-height: calc(80vh - $header-height);
             height: auto;
             z-index: 10;
             display: flex;
@@ -94,7 +94,7 @@ html {
             align-items: center;
             padding-left: $margin-l;
             padding-right: $margin-l;
-            padding-bottom: $margin-xl;
+            padding-bottom: $margin-l;
 
             @media screen and (max-width: $mobile-breakpoint) {
               width: 92%;
@@ -125,7 +125,7 @@ html {
 
             .title-container {
               position: relative;
-              margin-top: $margin-xl;
+              margin-top: $margin-l;
               margin-bottom: $margin-xl;
               @media screen and (max-width: $mobile-breakpoint) {
                 margin-top: calc($margin-xl * 1.4);
