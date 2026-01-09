@@ -1,7 +1,7 @@
 ---
 import HighlightOnHash from '../components/Highlight';
 import MainLayout from './MainLayout.astro';
-import '../styles/activity_page.scss';
+import '../styles/activity_page2.scss';
 import type { ActivityFull, FAQItem } from '../data/activities-type';
 import { Image } from 'astro:assets';
 import FaqList from '../components/FaqList.astro';
@@ -37,60 +37,62 @@ const isFilet = fullSlug.includes('filets');
   <div class="content-container">
     <div class="activity-page-layout">
       <section class="activity-main-info-container activity-page-section">
-        {
-          image1 && (
-            <div class="activity-main-img">
-              <Image
-                src={image1}
-                alt={`Photo de l'activité ${title}`}
-                width={1200}
-                height={800}
-                loading="eager"
-              />
-            </div>
-          )
-        }
-
-        <div class="activity-text-card">
-          <h1>{title}</h1>
-          <div class="p-container">
-            {mainText.map((paragraph) => <p>{paragraph}</p>)}
-          </div>
-
+        <div class="content-wrapper">
           {
-            !isFilet && (
-              <div class="reserve-btn-container">
-                {url ? (
-                  <>
-                    <a
-                      class="reserve-btn"
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+            image1 && (
+              <div class="img-wrapper">
+                <Image
+                  src={image1}
+                  alt={`Photo de l'activité ${title}`}
+                  width={1200}
+                  height={800}
+                  loading="eager"
+                />
+              </div>
+            )
+          }
+
+          <div class="text-wrapper">
+            <h1>{title}</h1>
+            <div class="p-container">
+              {mainText.map((paragraph) => <p>{paragraph}</p>)}
+            </div>
+
+            {
+              !isFilet && (
+                <div class="reserve-btn-container">
+                  {url ? (
+                    <>
+                      <a
+                        class="reserve-btn"
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <svg class="btn-icon">
+                          <use href={`#${icon}`} />
+                        </svg>
+                        Réserver
+                      </a>
+                      <p class="reservation-info">
+                        Pour toute réservation pour le jour même,{' '}
+                        <a href={`tel:${href}`} class="inline-link">
+                          appelez nous directement
+                        </a>
+                      </p>
+                    </>
+                  ) : (
+                    <a class="reserve-btn" href="/contact">
                       <svg class="btn-icon">
                         <use href={`#${icon}`} />
                       </svg>
                       Réserver
                     </a>
-                    <p class="reservation-info">
-                      Pour toute réservation pour le jour même,{' '}
-                      <a href={`tel:${href}`} class="inline-link">
-                        appelez nous directement
-                      </a>
-                    </p>
-                  </>
-                ) : (
-                  <a class="reserve-btn" href="/contact">
-                    <svg class="btn-icon">
-                      <use href={`#${icon}`} />
-                    </svg>
-                    Réserver
-                  </a>
-                )}
-              </div>
-            )
-          }
+                  )}
+                </div>
+              )
+            }
+          </div>
         </div>
       </section>
 
@@ -138,24 +140,25 @@ const isFilet = fullSlug.includes('filets');
       {
         image2 && (
           <section class="activity-secondary-image">
-            <Image
-              src={image2}
-              alt={`Photo de l'activité ${title}`}
-              width={1800}
-              height={600}
-              loading="lazy"
-            />
-          </section>
-        )
-      }
+            <div class="secondary-img-wrapper">
+              <Image
+                src={image2}
+                alt={`Photo de l'activité ${title}`}
+                width={1800}
+                height={600}
+                loading="lazy"
+              />
+            </div>
 
-      <!-- Texte secondaire -->
-      {
-        secondaryText.length > 0 && (
-          <section class="activity-secondary">
-            {secondaryText.map((paragraph) => (
-              <p>{paragraph}</p>
-            ))}
+            {secondaryText.length > 0 && (
+              <div class="activity-text-card">
+                <div class="p-container">
+                  {secondaryText.map((paragraph) => (
+                    <p>{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+            )}
           </section>
         )
       }

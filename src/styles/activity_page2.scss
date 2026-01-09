@@ -1,0 +1,459 @@
+@use './variables' as *;
+@use './base';
+@use './mixin' as *;
+@use './animations' as *;
+
+.activity-page-layout {
+  $mgap: $margin-xl;
+  background-color: $color1;
+  background-image: $bg-texture-url;
+  color: $color3;
+  @include flex-box(0);
+  width: 100%;
+
+  .activity-page-section {
+    max-width: 100%;
+  }
+
+  // ==========================================
+  // SECTION PRINCIPALE : style section5
+  // ==========================================
+  .activity-main-info-container {
+    width: 100%;
+    background-color: $color3;
+    background-image: $bg-texture-url;
+    color: $color3;
+    padding: 0;
+    @include flex-box(0);
+
+    .content-wrapper {
+      max-width: 100%;
+      @include flex-row(0);
+      align-items: stretch;
+      max-height: 58vh;
+      margin-bottom: calc($slanted-padding * -1);
+
+      @media screen and (max-width: $mobile-breakpoint) {
+        max-width: 100%;
+        max-height: none;
+        flex-direction: column;
+        height: auto;
+        margin-bottom: -1px;
+      }
+
+      .img-wrapper {
+        flex: 0 0 48%;
+        align-items: bottom;
+
+        @media screen and (max-width: $mobile-breakpoint) {
+          width: 100%;
+          flex: auto;
+        }
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+          object-position: right;
+
+          @media screen and (max-width: $mobile-breakpoint) {
+            width: 100%;
+            max-height: 40vh;
+          }
+        }
+      }
+
+      .text-wrapper {
+        @include basic-text-wrapper();
+        gap: $margin-m;
+        padding: $margin-l calc($margin-xl * 1.5);
+        flex: 1;
+        justify-content: center;
+        background-color: $color1;
+        font-size: $text-font-size;
+        line-height: calc($text-font-size * 1.4);
+        letter-spacing: 0.03rem;
+
+        @media screen and (max-width: 1550px) {
+          padding-left: calc($margin-xl);
+          padding-right: calc($margin-xl);
+        }
+
+        @media screen and (max-width: $mobile-breakpoint) {
+          width: 100%;
+          padding: $margin-l;
+          text-align: justify;
+          gap: $margin-l;
+        }
+
+        h1 {
+          @include content-h2();
+          margin: 0;
+
+          &:after {
+            margin-top: 0;
+          }
+        }
+
+        .p-container {
+          @include flex-box($margin-m);
+          color: $color3;
+          //   text-align: center;
+          align-items: start;
+          font-family: $text-font;
+          font-size: $subtext-font-size;
+
+          p {
+            width: 100%;
+          }
+        }
+
+        .reserve-btn-container {
+          text-align: center;
+          @include flex-box($margin-s);
+
+          .reserve-btn {
+            @include custom-btn();
+            padding-left: $margin-m;
+
+            svg {
+              height: 30px;
+              width: 30px;
+              fill: currentColor;
+              margin-right: 0.9rem;
+            }
+          }
+
+          .reservation-info {
+            font-size: $subtext-font-size;
+            font-family: $title-font;
+            color: $color2-strong;
+            font-weight: normal;
+
+            a {
+              color: $color2-strong;
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      padding-left: 0;
+      padding-right: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  // --- Tarifs + Horaires sur 2 colonnes ---
+  .activity-info-practical {
+    width: 100%;
+    max-width: 100%;
+    padding: $margin-xl 0;
+    background-color: $color3;
+    background-image: $bg-texture-url;
+    @include slanted-border();
+    padding-top: calc($slanted-padding + $margin-m);
+    padding-bottom: calc($slanted-padding + $margin-m);
+    @include flex-box(0);
+
+    h2 {
+      @include page-h2($color1);
+      margin-bottom: $margin-m;
+
+      &::after {
+        content: '';
+        display: block;
+        margin: 1rem auto 0;
+        @include custom-hr();
+        width: 8rem;
+        height: 2px;
+      }
+    }
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      flex-direction: column;
+      max-width: 100%;
+      width: 100%;
+      padding-top: $slanted-padding;
+      padding-bottom: $margin-xl;
+
+      h3 {
+        margin-bottom: $margin-l;
+      }
+    }
+
+    .practical-wrapper {
+      @include flex-row($margin-l);
+      align-items: stretch;
+      justify-content: center;
+
+      @media screen and (max-width: $mobile-breakpoint) {
+        flex-direction: column;
+        max-width: 90%;
+        width: 90%;
+      }
+
+      .practical-info-card {
+        @include flex-box($margin-m);
+        color: $color1;
+        text-decoration: none;
+        background: transparent;
+        width: 26rem;
+
+        @media screen and (max-width: $mobile-breakpoint) {
+          width: 100%;
+        }
+      }
+
+      // Bloc tarifs
+      .tarifs-section {
+        align-self: stretch;
+        .tarifs-grid {
+          display: flex;
+          flex-direction: column;
+          gap: $margin-xs;
+          width: 100%;
+          height: 100%;
+
+          .tarif-item {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: $margin-xs $margin-s;
+            background: $color1;
+            color: $color3;
+
+            background-image: $bg-texture-url;
+            border-radius: $card-radius;
+            box-shadow: $light-shadow;
+
+            strong {
+              color: $color3;
+              font-size: $text-font-size;
+              font-weight: normal;
+            }
+
+            span {
+              font-size: $text-font-size;
+              font-weight: bold;
+              color: $color2;
+            }
+          }
+        }
+      }
+
+      hr {
+        @include custom-hr();
+        width: 6rem;
+        margin: auto;
+        @media screen and (min-width: $mobile-breakpoint) {
+          display: none;
+        }
+      }
+
+      // Bloc horaires
+      .horaires-section {
+        align-self: stretch;
+        .horaire-container {
+          width: 100%;
+          height: 100%;
+          background: $color1;
+          background-image: $bg-texture-url;
+          box-shadow: $light-shadow;
+          border-radius: $card-radius;
+          padding: $margin-s $margin-m;
+          @include flex-box($margin-xs);
+
+          .horaire-item {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: $margin-xs;
+
+            background-image: $bg-texture-url;
+            border-radius: $card-radius;
+
+            strong {
+              color: $color3;
+              font-size: $text-font-size;
+              font-weight: normal;
+            }
+
+            span {
+              font-size: $text-font-size;
+              font-weight: bold;
+              color: $color2;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // --- Texte secondaire ---
+  .activity-secondary-image {
+    display: flex;
+    width: 1600px;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    padding-top: $margin-xl;
+    padding-bottom: $margin-xl;
+
+    @media screen and (max-width: $mobile-breakpoint) {
+      flex-direction: column;
+      width: 100%;
+      padding-top: 0;
+      padding-bottom: $margin-l;
+    }
+
+    .secondary-img-wrapper {
+      flex: 0 0 auto;
+      height: 54vh;
+      min-height: 400px;
+
+      img {
+        width: auto;
+        height: 100%;
+        display: block;
+        border-radius: $card-radius;
+        box-shadow: $basic-shadow;
+        object-fit: cover;
+
+        @media screen and (max-width: $mobile-breakpoint) {
+          max-height: 45vh;
+        }
+      }
+
+      @media screen and (max-width: $mobile-breakpoint) {
+        width: 100%;
+        min-height: 0;
+        height: auto;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+
+    .activity-text-card {
+      @include flex-box($margin-m);
+      box-shadow: $cards-shadow;
+      background: $color3;
+      margin-left: -2.2em;
+      border: 1px solid $color2;
+      width: 40%;
+      padding: $margin-xl $margin-xl;
+      border-radius: 8px;
+
+      @media screen and (max-width: $mobile-breakpoint) {
+        width: 90%;
+        margin-left: 0;
+        margin-top: -3.2rem;
+        padding: $margin-l;
+      }
+
+      .p-container {
+        @include flex-box($margin-m);
+        color: $color1;
+        text-align: justify;
+        align-items: start;
+        font-family: $text-font;
+        font-size: $subtext-font-size;
+      }
+    }
+  }
+}
+
+.other-activities-wrapper {
+  width: auto;
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h2 {
+    @include page-h2();
+    margin-bottom: $margin-m;
+  }
+}
+
+// --- FAQ ---
+.activity-faq {
+  min-width: 100%;
+  padding-top: $margin-xl;
+  padding-bottom: $margin-l;
+
+  @media screen and (max-width: $mobile-breakpoint) {
+    padding-top: $margin-l;
+    padding-bottom: $margin-m;
+  }
+
+  h2 {
+    @include page-h2();
+  }
+
+  .faq-item {
+    margin-bottom: $margin-s;
+    transition: margin-bottom 0.35s ease;
+
+    .faq-question {
+      all: unset;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: $margin-s;
+      width: 100%;
+      padding-bottom: 0.25rem;
+      padding-inline-start: $margin-xs;
+      @include content-h4();
+      border-bottom: 1px solid $color2;
+      box-shadow: 0 1px 0px rgba(0, 0, 0, 0.08);
+
+      .chevron {
+        display: inline-block;
+        transition: transform 0.25s ease;
+      }
+
+      h4 {
+        @include content-h4();
+        border-bottom: 1px solid $color2;
+      }
+    }
+
+    .faq-answer {
+      display: grid;
+      padding-top: $margin-s;
+      padding-inline-start: $margin-s;
+      overflow: hidden;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.3s ease;
+
+      p {
+        font-size: $text-font-size;
+        font-size: $subtext-font-size;
+        font-family: $text-font;
+        min-height: 0;
+        color: $color3;
+      }
+    }
+
+    &.open {
+      .faq-answer {
+        grid-template-rows: 1fr;
+      }
+
+      .chevron {
+        transform: rotate(90deg);
+      }
+    }
+  }
+}

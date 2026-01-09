@@ -1,5 +1,5 @@
 ---
-import ActivityLayout from '../../layouts/ActivityLayout.astro';
+import ActivityLayout2 from '../../layouts/ActivityLayout2.astro';
 
 import { getActivityContent, getActivityFAQ } from '../../data/activities';
 
@@ -7,7 +7,9 @@ const slug = 'randorail';
 const activityData = getActivityContent(slug)
 const faqData = getActivityFAQ(slug);
 
+console.log(activityData);
+
 ---
 
-<ActivityLayout {...activityData} faq={faqData} fullSlug={slug}>
-</ActivityLayout>
+<ActivityLayout2 {...activityData} faq={faqData} fullSlug={slug}>
+</ActivityLayout2>
