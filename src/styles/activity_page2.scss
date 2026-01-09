@@ -31,7 +31,7 @@
       @include flex-row(0);
       align-items: stretch;
       height: 54vh;
-      min-height: 32rem;
+      min-height: 34rem;
       margin-bottom: calc($slanted-padding * -1);
 
       @media screen and (max-width: $mobile-breakpoint) {
@@ -66,8 +66,9 @@
 
       .text-wrapper {
         @include basic-text-wrapper();
-        gap: $margin-m;
         padding: $margin-l calc($margin-xl * 1.5);
+        padding-bottom: calc($margin-l + $margin-m);
+        gap: $margin-l;
         flex: 1;
         justify-content: center;
         background-color: $color1;
@@ -106,6 +107,8 @@
 
           p {
             width: 100%;
+            @include basic-text-page();
+            text-align: justify;
           }
         }
 
@@ -169,7 +172,6 @@
         margin: 1rem auto 0;
         @include custom-hr();
         width: 8rem;
-        height: 2px;
       }
     }
 
@@ -191,6 +193,12 @@
       justify-content: center;
 
       @media screen and (max-width: $mobile-breakpoint) {
+        flex-direction: column;
+        max-width: 70%;
+        width: 90%;
+      }
+
+      @media screen and (max-width: $mobile-breakpoint-s) {
         flex-direction: column;
         max-width: 90%;
         width: 90%;
@@ -361,11 +369,13 @@
 
       .p-container {
         @include flex-box($margin-m);
-        color: $color1;
-        text-align: justify;
         align-items: start;
-        font-family: $text-font;
-        font-size: $subtext-font-size;
+
+
+        p {
+          @include basic-text-page($color1);
+          text-align: justify;
+        }
       }
     }
   }
