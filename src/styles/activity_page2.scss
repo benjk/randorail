@@ -90,6 +90,7 @@
 
         h1 {
           @include content-h2();
+          font-size: calc($title2-font-size * 1.3);
           margin: 0;
 
           &:after {
