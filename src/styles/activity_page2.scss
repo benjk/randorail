@@ -30,7 +30,8 @@
       max-width: 100%;
       @include flex-row(0);
       align-items: stretch;
-      max-height: 58vh;
+      height: 54vh;
+      min-height: 32rem;
       margin-bottom: calc($slanted-padding * -1);
 
       @media screen and (max-width: $mobile-breakpoint) {
