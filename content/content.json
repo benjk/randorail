@@ -30,12 +30,12 @@
     "annonces": {
       "items": [
         {
-          "title": "Site en construction",
+          "title": "Site en construction !",
           "textContent": [
             "Ce site internet est en cours de construction. Revenez plus tard !",
             "Ceci est un test mais ça n'a rieeeen à voir"
           ],
-          "imgName": "announcementDef.webp",
+          "imgName": "moipro.webp",
           "order": 1
         }
       ]
