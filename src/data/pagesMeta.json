@@ -19,7 +19,7 @@
     "parent": "activities"
   },
   "groupes": { "label": "Groupes", "editable": true },
-  "filets": { "label": "Parc de filets", "editable": true },
+  "filets": { "label": "Parc de filets", "editable": true, "parent": "activities" },
   "seminaires": {
     "label": "Séminaires",
     "editable": true,

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './adminDrawer.scss';
 import { signOut } from 'firebase/auth';
 import { auth } from '../auth/firebaseClient';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { set } from 'astro:schema';
+import { ArrowLeft, ArrowRight, ChevronRight } from 'lucide-react';
+import { AdminMenuNode } from '../publish/admin-type';
 
 interface Page {
   key: string;
@@ -14,7 +14,7 @@ interface Page {
 interface AdminDrawerProps {
   currentPage: string;
   setCurrentPage: (key: string) => void;
-  editablePages: { key: string; title: string }[];
+  editablePages: AdminMenuNode[];
   isCollapsed: boolean;
   setIsCollapsed: (v: boolean) => void;
 }
@@ -33,14 +33,31 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
   const [isBurgerOpen, setIsBurgerOpen] = useState(false); // <-- NOUVEAU
   const [closing, setClosing] = useState(false);
 
+  // Gestion des parents et enfants dans le menu
+  const [expandedParents, setExpandedParents] = useState<Set<string>>(
+    new Set(),
+  );
+
+  const toggleParent = (key: string) => {
+    setExpandedParents((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) {
+        next.delete(key);
+      } else {
+        next.add(key);
+      }
+      return next;
+    });
+  };
+
   const staticPages: Page[] = [
     { key: 'globals', label: 'Paramètres globaux', group: 'Général' },
     { key: 'contact-globals', label: 'Contact', group: 'Général' },
   ];
 
-  const dynamicPages: Page[] = editablePages.map(({ key, title }) => ({
+  const dynamicPages: Page[] = editablePages.map(({ key, label }) => ({
     key,
-    label: title,
+    label,
     group: 'Pages',
   }));
 
@@ -52,6 +69,41 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
     acc[group].push(page);
     return acc;
   }, {});
+
+  const renderMenuItem = (node: AdminMenuNode, level: number = 0) => {
+    const hasChildren = node.children && node.children.length > 0;
+    const isExpanded = expandedParents.has(node.key);
+    const isActive = currentPage === node.key;
+
+    return (
+      <React.Fragment key={node.key}>
+        <li
+          className={`admin-drawer-menu-item ${isActive ? 'active' : ''} ${
+            hasChildren ? 'has-children' : ''
+          }`}
+          style={{ paddingLeft: `${level * 1.5}rem` }}
+        >
+          {hasChildren && (
+            <button
+              className={`chevron-toggle ${isExpanded ? 'expanded' : ''}`}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleParent(node.key);
+              }}
+              aria-label={isExpanded ? 'Réduire' : 'Développer'}
+            >
+              <ChevronRight size={16} />
+            </button>
+          )}
+          <span onClick={() => setCurrentPage(node.key)}>{node.label}</span>
+        </li>
+
+        {hasChildren && isExpanded && (
+          <>{node.children!.map((child) => renderMenuItem(child, level + 1))}</>
+        )}
+      </React.Fragment>
+    );
+  };
 
   React.useEffect(() => {
     let touchStartY = 0;
@@ -126,6 +178,17 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
     }, 300);
   };
 
+  const menuGroups = [
+    {
+      title: 'Général',
+      items: staticPages.map((p) => ({ key: p.key, label: p.label })),
+    },
+    {
+      title: 'Pages',
+      items: editablePages, // Déjà la bonne structure avec children
+    },
+  ];
+
   return (
     <>
       <div className={`admin-drawer ${isCollapsed ? 'collapsed' : ''}`}>
@@ -143,21 +206,11 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
                 <h2>Administration</h2>
               </div>
               <nav className="admin-drawer-nav">
-                {Object.entries(pagesByGroup).map(([group, groupPages]) => (
-                  <div key={group} className="admin-drawer-group">
-                    <h3 className="admin-drawer-group-title">{group}</h3>
+                {menuGroups.map((group) => (
+                  <div key={group.title} className="admin-drawer-group">
+                    <h3 className="admin-drawer-group-title">{group.title}</h3>
                     <ul className="admin-drawer-menu">
-                      {groupPages.map((page) => (
-                        <li
-                          key={page.key}
-                          className={`admin-drawer-menu-item ${
-                            currentPage === page.key ? 'active' : ''
-                          }`}
-                          onClick={() => setCurrentPage(page.key)}
-                        >
-                          {page.label}
-                        </li>
-                      ))}
+                      {group.items.map((item) => renderMenuItem(item))}
                     </ul>
                   </div>
                 ))}

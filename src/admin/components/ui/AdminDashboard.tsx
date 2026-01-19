@@ -30,10 +30,10 @@ export function AdminDashboard() {
 
   const containerRef = useRef<HTMLDivElement>(null);
   const pageInstancesRef = useRef(new Map<string, React.ReactNode>());
-  // Ajouter une page si elle n’est pas encore dans le cache
+  // Ajouter une page si elle n’est pas encore dans le cache 
   if (!pageInstancesRef.current.has(currentPage)) {
     const currentPageInfo = editablePages.find((p) => p.key === currentPage);
-    const title = currentPageInfo?.title || currentPage;
+    const title = currentPageInfo?.label || currentPage;
 
     let component: React.ReactNode;
     if (currentPage === 'globals') {
