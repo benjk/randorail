@@ -23,22 +23,12 @@ $toggleWidth: 18px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+      overflow-y: auto;
 
   .admin-drawer-nav {
     display: flex;
     flex-direction: column;
     gap: $margin-s;
-
-    .sliding-bar {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      background-color: rgba($color3, 1);
-      border-radius: 4px;
-      pointer-events: none; // La barre ne bloque pas les clics
-      z-index: 1; // Derrière le texte mais devant le fond
-    }
   }
 
   &.collapsed {
