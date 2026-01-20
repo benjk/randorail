@@ -70,10 +70,22 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
     return acc;
   }, {});
 
-  const renderMenuItem = (node: AdminMenuNode, level: number = 0) => {
+  const renderMenuItem = (node: AdminMenuNode, level: number = 0.2) => {
     const hasChildren = node.children && node.children.length > 0;
     const isExpanded = expandedParents.has(node.key);
     const isActive = currentPage === node.key;
+
+    const handleClick = () => {
+      if (hasChildren) {
+        toggleParent(node.key);
+      } else {
+        setCurrentPage(node.key);
+        if (isMobileMenuOpen) {
+          closeMenu();
+          setIsBurgerOpen(false);
+        }
+      }
+    };
 
     return (
       <React.Fragment key={node.key}>
@@ -82,20 +94,17 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
             hasChildren ? 'has-children' : ''
           }`}
           style={{ paddingLeft: `${level * 1.5}rem` }}
+          onClick={handleClick}
         >
+          <span>{node.label}</span>
           {hasChildren && (
-            <button
+            <span
               className={`chevron-toggle ${isExpanded ? 'expanded' : ''}`}
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleParent(node.key);
-              }}
               aria-label={isExpanded ? 'Réduire' : 'Développer'}
             >
-              <ChevronRight size={16} />
-            </button>
+              <ChevronRight className="chevron-span" size={16} />
+            </span>
           )}
-          <span onClick={() => setCurrentPage(node.key)}>{node.label}</span>
         </li>
 
         {hasChildren && isExpanded && (
@@ -192,13 +201,6 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
   return (
     <>
       <div className={`admin-drawer ${isCollapsed ? 'collapsed' : ''}`}>
-        <button
-          className="drawer-toggle"
-          onClick={() => setIsCollapsed(!isCollapsed)}
-        >
-          {isCollapsed ? <ArrowRight></ArrowRight> : <ArrowLeft></ArrowLeft>}
-        </button>
-
         {!isCollapsed && (
           <>
             <div className="admin-nav-content">
@@ -236,6 +238,12 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
           </>
         )}
       </div>
+      <button
+        className={`drawer-toggle ${isCollapsed ? 'collapsed' : ''}`}
+        onClick={() => setIsCollapsed(!isCollapsed)}
+      >
+        {isCollapsed ? <ArrowRight></ArrowRight> : <ArrowLeft></ArrowLeft>}
+      </button>
 
       {/* VERSION MOBILE */}
       <div className="admin-header admin-header-mobile">
@@ -265,24 +273,11 @@ export const AdminDrawer: React.FC<AdminDrawerProps> = ({
               isMobileMenuOpen ? 'is-active' : ''
             } ${closing ? 'closing' : ''}`}
           >
-            {Object.entries(pagesByGroup).map(([group, groupPages]) => (
-              <div key={group} className="admin-drawer-group">
-                <h3>{group}</h3>
-                <ul>
-                  {groupPages.map((page) => (
-                    <li key={page.key}>
-                      <a
-                        className={currentPage === page.key ? 'active' : ''}
-                        onClick={(e) => {
-                          setCurrentPage(page.key);
-                          closeMenu();
-                          setIsBurgerOpen(false);
-                        }}
-                      >
-                        {page.label}
-                      </a>
-                    </li>
-                  ))}
+            {menuGroups.map((group) => (
+              <div key={group.title} className="admin-drawer-group">
+                <h3>{group.title}</h3>
+                <ul className="admin-drawer-menu">
+                  {group.items.map((item) => renderMenuItem(item))}
                 </ul>
               </div>
             ))}
