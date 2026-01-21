@@ -1,6 +1,6 @@
 {
   "document": {
-    "title": "Le Randorail",
+    "title": "Le Rando-rail",
     "description": "Cette description est une description SEO.",
     "og": {
       "ogTitle": "Le titre de mon site OpenGraph",
@@ -428,5 +428,5 @@
       "type": "page"
     }
   ],
-  "contentVersion": "2026-01-19T11:47:01.687Z"
+  "contentVersion": "2026-01-21T13:23:57.114Z"
 }
